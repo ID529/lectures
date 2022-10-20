@@ -1,0 +1,87 @@
+---
+title: "Intro to ID529: Data Management and Analytic Workflows in R"
+author: "Christian Testa, Dean Marengi, Jarvis Chen"
+format: 
+  revealjs:
+    theme: serif
+---
+
+# Meet your instructors
+
+## Christian Testa {.smaller}
+
+:::: {.columns}
+::: {.column width="40%"}
+![](christian_profile.jpeg)
+:::
+
+::: {.column width="60%"}
+Hi!  I'm Christian Testa.  I've been a statistical analyst working at the
+Harvard T.H. Chan School of Public Health for a little over 5 years.
+
+My research has focused on population health data with respect to **policy interventions**, the **structural determinants of
+health**, and the measurement of **health disparities and inequities** in the US.
+
+
+Methods use in my research include: 
+
+  * Bayesian statistics
+  * Differential equations & simulation modeling
+  * Hierarchical & spatial disease mapping
+  * Flexible machine learning approaches
+:::
+::::
+
+## Dean Marengi
+
+## Jarvis Chen
+
+
+# Course Overview 
+
+Before we dive in, we want to make sure you have a few things in hand: 
+
+  * Our course website ... 
+  * Our syllabus ... 
+  
+## Key Objectives 
+
+:::{.incremental .smaller}
+  *	Students will learn **best practices** for data cleaning, management, and project organization in the context of R programming based analyses focused on Population Health Science.
+  *	**Reproducibility** will be emphasized to teach students both the merits of reproducible workflows as well as how to build and implement them.
+  *	Students will learn to use R Markdown to create **dynamic reports** of their findings.
+  *	Learning Git and GitHub to **version control** and **disseminate** code.
+:::
+
+## Key Objectives (part 2)
+
+:::{.incremental .smaller}
+  *	Exploratory data analysis skills including:
+    * Data visualization
+    * Working with regression models
+    * Creating professional quality tables
+  *	How to leverage online resources to get help with any R programming challenges.
+  *	Students will get great picture of the spectacular kinds of data analysis they can go on to do!
+:::
+
+
+# Let's jump into a live demo 
+
+... 
+
+# Group Reflection on the Live Demo 
+
+## What are some of the principles that the live demo employed? 
+
+<span style="color='#7f8c8d;">(pause for conversation)</span>
+
+:::{.incremental}
+  * Code hygeine and documentation
+  * Code makes the analysis repeatable 
+  * Data visualizations supporting exploratory data analysis and communicating results
+  * Combining multiple sources of data
+:::
+
+
+# Intro to the Final Presentation Format
+
