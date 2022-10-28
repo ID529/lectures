@@ -1,66 +1,11 @@
 ---
-title: "Intro to ID529: Data Management and Analytic Workflows in R"
-author: "Christian Testa, Dean Marengi, Jarvis Chen"
+title: "<span style='font-size: 65px;'>Intro to ID529: Data Management and Analytic Workflows in R</span>"
 format: 
   revealjs:
     theme: [serif, style.scss]
 ---
 
 # Meet your instructors
-
-
-```{r}
-df <- tibble::tribble(
-       ~Aichi,   ~愛知県,      ~Nagoya,   ~名古屋市,     ~Chūbu,          ~Honshū, ~`7,542,415`, ~`5,173.07`, ~`1,458`, ~`7`, ~`54`, ~`JP-23`,     ~`52`,
-      "Akita",  "秋田県",      "Akita",   "秋田市",   "Tōhoku",         "Honshū",       959502,    11637.52,     82.4,   6L,   25L,  "JP-05",      "18",
-     "Aomori",  "青森県",     "Aomori",   "青森市",   "Tōhoku",         "Honshū",      1237984,     9645.64,    128.3,   8L,   40L,  "JP-02",      "17",
-      "Chiba",  "千葉県",      "Chiba",   "千葉市",    "Kantō",         "Honshū",      6284480,     5157.57,   1218.5,   6L,   54L,  "JP-12",      "43",
-      "Ehime",  "愛媛県",  "Matsuyama",   "松山市",  "Shikoku",        "Shikoku",      1334841,     5676.19,    235.2,   7L,   20L,  "JP-38",      "89",
-      "Fukui",  "福井県",      "Fukui",   "福井市",    "Chūbu",         "Honshū",       766863,     4190.52,      183,   7L,   17L,  "JP-18",      "77",
-    "Fukuoka",  "福岡県",    "Fukuoka",   "福岡市",   "Kyūshū",         "Kyūshū",      5135214,     4986.51,   1029.8,  12L,   60L,  "JP-40",      "92",
-  "Fukushima",  "福島県",  "Fukushima",   "福島市",   "Tōhoku",         "Honshū",      1833152,    13784.14,      133,  13L,   59L,  "JP-07",      "24",
-       "Gifu",  "岐阜県",       "Gifu",   "岐阜市",    "Chūbu",         "Honshū",      1978742,    10621.29,    186.3,   9L,   42L,  "JP-21",      "58",
-      "Gunma",  "群馬県",   "Maebashi",   "前橋市",    "Kantō",         "Honshū",      1939110,     6362.28,    304.8,   7L,   35L,  "JP-10",      "27",
-  "Hiroshima",  "広島県",  "Hiroshima",   "広島市",  "Chūgoku",         "Honshū",      2799702,     8479.65,    330.2,   5L,   23L,  "JP-34",      "82",
-   "Hokkaido",  "北海道",    "Sapporo",   "札幌市", "Hokkaidō",       "Hokkaidō",      5224614,    83424.44,     66.6,  66L,  180L,  "JP-01", "011–016",
-      "Hyōgo",  "兵庫県",       "Kōbe",   "神戸市",   "Kansai",         "Honshū",      5465002,     8401.02,    650.5,   8L,   41L,  "JP-28",      "73",
-    "Ibaraki",  "茨城県",       "Mito",   "水戸市",    "Kantō",         "Honshū",      2867009,     6097.39,    470.2,   7L,   44L,  "JP-08",      "29",
-   "Ishikawa",  "石川県",   "Kanazawa",   "金沢市",    "Chūbu",         "Honshū",      1132526,     4186.21,    270.5,   5L,   19L,  "JP-17",      "76",
-      "Iwate",  "岩手県",    "Morioka",   "盛岡市",   "Tōhoku",         "Honshū",      1210534,    15275.01,     79.2,  10L,   33L,  "JP-03",      "19",
-     "Kagawa",  "香川県",  "Takamatsu",   "高松市",  "Shikoku",        "Shikoku",       950244,     1876.78,    506.3,   5L,   17L,  "JP-37",      "87",
-  "Kagoshima", "鹿児島県",  "Kagoshima",  "鹿児島市",   "Kyūshū",         "Kyūshū",      1588256,     9187.06,    172.9,   8L,   43L,  "JP-46",      "99",
-   "Kanagawa", "神奈川県",   "Yokohama",   "横浜市",    "Kantō",         "Honshū",      9237337,     2416.11,   3823.2,   6L,   33L,  "JP-14",      "45",
-      "Kōchi",  "高知県",      "Kōchi",   "高知市",  "Shikoku",        "Shikoku",       691527,     7103.63,     97.3,   6L,   34L,  "JP-39",      "88",
-   "Kumamoto",  "熊本県",   "Kumamoto",   "熊本市",   "Kyūshū",         "Kyūshū",      1738301,     7409.46,    234.6,   9L,   45L,  "JP-43",      "96",
-      "Kyōto",  "京都府",      "Kyōto",   "京都市",   "Kansai",         "Honshū",      2578087,      4612.2,      559,   6L,   26L,  "JP-26",      "74",
-        "Mie",  "三重県",        "Tsu",    "津市",   "Kansai",         "Honshū",      1770254,     5774.49,    306.6,   7L,   29L,  "JP-24",      "59",
-     "Miyagi",  "宮城県",     "Sendai",   "仙台市",   "Tōhoku",         "Honshū",      2301996,     7282.29,    316.1,  10L,   35L,  "JP-04",      "22",
-   "Miyazaki",  "宮崎県",   "Miyazaki",   "宮崎市",   "Kyūshū",         "Kyūshū",      1069576,     7735.22,    138.3,   6L,   26L,  "JP-45",      "98",
-     "Nagano",  "長野県",     "Nagano",   "長野市",    "Chūbu",         "Honshū",      2048011,    13561.56,      151,  14L,   77L,  "JP-20",      "26",
-   "Nagasaki",  "長崎県",   "Nagasaki",   "長崎市",   "Kyūshū",         "Kyūshū",      1312317,     4130.98,    317.7,   4L,   21L,  "JP-42",      "95",
-       "Nara",  "奈良県",       "Nara",   "奈良市",   "Kansai",         "Honshū",      1324473,     3690.94,    358.8,   7L,   39L,  "JP-29",      "74",
-    "Niigata",  "新潟県",    "Niigata",   "新潟市",    "Chūbu",         "Honshū",      2201272,    12583.96,    174.9,   9L,   30L,  "JP-15",      "25",
-       "Ōita",  "大分県",       "Ōita",   "大分市",   "Kyūshū",         "Kyūshū",      1123852,     6340.76,    177.2,   3L,   18L,  "JP-44",      "97",
-    "Okayama",  "岡山県",    "Okayama",   "岡山市",  "Chūgoku",         "Honshū",      1888432,     7114.33,    265.4,  10L,   27L,  "JP-33",      "86",
-    "Okinawa",  "沖縄県",       "Naha",   "那覇市",   "Kyūshū", "Ryūkyū Islands",      1467480,     2282.59,    642.9,   5L,   41L,  "JP-47",      "98",
-      "Ōsaka",  "大阪府",      "Ōsaka",   "大阪市",   "Kansai",         "Honshū",      8837685,     1905.32,   4638.4,   5L,   43L,  "JP-27",     "06x",
-       "Saga",  "佐賀県",       "Saga",   "佐賀市",   "Kyūshū",         "Kyūshū",       811442,     2440.69,    332.5,   6L,   20L,  "JP-41",      "95",
-    "Saitama",  "埼玉県",    "Saitama", "さいたま市",    "Kantō",         "Honshū",      7344765,     3797.75,     1934,   8L,   63L,  "JP-11",      "48",
-      "Shiga",  "滋賀県",       "Ōtsu",   "大津市",   "Kansai",         "Honshū",      1413610,     4017.38,    351.9,   3L,   19L,  "JP-25",      "77",
-    "Shimane",  "島根県",     "Matsue",   "松江市",  "Chūgoku",         "Honshū",       671126,     6707.89,    100.1,   5L,   19L,  "JP-32",      "85",
-   "Shizuoka",  "静岡県",   "Shizuoka",   "静岡市",    "Chūbu",         "Honshū",      3633202,     7777.35,    467.2,   5L,   35L,  "JP-22",      "54",
-    "Tochigi",  "栃木県", "Utsunomiya",  "宇都宮市",    "Kantō",         "Honshū",      1933146,     6408.09,    301.7,   5L,   26L,  "JP-09",      "28",
-  "Tokushima",  "徳島県",  "Tokushima",   "徳島市",  "Shikoku",        "Shikoku",       719559,     4146.75,    173.5,   8L,   24L,  "JP-36",      "88",
-      "Tōkyō",  "東京都",  "Tōkyō[16]",   "東京都",    "Kantō",         "Honshū",     14047594,     2194.03,   6402.6,   1L,   39L,  "JP-13",     "03x",
-    "Tottori",  "鳥取県",    "Tottori",   "鳥取市",  "Chūgoku",         "Honshū",       553407,     3507.14,    157.8,   5L,   19L,  "JP-31",      "85",
-     "Toyama",  "富山県",     "Toyama",   "富山市",    "Chūbu",         "Honshū",      1034814,     4247.58,    243.6,   2L,   15L,  "JP-16",      "76",
-   "Wakayama", "和歌山県",   "Wakayama",  "和歌山市",   "Kansai",         "Honshū",       922584,     4724.65,    195.3,   6L,   30L,  "JP-30",      "75",
-   "Yamagata",  "山形県",   "Yamagata",   "山形市",   "Tōhoku",         "Honshū",      1068027,     9323.15,    114.6,   8L,   35L,  "JP-06",      "23",
-  "Yamaguchi",  "山口県",  "Yamaguchi",   "山口市",  "Chūgoku",         "Honshū",      1342059,     6112.54,    219.6,   4L,   19L,  "JP-35",      "83",
-  "Yamanashi",  "山梨県",       "Kōfu",   "甲府市",    "Chūbu",         "Honshū",       809974,     4465.27,    181.4,   5L,   27L,  "JP-19",      "55"
-  )
-
-```
 
 ## Christian Testa {.smaller}
 
