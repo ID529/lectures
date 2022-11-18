@@ -1,21 +1,46 @@
 Tuesday January 10th, 2023: 1:30-5:30pm Eastern Time
 
-• Lecture: Intro to R Programming
-(including conditionals, controlflow,
-etc.)
+  * 1:30-2:00 Lecture: Intro to R Programming (including conditionals, control flow, etc.)
+  * 2:00-2:30 Lecture: Data Dictionaries and Documentation
+  * 2:30-3:00 Activity: Q&A + Discussion
+  * 3:30-3:05 Break
+  * 3:05-3:35 Lecture: Reading in data from diverse data sources
+  * 3:35-4:30 Lecture: Intro to ggplot2 (common types of figures, faceting, legends, patchwork, and saving figures)
+  * 4:30-5:00 Discussion: What makes an effective data visualization?
+  * 5:00-5:15 Demonstration of how to do the homework
+  * 5:15-5:30 Time to work on homework, chat with classmates, peruse recommended reading
 
-• Lecture: Data Dictionaries and
-Documentation
+Recommended reading: 
+  
+  - Our learnr tutorial on Conditionals, Control Flow, and Logic in R
+  - *Smithsonian Data Management and Best Practices — Describing Your Data: Data Dictionaries*
+    - https://library.si.edu/sites/default/files/tutorial/pdf/datadictionaries20180226.pdf
+  - *U.S. Geological Survey, Data Dictionaries*
+    - https://www.usgs.gov/data-management/data-dictionaries
+  - Skim the readr cheatsheet: 
+    - https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf 
+    - Keep in mind, your goal shouldn't be to memorize everything, but rather to 
+      get a sense of what functionality is available to you, and how you could 
+      reference this cheatsheet or follow up on its contents to make use of it. 
+  - Fundamentals of Data Visualization, Chapter 2, *Visualizing data: Mapping data onto aesthetics*:
+    - https://clauswilke.com/dataviz/aesthetic-mapping.html 
+  - Fundamentals of Data Visualization, Chapter 17, *The principle of proportional ink*:
+    - https://clauswilke.com/dataviz/proportional-ink.html
+    
+Truly extra reading for those interested in advancing their conceptual understanding of ggplot2 and the possibilities in data visualization: 
 
-• Activity: Discussion
+  - *A Layered Grammar of Graphics, by Hadley Wickham* http://vita.had.co.nz/papers/layered-grammar.pdf
+  - Start to get familiar with the ggplot2 book. We recommend starting with 
+  subsection 1.2 "What is the grammar of graphics?" here: 
+  https://ggplot2-book.org/introduction.html#what-is-the-grammar-of-graphics
+  - The R Graph Gallery: https://r-graph-gallery.com/index.html 
+  
+Homework: 
 
-• Lecture: Reading in data from
-diverse data sources
+  - Read in a dataset of your choice [we will give you some example datasets you can use] and create a figure using ggplot2. We want to see students include titles, subtitles, captions, data sources, legends, etc.
 
-• Lecture: Intro to ggplot2
-(common types of figures,
-faceting, legends, patchwork, and
-saving figures)
+What you can expect from the instructional team: 
 
-• Discussion: What makes an
-effective data visualization?
+  - We will be reading your bios and working on sorting you into groups for the final
+  presentation topics.
+  
