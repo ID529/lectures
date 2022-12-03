@@ -18,16 +18,12 @@ format:
 Hi!  I'm Christian Testa.  I've been a statistical analyst working at the
 Harvard T.H. Chan School of Public Health for a little over 5 years.
 
-My research has focused on population health data with respect to **policy interventions**, the **structural determinants of
-health**, and the measurement of **health disparities and inequities** in the US.
+My recent research has focused addressing health disparities and
+inequities in the US.  
 
-
-Methods use in my research include: 
-
-  * Bayesian statistics
-  * Differential equations & simulation modeling
-  * Hierarchical & spatial disease mapping
-  * Flexible machine learning approaches
+These days I'm working on projects involving epigenetic
+aging, multiple types of discrimination, COVID-19 rates, and spatiotemporal
+methods for disease mapping.
 :::
 ::::
 
@@ -40,8 +36,8 @@ Methods use in my research include:
 
 Before we dive in, we want to make sure you have a few things in hand: 
 
-  * Our course website ... 
-  * Our syllabus ... 
+  * Our course website <https://id529.github.io/>
+  * Our syllabus <https://id529.github.io/syllabus/>
   
 ## Key Objectives 
 
@@ -52,7 +48,7 @@ Before we dive in, we want to make sure you have a few things in hand:
   *	Learning Git and GitHub to **version control** and **disseminate** code.
 :::
 
-## Key Objectives (part 2)
+## Key Objectives (continued)
 
 :::{.incremental .smaller}
   *	Exploratory data analysis skills including:
@@ -62,6 +58,34 @@ Before we dive in, we want to make sure you have a few things in hand:
   *	How to leverage online resources to get help with any R programming challenges.
   *	Students will get great picture of the spectacular kinds of data analysis they can go on to do!
 :::
+
+
+## Course Philosophy 
+
+All of our lecture recordings and slides will be posted online so you can 
+refer back to them as you need to. 
+
+Our goal is to give you the space you need to grow your R skills!
+
+## Tracks for the Course 
+
+<div style='font-size: 22px;'>
+
+Keeping in mind that it's impossible to learn _all_ of R in any short period of
+time, we want to encourage you to pick a track to focus your energy on the most.
+
+  - Beginner/Novice
+    - <div style='font-size: 20px;'>This track emphasizes learning the basics of R and RStudio, learning the terminology, data types, and how to formulate your questions/searches to best get help for R programming challenges.</div>
+  - Data Visualization
+    - <div style='font-size: 20px;'>This track emphasizes data visualization skills, learning how to use ggplot2, and the important considerations that go into making an effective data visualization (e.g., communicative precise language, appropriate and meaningful use of legends, accessibility, etc.).</div>
+  - Data Cleaning/Management and Working with Codebooks
+    - <div style='font-size: 20px;'>This track emphasizes how to go from a raw dataset to something that can be worked with in R, documenting the process, and making that process reproducible and robust.</div>
+  - Programming and Software Engineering
+    - <div style='font-size: 20px;'> This track emphasizes the role of designing software systems, writing packages in R, clean code and code hygiene, and leveraging tools designed to accelerate the effectiveness of programmers like automated testing. </div>
+  - Other Niche Topics in R
+    - <div style='font-size: 20px;'>Is there a specific functionality available in R that you want to get better with not listed above?  Make sure to be precise.  Examples include interactive web applications, interactive data visualizations, machine learning pipelines, etc.</div>
+    
+</div>
 
 
 # Let's jump into a live demo 
@@ -75,12 +99,72 @@ Before we dive in, we want to make sure you have a few things in hand:
 <span style="color='#7f8c8d;">(pause for conversation)</span>
 
 :::{.incremental}
-  * Code hygeine and documentation
+  * Project organization, code hygiene and documentation
   * Code makes the analysis repeatable 
-  * Data visualizations supporting exploratory data analysis and communicating results
-  * Combining multiple sources of data
+  * Data visualizations support exploratory data analysis and communicating results
+  * Ample reliance on tools that are already out there
 :::
 
 
 # Intro to the Final Presentation Format
+
+The final project will be group presentations on best practices related to a specific
+aspect of data analysis and management. 
+
+You'll be in groups of five and have fifteen minutes of time to present and a
+brief Q&A afterwards.
+
+## Final Presentation Topics
+
+<center>
+<div style="font-size: 30px !important;">
+
+  * Clean Code and Code Hygiene
+  * Data Documentation and Dictionaries
+  * Code Commenting and Documentation
+  * How to Present Results from Models
+  * Data Visualization
+  * Exploratory Data Analysis
+  * Reporting on Missing Data
+  * Sharing Code and Open-Source Science
+  * Use of Interactive Web Applications in Data Analysis
+  * R Project Workflows
+  * R Package Workflows
+  
+</div>
+</center>
+  
+## Rubric for the Final Project
+
+You'll be evaluated on two aspects of your final presentations: 
+
+  * Does the presentation describe principles and clear guidance on methods to achieve
+those principles that can be applied in the context of the topic or subject
+matter?
+  * Does the presentation communicate how you have learned and grown through
+completing the coursework?
+
+## Supporting Examples
+
+For example, let's say your final presentation topic is _data documentation._ 
+We would want to hear: 
+  
+  * Why is data documentation important? 
+  * What are some data documentation practices you think are applicable for basically every project?
+  * How do you think having good data documentation could pay off? 
+  * What are some data documentation practices or principles you learned during this course that you wouldn't have thought of before? 
+  
+## A Quick Survey 
+
+:::: {.columns}
+::: {.column width="40%"}
+Please do the following survey: 
+
+bit.ly/id529-day1
+:::
+
+::: {.column width="60%"}
+![day 1 survey QR code](day1-survey-qr-code.png)
+:::
+::::
 

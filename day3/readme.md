@@ -3,7 +3,7 @@ Wednesday January 11th
   * 1:30-2:00 Lecture: Starting R Projects
   * 2:00-2:30 Lecture: Intro to dplyr
   * 2:30-2:45 Comparing base R vs. tidyverse
-  * 2:45-3:00 Activity: Work on Learnr Tutorial in Groups
+  * 2:45-3:00 Activity: Work on dplyr learnr tutorial in groups
   * 3:00-3:05 Break 
   * 3:05-3:35 Lecture: Cleaning Text Data
   * 3:35-4:05 Lecture: Writing Functions

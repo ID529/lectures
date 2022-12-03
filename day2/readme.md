@@ -6,7 +6,7 @@ Tuesday January 10th, 2023: 1:30-5:30pm Eastern Time
   * 3:30-3:05 Break
   * 3:05-3:35 Lecture: Reading in data from diverse data sources
   * 3:35-4:30 Lecture: Intro to ggplot2 (common types of figures, faceting, legends, patchwork, and saving figures)
-  * 4:30-5:00 Discussion: What makes an effective data visualization?
+  * 4:30-5:00 Discussion: What are the ingredients to a ggplot? What makes an effective data visualization?
   * 5:00-5:15 Demonstration of how to do the homework
   * 5:15-5:30 Time to work on homework, chat with classmates, peruse recommended reading
 
@@ -26,6 +26,10 @@ Recommended reading:
     - https://clauswilke.com/dataviz/aesthetic-mapping.html 
   - Fundamentals of Data Visualization, Chapter 17, *The principle of proportional ink*:
     - https://clauswilke.com/dataviz/proportional-ink.html
+  - [Video] Introduction to ggplot2 https://www.youtube.com/watch?v=UiuA5sBEcFk 
+  - [Video] BeginneR Workshop https://www.youtube.com/watch?v=7kuPnVZcot0 [lecture starts around 20:00]
+    - Check the video description for the code files 
+  - [Video] Intro to Git and GitHub https://www.youtube.com/watch?v=u4LIpYC0Yaw 
     
 Truly extra reading for those interested in advancing their conceptual understanding of ggplot2 and the possibilities in data visualization: 
 
