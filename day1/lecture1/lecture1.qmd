@@ -163,8 +163,8 @@ Please do the following survey:
 bit.ly/id529-day1
 :::
 
-::: {.column width="60%"}
-![day 1 survey QR code](day1-survey-qr-code.png)
+::: {.column width="40%"}
+<img src="day1-survey-qr-code.png" alt='QR code for the day 1 survey; same as the bit.ly link'>
 :::
 ::::
 
