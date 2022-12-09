@@ -1,0 +1,28 @@
+    Introduction to Cleaning Text Data in R
+        The importance of cleaning text data in data analysis
+        Overview of the different steps involved in cleaning text data
+
+    The stringr Package: Introduction and Overview
+        What is the stringr package and why is it useful for cleaning text data
+        Overview of the key features of the stringr package
+
+    Cleaning and Preprocessing Text Data with stringr
+        Examples of using the stringr package to clean and preprocess text data
+        Techniques for removing punctuation, whitespace, and other unwanted characters
+
+    Working with Patterns and Regular Expressions in stringr
+        Introduction to patterns and regular expressions in the context of text data cleaning
+        Examples of using regular expressions with the stringr package to search for and match specific patterns in text
+
+    Extracting and Manipulating Substrings with stringr
+        Examples of using the stringr package to extract and manipulate substrings in text data
+        Techniques for splitting strings, extracting substrings based on patterns, and replacing substrings
+
+    Case Conversion and Text Normalization with stringr
+        Examples of using the stringr package to convert the case of text and normalize text
+        Techniques for converting text to lowercase, uppercase, and title case
+
+    Conclusion and Next Steps for Working with Text Data in R
+        Summary of the key points covered in the presentation
+        Next steps for working with text data in R, including exploring more advanced features of the stringr package and applying it to your own data.
+

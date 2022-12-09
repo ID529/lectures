@@ -1,0 +1,31 @@
+Introduction to Working with Diverse Data Sources in R
+
+    The importance of accessing and working with data from a variety of sources
+    Overview of the different types of data sources and how to access them in R
+
+APIs in R: Introduction and Overview
+
+    What are APIs and how do they work
+    Examples of APIs and how to use them in R, including tidycensus, WHO, and World Bank
+
+Scraping Web Data in R
+
+    What is web scraping and why is it useful
+    Examples of scraping web data in R using packages such as rvest and xml2
+
+Working with Survey Data in R
+
+    Overview of survey data and how it is commonly used in data analysis
+    Examples of accessing and working with survey data in R using the qualtrics API and the datapasta package
+
+Working with Social Media Data in R
+
+    Overview of social media data and how it can be used in data analysis
+    Examples of accessing and working with social media data in R using the twitteR package
+
+Tips for Successfully Working with Diverse Data Sources in R
+
+    Best practices for accessing and working with data from diverse sources
+    Strategies for ensuring the integrity and quality of your data
+
+Conclusion and Next Steps

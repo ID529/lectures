@@ -1,0 +1,30 @@
+    Introduction to dplyr
+
+    What is dplyr and why is it useful for data manipulation and analysis
+    The basics of the dplyr package and its syntax
+
+    Selecting and filtering data with dplyr
+
+    Using the select() and filter() functions to select specific columns and rows of data
+    Combining multiple selections and filters with logical operators
+
+    Sorting and arranging data with dplyr
+
+    Using the arrange() function to sort data by one or more columns
+    Sorting data in ascending or descending order
+
+    Summarizing and grouping data with dplyr
+
+    Using the group_by() and summarize() functions to calculate summary statistics for groups of data
+    Using the pivot_wider() and pivot_longer() functions to reshape data into different formats
+
+    Mutating and transforming data with dplyr
+
+    Using the mutate() function to create new columns based on existing columns
+    Using the transmute() function to select and create new columns in one step
+    Using the rename() function to change the names of columns
+
+    Summary and next steps
+
+    Recap of key concepts and topics covered in the lecture
+    Recommended resources and next steps for learning more about dplyr and data manipulation in R.

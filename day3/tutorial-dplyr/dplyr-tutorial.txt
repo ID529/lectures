@@ -1,0 +1,27 @@
+    Introduction to dplyr
+        What is dplyr and why is it useful
+        Overview of the key features of dplyr, including its syntax and the "verb-based" approach to data manipulation
+
+    Getting Started with dplyr
+        How to install and load dplyr in R
+        Basics of working with dplyr, including the use of the pipe operator (%>%)
+
+    Selecting and Filtering Data with dplyr
+        How to select and filter data using dplyr functions such as select(), filter(), and slice()
+        Examples of using these functions on different types of data
+
+    Grouping and Summarizing Data with dplyr
+        How to group and summarize data using dplyr functions such as group_by() and summarize()
+        Examples of using these functions on different types of data
+
+    Joining Data with dplyr
+        How to join data using dplyr functions such as inner_join(), left_join(), and full_join()
+        Examples of using these functions on different types of data
+
+    Additional dplyr Features
+        Overview of additional dplyr features, including the use of window functions and the ability to work with remote data
+        Examples of using these features in practice
+
+    Conclusion and Next Steps
+        Summary of the key points covered in the tutorial
+        Next steps for learning more about dplyr, including exploring more advanced features and applying it to your own data.

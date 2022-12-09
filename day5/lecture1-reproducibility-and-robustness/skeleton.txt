@@ -1,0 +1,26 @@
+Introduction to reproducibility and robustness in science and data analysis
+
+The importance of reproducibility and robustness: promoting transparency, accuracy, and trust in scientific research
+
+    When research is reproducible, it means that the methods and results can be independently replicated by others using the same data and procedures. This helps to ensure the validity and reliability of the results, and it allows others to verify and build upon the findings.
+    
+    Robustness, on the other hand, refers to the ability of a research study to produce consistent and reliable results despite variations in the methods or data. A robust study is one that is not easily influenced by small changes or errors in the data or analysis, and it is therefore more likely to produce reliable and generalizable conclusions.
+    
+    Together, reproducibility and robustness help to ensure the integrity and credibility of scientific research, and they are essential for building a strong and reliable body of knowledge in any field. By promoting transparency and accuracy in scientific research, reproducibility and robustness can also help to foster trust and confidence in the scientific community, which is crucial for advancing science and its applications in the real world.
+  
+Examples of the benefits of reproducibility and robustness in scientific research and data analysis
+
+Common pitfalls and challenges to reproducibility and robustness in science and data analysis
+
+   * Lack of clear and detailed documentation of research methods and data: Without clear and detailed documentation, it can be difficult or impossible for others to reproduce the research or verify the results.
+   * Use of proprietary or proprietary data: Proprietary data or methods may not be available or accessible to others, making it difficult or impossible to reproduce the research.
+   * Lack of access to the original data or code: Without access to the original data and code used in a study, it may be difficult or impossible to reproduce the research or verify the results.
+   * Use of ad hoc analysis: Ad hoc analysis can introduce bias or subjectivity into the research, making it difficult to reproduce or validate the results.
+   * Use of inappropriate or insufficient statistical methods: Inappropriate or insufficient statistical methods can lead to biased or inaccurate results, which can compromise the reproducibility and robustness of the research.
+   * Lack of adequate sample size or power: A small sample size or low statistical power can lead to unreliable or inconclusive results, which can undermine the reproducibility and robustness of the research.
+
+The pressures in academia that can push researchers away from reproducible science: time constraints, lack of incentives, and publication biases
+
+Strategies for promoting reproducibility and robustness in scientific research and data analysis: best practices, guidelines, and tools
+
+Conclusion and next steps for further learning and promoting reproducibility and robustness in science and data analysis.

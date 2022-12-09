@@ -1,0 +1,6 @@
+    Introduction to regression modeling and its applications
+    The basics of fitting regression models in R: selecting the appropriate model type and inputting data
+    Extracting key model summaries from fit model objects in R: coefficients, p-values, and R-squared values
+    Visualizing model estimates in R: scatterplots, residual plots, and diagnostic plots
+    Interpreting and evaluating regression models in R: assessing model fit and checking for potential issues
+    Conclusion and next steps for further learning on regression modeling in R: resources for additional practice and exploration.

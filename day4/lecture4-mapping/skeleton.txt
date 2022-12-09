@@ -1,0 +1,7 @@
+    Introduction to creating maps in R
+    Setting up your R environment for mapping: installing necessary packages and setting up necessary data
+    Basics of creating maps in R: using map-specific packages
+    Enhancing your maps in R: adding titles, legends, and other annotations
+    Mapping spatial data in R: importing and visualizing spatial data from shapefiles, GeoJSON, and other sources
+    Advanced techniques for creating maps in R: using packages for interactive and animated mapping
+    Conclusion and next steps for further learning on mapping in R: resources for additional practice and exploration.

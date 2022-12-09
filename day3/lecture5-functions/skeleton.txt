@@ -1,0 +1,31 @@
+    Introduction to Writing Functions in R
+        What are functions and why are they useful
+        The basics of writing a function in R
+
+    Anatomy of a Function in R
+        The different parts of a function in R, including the function name, arguments, and body
+        Examples of simple functions in R
+
+    Arguments in Functions
+        Different types of arguments, including required, optional, and default arguments
+        How to specify and use arguments in a function
+
+    The Return Statement
+        What is the return statement and why is it important
+        How to use the return statement to specify the output of a function
+
+    Scope in Functions
+        What is scope and how it works in functions
+        Tips for managing scope and avoiding common pitfalls
+
+    Debugging Functions
+        Common mistakes and error messages when writing functions
+        Techniques for debugging and troubleshooting functions
+
+    Best Practices for Writing Functions
+        Tips for writing clear, efficient, and reusable functions
+        Examples of well-written functions in R
+
+    Conclusion and Next Steps for Writing Functions in R
+        Summary of the key points covered in the lecture
+        Next steps for learning more about writing functions in R, including exploring more advanced features and applying it to your own work.

@@ -1,0 +1,28 @@
+Introduction to Data Linkage
+Different Kinds of Joins in R
+    Inner Joins
+    Outer Joins
+    Left and Right Joins
+Probabilistic Join Methods in R
+    Overview of Probabilistic Joining
+    Jaro-Winkler Distance
+    Application of Probabilistic Joining in R
+Conclusion and Future Directions for Data Linkage in R
+
+
+```
+library(fuzzyjoin)
+
+# Set the data frames to be joined
+df1 <- data.frame(ID = c(1, 2, 3), Name = c("John Doe", "Jane Smith", "Bob Johnson"))
+df2 <- data.frame(ID = c(4, 5, 6), Name = c("John D.", "Jane S.", "Bob J."))
+
+# Perform the probabilistic join using the Jaro-Winkler distance
+result <- stringdist_left_join(df1, df2, 
+                          by = "Name", 
+                          max_dist=5)
+
+# View the resulting data frame
+result
+```
+

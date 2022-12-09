@@ -1,0 +1,17 @@
+Introduction to regression modeling part 2
+
+Overview of Poisson regression: when and how to use it
+
+Code example of fitting a Poisson regression model in R
+
+Overview of logistic regression: when and how to use it
+
+Code example of fitting a logistic regression model in R
+
+Overview of smoothing splines: when and how to use them
+
+Code example of fitting a smoothing spline model in R
+
+Interpreting and evaluating the fitted models in R: coefficients, p-values, and model fit statistics
+
+Conclusion and next steps for further learning on regression modeling in R.

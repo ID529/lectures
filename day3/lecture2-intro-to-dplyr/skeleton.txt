@@ -1,0 +1,36 @@
+    Introduction to R programming for academic research
+
+    The role of R in academic research
+    The basics of the R language and its syntax
+
+    Basic syntax and data types in R
+
+    Data types in R (e.g. numeric, character, logical)
+    Assigning values to variables
+    Basic arithmetic and logical operations
+
+    Working with variables and operators in R
+
+    Creating and manipulating vectors and matrices
+    Creating and manipulating data frames
+    Basic indexing and subsetting
+
+    Control flow and conditional statements in R
+
+    If-else statements
+    For and while loops
+    Using control flow to perform different actions based on specified conditions
+
+    Functions and loops in R
+
+    Defining and calling functions in R
+    Using loops to perform repetitive tasks
+    Writing efficient and well-structured code with functions and loops
+    
+      - include student matching example
+      - another example is creating some kind of lookup table 
+
+    Summary and next steps
+
+    Recap of key concepts and topics covered in the lecture
+    Recommended resources and next steps for using R in academic research.

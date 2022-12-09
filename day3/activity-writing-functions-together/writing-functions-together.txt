@@ -1,0 +1,25 @@
+    Introduction to the Activity
+        Introduce the topic of writing functions in R and the palmerpenguins dataset
+        Explain the goals and objectives of the activity
+
+    Setting up the Environment
+        Have students install and load the necessary packages, including dplyr and ggplot2
+        Have students load the palmerpenguins dataset and explore it briefly
+
+    Writing Functions Together
+        Divide the class into small groups and assign each group a task related to the palmerpenguins dataset
+        Have each group work together to write a function to complete their assigned task
+        Encourage groups to share their code and collaborate with each other
+
+    Testing and Debugging Functions
+        Have each group test their function on the palmerpenguins dataset to ensure it works correctly
+        Have groups troubleshoot and debug any errors or issues with their functions
+
+    Reviewing and Sharing Functions
+        Have each group share their function with the class and explain how it works
+        Discuss the different approaches and techniques used by each group
+        Encourage the class to provide feedback and suggestions for improvement
+
+    Conclusion and Next Steps
+        Summarize the key points covered in the activity
+        Encourage students to continue practicing writing functions in R and applying them to their own data.

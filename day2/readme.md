@@ -1,6 +1,7 @@
 Tuesday January 10th, 2023: 1:30-5:30pm Eastern Time
 
   * 1:30-2:00 Lecture: Intro to R Programming (including conditionals, control flow, etc.)
+  * Learnr Tutorial on Conditionals and Control Flow
   * 2:00-2:30 Lecture: Data Dictionaries and Documentation
   * 2:30-3:00 Activity: Q&A + Discussion
   * 3:30-3:05 Break
@@ -8,7 +9,7 @@ Tuesday January 10th, 2023: 1:30-5:30pm Eastern Time
   * 3:35-4:30 Lecture: Intro to ggplot2 (common types of figures, faceting, legends, patchwork, and saving figures)
   * 4:30-5:00 Discussion: What are the ingredients to a ggplot? What makes an effective data visualization?
   * 5:00-5:15 Demonstration of how to do the homework
-  * 5:15-5:30 Time to work on homework, chat with classmates, peruse recommended reading
+  * 5:15-5:30 Time to work on homework, chat with classmates, peruse recommended reading, engage in self-affirmation
 
 Recommended reading: 
   

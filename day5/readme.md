@@ -8,6 +8,7 @@ Friday January 13th
   * 3:00-3:30 Lecture: Data Linkage Methods (different kinds of joins, probabilistic join
   methods)
   * Lecture: Introduction of the Onikye et al reproduction article
+  * Introduce homework: Onikye et al discussion worksheet; combining multiple datasources; finding online resources
   
 Available/Recommended Reading:
 

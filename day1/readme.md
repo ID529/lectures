@@ -8,9 +8,10 @@ Monday January 9th, 2023: 1:30-5:30pm Eastern Time
    * 3:05-3:35: Intro to RStudio and R
    * 3:35-4:00: Discussion and Self-Introductions
    * 4:00-4:45: Lecture: Intro to Git and GitHub
-   * 4:45-5:00: Time for Intro Survey 
-   * 5:00-5:30 Activity: Setup GitHub accounts + SSH authentication + join our
-   course organization + chat with classmates
+   * 4:45-5:00: Demo of how to do the homework
+   * 5:00-5:05: Positive Affirmations
+   * 5:05-5:30 Activity: Setup GitHub accounts + work
+   on the homework + chat with classmates
  
 Recommended reading: 
 

@@ -1,0 +1,30 @@
+    Introduction to ggplot2
+        Overview of ggplot2 and its role in data visualization
+        Examples of the types of figures that can be created with ggplot2
+
+    Common Types of Figures in ggplot2
+        Line plots
+        Bar plots
+        Histograms
+        Scatter plots
+        Box plots
+
+    Faceting in ggplot2
+        What is faceting and why is it useful
+        Examples of faceting in ggplot2
+
+    Legends in ggplot2
+        What are legends and why are they important
+        Examples of creating and customizing legends in ggplot2
+
+    The patchwork Package: Combining Figures in ggplot2
+        What is patchwork and why is it useful
+        Examples of using patchwork to combine multiple ggplot2 figures
+
+    Saving Figures in ggplot2
+        The different file formats that ggplot2 figures can be saved in
+        Examples of saving ggplot2 figures in different file formats
+
+    Conclusion and Next Steps for Working with ggplot2
+        Summary of the key points covered in the presentation
+        Next steps for working with ggplot2, including exploring more advanced features and applying it to your own data.
