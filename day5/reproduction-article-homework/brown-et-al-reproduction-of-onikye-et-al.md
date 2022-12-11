@@ -1,14 +1,14 @@
 # Preface
 
 In 2021 Brown et al published an article titled *A Reproduction of the Results
-of Onyike et al. (2003)* in an Meta-Psychology that is free + open-access
-and conducts open peer review. The Onikye et al. article they're referencing,
-*Is obesity associated with major depression? Results from the Third National Health and Nutrition Examination Survey*
-published in the American Journal of Epidemiology has been cited 1159+ times
-on Google Scholar. 
+of Onyike et al. (2003)* in Meta-Psychology, a journal that is free, open-access
+and conducts open peer review. The Onikye et al. article they reproducing,
+*Is obesity associated with major depression? Results from the Third National Health and Nutrition Examination Survey*,
+was published in the American Journal of Epidemiology has been cited 1159+ times
+according to Google Scholar. 
 
-Moreover, you can read in the About page of 
-Meta-Psychology: 
+I want to point out an interesting section from the About page describing the
+Meta-Psychology journal that you might keep in mind as you read on:
 
 > Prior to publication, all statistical analyses are reproduced by our
 statistical reproduction team, which consists of the Statistical Editor and our
@@ -73,6 +73,11 @@ Answer the following questions:
     * What about in situations where the subject matter is highly politically charged
       and there might be malicious actors who could see shared data and code as 
       additional surface area to attack? 
+  * Has reading this article made you more skeptical of research publications
+  that don't share code?
+  * Do you think for articles where code & data are too sensitive to be shared,
+  is there an alternative process that would make you similarly confident in 
+  the stated results?
       
       
 ## An important aside

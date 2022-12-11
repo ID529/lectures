@@ -5,3 +5,9 @@ Wednesday January 18th
   – k-means clustering, singular value decomposition, principal components analysis, random forests
 • Discussion: How can you leverage machine learning methods to further understand your data?
   What are the risks involved?
+  
+  
+Recommended reading: 
+
+  * Harms and Ethics in Data Science and Machine Learning: 
+    * The *Data Science Ethics* chapter from the *Modern Data Science with R* book: https://mdsr-book.github.io/mdsr2e/ch-ethics.html
