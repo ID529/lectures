@@ -1,18 +1,14 @@
 Friday January 20th
 
-• Activity: Students present in small groups best practices for data management and analysis related topics chosen from a pre-specified list of topics:
+  * 1:30-5:00 Final Presentations:
+    * Students will be divided into 10 groups with 15 minutes presentation time
+    and 5 minutes for feedback from the instructional team and Q&A from the
+    audience.
+    * 20 minutes × 10 groups = ~3.5 hours
+  * 5:00-5:15 Lecture: Recap of Key Takeaways 
+  * 5:15-5:30: 
+    * Make sure you've uploaded your presentation! 
+    * Feedback and Course Evaluations
 
-  – Clean Code and Code Hygiene
-  – Data Documentation and Data Dictionaries
-  – Code Commenting and Documentation
-  – Presentation of Mathematical, Statistical, and Machine Learning Models
-  – Data Visualization
-  – Exploratory Data Analysis
-  – Reporting on Missing Data
-  – Sharing Code and Open-Source Science
-  – Use of Interactive Web Applications in Data Analysis
-  – R Project Workflows
-  – R Package Workflows
-  
-• Lecture: Recap of principles for reproducibility and robustness in open-source science and R programming
-• Activity: Course evaluation
+Enjoy being done with the class and go on to do great things with your newly
+learned R skills!
