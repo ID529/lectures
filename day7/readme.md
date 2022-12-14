@@ -4,8 +4,7 @@ Wednesday January 18th
   * 2:00-2:30 Lecture: Best practices for reporting on missing data
   * 2:30-3:00 Lecture: Intro to accessible machine learning methods for exploratory data analysis
     – k-means clustering, singular value decomposition, principal components analysis, random forests
-  * 3:00-3:30 Discussion: How can you leverage machine learning or statistical methods to further your data analysis?
-    What are the risks involved?
+  * 3:00-3:30 Discussion: How can you leverage machine learning or statistical methods to further your data analysis? What are the risks involved?
   
   
 Recommended reading: 

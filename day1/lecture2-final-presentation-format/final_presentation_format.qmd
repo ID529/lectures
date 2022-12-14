@@ -2,8 +2,16 @@
 title: "Final Presentation Format"
 format: 
   revealjs:
-    theme: [serif]
+    theme: [serif, style.css]
+    template-partials:
+      - title-slide.html
+title-graphic: ID529-CON-2023.png
 ---
+
+<!-- I learned how to customize the title-slide here: 
+https://quarto.org/docs/presentations/revealjs/advanced.html 
+
+Note that you need to have Quarto >= version 1.2 --> 
 
 # Intro to the Final Presentation Format
 
