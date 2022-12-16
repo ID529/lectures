@@ -6,10 +6,23 @@
 }
 
 h1 .title {
-  font-size: 55px;
+  font-size: 45px;
 }
 
 .title {
-  font-style: italic;
-  font-variant: small-caps;
+  //font-style: italic;
+  //font-variant: small-caps;
 }
+
+.column {
+  float: left;
+  width: 50%;
+  display: table;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+} 

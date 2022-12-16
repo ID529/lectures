@@ -13,10 +13,19 @@ Monday January 9th, 2023: 1:30-5:30pm Eastern Time
    * 5:05-5:30 Activity: Setup GitHub accounts + work
    on the homework + chat with classmates
  
-Recommended reading: 
+Recommended materials: 
 
-  - The *Introduction* Chapter to R for Data Science: https://r4ds.had.co.nz/explore-intro.html (just one page)
-  - *Excuse me, do you have a moment to talk about version control?* by Jennifer Bryan: https://peerj.com/preprints/3159.pdf
+  * Articles: 
+     - The *Introduction* Chapter to R for Data Science: https://r4ds.had.co.nz/explore-intro.html (just one page)
+     - *Excuse me, do you have a moment to talk about version control?* by Jennifer Bryan: https://peerj.com/preprints/3159.pdf
+     - Tutorial: Getting Started with R and RStudio: https://www.dataquest.io/blog/tutorial-getting-started-with-r-and-rstudio/
+     
+   * Videos:
+      -  RStudio for the Total Beginner, HRAnalytics101: https://www.youtube.com/watch?v=FIrsOBy5k58 
+      - If you haven't already installed R and RStudio, you'll want to do that, 
+      and you can do that by following the instructions here: 
+         - Install R: https://vimeo.com/203516510
+         - Install RStudio: https://vimeo.com/203516968
   
 Homework: 
 

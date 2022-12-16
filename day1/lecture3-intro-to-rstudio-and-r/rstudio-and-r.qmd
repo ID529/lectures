@@ -1,0 +1,13 @@
+---
+title: "Intro to R and RStudio"
+format: 
+  revealjs:
+    theme: [serif, style.css]
+template-partials:
+  - title-slide.html
+title-graphic: R-and-Rstudio.png
+---
+
+## Installing R and RStudio
+
+Hopefully you will have installed R and RStudio

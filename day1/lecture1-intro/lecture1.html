@@ -7,7 +7,7 @@
 <link href="lecture1_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="lecture1_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="lecture1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.1.251">
+  <meta name="generator" content="quarto-1.2.269">
 
   <title>Intro to ID529: Data Management and Analytic Workflows in R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -323,9 +323,15 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-  <h1 class="title"><span style="font-size: 65px;">Intro to ID529: Data Management and Analytic Workflows in R</span></h1>
+   <div class="row">
+  <div class="column" style="width: 75%">
+  <h1 class="title" style="font-size: 2.05em;"><span style="font-size: 65px;">Intro to ID529: Data Management and Analytic Workflows in R</span></h1>
+  </div>
+  <div class="column" style="width: 25%">
+  <img class="title-graphic" src="id529-sticker.png" style="max-width:90%;">
+  </div>
+  </div> 
 </section>
-
 <section>
 <section id="meet-your-instructors" class="title-slide slide level1 center">
 <h1>Meet your instructors</h1>
@@ -334,9 +340,9 @@
 <section id="christian-testa" class="slide level2 smaller">
 <h2>Christian Testa</h2>
 <div class="columns">
-<div class="column" style="width:40%;">
+<div class="column" style="width:30%;">
 <p><img data-src="christian_profile.jpeg"></p>
-</div><div class="column" style="width:60%;">
+</div><div class="column" style="width:70%;">
 <p>Hi! I’m Christian Testa. I’ve been a statistical analyst working at the Harvard T.H. Chan School of Public Health for a little over 5 years.</p>
 <p>My recent research has focused addressing health disparities and inequities in the US.</p>
 <p>These days I’m working on projects involving epigenetic aging, multiple types of discrimination, COVID-19 rates, and spatiotemporal methods for disease mapping.</p>
@@ -345,9 +351,34 @@
 </section>
 <section id="dean-marengi" class="slide level2">
 <h2>Dean Marengi</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><img data-src="DeanMarengi.png"></p>
+</div><div class="column" style="width:70%;">
+<p>Hi! I’m Dean Marengi. I’m a second year PhD student in Environmental Health …</p>
+</div>
+</div>
+</section>
+<section id="amanda-hernandez" class="slide level2">
+<h2>Amanda Hernandez</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><img data-src="AmandaHernandez.jpg"></p>
+</div><div class="column" style="width:70%;">
+<p>Hi! I’m Amanda Hernandez. I’m a second year Masters student in Environmental Health …</p>
+</div>
+</div>
 </section>
 <section id="jarvis-chen" class="slide level2">
 <h2>Jarvis Chen</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><img data-src="JarvisChen.jpg"></p>
+</div><div class="column" style="width:70%;">
+<p>Hi! I’m Jarvis Chen. <br><br></p>
+<p>I’m a lecturer in the Dept. of Social and Behavioral Sciences and one of the nicest, kindest, statistically-wisest people you’ll ever meet [Christian wrote this]. <br><br></p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="course-overview" class="title-slide slide level1 center">
@@ -364,7 +395,6 @@
 <ul>
 <li class="fragment">Students will learn <strong>best practices</strong> for data cleaning, management, and project organization in the context of R programming based analyses focused on Population Health Science.</li>
 <li class="fragment"><strong>Reproducibility</strong> will be emphasized to teach students both the merits of reproducible workflows as well as how to build and implement them.</li>
-<li class="fragment">Students will learn to use R Markdown to create <strong>dynamic reports</strong> of their findings.</li>
 <li class="fragment">Learning Git and GitHub to <strong>version control</strong> and <strong>disseminate</strong> code.</li>
 </ul>
 </div>
@@ -377,7 +407,7 @@
 <ul>
 <li class="fragment">Data visualization</li>
 <li class="fragment">Working with regression models</li>
-<li class="fragment">Creating professional quality tables</li>
+<li class="fragment">Creating professional reports</li>
 </ul></li>
 <li class="fragment">How to leverage online resources to get help with any R programming challenges.</li>
 <li class="fragment">Students will get great picture of the spectacular kinds of data analysis they can go on to do!</li>
@@ -386,50 +416,38 @@
 </section>
 <section id="course-philosophy" class="slide level2">
 <h2>Course Philosophy</h2>
-<p>All of our lecture recordings and slides will be posted online so you can refer back to them as you need to.</p>
-<p>Our goal is to give you the space you need to grow your R skills!</p>
+<p><br> Our goal is to give you the roadmap, time, and space you need to grow your R skills. <br><br></p>
+<p>All our lecture recordings and slides will be online so you can refer back to them as you need to.</p>
 </section>
 <section id="tracks-for-the-course" class="slide level2">
 <h2>Tracks for the Course</h2>
-<div style="font-size: 22px;">
+<div style="font-size: 32px;">
 <p>Keeping in mind that it’s impossible to learn <em>all</em> of R in any short period of time, we want to encourage you to pick a track to focus your energy on the most.</p>
+<div>
 <ul>
-<li>Beginner/Novice
-<ul>
-<li><div style="font-size: 20px;">
-This track emphasizes learning the basics of R and RStudio, learning the terminology, data types, and how to formulate your questions/searches to best get help for R programming challenges.
-</div></li>
-</ul></li>
-<li>Data Visualization
-<ul>
-<li><div style="font-size: 20px;">
-This track emphasizes data visualization skills, learning how to use ggplot2, and the important considerations that go into making an effective data visualization (e.g., communicative precise language, appropriate and meaningful use of legends, accessibility, etc.).
-</div></li>
-</ul></li>
-<li>Data Cleaning/Management and Working with Codebooks
-<ul>
-<li><div style="font-size: 20px;">
-This track emphasizes how to go from a raw dataset to something that can be worked with in R, documenting the process, and making that process reproducible and robust.
-</div></li>
-</ul></li>
-<li>Programming and Software Engineering
-<ul>
-<li><div style="font-size: 20px;">
-This track emphasizes the role of designing software systems, writing packages in R, clean code and code hygiene, and leveraging tools designed to accelerate the effectiveness of programmers like automated testing.
-</div></li>
-</ul></li>
-<li>Other Niche Topics in R
-<ul>
-<li><div style="font-size: 20px;">
-Is there a specific functionality available in R that you want to get better with not listed above? Make sure to be precise. Examples include interactive web applications, interactive data visualizations, machine learning pipelines, etc.
-</div></li>
-</ul></li>
+<li class="fragment">Beginner/Novice <!-- - <div style='font-size: 20px;'>This track emphasizes learning the basics of R and RStudio, learning the terminology, data types, and how to formulate your questions/searches to best get help for R programming challenges.</div>--></li>
+<li class="fragment">Data Visualization <!-- - <div style='font-size: 20px;'>This track emphasizes data visualization skills, learning how to use ggplot2, and the important considerations that go into making an effective data visualization (e.g., communicative precise language, appropriate and meaningful use of legends, accessibility, etc.).</div> --></li>
+<li class="fragment">Data Cleaning/Management and Working with Codebooks <!-- - <div style='font-size: 20px;'>This track emphasizes how to go from a raw dataset to something that can be worked with in R, documenting the process, and making that process reproducible and robust.</div> --></li>
+<li class="fragment">Programming and Software Engineering <!-- - <div style='font-size: 20px;'> This track emphasizes the role of designing software systems, writing packages in R, clean code and code hygiene, and leveraging tools designed to accelerate the effectiveness of programmers like automated testing. </div> --></li>
+<li class="fragment">Other Niche Topics in R <!-- - <div style='font-size: 20px;'>Is there a specific functionality available in R that you want to get better with not listed above?  Make sure to be precise.  Examples include interactive web applications, interactive data visualizations, machine learning pipelines, etc.</div> --></li>
 </ul>
 </div>
+</div>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<center>
+<img src="shocked_pikachu_any_analysis.png" alt="That moment when you realize R can be used for basically any statistical analysis you can imagine, shocked pikachu meme" style="width: 50%">
+</center>
+</section>
+<section id="homework" class="slide level2">
+<h2>Homework</h2>
+<p><br> Each day will be accompanied by homework assignments that will be distributed and submitted through GitHub. <br><br></p>
+<p>Additionally, we’ll be asking you to provide peer reviews to another student so you can 1) benefit from learning how others approached the same problem and 2) practice articulating constructive feedback related to programming in R.</p>
 </section></section>
-<section id="lets-jump-into-a-live-demo" class="title-slide slide level1 center">
-<h1>Let’s jump into a live demo</h1>
-<p>…</p>
+<section id="live-demo" class="title-slide slide level1 center">
+<h1>Live Demo</h1>
+
 </section>
 
 <section>
@@ -701,7 +719,24 @@ Is there a specific functionality available in R that you want to get better wit
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
         button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
         setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
           button.setAttribute("title", currentTitle);
           button.classList.remove('code-copy-button-checked');
         }, 1000);
@@ -739,24 +774,42 @@ Is there a specific functionality available in R that you want to get better wit
           return note.innerHTML;
         });
       }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
       var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
       for (var i=0; i<bibliorefs.length; i++) {
         const ref = bibliorefs[i];
-        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-        tippyHover(ref, function() {
-          var popup = window.document.createElement('div');
-          cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
           });
-          return popup.innerHTML;
-        });
+        }
       }
     });
     </script>

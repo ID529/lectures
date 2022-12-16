@@ -1,0 +1,13 @@
+/*-- scss:defaults --*/
+.column {
+  float: left;
+  width: 50%;
+  display: table;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+} 
