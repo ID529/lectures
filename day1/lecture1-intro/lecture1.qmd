@@ -3,10 +3,11 @@ title: "<span style='font-size: 65px;'>Intro to ID529: Data Management and Analy
 format: 
   revealjs:
     theme: [serif, style.scss]
+    logo: images/quarto.png
 template-partials:
   - title-slide.html
 title-graphic: id529-sticker.png
-
+slide-number: true
 ---
 
 # Meet your instructors

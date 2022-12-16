@@ -6,8 +6,21 @@ format:
 template-partials:
   - title-slide.html
 title-graphic: R-and-Rstudio.png
+slide-number: true
 ---
 
 ## Installing R and RStudio
 
-Hopefully you will have installed R and RStudio
+If you haven't installed R and RStudio yet, 
+please download and install them from here: 
+
+  * https://www.r-project.org/
+  * https://posit.co/ 
+  
+::: {.notes}
+These are some speaker notes about how easy it is to get started with R! 
+:::
+  
+::: footer
+Hi! Learn more about R: <https://r-project.org>
+:::
