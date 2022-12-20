@@ -1,0 +1,292 @@
+---
+title: "Git and GitHub"
+format:
+  revealjs:
+    theme: [serif, style.css]
+template-partials:
+  - title-slide.html
+title-graphic: git-and-github.png
+slide-number: true
+logo: git-and-github-bw.png
+---
+
+# Why version control? 
+
+:::{.incremental}
+  * makes coordinating files across computers easy 
+  * keeps a clean history of your code evolution 
+    * no need for messy suffixes (v1, v2, ..., v19380, vFINAL)
+  * gives you the chance to ask yourself "do I really want to make these changes?"
+  * streamlines review of external code changes
+:::
+
+---
+
+Maybe you already know other ways to share code?
+
+<center>
+<img src="images/git_galaxy_brain.png" alt="Galaxy Brain meme with a progression from emailing code, IM-ing code, to using Git">
+</center>
+
+## Why Git? 
+
+  - It's popular! In the StackOverflow developer survey, 93.9% of developers
+  using version control software said they use Git. 
+  
+<a href="https://survey.stackoverflow.co/2022/">
+<img src="images/developer_survey.png" 
+  width='500px'
+  alt="StackOverflow Developer Survey shows that 93.9% of developers who use Version Control use Git"></a>
+
+---
+
+The result is that Git comes with a *large resource base* and is *compatible* with all 
+the major operating systems.
+
+<center>
+<a href="https://git-scm.com/downloads">
+<img src="images/git_download.png" 
+  width='500px'
+  alt="There are Git downloads for all major operating systems"></a>
+</center>
+
+## A bit about Git
+
+:::{.incremental .smaller}
+  - Git is an **open-source version control system**.
+  - Git stores code and its history in a **repository**.
+  - Each revision to the code is added to the repository through a **commit** process.
+  - Git allows you to have **branches** of your code that keeps development **separate** 
+  from the main codebase until it is complete.
+    - The main version of your code is often on the **"main"** branch 
+      (what used to be called the **"master"** branch).
+  - Git allows you to **push** or **pull** code from **remote** servers.
+:::
+
+## GitHub
+
+   <div class="row">
+  <div class="column">
+:::{.incremental .small}
+- GitHub is a website and online service with free and paid tiers that
+allows you to: 
+  - host Git repositories 
+  - publicize your profile and repositories 
+  - track issues
+  - document your projects with wikis
+  - host static websites
+  - coordinate teams of developers
+  - do project management
+  - automate project workflows
+:::  
+</div>
+  <div class="column">
+  <img src="images/GitHub-logo.png" alt='GitHub logo'>
+  </div>
+  </div> 
+
+# Getting Started {background-color='black' background-image="images/mountains.jpg"}
+
+## Personal Reflections
+
+:::{.incremental .smaller}
+  - What features of Git and GitHub are you looking to leverage the most? 
+  - Look through examples of successful repositories
+    - Mathew Kiang (Assistant Professor at Stanford) has some great repositories
+    focused on epidemiological and Population Health research
+      - <https://github.com/mkiang> {{< fa brands github >}}
+    - Take a look at the repository for dplyr: <br> <https://github.com/tidyverse/dplyr> {{< fa brands github >}}
+:::
+
+<!-- info / docs for the Quarto FontAwesome extension: 
+https://github.com/quarto-ext/fontawesome --> 
+
+:::{.notes}
+We suggest the following points for personal reflection.
+
+Also, if you're working with high security code, you should contact your local 
+IT department before uploading anything to an external server like GitHub. 
+:::
+    
+## Installation
+
+  - You’ll need to install Git: the installation procedures depend on if
+you’re on Windows, Mac, or Linux.
+  - Follow the installation instructions here https://happygitwithr.com/install-git.html:
+    - [Download git for OSX](https://git-scm.com/download/mac)
+    - [Download git for Windows](https://git-scm.com/download/win)
+    - [Download git for Linux](https://git-scm.com/download/linux)
+    
+## Local Setup
+
+  - After installation, you'll need to **configure** Git:
+  
+```sh
+git config --global user.name 'Jane Doe'
+git config --global user.email 'jane@example.com'
+git config --global --list
+```
+
+  - Make sure to use the **same name** and **email address** you are going 
+  to use with GitHub.
+  
+## Setup a GitHub account
+
+<div class='row'>
+<div class='column' style='width: 70%;'>
+:::{.small style='line-height: 100%;'}
+Sign up at <https://github.com/login> <br>
+Some advice from Happy Git With R: 
+
+  - Incorporate your actual name 
+  - Reuse your username from other contexts 
+  - Pick a username you will be comfortable revealing to future bosses
+  - **Shorter** is better
+  - Be as unique as possible in as few characters as possible
+  - Make it **timeless**
+    - Don't highlight your current university, employer, or place of
+    residence 
+  - Recommend all **lowercase**
+:::
+</div>
+<div class='column' style='width: 30%;'>
+<img src='images/github_login.jpg'>
+</div>
+</div>
+
+## Set up an SSH Key 
+
+We recommend setting up **SSH (Secure Shell) key** based authentication with
+GitHub.<br><br>
+
+This allows your computer to be **automatically authenticated** when you communicate with GitHub.<br><br>
+
+Follow the instructions here:<br>
+<https://happygitwithr.com/ssh-keys.html>
+
+## Set up a local repository in RStudio
+
+<div class='row'>
+<div class='column'>
+Nativate to File → New Project<br><br>
+
+Select “Create a git repository”
+which informs RStudio you want to
+use Git.
+</div>
+<div class='column'>
+<img src='images/new_project.jpg' alt='New Project Wizard window in RStudio shows how you can specify the Directory Name, Create the project as a subdirectory in a folder, and a checkbox for Create a git repository'>
+</div>
+
+## Git panel in RStudio
+
+<div class='row'>
+<div class='column'>
+:::{.smaller style='line-height: 100%'}
+RStudio adds a Git tab in your
+Environment/History panel.<br><br>
+
+This panel is a point-and-click
+interface to:
+
+  - review your changes
+  - stage changes
+  - write commits
+  - push and pull commits
+  - view the commit history
+  - navigate branches
+:::
+</div>
+<div class='column'>
+<img src='images/git_panel.jpg' alt="the Git panel in RStudio shows changes you've made with buttons to see the changes and commit them">
+</div>
+
+## Setting up a remote repository 
+
+Navigate to GitHub.com → Login → New Repository <br>
+and fill out the form.
+
+![](images/new_repo_btn.png){.absolute top=350 left=150 width="250"}
+![](images/new_repo_form.png){.absolute top=150 right=0 width="500"}
+
+## Formulate your initial commit and push it 
+
+:::{.small}
+```sh
+git remote add origin git@github.com:ctesta01/ExampleRepository.git # let your local repository know about the remote repository
+git branch -M main # use "main" as the default branch
+git add .gitignore # add a file to the staging area
+git commit -m "initial commit" # name your commit 
+git push -u origin main # push your commit to the remote repository
+```
+:::
+<center>
+<img src='images/initial_commit.png' height='250px;' alt='the output from running the above code;  it shows the commit being pushed to github'>
+</center>
+
+# Congrats! <br> You're using GitHub! 
+<center>
+<img src='images/dancing.webp' alt='dancing characters from Charlie Brown'>
+</center>
+
+## READMEs
+
+  - A README serves as an introduction to and documentation for
+your repository.
+
+  - Like any documentation, feel free to start small and
+document as you develop!
+
+:::{.footer}
+Read the section about READMEs in the R Packages book here: <https://r-pkgs.org/other-markdown.html#sec-readme>
+:::
+
+## Basic Workflow Overview 
+
+<div class='row'>
+<div class='column' style='width: 60%;'>
+:::{.smaller style='line-height: 100%'}
+The basic workflow for making
+updates to a Git repository is done
+in three steps:
+
+  1. Making changes to your files
+  2. Adding them to the staging
+  area
+  3. Commit these changes with a
+  explanatory message
+:::
+</div>
+<div class='column' style='width: 40%;'>
+<img src="images/git_workflow.jpg" width='90%' alt="A diagram showing a workflow of successive commits">
+
+:::{style='font-size: 24px;'}
+This figure from Happy Git with R shows
+examples of commits made in a sequence.
+Each commit is accompanied by an ID, a
+message, and the differences between two
+commits are referred to as a “diff”.
+:::
+
+</div>
+</div>
+
+# Key Commands {background-color='black' background-image="images/mountains.jpg"}
+
+## git status
+
+`git status` is a basic command that displays the current state of the working directory. 
+
+It's a good idea to always run `git status` before changing
+your code because there may be something you want to commit or address first.
+
+The RStudio Git panel displays most of what is displayed in 
+the output of `git status`.
+
+<center>
+<img src='images/git_status.png' alt='example output of git status showing the new README.md and .Rproj file' width='600px'>
+</center>
+
+## git add
+
+  - adds changes to the staging environment or index
