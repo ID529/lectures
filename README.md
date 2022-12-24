@@ -9,7 +9,7 @@ The website for the course is online at <https://id529.github.io/>.
 
 ![](graphics/harvard-green.jpg)
 
-## Monday January 9th, 2023: 1:30-5:30pm Eastern Time
+## Monday January 9th
 
 - 1:30-2:00 Introductory Lecture: Course Details
 - 2:00-2:30 Live Demonstration: Modern Data Science Practices in an R
@@ -50,7 +50,7 @@ Homework:
 - Check that your R and RStudio installations are working on your
   computer
 
-## Tuesday January 10th, 2023: 1:30-5:30pm Eastern Time
+## Tuesday January 10th
 
 - 1:30-2:00 Lecture: Intro to R Programming (including conditionals,
   control flow, etc.)
