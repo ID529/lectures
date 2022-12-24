@@ -1,4 +1,4 @@
-Friday January 20th
+## Friday January 20th
 
   * 1:30-5:00 Final Presentations:
     * Students will be divided into 10 groups with 15 minutes presentation time

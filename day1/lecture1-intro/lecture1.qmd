@@ -3,7 +3,6 @@ title: "<span style='font-size: 65px;'>Intro to ID529: Data Management and Analy
 format: 
   revealjs:
     theme: [serif, style.scss]
-    logo: images/quarto.png
 template-partials:
   - title-slide.html
 title-graphic: id529-sticker.png
@@ -20,15 +19,38 @@ slide-number: true
 :::
 
 ::: {.column width="70%"}
+:::{.small}
 Hi!  I'm Christian Testa.  I've been a statistical analyst working at the
 Harvard T.H. Chan School of Public Health for a little over 5 years.
 
-My recent research has focused addressing health disparities and
+My recent research has focused on addressing health disparities and
 inequities in the US.  
 
 These days I'm working on projects involving epigenetic
-aging, multiple types of discrimination, COVID-19 rates, and spatiotemporal
-methods for disease mapping.
+aging, multiple types of discrimination, COVID-19, and spatiotemporal
+methods in epidemiology. <br><br>
+:::
+
+:::{.small}
+<table class='links' style='border: none;'>
+<tr>
+<td class='links'>
+<span class='tab'></span>{{< fa brands github >}} </td><td class='links'><a href="https://github.com/ctesta01/">github.com/ctesta01</a></td>
+</tr>
+<tr>
+<td class='links'>
+<span class='tab'></span>{{< fa brands mastodon >}} </td><td class='links'><a href="https://fediscience.org/@ctesta/">fediscience.org/ctesta</a></td>
+</tr>
+<tr>
+<td class='links'>
+<span class='tab'></span>{{< fa solid earth-americas >}}  </td><td class='links'><a href="https://ctesta.com">ctesta.com</a></td>
+</tr>
+<tr>
+<td class='links'>
+<span class='tab'></span>{{< fa solid registered >}} </td><td class='links'><a href="https://rug-at-hdsi.org"> rug-at-hdsi.org </a></td>
+</tr>
+</table>
+:::
 :::
 ::::
 
@@ -71,17 +93,40 @@ Hi!  I'm Jarvis Chen.  <br><br>
 
 I'm a lecturer in the Dept. of Social and Behavioral Sciences
 and 
-one of the nicest, kindest, statistically-wisest people you'll ever meet [Christian
+one of the nicest, kindest, wisest people you'll ever meet [Christian
 wrote this]. <br><br>
 :::
 ::::
 
-# Course Overview 
+
+# Course Philosophy {background-image="images/harvard-green.jpg" background-color='black' background-opacity='70%'}
+
+## Our Goals
+
+<br>
+Our goal is to give you the roadmap, time, and space you need to grow your R
+skills. <br><br>
+
+All our lecture recordings and slides will be online so you can refer back to
+them as you need to.
+
+## Some Pep Talk
+
+:::{.smaller}
+> It’s easy when you start out programming to get really frustrated and think, “Oh it’s me, I’m really stupid,” or, “I’m not made out to program.” But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later. <br><br>
+—— Hadley Wickham, Chief Scientist at Posit (Formerly RStudio)
+:::
+
+## Course Overview 
 
 Before we dive in, we want to make sure you have a few things in hand: 
 
-  * Our course website <https://id529.github.io/>
-  * Our syllabus <https://id529.github.io/syllabus/>
+  * Our course website: <br>
+    <span class='tab'></span>{{< fa solid earth-americas >}} <https://id529.github.io/>
+  * Our syllabus: <br>
+    <span class='tab'></span>{{< fa graduation-cap >}} <https://id529.github.io/syllabus/>
+    
+<center><img height='200px' src="images/dog-with-paper.gif" alt='gif of a golden retriever with the newspaper'></center>
   
 ## Key Objectives 
 
@@ -102,16 +147,6 @@ Before we dive in, we want to make sure you have a few things in hand:
   *	Students will get great picture of the spectacular kinds of data analysis they can go on to do!
 :::
 
-
-## Course Philosophy 
-
-<br>
-Our goal is to give you the roadmap, time, and space you need to grow your R
-skills. <br><br>
-
-All our lecture recordings and slides will be online so you can refer back to
-them as you need to.
-
 ## Tracks for the Course 
 
 <div style='font-size: 32px;'>
@@ -131,8 +166,22 @@ time, we want to encourage you to pick a track to focus your energy on the most.
   - Other Niche Topics in R
     <!-- - <div style='font-size: 20px;'>Is there a specific functionality available in R that you want to get better with not listed above?  Make sure to be precise.  Examples include interactive web applications, interactive data visualizations, machine learning pipelines, etc.</div> -->
 :::
+
+:::{.notes}
+  - Beginner/Novice
+    - <div style='font-size: 20px;'>This track emphasizes learning the basics of R and RStudio, learning the terminology, data types, and how to formulate your questions/searches to best get help for R programming challenges.</div>
+  - Data Visualization
+    - <div style='font-size: 20px;'>This track emphasizes data visualization skills, learning how to use ggplot2, and the important considerations that go into making an effective data visualization (e.g., communicative precise language, appropriate and meaningful use of legends, accessibility, etc.).</div>
+  - Data Cleaning/Management and Working with Codebooks
+    - <div style='font-size: 20px;'>This track emphasizes how to go from a raw dataset to something that can be worked with in R, documenting the process, and making that process reproducible and robust.</div>
+  - Programming and Software Engineering
+    - <div style='font-size: 20px;'> This track emphasizes the role of designing software systems, writing packages in R, clean code and code hygiene, and leveraging tools designed to accelerate the effectiveness of programmers like automated testing. </div>
+  - Other Niche Topics in R
+    - <div style='font-size: 20px;'>Is there a specific functionality available in R that you want to get better with not listed above?  Make sure to be precise.  Examples include interactive web applications, interactive data visualizations, machine learning pipelines, etc.</div>
+:::
     
 </div>
+
 
 ##
 
@@ -140,6 +189,7 @@ time, we want to encourage you to pick a track to focus your energy on the most.
 <img src="shocked_pikachu_any_analysis.png"
   alt = "That moment when you realize R can be used for basically any statistical analysis you can imagine, shocked pikachu meme" style='width: 50%'>
 </center>
+
 
 
 ## Homework 

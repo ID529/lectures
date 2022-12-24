@@ -1,4 +1,4 @@
-Wednesday January 18th
+## Wednesday January 18th
 
   * 1:30-2:00 Lecture: When should you choose a Project vs. a Package based workflow?
   * 2:00-2:30 Lecture: Best practices for reporting on missing data

@@ -1,4 +1,4 @@
-Tuesday January 17th
+## Tuesday January 17th
 
   * 1:30-2:00 Activity: Discussion of Onikye et al reproduction article
   * 2:00-2:30 Lecture: Introduction to R Packages 

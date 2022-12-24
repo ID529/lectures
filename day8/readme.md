@@ -1,4 +1,4 @@
-Thursday January 19th
+## Thursday January 19th
 
   * 1:30-2:00 Lecture: Using purrr to automate creating many models and summarize them
   * 2:00-2:30 Discussion: What are the kinds of projects in which you might use many models?

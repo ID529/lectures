@@ -1,0 +1,35 @@
+---
+title: "Transition Slide Backgrounds"
+format: 
+  revealjs:
+    theme: [serif, style.scss]
+---
+
+# Course Philosophy {background-image="alexander-grey.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="artem-sapegin.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="ashley-whitlatch.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="chris-lawton.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="corey-bruce.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="daniel-bernal.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="daniela-de-gol.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="darya-tryfanava.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="emily-karakis-2.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="emily-karakis.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="inaki-del-olmo.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="jacob-licht.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="jonathan-bean.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="kelly-sikkema.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="lilzidesigns.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="lode-lagrainge.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="manuel-will.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="mark-olsen-2.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="mark-olsen.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="matthew-landers.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="meng-yu-zhang.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="michael-dziedzic.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="peter-f.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="prateek-pisat.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="tyler-springhetti.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="venti-views-2.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="venti-views.jpg" background-color='black' background-opacity='70%'}
+# Course Philosophy {background-image="zixi-zhou.jpg" background-color='black' background-opacity='70%'}

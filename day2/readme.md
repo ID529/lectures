@@ -1,4 +1,4 @@
-Tuesday January 10th, 2023: 1:30-5:30pm Eastern Time
+## Tuesday January 10th, 2023: 1:30-5:30pm Eastern Time
 
   * 1:30-2:00 Lecture: Intro to R Programming (including conditionals, control flow, etc.)
   * Learnr Tutorial on Conditionals and Control Flow

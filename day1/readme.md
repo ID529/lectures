@@ -1,4 +1,4 @@
-Monday January 9th, 2023: 1:30-5:30pm Eastern Time
+## Monday January 9th, 2023: 1:30-5:30pm Eastern Time
 
    * 1:30-2:00 Introductory Lecture: Course Details
    * 2:00-2:30 Live Demonstration: Modern Data Science Practices in an R Project Based Workflow

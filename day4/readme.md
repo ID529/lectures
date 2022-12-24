@@ -1,4 +1,4 @@
-Thursday January 12th
+## Thursday January 12th
   
   * 1:30-2:00 Lecture: Diverse Data Sources (APIs [tidycensus, WHO, World Bank, qualtRics, twitter], scraping web data, datapasta)
   * 2:00-2:20 Discussion: What kind of sources are students interested in using in their dissertation work?
@@ -18,6 +18,7 @@ Homework 4:
 
 Available/Recommended Reading (Remember! You don't have to read all of this! Just focus on what's most useful to you):
 
+  * Tidy Data by Hadley Wickham <https://vita.had.co.nz/papers/tidy-data.pdf>
   * Diverse Data Sources
     * The readme to the datapasta package: https://github.com/MilesMcBain/datapasta
     * *Analyzing US Census Data by Kyle Walker*, Chapter 2: An introduction to tidycensus: https://walker-data.com/census-r/an-introduction-to-tidycensus.html

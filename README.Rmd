@@ -1,0 +1,40 @@
+---
+title: "Course Content for ID529 Data Management and Analytic Workflows in R <a href='https://id529.github.io'><img src='graphics/id529-sticker.png' align='right' height='139' /></a>"
+output: github_document
+---
+
+What follows are the time-tables and resources for each 
+course day in ID529, a 2-week short-course being offered
+in January 2023. 
+
+The website for the course is online at <https://id529.github.io/>.
+
+![](graphics/harvard-green.jpg)
+
+
+```{r, child='day1/readme.md'}
+```
+
+```{r, child='day2/readme.md'}
+```
+
+```{r, child='day3/readme.md'}
+```
+
+```{r, child='day4/readme.md'}
+```
+
+```{r, child='day5/readme.md'}
+```
+
+```{r, child='day6/readme.md'}
+```
+
+```{r, child='day7/readme.md'}
+```
+
+```{r, child='day8/readme.md'}
+```
+
+```{r, child='day9/readme.md'}
+```

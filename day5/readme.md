@@ -1,4 +1,4 @@
-Friday January 13th
+## Friday January 13th
 
   * 1:30-2:00 Lecture: Why reproducibility and robustness are important
   principles in science and data analysis and acknowledging the pressures in

@@ -1,4 +1,4 @@
-Wednesday January 11th
+## Wednesday January 11th
 
   * 1:30-2:00 Lecture: Starting R Projects
   * 2:00-2:30 Lecture: Intro to dplyr

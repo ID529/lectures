@@ -6,7 +6,9 @@
 <script src="lecture1_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="lecture1_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="lecture1_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="lecture1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="lecture1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="lecture1_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="lecture1_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.269">
 
   <title>Intro to ID529: Data Management and Analytic Workflows in R</title>
@@ -343,9 +345,49 @@
 <div class="column" style="width:30%;">
 <p><img data-src="christian_profile.jpeg"></p>
 </div><div class="column" style="width:70%;">
+<div class="small">
 <p>Hi! I’m Christian Testa. I’ve been a statistical analyst working at the Harvard T.H. Chan School of Public Health for a little over 5 years.</p>
-<p>My recent research has focused addressing health disparities and inequities in the US.</p>
-<p>These days I’m working on projects involving epigenetic aging, multiple types of discrimination, COVID-19 rates, and spatiotemporal methods for disease mapping.</p>
+<p>My recent research has focused on addressing health disparities and inequities in the US.</p>
+<p>These days I’m working on projects involving epigenetic aging, multiple types of discrimination, COVID-19, and spatiotemporal methods in epidemiology. <br><br></p>
+</div>
+<div class="small">
+
+<table class="links" style="border: none;">
+<tbody><tr>
+<td class="links">
+<span class="tab"></span><i class="fa-brands fa-github" aria-label="github"></i>
+</td>
+<td class="links">
+<a href="https://github.com/ctesta01/">github.com/ctesta01</a>
+</td>
+</tr>
+<tr>
+<td class="links">
+<span class="tab"></span><i class="fa-brands fa-mastodon" aria-label="mastodon"></i>
+</td>
+<td class="links">
+<a href="https://fediscience.org/@ctesta/">fediscience.org/ctesta</a>
+</td>
+</tr>
+<tr>
+<td class="links">
+<span class="tab"></span><i class="fa-solid fa-earth-americas" aria-label="earth-americas"></i>
+</td>
+<td class="links">
+<a href="https://ctesta.com">ctesta.com</a>
+</td>
+</tr>
+<tr>
+<td class="links">
+<span class="tab"></span><i class="fa-solid fa-registered" aria-label="registered"></i>
+</td>
+<td class="links">
+<a href="https://rug-at-hdsi.org"> rug-at-hdsi.org </a>
+</td>
+</tr>
+
+</tbody></table>
+</div>
 </div>
 </div>
 </section>
@@ -381,13 +423,33 @@
 </div>
 </section></section>
 <section>
-<section id="course-overview" class="title-slide slide level1 center">
-<h1>Course Overview</h1>
+<section id="course-philosophy" class="title-slide slide level1 center" data-background-image="images/harvard-green.jpg" data-background-color="black" data-background-opacity="70%">
+<h1>Course Philosophy</h1>
+
+</section>
+<section id="our-goals" class="slide level2">
+<h2>Our Goals</h2>
+<p><br> Our goal is to give you the roadmap, time, and space you need to grow your R skills. <br><br></p>
+<p>All our lecture recordings and slides will be online so you can refer back to them as you need to.</p>
+</section>
+<section id="some-pep-talk" class="slide level2">
+<h2>Some Pep Talk</h2>
+<div class="smaller">
+<blockquote>
+<p>It’s easy when you start out programming to get really frustrated and think, “Oh it’s me, I’m really stupid,” or, “I’m not made out to program.” But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later. <br><br> —— Hadley Wickham, Chief Scientist at Posit (Formerly RStudio)</p>
+</blockquote>
+</div>
+</section>
+<section id="course-overview" class="slide level2">
+<h2>Course Overview</h2>
 <p>Before we dive in, we want to make sure you have a few things in hand:</p>
 <ul>
-<li>Our course website <a href="https://id529.github.io/" class="uri">https://id529.github.io/</a></li>
-<li>Our syllabus <a href="https://id529.github.io/syllabus/" class="uri">https://id529.github.io/syllabus/</a></li>
+<li>Our course website: <br> <span class="tab"></span><i class="fa-solid fa-earth-americas" aria-label="earth-americas"></i> <a href="https://id529.github.io/" class="uri">https://id529.github.io/</a></li>
+<li>Our syllabus: <br> <span class="tab"></span><i class="fa-solid fa-graduation-cap" aria-label="graduation-cap"></i> <a href="https://id529.github.io/syllabus/" class="uri">https://id529.github.io/syllabus/</a></li>
 </ul>
+<center>
+<img height="200px" src="images/dog-with-paper.gif" alt="gif of a golden retriever with the newspaper">
+</center>
 </section>
 <section id="key-objectives" class="slide level2">
 <h2>Key Objectives</h2>
@@ -414,11 +476,6 @@
 </ul>
 </div>
 </section>
-<section id="course-philosophy" class="slide level2">
-<h2>Course Philosophy</h2>
-<p><br> Our goal is to give you the roadmap, time, and space you need to grow your R skills. <br><br></p>
-<p>All our lecture recordings and slides will be online so you can refer back to them as you need to.</p>
-</section>
 <section id="tracks-for-the-course" class="slide level2">
 <h2>Tracks for the Course</h2>
 <div style="font-size: 32px;">
@@ -432,6 +489,50 @@
 <li class="fragment">Other Niche Topics in R <!-- - <div style='font-size: 20px;'>Is there a specific functionality available in R that you want to get better with not listed above?  Make sure to be precise.  Examples include interactive web applications, interactive data visualizations, machine learning pipelines, etc.</div> --></li>
 </ul>
 </div>
+<aside class="notes">
+<ul>
+<li>Beginner/Novice
+<ul>
+<li><div style="font-size: 20px;">
+This track emphasizes learning the basics of R and RStudio, learning the terminology, data types, and how to formulate your questions/searches to best get help for R programming challenges.
+</div></li>
+</ul></li>
+<li>Data Visualization
+<ul>
+<li><div style="font-size: 20px;">
+This track emphasizes data visualization skills, learning how to use ggplot2, and the important considerations that go into making an effective data visualization (e.g., communicative precise language, appropriate and meaningful use of legends, accessibility, etc.).
+</div></li>
+</ul></li>
+<li>Data Cleaning/Management and Working with Codebooks
+<ul>
+<li><div style="font-size: 20px;">
+This track emphasizes how to go from a raw dataset to something that can be worked with in R, documenting the process, and making that process reproducible and robust.
+</div></li>
+</ul></li>
+<li>Programming and Software Engineering
+<ul>
+<li><div style="font-size: 20px;">
+This track emphasizes the role of designing software systems, writing packages in R, clean code and code hygiene, and leveraging tools designed to accelerate the effectiveness of programmers like automated testing.
+</div></li>
+</ul></li>
+<li>Other Niche Topics in R
+<ul>
+<li><div style="font-size: 20px;">
+Is there a specific functionality available in R that you want to get better with not listed above? Make sure to be precise. Examples include interactive web applications, interactive data visualizations, machine learning pipelines, etc.
+</div></li>
+</ul></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </div>
 </section>
 <section id="section" class="slide level2">
