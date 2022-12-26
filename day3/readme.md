@@ -2,21 +2,23 @@
 
   * 1:30-2:00 Lecture: Starting R Projects
   * 2:00-2:30 Lecture: Intro to dplyr
-  * 2:30-2:45 Comparing base R vs. tidyverse
-  * 2:45-3:00 Activity: Work on dplyr learnr tutorial in groups
+  * 2:30-2:40 Comparing base R vs. tidyverse
+  * 2:40-3:00 Activity: Work on dplyr learnr tutorial in groups
   * 3:00-3:05 Break 
   * 3:05-3:35 Lecture: Cleaning Text Data
   * 3:35-4:05 Lecture: Writing Functions
-  * 4:05-4:35 Activity: Write functions together
-  * 4:35-5:00 Activity: Discussion Q&A from ggplot2 Homework
-  * 5:00-5:15 Demonstration of how to do the homework 
-  * 5:15-5:30 Time to work on homework, chat with classmates, peruse recommended reading
+  * 4:05-4:30 Activity: Write functions together
+  * 4:30-4:45 Activity: Discussion Q&A from ggplot2 Homework
+  * 4:45-4:55 Survey: Checking in on Pacing
+  * 4:55-5:10 Demonstration of how to do the homework 
+  * 5:10-5:30 Time to work on homework, chat with classmates, peruse recommended reading
   
 Recommended reading: 
 
   * On Projects: 
     - Tidyverse Blog, Project-Oriented Workflow by Jenny Bryan: https://www.tidyverse.org/blog/2017/12/workflow-vs-script/ 
     - R for Data Science, Chapter 8: https://r4ds.had.co.nz/workflow-projects.html 
+    - Project-Oriented Workflow, Jenny Bryan https://www.tidyverse.org/blog/2017/12/workflow-vs-script/ 
   * On dplyr, cleaning text, and writing functions
     - R for Data Science, Chapter 5 Data Transformation: https://r4ds.had.co.nz/transform.html 
     - R for Data Science, Chapter 14 Strings:  https://r4ds.had.co.nz/strings.html

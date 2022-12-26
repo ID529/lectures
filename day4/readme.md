@@ -1,14 +1,15 @@
 ## Thursday January 12th
   
-  * 1:30-2:00 Lecture: Diverse Data Sources (APIs [tidycensus, WHO, World Bank, qualtRics, twitter], scraping web data, datapasta)
+  * 1:30-2:00 Lecture: Diverse Data Sources (APIs [tidycensus, WHO, World Bank, qualtRics], scraping web data, tabulizer, tesseract, datapasta)
   * 2:00-2:20 Discussion: What kind of sources are students interested in using in their dissertation work?
   * 2:20-2:50 Lecture: How to handle factors and date-times
   * 2:50-3:00 Break 
   * 3:00-3:30 Lecture: Regression Modeling: How to fit regression models,
   extracting model summaries from fit model objects, visualizing model estimates
-  * 3:30-4:00 Lecture: Creating maps in R
-  * 4:00-4:30 Activity: Get setup with software dependencies to make maps in R
-  * 4:30-5:30 Time to work on final presentation materials together
+  * 3:30-4:15 Activity: Working with Regression Models in R
+  * 3:15-4:15 Lecture: Creating maps in R
+  * 4:15-4:30 Lecture: Reproducible Examples for Getting Help
+  * 4:30-5:30 Time to work on final presentation materials together, peruse recommended materials, chat with classmates
 
 Homework 4:
 

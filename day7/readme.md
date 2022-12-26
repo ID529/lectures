@@ -1,10 +1,12 @@
 ## Wednesday January 18th
 
-  * 1:30-2:00 Lecture: When should you choose a Project vs. a Package based workflow?
-  * 2:00-2:30 Lecture: Best practices for reporting on missing data
-  * 2:30-3:00 Lecture: Intro to accessible machine learning methods for exploratory data analysis
-    – k-means clustering, singular value decomposition, principal components analysis, random forests
-  * 3:00-3:30 Discussion: How can you leverage machine learning or statistical methods to further your data analysis? What are the risks involved?
+  * 1:30-2:00 Lecture: Data Management from Start to Finish
+  * 2:00-2:30 Lecture: Longitudinal Data Analysis
+  * 2:30-3:00 Lecture: Best practices for reporting on missing data
+  * 3:00-3:30 Lecture: Intro to accessible exploratory data analysis methods: Correlation, principal components analysis, variable importance
+  * 3:30-3:40 Break
+  * 3:40-4:00 Discussion: What are the ethical principles involved in data analysis? What are the risks involved?
+  * 4:00-5:30 Free time to work together on the final project, chat with classmates, peruse recommended materials
   
   
 Recommended reading: 
