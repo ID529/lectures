@@ -57,14 +57,14 @@ Homework:
 - Learnr Tutorial on Conditionals and Control Flow
 - 2:00-2:30 Lecture: Data Dictionaries and Documentation
 - 2:30-3:00 Activity: Q&A + Discussion
-- 3:30-3:05 Break
-- 3:05-3:35 Lecture: Reading in data from diverse data sources
+- 3:00-3:05 Break
+- 3:05-3:35 Lecture: Reading in data of various formats
 - 3:35-4:30 Lecture: Intro to ggplot2 (common types of figures,
   faceting, legends, patchwork, and saving figures)
-- 4:30-5:00 Discussion: What are the ingredients to a ggplot? What makes
+- 4:30-4:50 Discussion: What are the ingredients to a ggplot? What makes
   an effective data visualization?
-- 5:00-5:15 Demonstration of how to do the homework
-- 5:15-5:30 Time to work on homework, chat with classmates, peruse
+- 4:50-5:10 Demonstration of how to do the homework
+- 5:10-5:30 Time to work on homework, chat with classmates, peruse
   recommended reading, engage in self-affirmation
 
 Recommended reading:
@@ -122,15 +122,16 @@ What you can expect from the instructional team:
 
 - 1:30-2:00 Lecture: Starting R Projects
 - 2:00-2:30 Lecture: Intro to dplyr
-- 2:30-2:45 Comparing base R vs. tidyverse
-- 2:45-3:00 Activity: Work on dplyr learnr tutorial in groups
+- 2:30-2:40 Comparing base R vs. tidyverse
+- 2:40-3:00 Activity: Work on dplyr learnr tutorial in groups
 - 3:00-3:05 Break
 - 3:05-3:35 Lecture: Cleaning Text Data
 - 3:35-4:05 Lecture: Writing Functions
-- 4:05-4:35 Activity: Write functions together
-- 4:35-5:00 Activity: Discussion Q&A from ggplot2 Homework
-- 5:00-5:15 Demonstration of how to do the homework
-- 5:15-5:30 Time to work on homework, chat with classmates, peruse
+- 4:05-4:30 Activity: Write functions together
+- 4:30-4:45 Activity: Discussion Q&A from ggplot2 Homework
+- 4:45-4:55 Survey: Checking in on Pacing
+- 4:55-5:10 Demonstration of how to do the homework
+- 5:10-5:30 Time to work on homework, chat with classmates, peruse
   recommended reading
 
 Recommended reading:
@@ -140,6 +141,8 @@ Recommended reading:
     <https://www.tidyverse.org/blog/2017/12/workflow-vs-script/>
   - R for Data Science, Chapter 8:
     <https://r4ds.had.co.nz/workflow-projects.html>
+  - Project-Oriented Workflow, Jenny Bryan
+    <https://www.tidyverse.org/blog/2017/12/workflow-vs-script/>
 - On dplyr, cleaning text, and writing functions
   - R for Data Science, Chapter 5 Data Transformation:
     <https://r4ds.had.co.nz/transform.html>
@@ -163,7 +166,7 @@ What you can expect from the instructional team:
 ## Thursday January 12th
 
 - 1:30-2:00 Lecture: Diverse Data Sources (APIs \[tidycensus, WHO, World
-  Bank, qualtRics, twitter\], scraping web data, datapasta)
+  Bank, qualtRics\], scraping web data, tabulizer, tesseract, datapasta)
 - 2:00-2:20 Discussion: What kind of sources are students interested in
   using in their dissertation work?
 - 2:20-2:50 Lecture: How to handle factors and date-times
@@ -171,10 +174,11 @@ What you can expect from the instructional team:
 - 3:00-3:30 Lecture: Regression Modeling: How to fit regression models,
   extracting model summaries from fit model objects, visualizing model
   estimates
-- 3:30-4:00 Lecture: Creating maps in R
-- 4:00-4:30 Activity: Get setup with software dependencies to make maps
-  in R
-- 4:30-5:30 Time to work on final presentation materials together
+- 3:30-4:15 Activity: Working with Regression Models in R
+- 3:15-4:15 Lecture: Creating maps in R
+- 4:15-4:30 Lecture: Reproducible Examples for Getting Help
+- 4:30-5:30 Time to work on final presentation materials together,
+  peruse recommended materials, chat with classmates
 
 Homework 4:
 
@@ -238,23 +242,22 @@ this! Just focus on what’s most useful to you):
 - 1:30-2:00 Lecture: Why reproducibility and robustness are important
   principles in science and data analysis and acknowledging the
   pressures in academia that push people away from reproducible science
-- 2:00-2:30 Discussion
-- 2:30-3:00 Lecture: Regression Modeling (Poisson, logistic, smoothing
-  splines)
-- 3:00-3:30 Lecture: Data Linkage Methods (different kinds of joins,
-  probabilistic join methods)
-- 3:30-3:45 Lecture: Introduction of the Brown et al (partial)
+- 2:00-2:15 Discussion
+- 2:15-2:45 Lecture: Visualizing and Reporting on Regression Models
+- 2:45-3:15 Lecture: Data Linkage Methods
+- 3:15-3:25 Break
+- 3:25-3:45 Activity: Working with Joins
+- 3:45-4:00 Lecture: Introduction of the Brown et al (partial)
   reproduction of Onikye et al’s results
-- 3:45-4:00 Homework demonstration
-- 4:00-5:30: Time to work on homework + chat together + work on final
+- 4:00-4:15 Homework demonstration
+- 4:15-5:25: Time to work on homework + chat together + work on final
   projects
+- 5:25-5:30: Giveaway for a Copy of R for Data Science
 
 Homework 5 \* Read the Brown et al reproduction of Onikye et al, run
 their code, and fill out the worksheet \*
 <https://open.lnu.se/index.php/metapsychology/article/view/2071> \*
-<https://osf.io/j32yw/> \* Combine multiple data sources using joins \*
-Find online resources related to a topic of your interest and report on
-what you find \* Peer review for homework 4
+<https://osf.io/j32yw/> \* Peer review for homework 4
 
 Available/Recommended Reading:
 
@@ -282,16 +285,21 @@ Available/Recommended Reading:
 
 ## Tuesday January 17th
 
-- 1:30-2:00 Activity: Discussion of Onikye et al reproduction article
-- 2:00-2:30 Lecture: Introduction to R Packages
-- 2:30-3:00 Demonstration of how to create R packages that standardize
+- 1:30-1:50 Activity: Discussion of Onikye et al reproduction article
+- 1:50-2:10 Lecture: Introduction to R Packages
+- 2:10-2:30 Demonstration of how to create R packages that standardize
   data loading and cleaning processes
-- 3:00-3:30 Lecture: How to use R Markdown to produce reproducible
+- 2:30-2:40 Break
+- 2:40-3:10 Lecture: How to use R Markdown to produce reproducible
   reports including tables, visualizations, and inline-quantitative
   statements.
-- 3:30-4:00 Activity: Experiment with different R Markdown features
-- 3:30-4:00 Activity: Discussion of online resource exercise
-- 3:30-4:00 Activity: Discussion of online resource exercise
+- 3:10-3:30 Activity: Experiment with different R Markdown features
+- 3:30-3:50 Lecture: Advice for Debugging
+- 3:50-4:10 Activity: Debugging
+- 4:10-4:30 Activity: Online resources exercise
+- 4:30-4:45 Demonstration of how to do the homework
+- 4:45-5:30 Time to do the homework, work on the final project together,
+  peruse recommended materials
 
 Recommended Reading:
 
@@ -318,15 +326,17 @@ Recommended Reading:
 
 ## Wednesday January 18th
 
-- 1:30-2:00 Lecture: When should you choose a Project vs. a Package
-  based workflow?
-- 2:00-2:30 Lecture: Best practices for reporting on missing data
-- 2:30-3:00 Lecture: Intro to accessible machine learning methods for
-  exploratory data analysis – k-means clustering, singular value
-  decomposition, principal components analysis, random forests
-- 3:00-3:30 Discussion: How can you leverage machine learning or
-  statistical methods to further your data analysis? What are the risks
-  involved?
+- 1:30-2:00 Lecture: Data Management from Start to Finish
+- 2:00-2:30 Lecture: Longitudinal Data Analysis
+- 2:30-3:00 Lecture: Best practices for reporting on missing data
+- 3:00-3:30 Lecture: Intro to accessible exploratory data analysis
+  methods: Correlation, principal components analysis, variable
+  importance
+- 3:30-3:40 Break
+- 3:40-4:00 Discussion: What are the ethical principles involved in data
+  analysis? What are the risks involved?
+- 4:00-5:30 Free time to work together on the final project, chat with
+  classmates, peruse recommended materials
 
 Recommended reading:
 
@@ -336,16 +346,14 @@ Recommended reading:
 
 ## Thursday January 19th
 
-- 1:30-2:00 Lecture: Using purrr to automate creating many models and
-  summarize them
-- 2:00-2:30 Discussion: What are the kinds of projects in which you
-  might use many models?
-- 2:30-3:00 Lecture: Using shiny to create interactive data analysis
-  tools
-- 3:00-3:30 Discussion: What roles should interactive web-applications
-  play in data analysis?
-- 4:00-5:30 Homework demo, positive affirmations, free time to work
-  together
+- 1:30-2:00 Lecture/Demo: A Data Analysis from Start to Finish
+- 2:00-2:30 Lecture: Functional Programming
+- 2:30-3:00 Discussion + Live Demos: When does it make sense to use
+  functional programming?
+- 3:00-3:10 Break
+- 3:10-3:40 Lecture: \[Students’ Choice\]
+- 3:40-5:30 Positive affirmations, free time to work together on final
+  projects
 
 Recommended materials:
 
