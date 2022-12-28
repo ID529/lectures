@@ -11,3 +11,23 @@
   display: table;
   clear: both;
 } 
+
+.smaller {
+  font-size: 36px;
+}
+
+.small {
+  font-size: 28px;
+}
+
+.xsmall {
+  font-size: 24px !important;
+}
+
+.xsmall code {
+  font-size: 24px !important;
+}
+
+.carrot {
+  color: #e67e22;
+}
