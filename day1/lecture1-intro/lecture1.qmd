@@ -1,15 +1,19 @@
 ---
-title: "<span style='font-size: 65px;'>Intro to ID529: Data Management and Analytic Workflows in R</span>"
+title: "Intro to ID529: Data Management and Analytic Workflows in R"
 format: 
   revealjs:
-    theme: [serif, style.scss]
+    theme: [default, style.scss]
 template-partials:
   - title-slide.html
 title-graphic: id529-sticker.png
 slide-number: true
+title-slide-attributes:
+  data-background-image: 'transition_slides/lilzidesigns.jpg' 
+  data-background-color: 'black' 
+  data-background-opacity: '30%'
 ---
 
-# Meet your instructors
+# meet your instructors
 
 ## Christian Testa {.smaller}
 
@@ -20,7 +24,7 @@ slide-number: true
 
 ::: {.column width="70%"}
 :::{.small}
-Hi!  I'm Christian Testa.  I've been a statistical analyst working at the
+Hi!  I'm Christian Testa 👋  I've been a statistical analyst working at the
 Harvard T.H. Chan School of Public Health for a little over 5 years.
 
 My recent research has focused on addressing health disparities and
@@ -99,85 +103,80 @@ wrote this]. <br><br>
 ::::
 
 
-# Course Philosophy {background-image="images/harvard-green.jpg" background-color='black' background-opacity='70%'}
+# course philosophy {background-image="images/harvard-green.jpg" background-color='black' background-opacity='40%'}
 
-## Our Goals
+## our goals
 
 <br>
-Our goal is to give you the roadmap, time, and space you need to grow your R
+our goal is to give you the roadmap, time, and space you need to grow your R
 skills. <br><br>
 
-All our lecture recordings and slides will be online so you can refer back to
+all our lecture recordings and slides will be online so you can refer back to
 them as you need to.
 
-## Some Pep Talk
+## some pep talk
 
 :::{.smaller}
 > It’s easy when you start out programming to get really frustrated and think, “Oh it’s me, I’m really stupid,” or, “I’m not made out to program.” But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later. <br><br>
 —— Hadley Wickham, Chief Scientist at Posit (Formerly RStudio)
 :::
 
-## Course Overview 
+## course overview 
 
-Before we dive in, we want to make sure you have a few things in hand: 
+before we dive in, we want to make sure you have a few things in hand: 
 
-  * Our course website: <br>
+  * our course website: <br>
     <span class='tab'></span>{{< fa solid earth-americas >}} <https://id529.github.io/>
-  * Our syllabus: <br>
+  * our syllabus: <br>
     <span class='tab'></span>{{< fa graduation-cap >}} <https://id529.github.io/syllabus/>
     
 <center><img height='200px' src="images/dog-with-paper.gif" alt='gif of a golden retriever with the newspaper'></center>
   
-## Key Objectives 
+## key objectives 
 
 :::{.incremental .smaller}
-  *	Students will learn **best practices** for data cleaning, management, and project organization in the context of R programming based analyses focused on Population Health Science.
-  *	**Reproducibility** will be emphasized to teach students both the merits of reproducible workflows as well as how to build and implement them.
-  *	Learning Git and GitHub to **version control** and **disseminate** code.
+  *	students will learn <span class='carrot'>**best practices**</span> for data cleaning, management, and project organization in the context of R programming based analyses focused on Population Health Science.
+  *	<span class='carrot'>**reproducibility**</span> will be emphasized to teach students both the merits of reproducible workflows as well as how to build and implement them.
+  *	learning git and github to <span class='carrot'>**version control**<span> and <span class='carrot'>**disseminate**</span> code.
 :::
 
-## Key Objectives (continued)
+## key objectives (continued)
 
 :::{.incremental .smaller}
-  *	Exploratory data analysis skills including:
-    * Data visualization
-    * Working with regression models
-    * Creating professional reports
-  *	How to leverage online resources to get help with any R programming challenges.
-  *	Students will get great picture of the spectacular kinds of data analysis they can go on to do!
+  *	<span class='carrot'>**exploratory data analysis**</span> skills including:
+    * <span class='carrot'>**data visualization**</span>
+    * working with <span class='carrot'>**regression models**</span>
+    * creating <span class='carrot'>**professional reports**</span>
+  *	how to leverage online resources to <span class='carrot'>**get help**</span> with any R programming challenges.
+  *	students will get great picture of the <span class='carrot'>**spectacular**</span> kinds of data analysis they can go on to do!
 :::
 
-## Tracks for the Course 
+## tracks for the course 
 
 <div style='font-size: 32px;'>
 
-Keeping in mind that it's impossible to learn _all_ of R in any short period of
+keeping in mind that it's impossible to learn _all_ of r in any short period of
 time, we want to encourage you to pick a track to focus your energy on the most.
 
 ::: {.incremental}
   - Beginner/Novice
-    <!-- - <div style='font-size: 20px;'>This track emphasizes learning the basics of R and RStudio, learning the terminology, data types, and how to formulate your questions/searches to best get help for R programming challenges.</div>-->
   - Data Visualization
-    <!-- - <div style='font-size: 20px;'>This track emphasizes data visualization skills, learning how to use ggplot2, and the important considerations that go into making an effective data visualization (e.g., communicative precise language, appropriate and meaningful use of legends, accessibility, etc.).</div> -->
   - Data Cleaning/Management and Working with Codebooks
-    <!-- - <div style='font-size: 20px;'>This track emphasizes how to go from a raw dataset to something that can be worked with in R, documenting the process, and making that process reproducible and robust.</div> -->
   - Programming and Software Engineering
-    <!-- - <div style='font-size: 20px;'> This track emphasizes the role of designing software systems, writing packages in R, clean code and code hygiene, and leveraging tools designed to accelerate the effectiveness of programmers like automated testing. </div> -->
   - Other Niche Topics in R
-    <!-- - <div style='font-size: 20px;'>Is there a specific functionality available in R that you want to get better with not listed above?  Make sure to be precise.  Examples include interactive web applications, interactive data visualizations, machine learning pipelines, etc.</div> -->
 :::
 
 :::{.notes}
   - Beginner/Novice
-    - <div style='font-size: 20px;'>This track emphasizes learning the basics of R and RStudio, learning the terminology, data types, and how to formulate your questions/searches to best get help for R programming challenges.</div>
+    - This track emphasizes learning the basics of R and RStudio, learning the terminology, data types, and how to formulate your questions/searches to best get help for R programming challenges.
   - Data Visualization
-    - <div style='font-size: 20px;'>This track emphasizes data visualization skills, learning how to use ggplot2, and the important considerations that go into making an effective data visualization (e.g., communicative precise language, appropriate and meaningful use of legends, accessibility, etc.).</div>
+    - This track emphasizes data visualization skills, learning how to use ggplot2, and the important considerations that go into making an effective data visualization (e.g., communicative precise language, appropriate and meaningful use of legends, accessibility, etc.).
   - Data Cleaning/Management and Working with Codebooks
-    - <div style='font-size: 20px;'>This track emphasizes how to go from a raw dataset to something that can be worked with in R, documenting the process, and making that process reproducible and robust.</div>
+    - This track emphasizes how to go from a raw dataset to something that can be worked with in R, documenting the process, and making that process reproducible and robust.
   - Programming and Software Engineering
-    - <div style='font-size: 20px;'> This track emphasizes the role of designing software systems, writing packages in R, clean code and code hygiene, and leveraging tools designed to accelerate the effectiveness of programmers like automated testing. </div>
+    - This track emphasizes the role of designing software systems, writing packages in R, clean code and code hygiene, and leveraging tools designed to accelerate the effectiveness of programmers like automated testing. 
   - Other Niche Topics in R
-    - <div style='font-size: 20px;'>Is there a specific functionality available in R that you want to get better with not listed above?  Make sure to be precise.  Examples include interactive web applications, interactive data visualizations, machine learning pipelines, etc.</div>
+    - Is there a specific functionality available in R that you want to get better with not listed above?  Make sure to be precise.  Examples include interactive web applications, interactive data visualizations, machine learning pipelines, etc.
 :::
     
 </div>
@@ -192,29 +191,35 @@ time, we want to encourage you to pick a track to focus your energy on the most.
 
 
 
-## Homework 
+## homework 
 
-<br>
-Each day will be accompanied by homework assignments that will be distributed 
-and submitted through GitHub.  <br><br>
+:::{.smaller}
+:::{.fragment}
+each day will be accompanied by homework assignments that will be distributed
+and submitted through github.  <br><br>
+:::
 
-Additionally, we'll be asking you to provide peer reviews to another student so 
-you can 1) benefit from learning how others approached the same problem and
-2) practice articulating constructive feedback related to programming in R.
-
-# Live Demo 
-
-# Group Reflection on the Live Demo 
-
-## What are some of the principles that the live demo employed? 
-
-<span style="color='#7f8c8d;">(pause for conversation)</span>
+:::{.fragment}
+additionally, we'll be asking you to provide peer reviews to another student so 
+that: 
+:::
 
 :::{.incremental}
-  * Project organization, code hygiene and documentation
-  * Code makes the analysis repeatable 
-  * Data visualizations support exploratory data analysis and communicating results
-  * Ample reliance on tools that are already out there
+  1. you benefit from learning how others approached the same problem, and 
+  2. you practice articulating constructive feedback related to programming in R.
+:::
+:::
+
+# time for a live demo 🤞 {background-color='black'  background-opacity='40%' background-image="transition_slides/yen-vu.jpg"}
+
+## what are some of the principles that the live demo employed?  {background-color='black'  background-opacity='40%' background-image="transition_slides/corey-bruce.jpg"}
+
+
+:::{.incremental}
+  * code makes the analysis repeatable 
+  * project organization, code hygiene and documentation
+  * data visualizations support exploratory data analysis and communicating results
+  * ample reliance on tools that are already out there
 :::
 
 

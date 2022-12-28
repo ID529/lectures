@@ -324,10 +324,10 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="center">
+<section id="title-slide" data-background-color="black" data-background-image="transition_slides/lilzidesigns.jpg" data-background-opacity="30%" class="center">
    <div class="row">
   <div class="column" style="width: 75%">
-  <h1 class="title" style="font-size: 2.05em;"><span style="font-size: 65px;">Intro to ID529: Data Management and Analytic Workflows in R</span></h1>
+  <h1 class="title" style="font-size: 2.05em;">Intro to ID529: Data Management and Analytic Workflows in R</h1>
   </div>
   <div class="column" style="width: 25%">
   <img class="title-graphic" src="id529-sticker.png" style="max-width:90%;">
@@ -336,7 +336,7 @@
 </section>
 <section>
 <section id="meet-your-instructors" class="title-slide slide level1 center">
-<h1>Meet your instructors</h1>
+<h1>meet your instructors</h1>
 
 </section>
 <section id="christian-testa" class="slide level2 smaller">
@@ -346,7 +346,7 @@
 <p><img data-src="christian_profile.jpeg"></p>
 </div><div class="column" style="width:70%;">
 <div class="small">
-<p>Hi! I’m Christian Testa. I’ve been a statistical analyst working at the Harvard T.H. Chan School of Public Health for a little over 5 years.</p>
+<p>Hi! I’m Christian Testa 👋 I’ve been a statistical analyst working at the Harvard T.H. Chan School of Public Health for a little over 5 years.</p>
 <p>My recent research has focused on addressing health disparities and inequities in the US.</p>
 <p>These days I’m working on projects involving epigenetic aging, multiple types of discrimination, COVID-19, and spatiotemporal methods in epidemiology. <br><br></p>
 </div>
@@ -418,22 +418,22 @@
 <p><img data-src="JarvisChen.jpg"></p>
 </div><div class="column" style="width:70%;">
 <p>Hi! I’m Jarvis Chen. <br><br></p>
-<p>I’m a lecturer in the Dept. of Social and Behavioral Sciences and one of the nicest, kindest, statistically-wisest people you’ll ever meet [Christian wrote this]. <br><br></p>
+<p>I’m a lecturer in the Dept. of Social and Behavioral Sciences and one of the nicest, kindest, wisest people you’ll ever meet [Christian wrote this]. <br><br></p>
 </div>
 </div>
 </section></section>
 <section>
-<section id="course-philosophy" class="title-slide slide level1 center" data-background-image="images/harvard-green.jpg" data-background-color="black" data-background-opacity="70%">
-<h1>Course Philosophy</h1>
+<section id="course-philosophy" class="title-slide slide level1 center" data-background-image="images/harvard-green.jpg" data-background-color="black" data-background-opacity="40%">
+<h1>course philosophy</h1>
 
 </section>
 <section id="our-goals" class="slide level2">
-<h2>Our Goals</h2>
-<p><br> Our goal is to give you the roadmap, time, and space you need to grow your R skills. <br><br></p>
-<p>All our lecture recordings and slides will be online so you can refer back to them as you need to.</p>
+<h2>our goals</h2>
+<p><br> our goal is to give you the roadmap, time, and space you need to grow your R skills. <br><br></p>
+<p>all our lecture recordings and slides will be online so you can refer back to them as you need to.</p>
 </section>
 <section id="some-pep-talk" class="slide level2">
-<h2>Some Pep Talk</h2>
+<h2>some pep talk</h2>
 <div class="smaller">
 <blockquote>
 <p>It’s easy when you start out programming to get really frustrated and think, “Oh it’s me, I’m really stupid,” or, “I’m not made out to program.” But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later. <br><br> —— Hadley Wickham, Chief Scientist at Posit (Formerly RStudio)</p>
@@ -441,85 +441,75 @@
 </div>
 </section>
 <section id="course-overview" class="slide level2">
-<h2>Course Overview</h2>
-<p>Before we dive in, we want to make sure you have a few things in hand:</p>
+<h2>course overview</h2>
+<p>before we dive in, we want to make sure you have a few things in hand:</p>
 <ul>
-<li>Our course website: <br> <span class="tab"></span><i class="fa-solid fa-earth-americas" aria-label="earth-americas"></i> <a href="https://id529.github.io/" class="uri">https://id529.github.io/</a></li>
-<li>Our syllabus: <br> <span class="tab"></span><i class="fa-solid fa-graduation-cap" aria-label="graduation-cap"></i> <a href="https://id529.github.io/syllabus/" class="uri">https://id529.github.io/syllabus/</a></li>
+<li>our course website: <br> <span class="tab"></span><i class="fa-solid fa-earth-americas" aria-label="earth-americas"></i> <a href="https://id529.github.io/" class="uri">https://id529.github.io/</a></li>
+<li>our syllabus: <br> <span class="tab"></span><i class="fa-solid fa-graduation-cap" aria-label="graduation-cap"></i> <a href="https://id529.github.io/syllabus/" class="uri">https://id529.github.io/syllabus/</a></li>
 </ul>
 <center>
 <img height="200px" src="images/dog-with-paper.gif" alt="gif of a golden retriever with the newspaper">
 </center>
 </section>
 <section id="key-objectives" class="slide level2">
-<h2>Key Objectives</h2>
+<h2>key objectives</h2>
 <div class="smaller">
 <ul>
-<li class="fragment">Students will learn <strong>best practices</strong> for data cleaning, management, and project organization in the context of R programming based analyses focused on Population Health Science.</li>
-<li class="fragment"><strong>Reproducibility</strong> will be emphasized to teach students both the merits of reproducible workflows as well as how to build and implement them.</li>
-<li class="fragment">Learning Git and GitHub to <strong>version control</strong> and <strong>disseminate</strong> code.</li>
+<li class="fragment">students will learn <span class="carrot"><strong>best practices</strong></span> for data cleaning, management, and project organization in the context of R programming based analyses focused on Population Health Science.</li>
+<li class="fragment"><span class="carrot"><strong>reproducibility</strong></span> will be emphasized to teach students both the merits of reproducible workflows as well as how to build and implement them.</li>
+<li class="fragment">learning git and github to <span class="carrot"><strong>version control</strong><span> and <span class="carrot"><strong>disseminate</strong></span> code.</span></span></li>
 </ul>
 </div>
 </section>
 <section id="key-objectives-continued" class="slide level2">
-<h2>Key Objectives (continued)</h2>
+<h2>key objectives (continued)</h2>
 <div class="smaller">
 <ul>
-<li class="fragment">Exploratory data analysis skills including:
+<li class="fragment"><span class="carrot"><strong>exploratory data analysis</strong></span> skills including:
 <ul>
-<li class="fragment">Data visualization</li>
-<li class="fragment">Working with regression models</li>
-<li class="fragment">Creating professional reports</li>
+<li class="fragment"><span class="carrot"><strong>data visualization</strong></span></li>
+<li class="fragment">working with <span class="carrot"><strong>regression models</strong></span></li>
+<li class="fragment">creating <span class="carrot"><strong>professional reports</strong></span></li>
 </ul></li>
-<li class="fragment">How to leverage online resources to get help with any R programming challenges.</li>
-<li class="fragment">Students will get great picture of the spectacular kinds of data analysis they can go on to do!</li>
+<li class="fragment">how to leverage online resources to <span class="carrot"><strong>get help</strong></span> with any R programming challenges.</li>
+<li class="fragment">students will get great picture of the <span class="carrot"><strong>spectacular</strong></span> kinds of data analysis they can go on to do!</li>
 </ul>
 </div>
 </section>
 <section id="tracks-for-the-course" class="slide level2">
-<h2>Tracks for the Course</h2>
+<h2>tracks for the course</h2>
 <div style="font-size: 32px;">
-<p>Keeping in mind that it’s impossible to learn <em>all</em> of R in any short period of time, we want to encourage you to pick a track to focus your energy on the most.</p>
+<p>keeping in mind that it’s impossible to learn <em>all</em> of r in any short period of time, we want to encourage you to pick a track to focus your energy on the most.</p>
 <div>
 <ul>
-<li class="fragment">Beginner/Novice <!-- - <div style='font-size: 20px;'>This track emphasizes learning the basics of R and RStudio, learning the terminology, data types, and how to formulate your questions/searches to best get help for R programming challenges.</div>--></li>
-<li class="fragment">Data Visualization <!-- - <div style='font-size: 20px;'>This track emphasizes data visualization skills, learning how to use ggplot2, and the important considerations that go into making an effective data visualization (e.g., communicative precise language, appropriate and meaningful use of legends, accessibility, etc.).</div> --></li>
-<li class="fragment">Data Cleaning/Management and Working with Codebooks <!-- - <div style='font-size: 20px;'>This track emphasizes how to go from a raw dataset to something that can be worked with in R, documenting the process, and making that process reproducible and robust.</div> --></li>
-<li class="fragment">Programming and Software Engineering <!-- - <div style='font-size: 20px;'> This track emphasizes the role of designing software systems, writing packages in R, clean code and code hygiene, and leveraging tools designed to accelerate the effectiveness of programmers like automated testing. </div> --></li>
-<li class="fragment">Other Niche Topics in R <!-- - <div style='font-size: 20px;'>Is there a specific functionality available in R that you want to get better with not listed above?  Make sure to be precise.  Examples include interactive web applications, interactive data visualizations, machine learning pipelines, etc.</div> --></li>
+<li class="fragment">Beginner/Novice</li>
+<li class="fragment">Data Visualization</li>
+<li class="fragment">Data Cleaning/Management and Working with Codebooks</li>
+<li class="fragment">Programming and Software Engineering</li>
+<li class="fragment">Other Niche Topics in R</li>
 </ul>
 </div>
 <aside class="notes">
 <ul>
 <li>Beginner/Novice
 <ul>
-<li><div style="font-size: 20px;">
-This track emphasizes learning the basics of R and RStudio, learning the terminology, data types, and how to formulate your questions/searches to best get help for R programming challenges.
-</div></li>
+<li>This track emphasizes learning the basics of R and RStudio, learning the terminology, data types, and how to formulate your questions/searches to best get help for R programming challenges.</li>
 </ul></li>
 <li>Data Visualization
 <ul>
-<li><div style="font-size: 20px;">
-This track emphasizes data visualization skills, learning how to use ggplot2, and the important considerations that go into making an effective data visualization (e.g., communicative precise language, appropriate and meaningful use of legends, accessibility, etc.).
-</div></li>
+<li>This track emphasizes data visualization skills, learning how to use ggplot2, and the important considerations that go into making an effective data visualization (e.g., communicative precise language, appropriate and meaningful use of legends, accessibility, etc.).</li>
 </ul></li>
 <li>Data Cleaning/Management and Working with Codebooks
 <ul>
-<li><div style="font-size: 20px;">
-This track emphasizes how to go from a raw dataset to something that can be worked with in R, documenting the process, and making that process reproducible and robust.
-</div></li>
+<li>This track emphasizes how to go from a raw dataset to something that can be worked with in R, documenting the process, and making that process reproducible and robust.</li>
 </ul></li>
 <li>Programming and Software Engineering
 <ul>
-<li><div style="font-size: 20px;">
-This track emphasizes the role of designing software systems, writing packages in R, clean code and code hygiene, and leveraging tools designed to accelerate the effectiveness of programmers like automated testing.
-</div></li>
+<li>This track emphasizes the role of designing software systems, writing packages in R, clean code and code hygiene, and leveraging tools designed to accelerate the effectiveness of programmers like automated testing.</li>
 </ul></li>
 <li>Other Niche Topics in R
 <ul>
-<li><div style="font-size: 20px;">
-Is there a specific functionality available in R that you want to get better with not listed above? Make sure to be precise. Examples include interactive web applications, interactive data visualizations, machine learning pipelines, etc.
-</div></li>
+<li>Is there a specific functionality available in R that you want to get better with not listed above? Make sure to be precise. Examples include interactive web applications, interactive data visualizations, machine learning pipelines, etc.</li>
 </ul></li>
 </ul>
 <style type="text/css">
@@ -542,29 +532,35 @@ Is there a specific functionality available in R that you want to get better wit
 </center>
 </section>
 <section id="homework" class="slide level2">
-<h2>Homework</h2>
-<p><br> Each day will be accompanied by homework assignments that will be distributed and submitted through GitHub. <br><br></p>
-<p>Additionally, we’ll be asking you to provide peer reviews to another student so you can 1) benefit from learning how others approached the same problem and 2) practice articulating constructive feedback related to programming in R.</p>
+<h2>homework</h2>
+<div class="smaller">
+<div class="fragment">
+<p>each day will be accompanied by homework assignments that will be distributed and submitted through github. <br><br></p>
+</div>
+<div class="fragment">
+<p>additionally, we’ll be asking you to provide peer reviews to another student so that:</p>
+</div>
+<div>
+<ol type="1">
+<li class="fragment">you benefit from learning how others approached the same problem, and</li>
+<li class="fragment">you practice articulating constructive feedback related to programming in R.</li>
+</ol>
+</div>
+</div>
 </section></section>
-<section id="live-demo" class="title-slide slide level1 center">
-<h1>Live Demo</h1>
-
-</section>
-
 <section>
-<section id="group-reflection-on-the-live-demo" class="title-slide slide level1 center">
-<h1>Group Reflection on the Live Demo</h1>
+<section id="time-for-a-live-demo" class="title-slide slide level1 center" data-background-color="black" data-background-opacity="40%" data-background-image="transition_slides/yen-vu.jpg">
+<h1>time for a live demo 🤞</h1>
 
 </section>
-<section id="what-are-some-of-the-principles-that-the-live-demo-employed" class="slide level2">
-<h2>What are some of the principles that the live demo employed?</h2>
-<p><span style="color='#7f8c8d;">(pause for conversation)</span></p>
+<section id="what-are-some-of-the-principles-that-the-live-demo-employed" class="slide level2" data-background-color="black" data-background-opacity="40%" data-background-image="transition_slides/corey-bruce.jpg">
+<h2>what are some of the principles that the live demo employed?</h2>
 <div>
 <ul>
-<li class="fragment">Project organization, code hygiene and documentation</li>
-<li class="fragment">Code makes the analysis repeatable</li>
-<li class="fragment">Data visualizations support exploratory data analysis and communicating results</li>
-<li class="fragment">Ample reliance on tools that are already out there</li>
+<li class="fragment">code makes the analysis repeatable</li>
+<li class="fragment">project organization, code hygiene and documentation</li>
+<li class="fragment">data visualizations support exploratory data analysis and communicating results</li>
+<li class="fragment">ample reliance on tools that are already out there</li>
 </ul>
 </div>
 <div class="footer footer-default">
