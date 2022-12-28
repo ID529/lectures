@@ -11,7 +11,7 @@
 <link href="git-and-github_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.269">
 
-  <title>Git and GitHub</title>
+  <title>git and github</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -98,6 +98,7 @@
   <link href="git-and-github_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="git-and-github_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="git-and-github_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="git-and-github_files/libs/revealjs/plugin/reveal-pointer/pointer.css" rel="stylesheet">
   <link href="git-and-github_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -389,7 +390,7 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-  <h1 class="title" style="font-size: 2.25em;">Git and GitHub</h1>
+  <h1 class="title" style="font-size: 2.25em;">git and github</h1>
   <br>
   <center>
   <img class="title-graphic" src="git-and-github.png">
@@ -397,64 +398,64 @@
 </section>
 <section>
 <section id="why-version-control" class="title-slide slide level1 center">
-<h1>Why version control?</h1>
+<h1>why version control?</h1>
 <div>
 <ul>
-<li class="fragment">makes coordinating files across computers easy</li>
-<li class="fragment">keeps a clean history of your code evolution
+<li class="fragment">makes coordinating files across computers easy 💻</li>
+<li class="fragment">keeps a clean history of your code evolution 📜
 <ul>
-<li class="fragment">no need for messy suffixes (v1, v2, …, v19380, vFINAL)</li>
+<li class="fragment">no need for messy suffixes (v1, v2, …, v19380, vfinal) 🗂</li>
 </ul></li>
-<li class="fragment">gives you the chance to ask yourself “do I really want to make these changes?”</li>
-<li class="fragment">streamlines review of external code changes</li>
+<li class="fragment">gives you the chance to ask yourself “do i really want to make these changes?” 🤔</li>
+<li class="fragment">streamlines review of external code changes 👥</li>
 </ul>
 </div>
 </section>
 <section class="slide level2">
 
-<p>Maybe you already know other ways to share code?</p>
+<p>maybe you already know other ways to share code?</p>
 <center>
-<img src="images/git_galaxy_brain.png" alt="Galaxy Brain meme with a progression from emailing code, IM-ing code, to using Git">
+<img src="images/git_galaxy_brain.png" alt="galaxy brain meme with a progression from emailing code, im-ing code, to using git">
 </center>
 </section>
 <section id="why-git" class="slide level2">
-<h2>Why Git?</h2>
+<h2>why git?</h2>
 <ul>
-<li>It’s popular! In the StackOverflow developer survey, 93.9% of developers using version control software said they use Git.</li>
+<li>it’s popular! in the stackoverflow developer survey, 93.9% of developers using version control software said they use git.</li>
 </ul>
 
-<img src="images/developer_survey.png" width="500px" alt="StackOverflow Developer Survey shows that 93.9% of developers who use Version Control use Git" class="r-stretch"></section>
+<img src="images/developer_survey.png" width="500px" alt="stackoverflow developer survey shows that 93.9% of developers who use version control use git" class="r-stretch"></section>
 <section class="slide level2">
 
-<p>The result is that Git comes with a <em>large resource base</em> and is <em>compatible</em> with all the major operating systems.</p>
+<p>the result is that git comes with a <em>large resource base</em> and is <em>compatible</em> with all the major operating systems.</p>
 <center>
-<a href="https://git-scm.com/downloads"> <img src="images/git_download.png" width="500px" alt="There are Git downloads for all major operating systems"></a>
+<a href="https://git-scm.com/downloads"> <img src="images/git_download.png" width="500px" alt="there are git downloads for all major operating systems"></a>
 </center>
 </section>
 <section id="a-bit-about-git" class="slide level2">
-<h2>A bit about Git</h2>
+<h2>a bit about git</h2>
 <div class="smaller">
 <ul>
-<li class="fragment">Git is an <strong>open-source version control system</strong>.</li>
-<li class="fragment">Git stores code and its history in a <strong>repository</strong>.</li>
-<li class="fragment">Each revision to the code is added to the repository through a <strong>commit</strong> process.</li>
-<li class="fragment">Git allows you to have <strong>branches</strong> of your code that keeps development <strong>separate</strong> from the main codebase until it is complete.
+<li class="fragment">git is an <strong><span class="carrot">open-source version control system</span></strong>.</li>
+<li class="fragment">git stores code and its history in a <span class="carrot"><strong>repository</strong></span>.</li>
+<li class="fragment">each revision to the code is added to the repository through a <span class="carrot"><strong>commit</strong></span> process.</li>
+<li class="fragment">git allows you to have <strong>branches</strong> of your code that keeps development <span class="carrot"><strong>separate</strong></span> from the main codebase until it is complete.
 <ul>
-<li class="fragment">The main version of your code is often on the <strong>“main”</strong> branch (what used to be called the <strong>“master”</strong> branch).</li>
+<li class="fragment">the main version of your code is often on the <span class="carrot"><strong>“main”</strong></span> branch (what used to be called the <span class="carrot"><strong>“master”</strong></span> branch).</li>
 </ul></li>
-<li class="fragment">Git allows you to <strong>push</strong> or <strong>pull</strong> code from <strong>remote</strong> servers.</li>
+<li class="fragment">git allows you to <span class="carrot"><strong>push</strong></span> or <span class="carrot"><strong>pull</strong></span> code from <span class="carrot"><strong>remote</strong></span> servers.</li>
 </ul>
 </div>
 </section>
 <section id="github" class="slide level2">
-<h2>GitHub</h2>
+<h2>github</h2>
 <div class="row">
 <div class="column">
 <div class="small">
 <ul>
-<li class="fragment">GitHub is a website and online service with free and paid tiers that allows you to:
+<li class="fragment">github is a website and online service with free and paid tiers that allows you to:
 <ul>
-<li class="fragment">host Git repositories</li>
+<li class="fragment">host git repositories</li>
 <li class="fragment">publicize your profile and repositories</li>
 <li class="fragment">track issues</li>
 <li class="fragment">document your projects with wikis</li>
@@ -467,33 +468,43 @@
 </div>
 </div>
 <div class="column">
-<img src="images/GitHub-logo.png" alt="GitHub logo">
+<div class="fragment">
+<p><img src="images/github-logo.png" alt="github logo" width="45%"> <img src="images/octocat.png" alt="github logo" width="45%"></p>
+<div class="xxsmall" style="background=">
+<p>github’s mascot and logo is the octocat, a creature with five octopus like arms. the octocat character was designed by the same graphic designer, simon oxley, who designed the bird logo that twitter uses.</p>
 </div>
+</div>
+</div>
+</div>
+<div class="footer">
+<p>read more about github: <a href="https://en.wikipedia.org/wiki/github" class="uri">https://en.wikipedia.org/wiki/github</a></p>
 </div>
 </section></section>
 <section>
 <section id="getting-started" class="title-slide slide level1 center" data-background-color="black" data-background-image="images/mountains.jpg">
-<h1>Getting Started</h1>
+<h1>getting started</h1>
 
 </section>
 <section id="personal-reflections" class="slide level2">
-<h2>Personal Reflections</h2>
+<h2>personal reflections</h2>
 <div class="smaller">
 <ul>
-<li class="fragment">What features of Git and GitHub are you looking to leverage the most?</li>
-<li class="fragment">Look through examples of successful repositories
+<li class="fragment">what features of git and github are you looking to leverage the most?</li>
+<li class="fragment">look through examples of successful repositories
 <ul>
-<li class="fragment">Mathew Kiang (Assistant Professor at Stanford) has some great repositories focused on epidemiological and Population Health research
+<li class="fragment">mathew kiang (assistant professor at stanford) has some great repositories focused on epidemiological and population health research
 <ul>
 <li class="fragment"><a href="https://github.com/mkiang" class="uri">https://github.com/mkiang</a> <i class="fa-brands fa-github" aria-label="github"></i></li>
 </ul></li>
-<li class="fragment">Take a look at the repository for dplyr: <br> <a href="https://github.com/tidyverse/dplyr" class="uri">https://github.com/tidyverse/dplyr</a> <i class="fa-brands fa-github" aria-label="github"></i></li>
+<li class="fragment">take a look at the repository for dplyr: <br> <a href="https://github.com/tidyverse/dplyr" class="uri">https://github.com/tidyverse/dplyr</a> <i class="fa-brands fa-github" aria-label="github"></i></li>
 </ul></li>
 </ul>
 </div>
+<!-- info / docs for the quarto fontawesome extension: 
+https://github.com/quarto-ext/fontawesome -->
 <aside class="notes">
-<p>We suggest the following points for personal reflection.</p>
-<p>Also, if you’re working with high security code, you should contact your local IT department before uploading anything to an external server like GitHub.</p>
+<p>we suggest the following points for personal reflection.</p>
+<p>also, if you’re working with high security code, you should contact your local it department before uploading anything to an external server like github.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -507,169 +518,430 @@
       }</style></aside>
 </section>
 <section id="installation" class="slide level2">
-<h2>Installation</h2>
+<h2>installation</h2>
+<div>
 <ul>
-<li>You’ll need to install Git: the installation procedures depend on if you’re on Windows, Mac, or Linux.</li>
-<li>Follow the installation instructions here https://happygitwithr.com/install-git.html:
+<li class="fragment">you’ll need to install git: the installation procedures depend on if you’re on windows, mac, or linux.</li>
+<li class="fragment">follow the installation instructions here https://happygitwithr.com/install-git.html:
 <ul>
-<li><a href="https://git-scm.com/download/mac">Download git for OSX</a></li>
-<li><a href="https://git-scm.com/download/win">Download git for Windows</a></li>
-<li><a href="https://git-scm.com/download/linux">Download git for Linux</a></li>
+<li class="fragment"><a href="https://git-scm.com/download/mac">download git for osx</a></li>
+<li class="fragment"><a href="https://git-scm.com/download/win">download git for windows</a></li>
+<li class="fragment"><a href="https://git-scm.com/download/linux">download git for linux</a></li>
 </ul></li>
 </ul>
+</div>
 </section>
 <section id="local-setup" class="slide level2">
-<h2>Local Setup</h2>
+<h2>local setup</h2>
+<div>
 <ul>
-<li>After installation, you’ll need to <strong>configure</strong> Git:</li>
+<li class="fragment">after installation, you’ll need to <strong>configure</strong> git:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">'Jane Doe'</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">'jane@example.com'</span></span>
+<div class="fragment xsmall">
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">'she-ra, princess of power'</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">'adora@eternia.com'</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">git</span> config <span class="at">--global</span> <span class="at">--list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
-<li>Make sure to use the <strong>same name</strong> and <strong>email address</strong> you are going to use with GitHub.</li>
+<li class="fragment">use the <strong>same name</strong> and <strong>email address</strong> you are going to use with github.</li>
+<li class="fragment">i would highly recommend using a long-term personal email rather than your institutional email so it’s easy to carry your portfolio of work on github on with you after you graduate.</li>
 </ul>
+</div>
 </section>
 <section id="setup-a-github-account" class="slide level2">
-<h2>Setup a GitHub account</h2>
+<h2>setup a github account</h2>
 <div class="row">
 <div class="column" style="width: 70%;">
 <div class="small" style="line-height: 100%;">
-<p>Sign up at <a href="https://github.com/login" class="uri">https://github.com/login</a> <br> Some advice from Happy Git With R:</p>
+<div class="fragment">
+<p>sign up at <a href="https://github.com/login" class="uri">https://github.com/login</a> <br></p>
+</div>
+<div class="fragment">
+<p>some advice from happy git with r:</p>
+</div>
+<div>
 <ul>
-<li>Incorporate your actual name</li>
-<li>Reuse your username from other contexts</li>
-<li>Pick a username you will be comfortable revealing to future bosses</li>
-<li><strong>Shorter</strong> is better</li>
-<li>Be as unique as possible in as few characters as possible</li>
-<li>Make it <strong>timeless</strong>
+<li class="fragment">incorporate your <span class="carrot"><strong>actual name</strong></span></li>
+<li class="fragment"><span class="carrot"><strong>reuse your username</strong></span> from other contexts</li>
+<li class="fragment">pick an <span class="carrot"><strong>appropriate</strong></span> username you will be comfortable revealing to future bosses</li>
+<li class="fragment"><span class="carrot"><strong>shorter</strong> </span>is better
 <ul>
-<li>Don’t highlight your current university, employer, or place of residence</li>
+<li class="fragment">be as unique as possible in as few characters as possible</li>
 </ul></li>
-<li>Recommend all <strong>lowercase</strong></li>
+<li class="fragment">make it <span class="carrot"><strong>timeless</strong></span>
+<ul>
+<li class="fragment">don’t highlight your current university, employer, or place of residence since these can all change</li>
+</ul></li>
+<li class="fragment">all <span class="carrot"><strong>lowercase</strong></span> is recommended</li>
 </ul>
 </div>
 </div>
-<div class="column" style="width: 30%;">
+</div>
+<div class="column" style="width: 30%;" alt="the form for creating an account on github with username, email, password, human verification fields.">
+<div class="fragment">
 <p><img src="images/github_login.jpg"></p>
+<div class="xxsmall">
+<p>the form for creating an account on github</p>
+</div>
+</div>
 </div>
 </div>
 </section>
 <section id="set-up-an-ssh-key" class="slide level2">
-<h2>Set up an SSH Key</h2>
-<p>We recommend setting up <strong>SSH (Secure Shell) key</strong> based authentication with GitHub.<br><br></p>
-<p>This allows your computer to be <strong>automatically authenticated</strong> when you communicate with GitHub.<br><br></p>
-<p>Follow the instructions here:<br> <a href="https://happygitwithr.com/ssh-keys.html" class="uri">https://happygitwithr.com/ssh-keys.html</a></p>
+<h2>set up an ssh key</h2>
+<div class="fragment">
+<p>we recommend setting up <span class="carrot"><strong>ssh (secure shell) key</strong></span> based authentication with github.<br><br></p>
+</div>
+<div class="fragment">
+<p>this allows your computer to be <span class="carrot"><strong>automatically authenticated</strong></span> when you communicate with github.<br><br></p>
+</div>
+<div class="fragment">
+<p>follow the instructions here:<br> <a href="https://happygitwithr.com/ssh-keys.html" class="uri">https://happygitwithr.com/ssh-keys.html</a></p>
+</div>
 </section>
 <section id="set-up-a-local-repository-in-rstudio" class="slide level2">
-<h2>Set up a local repository in RStudio</h2>
+<h2>set up a local repository in rstudio</h2>
 <div class="row">
 <div class="column">
-<p>Nativate to File → New Project<br><br></p>
-<p>Select “Create a git repository” which informs RStudio you want to use Git.</p>
+<div class="fragment">
+<p>nativate to file → new project<br><br></p>
+</div>
+<div class="fragment">
+<p>select “create a git repository” which informs rstudio you want to use git.</p>
+</div>
 </div>
 <div class="column">
-<p><img src="images/new_project.jpg" alt="New Project Wizard window in RStudio shows how you can specify the Directory Name, Create the project as a subdirectory in a folder, and a checkbox for Create a git repository"></p>
+<div class="fragment">
+<p><img src="images/new_project.jpg" alt="new project wizard window in rstudio shows how you can specify the directory name, create the project as a subdirectory in a folder, and a checkbox for create a git repository"></p>
+<div class="xxsmall">
+<p>with the new project wizard window in rstudio, you can specify the directory dame for your project, create your project as a subdirectory of another folder, and use the provided checkbox to indicate that you’d like to initialize the project as a git repository.</p>
+</div>
+</div>
 </div>
 </div></section>
 <section id="git-panel-in-rstudio" class="slide level2">
-<h2>Git panel in RStudio</h2>
+<h2>git panel in rstudio</h2>
 <div class="row">
 <div class="column">
 <div class="smaller" style="line-height: 100%">
-<p>RStudio adds a Git tab in your Environment/History panel.<br><br></p>
-<p>This panel is a point-and-click interface to:</p>
+<div class="fragment">
+<p>rstudio adds a git tab in your environment/history panel.<br><br></p>
+</div>
+<div class="fragment">
+<p>this panel is a point-and-click interface to:</p>
+</div>
+<div>
 <ul>
-<li>review your changes</li>
-<li>stage changes</li>
-<li>write commits</li>
-<li>push and pull commits</li>
-<li>view the commit history</li>
-<li>navigate branches</li>
+<li class="fragment">review your changes</li>
+<li class="fragment">stage changes</li>
+<li class="fragment">write commits</li>
+<li class="fragment">push and pull commits</li>
+<li class="fragment">view the commit history</li>
+<li class="fragment">navigate branches</li>
 </ul>
 </div>
 </div>
+</div>
 <div class="column">
-<p><img src="images/git_panel.jpg" alt="the Git panel in RStudio shows changes you've made with buttons to see the changes and commit them"></p>
+<div class="fragment">
+<p><img src="images/git_panel.jpg" alt="the git panel in rstudio shows changes you've made with buttons to see the changes and commit them"></p>
+<div class="xxsmall">
+<p>the git panel in rstudio shows changes you’ve made and lets you see the changes you’ve made, commit them, and push them to github in a user-friendly interface.</p>
+</div>
+</div>
 </div>
 </div></section>
 <section id="setting-up-a-remote-repository" class="slide level2">
-<h2>Setting up a remote repository</h2>
-<p>Navigate to GitHub.com → Login → New Repository <br> and fill out the form.</p>
-<p><img data-src="images/new_repo_btn.png" class="absolute" style="top: 350px; left: 150px; width: 250px; "> <img data-src="images/new_repo_form.png" class="absolute" style="top: 150px; right: 0px; width: 500px; "></p>
-</section>
-<section id="formulate-your-initial-commit-and-push-it" class="slide level2">
-<h2>Formulate your initial commit and push it</h2>
-<div class="small">
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">git</span> remote add origin git@github.com:ctesta01/ExampleRepository.git <span class="co"># let your local repository know about the remote repository</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">git</span> branch <span class="at">-M</span> main <span class="co"># use "main" as the default branch</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">git</span> add .gitignore <span class="co"># add a file to the staging area</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"initial commit"</span> <span class="co"># name your commit </span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">git</span> push <span class="at">-u</span> origin main <span class="co"># push your commit to the remote repository</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h2>setting up a remote repository</h2>
+<div class="fragment">
+<p>navigate to github.com → login → new repository <br> and fill out the form.</p>
 </div>
+<div class="fragment">
+<p><img data-src="images/new_repo_btn.png" class="absolute" style="top: 350px; left: 150px; width: 250px; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/new_repo_form.png" class="absolute" style="top: 150px; right: 0px; width: 500px; "></p>
+</div>
+</section>
+<section id="create-an-initial-commit-and-push" class="slide level2">
+<h2>create an initial commit and push</h2>
+<div class="xsmall fragment">
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># let your local repository know about the remote repository</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">git</span> remote add origin git@github.com:ctesta01/examplerepository.git </span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">git</span> branch <span class="at">-m</span> main <span class="co"># use "main" as the default branch</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">git</span> add .gitignore <span class="co"># add a file to the staging area</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"initial commit"</span> <span class="co"># name your commit </span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="fu">git</span> push <span class="at">-u</span> origin main <span class="co"># push your commit to the remote repository</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
 <center>
-<img src="images/initial_commit.png" height="250px;" alt="the output from running the above code;  it shows the commit being pushed to github">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img src="images/initial_commit.png" height="250px;" alt="the output from running the above code;  it shows the commit being pushed to github"></p>
+</div><div class="column xsmall" style="padding-top: 7%;">
+<p>these are the above commands being run in the terminal, along with the output produced. you can see that <code>git</code> will report on how many objects and how many bytes are being uploaded.</p>
+</div>
+</div>
 </center>
+</div>
 </section></section>
 <section>
 <section id="congrats-youre-using-github" class="title-slide slide level1 center">
-<h1>Congrats! <br> You’re using GitHub!</h1>
+<h1>congrats! <br> you’re using github!</h1>
 <center>
-<img src="images/dancing.webp" alt="dancing characters from Charlie Brown">
+<img src="images/dancing.webp" alt="dancing characters from charlie brown">
 </center>
 </section>
 <section id="readmes" class="slide level2">
-<h2>READMEs</h2>
+<h2>readmes</h2>
+<div>
 <ul>
-<li><p>A README serves as an introduction to and documentation for your repository.</p></li>
-<li><p>Like any documentation, feel free to start small and document as you develop!</p></li>
+<li class="fragment"><p>a readme serves as an introduction to and documentation for your repository.</p></li>
+<li class="fragment"><p>like any documentation, feel free to start small and document as you develop!</p></li>
+<li class="fragment"><p>you can learn more about reamdes from github here: <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes">docs.github.com/…</a></p></li>
 </ul>
+</div>
 <div class="footer">
-<p>Read the section about READMEs in the R Packages book here: <a href="https://r-pkgs.org/other-markdown.html#sec-readme" class="uri">https://r-pkgs.org/other-markdown.html#sec-readme</a></p>
+<p>read the section about readmes in the r packages book here: <a href="https://r-pkgs.org/other-markdown.html#sec-readme" class="uri">https://r-pkgs.org/other-markdown.html#sec-readme</a></p>
 </div>
 </section>
 <section id="basic-workflow-overview" class="slide level2">
-<h2>Basic Workflow Overview</h2>
+<h2>basic workflow overview</h2>
 <div class="row">
 <div class="column" style="width: 60%;">
 <div class="smaller" style="line-height: 100%">
-<p>The basic workflow for making updates to a Git repository is done in three steps:</p>
+<div class="fragment">
+<p>the basic workflow for making updates to a git repository is done in three steps:</p>
+</div>
+<div>
 <ol type="1">
-<li>Making changes to your files</li>
-<li>Adding them to the staging area</li>
-<li>Commit these changes with a explanatory message</li>
+<li class="fragment">making changes to your files</li>
+<li class="fragment">adding them to the staging area</li>
+<li class="fragment">commit these changes with a explanatory message</li>
 </ol>
 </div>
 </div>
+</div>
 <div class="column" style="width: 40%;">
-<p><img src="images/git_workflow.jpg" width="90%" alt="A diagram showing a workflow of successive commits"></p>
-<div style="font-size: 24px;">
-<p>This figure from Happy Git with R shows examples of commits made in a sequence. Each commit is accompanied by an ID, a message, and the differences between two commits are referred to as a “diff”.</p>
+<div class="fragment">
+<p><img src="images/git_workflow.jpg" width="90%" alt="a diagram showing a workflow of successive commits"></p>
+<div class="xxsmall">
+<p>this figure from happy git with r shows examples of commits made in a sequence. each commit is accompanied by an id, a message, and the differences between two commits are referred to as a “diff”.</p>
+</div>
 </div>
 </div>
 </div>
 </section></section>
 <section>
 <section id="key-commands" class="title-slide slide level1 center" data-background-color="black" data-background-image="images/mountains.jpg">
-<h1>Key Commands</h1>
+<h1>key commands</h1>
 
 </section>
 <section id="git-status" class="slide level2">
 <h2>git status</h2>
+<div class="small">
+<div class="fragment">
 <p><code>git status</code> is a basic command that displays the current state of the working directory.</p>
-<p>It’s a good idea to always run <code>git status</code> before changing your code because there may be something you want to commit or address first.</p>
-<p>The RStudio Git panel displays most of what is displayed in the output of <code>git status</code>.</p>
-<center>
-<img src="images/git_status.png" alt="example output of git status showing the new README.md and .Rproj file" width="600px">
-</center>
+</div>
+<div class="fragment">
+<p>it’s a good idea to always run <code>git status</code> before changing your code because there may be something you want to commit or address first.</p>
+</div>
+<div class="fragment">
+<p>the rstudio git panel displays most of what is displayed in the output of <code>git status</code>.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 55%; left: 0%; ">
+<p><img src="images/git_status.png" alt="example output of git status showing the new readme.md and .rproj file" width="55%"></p>
+</div>
+<div class="absolute xsmall" style="top: 85%; left: 11%; ">
+<p><code>git status</code> from the terminal</p>
+</div>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 55%; left: 60%; ">
+<p><img src="images/git_panel_status.png" alt="example git panel showing the new readme.md and .rproj file" width="100%"></p>
+</div>
+<div class="xsmall absolute" style="top: 85%; left: 60%; ">
+<p>the git panel in rstudio showing new, untracked files</p>
+</div>
+</div>
 </section>
 <section id="git-add" class="slide level2">
 <h2>git add</h2>
+<div>
 <ul>
-<li>adds changes to the staging environment or index</li>
+<li class="fragment">adds changes to the staging area (also called the index)</li>
 </ul>
-
-<img src="git-and-github-bw.png" class="slide-logo r-stretch"><div class="footer footer-default">
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 27%; left: 0%; ">
+<p><span class="tab"></span>terminal version: <br> <img src="images/git_add_commandline.png" alt="example of how to use the commandline to add readme.md to the staging area" width="55%"></p>
+</div>
+<div class="absolute xsmall" style="top: 75%; left: 0%; width: 50%; ">
+<p><code>git add readme.md</code> adds any changes to the <code>readme.md</code> (including its creation) to the staging area. <code>git status</code> shows us what changes are staged to be included in the next commit.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 27%; left: 55%; ">
+<center>
+rstudio panel version:
+</center>
+<p><img src="images/git_add_panel.png" alt="adding files can be done in the git panel in rstudio just by checking the box next to them"></p>
+</div>
+<div class="xsmall absolute" style="top: 70%; left: 55%; ">
+<p>one can add files to the git staging area in the rstudio git panel just by checking the checkbox next to each file in the staged column.</p>
+</div>
+</div>
+</section>
+<section id="git-commit" class="slide level2">
+<h2>git commit</h2>
+<div>
+<ul>
+<li class="fragment">records changes to the repository from the staging area</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 25%; left: 0%; ">
+<p><span class="tab"></span>terminal version:<br> <img src="images/git_commit_terminal.png" alt="a screenshot of calling `git commit -m 'add new readme'` on the command line" width="55%"></p>
+</div>
+<div class="absolute xsmall" style="top: 50%; left: 0%; width: 45%; ">
+<p><code>git commit -m 'add new readme'</code> creates a <span class="carrot"><strong>commit message</strong></span> (or basically a name) for the set of changes that were on the staging area and bundles them up together as a <span class="carrot"><strong>commit</strong></span>.</p>
+</div>
+</div>
+<div class="fragment absolute xxsmall popup" style="top: 75%; left: -2.5%; width: 45%; ">
+<p>if you need to write a longer, multi-line commit, <code>git commit</code> will open your default terminal based text-editor (often one of nano, vi, or vim) where you can write a longer commit message and save it.</p>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 25%; left: 50%; ">
+<center>
+rstudio panel version:
+</center>
+<p><img src="images/git_add_panel2.png" alt="first you click the commit button"></p>
+</div>
+<div class="xxsmall absolute" style="top: 85%; left: 50%; ">
+<p>with the changes you want to make staged, click the commit button. you’ll have a chance then to view what changes you’ve made. when you’re sure you want to commit, you can write a commit message, click commit, and then push.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 25%; left: 50%; ">
+<center>
+rstudio panel version:
+</center>
+<p><img src="images/git_commit_panel.png" alt="a screenshot of using the git panel in rstudio to commit"></p>
+</div>
+</div>
+</section>
+<section id="optimal-commit-messages" class="slide level2">
+<h2>optimal commit messages 📮</h2>
+<div class="small">
+<ul>
+<li class="fragment">capitalize the first word and do not end in punctuation.</li>
+<li class="fragment">use imperative mood in the subject line.
+<ul>
+<li class="fragment">example: “add fix for data reading error”</li>
+</ul></li>
+<li class="fragment">specify the type of commit. it is recommended and beneficial to have a consistent set of words to describe your changes.
+<ul>
+<li class="fragment">example: bugfix, update, refactor, bump, and so on.</li>
+</ul></li>
+<li class="fragment">the first line should ideally be no longer than 50 characters.
+<ul>
+<li class="fragment">be direct! try to eliminate filler words and phrases.
+<ul>
+<li class="fragment">examples: though, maybe, i think, kind of.</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div class="absolute fragment" style="top: 75%; left: 75%; ">
+<iframe src="https://giphy.com/embed/pfuqku1hwz4khyvyft" frameborder="0" class="giphy-embed" allowfullscreen="">
+</iframe>
+<p>
+<a href="https://giphy.com/gifs/muppetwiki-sesame-street-muppets-jim-henson-pfuqku1hwz4khyvyft">via giphy</a>
+</p>
+</div>
+</section>
+<section id="optimal-commit-messages-1" class="slide level2">
+<h2>optimal commit messages 💌</h2>
+<div class="small">
+<div class="fragment">
+<p>to develop thoughtful commits, consider the following:</p>
+</div>
+<div>
+<ul>
+<li class="fragment">why have i made these changes?</li>
+<li class="fragment">what effect have my changes made?</li>
+<li class="fragment">why was the change needed?</li>
+<li class="fragment">what are the changes in reference to?</li>
+</ul>
+</div>
+<div class="fragment">
+<p>see more advice here: <br> <a href="https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/" class="uri">https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/</a></p>
+<iframe src="https://giphy.com/embed/roguft1jgiq66zpqi2" frameborder="0" class="giphy-embed" allowfullscreen="">
+</iframe>
+<p>
+<a href="https://giphy.com/gifs/muppetwiki-kermit-the-frog-jim-henson-roguft1jgiq66zpqi2"></a>
+</p>
+</div>
+</div>
+</section>
+<section id="keep-a-changelog" class="slide level2">
+<h2>keep a changelog</h2>
+<div class="fragment">
+<p>a changelog is a file that contains a curated, informative history of your project’s updates.</p>
+</div>
+<div>
+<ul>
+<li class="fragment">a changelog allows people to easily see key development and changes in your project.</li>
+<li class="fragment">read more about changelogs at <a href="https://keepachangelog.com" class="uri">https://keepachangelog.com</a></li>
+</ul>
+</div>
+<div class="fragment xxsmall">
+<center>
+<iframe src="https://giphy.com/embed/xiqcqx02e1u9w" frameborder="0" class="giphy-embed" allowfullscreen="">
+</iframe>
+<p>
+<a href="https://giphy.com/gifs/xiqcqx02e1u9w"></a>
+</p>
+kermit rushing to update the changelog on his project before a major deadline.
+</center>
+</div>
+</section>
+<section id="git-push" class="slide level2">
+<h2>git push</h2>
+<div class="fragment">
+<ul>
+<li>sends local, committed changes to remote repository</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 27%; left: 0%; ">
+<p><span class="tab"></span>terminal version: <br> <img src="images/git_push_terminal.png" alt="Calling git push on the terminal sends the commits from our local computer to the remote server" width="55%"></p>
+</div>
+<div class="absolute xsmall" style="top: 65%; left: 0%; width: 50%; ">
+<p>Calling <code>git push</code> on the terminal sends the commits from our local computer to the remote server.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 27%; left: 55%; ">
+<center>
+RStudio Panel version:
+</center>
+<p><img src="images/git_push_panel.png" alt="First you have to click Commit and this window will pop open letting you know your commit has been made."></p>
+</div>
+<div class="xsmall absolute" style="top: 75%; left: 55%; ">
+<p>After you click Commit, a window will open showing you the <code>git</code> command that RStudio ran to create your commit. If there are no errors, you can close the window and then click Push.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 35%; left: 55%; ">
+<p><img src="images/git_push_panel2.png" alt="After you close that window, you'll see that RStudio lets you know you have a commit ready to be pushed"></p>
+</div>
+</div>
+<p><img src="git-and-github-bw.png" class="slide-logo"></p>
+<div class="footer footer-default">
 
 </div>
 </section></section>
@@ -683,6 +955,7 @@
   <script src="git-and-github_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="git-and-github_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="git-and-github_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="git-and-github_files/libs/revealjs/plugin/reveal-pointer/pointer.js"></script>
   <script src="git-and-github_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -705,6 +978,7 @@
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'pointer': {"key":"q","color":"red","pointerSize":16,"alwaysVisible":false},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -875,7 +1149,7 @@
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealPointer, QuartoSupport,
 
           RevealMath,
           RevealNotes,

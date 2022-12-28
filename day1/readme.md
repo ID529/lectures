@@ -16,16 +16,17 @@
 Recommended materials: 
 
   * Articles: 
-     - The *Introduction* Chapter to R for Data Science: https://r4ds.had.co.nz/explore-intro.html (just one page)
-     - *Excuse me, do you have a moment to talk about version control?* by Jennifer Bryan: https://peerj.com/preprints/3159.pdf
-     - Tutorial: Getting Started with R and RStudio: https://www.dataquest.io/blog/tutorial-getting-started-with-r-and-rstudio/
+     - The *Introduction* Chapter to R for Data Science: <https://r4ds.had.co.nz/explore-intro.html> (just one page)
+     - *Excuse me, do you have a moment to talk about version control?* by Jennifer Bryan: <https://peerj.com/preprints/3159.pdf>
+     - Tutorial: Getting Started with R and RStudio: <https://www.dataquest.io/blog/tutorial-getting-started-with-r-and-rstudio/>
+     - Quickstart from GitHub: <https://docs.github.com/en/get-started/quickstart/hello-world>
      
    * Videos:
-      -  RStudio for the Total Beginner, HRAnalytics101: https://www.youtube.com/watch?v=FIrsOBy5k58 
+      -  RStudio for the Total Beginner, HRAnalytics101: <https://www.youtube.com/watch?v=FIrsOBy5k58> 
       - If you haven't already installed R and RStudio, you'll want to do that, 
       and you can do that by following the instructions here: 
-         - Install R: https://vimeo.com/203516510
-         - Install RStudio: https://vimeo.com/203516968
+         - Install R: <https://vimeo.com/203516510>
+         - Install RStudio: <https://vimeo.com/203516968>
   
 Homework: 
 

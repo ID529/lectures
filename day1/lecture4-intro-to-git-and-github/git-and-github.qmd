@@ -1,76 +1,78 @@
 ---
-title: "Git and GitHub"
+title: "git and github"
 format:
   revealjs:
-    theme: [serif, style.css]
+    theme: [style.css]
 template-partials:
   - title-slide.html
 title-graphic: git-and-github.png
 slide-number: true
 logo: git-and-github-bw.png
+revealjs-plugins:
+  - pointer
 ---
 
-# Why version control? 
+# why version control? 
 
 :::{.incremental}
-  * makes coordinating files across computers easy 
-  * keeps a clean history of your code evolution 
-    * no need for messy suffixes (v1, v2, ..., v19380, vFINAL)
-  * gives you the chance to ask yourself "do I really want to make these changes?"
-  * streamlines review of external code changes
+  * makes coordinating files across computers easy 💻
+  * keeps a clean history of your code evolution 📜
+    * no need for messy suffixes (v1, v2, ..., v19380, vfinal) 🗂
+  * gives you the chance to ask yourself "do i really want to make these changes?" 🤔
+  * streamlines review of external code changes 👥
 :::
 
 ---
 
-Maybe you already know other ways to share code?
+maybe you already know other ways to share code?
 
 <center>
-<img src="images/git_galaxy_brain.png" alt="Galaxy Brain meme with a progression from emailing code, IM-ing code, to using Git">
+<img src="images/git_galaxy_brain.png" alt="galaxy brain meme with a progression from emailing code, im-ing code, to using git">
 </center>
 
-## Why Git? 
+## why git? 
 
-  - It's popular! In the StackOverflow developer survey, 93.9% of developers
-  using version control software said they use Git. 
+  - it's popular! in the stackoverflow developer survey, 93.9% of developers
+  using version control software said they use git. 
   
 <a href="https://survey.stackoverflow.co/2022/">
 <img src="images/developer_survey.png" 
   width='500px'
-  alt="StackOverflow Developer Survey shows that 93.9% of developers who use Version Control use Git"></a>
+  alt="stackoverflow developer survey shows that 93.9% of developers who use version control use git"></a>
 
 ---
 
-The result is that Git comes with a *large resource base* and is *compatible* with all 
+the result is that git comes with a *large resource base* and is *compatible* with all 
 the major operating systems.
 
 <center>
 <a href="https://git-scm.com/downloads">
 <img src="images/git_download.png" 
   width='500px'
-  alt="There are Git downloads for all major operating systems"></a>
+  alt="there are git downloads for all major operating systems"></a>
 </center>
 
-## A bit about Git
+## a bit about git
 
 :::{.incremental .smaller}
-  - Git is an **open-source version control system**.
-  - Git stores code and its history in a **repository**.
-  - Each revision to the code is added to the repository through a **commit** process.
-  - Git allows you to have **branches** of your code that keeps development **separate** 
+  - git is an **<span class='carrot'>open-source version control system</span>**.
+  - git stores code and its history in a <span class='carrot'>**repository**</span>.
+  - each revision to the code is added to the repository through a <span class='carrot'>**commit**</span> process.
+  - git allows you to have **branches** of your code that keeps development <span class='carrot'>**separate**</span>
   from the main codebase until it is complete.
-    - The main version of your code is often on the **"main"** branch 
-      (what used to be called the **"master"** branch).
-  - Git allows you to **push** or **pull** code from **remote** servers.
+    - the main version of your code is often on the <span class='carrot'>**"main"**</span> branch
+      (what used to be called the <span class='carrot'>**"master"**</span> branch).
+  - git allows you to <span class='carrot'>**push**</span> or <span class='carrot'>**pull**</span> code from <span class='carrot'>**remote**</span> servers.
 :::
 
-## GitHub
+## github
 
    <div class="row">
   <div class="column">
 :::{.incremental .small}
-- GitHub is a website and online service with free and paid tiers that
+- github is a website and online service with free and paid tiers that
 allows you to: 
-  - host Git repositories 
+  - host git repositories 
   - publicize your profile and repositories 
   - track issues
   - document your projects with wikis
@@ -79,116 +81,177 @@ allows you to:
   - do project management
   - automate project workflows
 :::  
-</div>
-  <div class="column">
-  <img src="images/GitHub-logo.png" alt='GitHub logo'>
-  </div>
-  </div> 
 
-# Getting Started {background-color='black' background-image="images/mountains.jpg"}
+</div> <div class="column"> 
+::: {.fragment}
+<img src="images/github-logo.png" alt='github logo' width='45%'>
+<img src="images/octocat.png" alt='github logo' width='45%'>
 
-## Personal Reflections
-
-:::{.incremental .smaller}
-  - What features of Git and GitHub are you looking to leverage the most? 
-  - Look through examples of successful repositories
-    - Mathew Kiang (Assistant Professor at Stanford) has some great repositories
-    focused on epidemiological and Population Health research
-      - <https://github.com/mkiang> {{< fa brands github >}}
-    - Take a look at the repository for dplyr: <br> <https://github.com/tidyverse/dplyr> {{< fa brands github >}}
+::: {.xxsmall style="background="}
+github's mascot and logo is the octocat, a creature with five
+octopus like arms. the octocat character was designed by the same graphic
+designer, simon oxley, who designed the bird logo that twitter uses.
 :::
 
-<!-- info / docs for the Quarto FontAwesome extension: 
+:::
+
+</div> </div>
+
+::: {.footer}
+read more about github: {{< solid link >}} <https://en.wikipedia.org/wiki/github>
+:::
+
+# getting started {background-color='black' background-image="images/mountains.jpg"}
+
+## personal reflections
+
+:::{.incremental .smaller}
+  - what features of git and github are you looking to leverage the most? 
+  - look through examples of successful repositories
+    - mathew kiang (assistant professor at stanford) has some great repositories
+    focused on epidemiological and population health research
+      - <https://github.com/mkiang> {{< fa brands github >}}
+    - take a look at the repository for dplyr: <br> <https://github.com/tidyverse/dplyr> {{< fa brands github >}}
+:::
+
+<!-- info / docs for the quarto fontawesome extension: 
 https://github.com/quarto-ext/fontawesome --> 
 
 :::{.notes}
-We suggest the following points for personal reflection.
+we suggest the following points for personal reflection.
 
-Also, if you're working with high security code, you should contact your local 
-IT department before uploading anything to an external server like GitHub. 
+also, if you're working with high security code, you should contact your local 
+it department before uploading anything to an external server like github. 
 :::
     
-## Installation
+## installation
 
-  - You’ll need to install Git: the installation procedures depend on if
-you’re on Windows, Mac, or Linux.
-  - Follow the installation instructions here https://happygitwithr.com/install-git.html:
-    - [Download git for OSX](https://git-scm.com/download/mac)
-    - [Download git for Windows](https://git-scm.com/download/win)
-    - [Download git for Linux](https://git-scm.com/download/linux)
+:::{.incremental}
+  - you’ll need to install git: the installation procedures depend on if
+you’re on windows, mac, or linux.
+  - follow the installation instructions here https://happygitwithr.com/install-git.html:
+    - [download git for osx](https://git-scm.com/download/mac)
+    - [download git for windows](https://git-scm.com/download/win)
+    - [download git for linux](https://git-scm.com/download/linux)
+:::
     
-## Local Setup
+## local setup
 
-  - After installation, you'll need to **configure** Git:
+:::{.incremental}
+  - after installation, you'll need to **configure** git:
   
+:::{.fragment .xsmall}
 ```sh
-git config --global user.name 'Jane Doe'
-git config --global user.email 'jane@example.com'
+git config --global user.name 'she-ra, princess of power'
+git config --global user.email 'adora@eternia.com'
 git config --global --list
 ```
+:::
 
-  - Make sure to use the **same name** and **email address** you are going 
-  to use with GitHub.
+  - use the **same name** and **email address** you are going
+  to use with github.
+  - i would highly recommend using a long-term personal email rather than your institutional
+  email so it's easy to carry your portfolio of work on github on with you after
+  you graduate.
+:::
   
-## Setup a GitHub account
+## setup a github account
 
 <div class='row'>
 <div class='column' style='width: 70%;'>
 :::{.small style='line-height: 100%;'}
-Sign up at <https://github.com/login> <br>
-Some advice from Happy Git With R: 
+:::{.fragment}
+sign up at <https://github.com/login> <br>
+:::
+:::{.fragment}
+some advice from happy git with r: 
+:::
 
-  - Incorporate your actual name 
-  - Reuse your username from other contexts 
-  - Pick a username you will be comfortable revealing to future bosses
-  - **Shorter** is better
-  - Be as unique as possible in as few characters as possible
-  - Make it **timeless**
-    - Don't highlight your current university, employer, or place of
-    residence 
-  - Recommend all **lowercase**
+:::{.incremental}
+  - incorporate your <span class='carrot'>**actual name**</span>
+  - <span class='carrot'>**reuse your username**</span> from other contexts 
+  - pick an <span class='carrot'>**appropriate**</span> username you will be comfortable revealing to future bosses
+  - <span class='carrot'>**shorter** </span>is better
+    - be as unique as possible in as few characters as possible
+  - make it <span class='carrot'>**timeless**</span>
+    - don't highlight your current university, employer, or place of
+    residence since these can all change
+  - all <span class='carrot'>**lowercase**</span> is recommended
+:::
 :::
 </div>
-<div class='column' style='width: 30%;'>
+<div class='column' style='width: 30%;' alt='the form for creating an account on github with username, email, password, human verification fields.'>
+:::{.fragment}
 <img src='images/github_login.jpg'>
+
+:::{.xxsmall}
+the form for creating an account on github
+:::
+
+:::
 </div>
 </div>
 
-## Set up an SSH Key 
+## set up an ssh key 
 
-We recommend setting up **SSH (Secure Shell) key** based authentication with
-GitHub.<br><br>
+:::{.fragment}
+we recommend setting up <span class='carrot'>**ssh (secure shell) key**</span> based authentication with
+github.<br><br>
+:::
 
-This allows your computer to be **automatically authenticated** when you communicate with GitHub.<br><br>
+:::{.fragment}
+this allows your computer to be <span class='carrot'>**automatically authenticated**</span> when you communicate with github.<br><br>
+:::
 
-Follow the instructions here:<br>
+:::{.fragment}
+follow the instructions here:<br>
 <https://happygitwithr.com/ssh-keys.html>
+:::
 
-## Set up a local repository in RStudio
+## set up a local repository in rstudio
 
 <div class='row'>
 <div class='column'>
-Nativate to File → New Project<br><br>
+:::{.fragment}
+nativate to file → new project<br><br>
+:::
 
-Select “Create a git repository”
-which informs RStudio you want to
-use Git.
+:::{.fragment}
+select “create a git repository”
+which informs rstudio you want to
+use git.
+:::
+
 </div>
 <div class='column'>
-<img src='images/new_project.jpg' alt='New Project Wizard window in RStudio shows how you can specify the Directory Name, Create the project as a subdirectory in a folder, and a checkbox for Create a git repository'>
+:::{.fragment}
+<img src='images/new_project.jpg' alt='new project wizard window in rstudio shows how you can specify the directory name, create the project as a subdirectory in a folder, and a checkbox for create a git repository'>
+
+:::{.xxsmall}
+with the new project wizard window in rstudio, you can specify the directory
+dame for your project, create your project as a subdirectory of another folder,
+and use the provided checkbox to indicate that you'd like to initialize the 
+project as a git repository.
+:::
+:::
 </div>
 
-## Git panel in RStudio
+## git panel in rstudio
 
 <div class='row'>
 <div class='column'>
 :::{.smaller style='line-height: 100%'}
-RStudio adds a Git tab in your
-Environment/History panel.<br><br>
+:::{.fragment}
+rstudio adds a git tab in your
+environment/history panel.<br><br>
+:::
 
-This panel is a point-and-click
+:::{.fragment}
+this panel is a point-and-click
 interface to:
+:::
 
+:::{.incremental}
   - review your changes
   - stage changes
   - write commits
@@ -196,97 +259,338 @@ interface to:
   - view the commit history
   - navigate branches
 :::
+:::
 </div>
 <div class='column'>
-<img src='images/git_panel.jpg' alt="the Git panel in RStudio shows changes you've made with buttons to see the changes and commit them">
+:::{.fragment}
+<img src='images/git_panel.jpg' alt="the git panel in rstudio shows changes you've made with buttons to see the changes and commit them">
+
+:::{.xxsmall}
+the git panel in rstudio shows changes you've made and lets you see the changes
+you've made, commit them, and push them to github in a user-friendly interface.
+:::
+:::
 </div>
 
-## Setting up a remote repository 
+## setting up a remote repository 
 
-Navigate to GitHub.com → Login → New Repository <br>
+:::{.fragment}
+navigate to github.com → login → new repository <br>
 and fill out the form.
+:::
 
+:::{.fragment}
 ![](images/new_repo_btn.png){.absolute top=350 left=150 width="250"}
+:::
+
+:::{.fragment}
 ![](images/new_repo_form.png){.absolute top=150 right=0 width="500"}
+:::
 
-## Formulate your initial commit and push it 
+## create an initial commit and push
 
-:::{.small}
+:::{.xsmall .fragment}
 ```sh
-git remote add origin git@github.com:ctesta01/ExampleRepository.git # let your local repository know about the remote repository
-git branch -M main # use "main" as the default branch
+# let your local repository know about the remote repository
+git remote add origin git@github.com:ctesta01/examplerepository.git 
+
+git branch -m main # use "main" as the default branch
 git add .gitignore # add a file to the staging area
 git commit -m "initial commit" # name your commit 
 git push -u origin main # push your commit to the remote repository
 ```
 :::
+
+:::{.fragment}
 <center>
+:::{.columns}
+:::{.column width='50%'}
 <img src='images/initial_commit.png' height='250px;' alt='the output from running the above code;  it shows the commit being pushed to github'>
-</center>
-
-# Congrats! <br> You're using GitHub! 
-<center>
-<img src='images/dancing.webp' alt='dancing characters from Charlie Brown'>
-</center>
-
-## READMEs
-
-  - A README serves as an introduction to and documentation for
-your repository.
-
-  - Like any documentation, feel free to start small and
-document as you develop!
-
-:::{.footer}
-Read the section about READMEs in the R Packages book here: <https://r-pkgs.org/other-markdown.html#sec-readme>
 :::
 
-## Basic Workflow Overview 
+:::{.column .xsmall width='50%' style='padding-top: 7%;'}
+these are the above commands being run in the terminal, along with the output produced. you can see that `git` will 
+report on how many objects and how many bytes are being uploaded.
+:::
+:::
+</center>
+:::
+
+# congrats! <br> you're using github! 
+<center>
+<img src='images/dancing.webp' alt='dancing characters from charlie brown'>
+</center>
+
+## readmes
+
+:::{.incremental}
+  - a readme serves as an introduction to and documentation for
+your repository.
+
+  - like any documentation, feel free to start small and
+document as you develop!
+
+  - you can learn more about reamdes from github here: <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes">docs.github.com/...</a>
+:::
+
+:::{.footer}
+read the section about readmes in the r packages book here: <https://r-pkgs.org/other-markdown.html#sec-readme>
+:::
+
+## basic workflow overview 
 
 <div class='row'>
 <div class='column' style='width: 60%;'>
 :::{.smaller style='line-height: 100%'}
-The basic workflow for making
-updates to a Git repository is done
-in three steps:
+:::{.fragment}
+the basic workflow for making updates to a git repository is done in three
+steps:
+:::
 
-  1. Making changes to your files
-  2. Adding them to the staging
+:::{.incremental}
+  1. making changes to your files
+  2. adding them to the staging
   area
-  3. Commit these changes with a
+  3. commit these changes with a
   explanatory message
+:::
 :::
 </div>
 <div class='column' style='width: 40%;'>
-<img src="images/git_workflow.jpg" width='90%' alt="A diagram showing a workflow of successive commits">
+:::{.fragment}
+<img src="images/git_workflow.jpg" width='90%' alt="a diagram showing a workflow of successive commits">
 
-:::{style='font-size: 24px;'}
-This figure from Happy Git with R shows
+:::{.xxsmall}
+this figure from happy git with r shows
 examples of commits made in a sequence.
-Each commit is accompanied by an ID, a
+each commit is accompanied by an id, a
 message, and the differences between two
 commits are referred to as a “diff”.
 :::
 
+:::
 </div>
 </div>
 
-# Key Commands {background-color='black' background-image="images/mountains.jpg"}
+# key commands {background-color='black' background-image="images/mountains.jpg"}
+
+---
 
 ## git status
 
+::: {.small}
+::: {.fragment}
 `git status` is a basic command that displays the current state of the working directory. 
+:::
 
-It's a good idea to always run `git status` before changing
+::: {.fragment}
+it's a good idea to always run `git status` before changing
 your code because there may be something you want to commit or address first.
+:::
 
-The RStudio Git panel displays most of what is displayed in 
+::: {.fragment}
+the rstudio git panel displays most of what is displayed in 
 the output of `git status`.
+:::
+:::
 
-<center>
-<img src='images/git_status.png' alt='example output of git status showing the new README.md and .Rproj file' width='600px'>
-</center>
+::: {.fragment}
+::: {.absolute left="0%" top="55%"}
+<img src='images/git_status.png' alt='example output of git status showing the new readme.md and .rproj file' width='55%'>
+:::
+
+::: {.absolute .xsmall top="85%" left="11%"}
+`git status` from the terminal
+:::
+:::
+
+::: {.fragment}
+::: {.absolute left="60%" top="55%"}
+<img src='images/git_panel_status.png' alt='example git panel showing the new readme.md and .rproj file' width='100%'>
+:::
+
+::: {.xsmall .absolute top="85%" left="60%"}
+the git panel in rstudio showing new, untracked files
+:::
+:::
+
+
+---
 
 ## git add
 
-  - adds changes to the staging environment or index
+:::{.incremental}
+  - adds changes to the staging area (also called the index)
+:::
+  
+::: {.fragment}
+::: {.absolute left="0%" top="27%"}
+<span class='tab'></span>terminal version: <br>
+<img src='images/git_add_commandline.png' alt='example of how to use the commandline to add readme.md to the staging area' width='55%'>
+:::
+
+::: {.absolute .xsmall top="75%" left="0%" width='50%'}
+`git add readme.md` adds any changes to the `readme.md` (including its creation) 
+to the staging area. `git status` shows us what changes are staged to be included
+in the next commit.
+:::
+:::
+
+::: {.fragment}
+::: {.absolute left="55%" top="27%"}
+<center>rstudio panel version:</center>
+<img src='images/git_add_panel.png' alt='adding files can be done in the git panel in rstudio just by checking the box next to them'>
+:::
+
+::: {.xsmall .absolute top="70%" left="55%"}
+one can add files to the git staging area in the rstudio git panel just by checking the checkbox next to each file in the staged column.
+:::
+:::
+
+## git commit
+
+:::{.incremental}
+  - records changes to the repository from the staging area
+:::
+
+::: {.fragment}
+::: {.absolute left="0%" top="25%"}
+<span class='tab'></span>terminal version:<br>
+<img src='images/git_commit_terminal.png' alt="a screenshot of calling `git commit -m 'add new readme'` on the command line" width='55%'>
+:::
+
+::: {.absolute .xsmall top="50%" left="0%" width='45%'}
+`git commit -m 'add new readme'` creates a <span class='carrot'>**commit message**</span> (or
+basically a name) for the set of changes that were on the staging area and bundles them up 
+together as a <span class='carrot'>**commit**</span>.
+:::
+:::
+
+:::{.fragment .absolute .xxsmall .popup top='75%' left='-2.5%' width='45%'}
+if you need to write a longer, multi-line commit, `git commit` will open 
+your default terminal based text-editor (often one of nano, vi, or vim) where
+you can write a longer commit message and save it.
+:::
+
+
+::: {.fragment}
+::: {.absolute left="50%" top="25%"}
+<center>rstudio panel version:</center>
+<img src='images/git_add_panel2.png' alt='first you click the commit button'>
+:::
+
+:::{.xxsmall .absolute top="85%" left="50%"}
+with the changes you want to make staged, click the commit button. you'll have a
+chance then to view what changes you've made. when you're sure you want to
+commit, you can write a commit message, click commit, and then push.
+:::
+:::
+
+::: {.fragment}
+::: {.absolute left="50%" top="25%"}
+<center>rstudio panel version:</center>
+<img src='images/git_commit_panel.png' alt='a screenshot of using the git panel in rstudio to commit'>
+:::
+:::
+
+## optimal commit messages 📮
+
+
+:::{.incremental .small}
+  - capitalize the first word and do not end in punctuation.
+  - use imperative mood in the subject line.
+    * example: “add fix for data reading error”
+  - specify the type of commit. it is recommended and beneficial to have
+    a consistent set of words to describe your changes.
+    * example: bugfix, update, refactor, bump, and so on.
+  - the first line should ideally be no longer than 50 characters.
+    * be direct! try to eliminate filler words and phrases.
+      * examples: though, maybe, i think, kind of.
+:::
+
+
+:::{.absolute .fragment top='75%' left='75%'}
+
+<iframe src="https://giphy.com/embed/pfuqku1hwz4khyvyft" frameborder="0" class="giphy-embed" allowfullscreen></iframe><p><a href="https://giphy.com/gifs/muppetwiki-sesame-street-muppets-jim-henson-pfuqku1hwz4khyvyft">via giphy</a></p>
+:::
+
+## optimal commit messages 💌
+
+:::{.small}
+:::{.fragment}
+to develop thoughtful commits, consider the following:
+:::
+
+:::{.incremental}
+  - why have i made these changes?
+  - what effect have my changes made?
+  - why was the change needed?
+  - what are the changes in reference to?
+:::
+  
+:::{.fragment}  
+see more advice here: <br>
+<https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/>
+
+<iframe src="https://giphy.com/embed/roguft1jgiq66zpqi2" frameborder="0" class="giphy-embed" allowfullscreen></iframe><p><a href="https://giphy.com/gifs/muppetwiki-kermit-the-frog-jim-henson-roguft1jgiq66zpqi2"></a></p>
+:::
+
+:::
+
+
+## keep a changelog 
+
+:::{.fragment}
+a changelog is a file that contains a curated, informative history of
+your project’s updates.
+:::
+
+:::{.incremental}
+  - a changelog allows people to easily see key development and
+  changes in your project.
+  - read more about changelogs at <https://keepachangelog.com>
+:::
+  
+:::{.fragment .xxsmall}
+<center>
+<iframe src="https://giphy.com/embed/xiqcqx02e1u9w" frameborder="0" class="giphy-embed" allowfullscreen></iframe><p><a href="https://giphy.com/gifs/xiqcqx02e1u9w"></a></p>
+kermit rushing to update the changelog on his project before a major deadline.
+</center>
+:::
+
+
+## git push 
+
+:::{.fragment}
+  - sends local, committed changes to remote repository
+:::
+
+::: {.fragment}
+
+::: {.absolute left="0%" top="27%"}
+<span class='tab'></span>terminal version: <br>
+<img src='images/git_push_terminal.png' alt='Calling git push on the terminal sends the commits from our local computer to the remote server' width='55%'>
+:::
+
+::: {.absolute .xsmall top="65%" left="0%" width='50%'}
+Calling `git push` on the terminal sends the commits from our local computer to the remote server.
+:::
+:::
+
+::: {.fragment}
+::: {.absolute left="55%" top="27%"}
+<center>RStudio Panel version:</center>
+<img src='images/git_push_panel.png' alt='First you have to click Commit and this window will pop open letting you know your commit has been made.'>
+:::
+
+::: {.xsmall .absolute top="75%" left="55%"}
+After you click Commit, a window will open showing you the `git` command that RStudio ran 
+to create your commit. If there are no errors, you can close the window and then click Push.
+:::
+:::
+
+::: {.fragment}
+::: {.absolute left="55%" top="35%"}
+<img src='images/git_push_panel2.png' alt="After you close that window, you'll see that RStudio lets you know you have a commit ready to be pushed">
+:::
+:::

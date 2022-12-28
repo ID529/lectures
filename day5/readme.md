@@ -14,6 +14,7 @@
   * 5:25-5:30: Giveaway for a Copy of R for Data Science
   
 Homework 5 
+
   * Read the Brown et al reproduction of Onikye et al, run their code, and fill out the worksheet
     * https://open.lnu.se/index.php/metapsychology/article/view/2071
     * https://osf.io/j32yw/ 

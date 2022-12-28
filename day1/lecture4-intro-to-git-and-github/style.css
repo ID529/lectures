@@ -12,6 +12,9 @@
   clear: both;
 } 
 
+.carrot {
+  color: #e67e22;
+}
 
 .smaller {
   font-size: 36px;
@@ -25,8 +28,28 @@
   font-size: 24px !important;
 }
 
+.xsmall code {
+  font-size: 24px !important;
+}
+
+.xxsmall {
+  font-size: 18px !important;
+}
+
+.xxsmall code {
+  font-size: 18px !important;
+}
+
+.popup {
+    background-color: #74b9ff; /* Changing background color */
+    border-radius: 20px; /* Making border radius */
+    width: auto; /* Making auto-sizable width */
+    height: auto; /* Making auto-sizable height */
+    padding: 5px 30px 5px 30px; /* Making space around letters */
+}
+
 span.tab{
-    padding: 0 80px; /* Or desired space*/
+    padding: 0 40px; /* Or desired space*/
 }
 
 .reveal code {
