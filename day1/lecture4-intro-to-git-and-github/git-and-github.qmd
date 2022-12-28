@@ -58,7 +58,7 @@ the major operating systems.
   - git is an **<span class='carrot'>open-source version control system</span>**.
   - git stores code and its history in a <span class='carrot'>**repository**</span>.
   - each revision to the code is added to the repository through a <span class='carrot'>**commit**</span> process.
-  - git allows you to have **branches** of your code that keeps development <span class='carrot'>**separate**</span>
+  - git allows you to have <span class='carrot'>**branches**</span> of your code that keeps development <span class='carrot'>**separate**</span>
   from the main codebase until it is complete.
     - the main version of your code is often on the <span class='carrot'>**"main"**</span> branch
       (what used to be called the <span class='carrot'>**"master"**</span> branch).
@@ -566,7 +566,6 @@ kermit rushing to update the changelog on his project before a major deadline.
 :::
 
 ::: {.fragment}
-
 ::: {.absolute left="0%" top="27%"}
 <span class='tab'></span>terminal version: <br>
 <img src='images/git_push_terminal.png' alt='Calling git push on the terminal sends the commits from our local computer to the remote server' width='55%'>
@@ -594,3 +593,281 @@ to create your commit. If there are no errors, you can close the window and then
 <img src='images/git_push_panel2.png' alt="After you close that window, you'll see that RStudio lets you know you have a commit ready to be pushed">
 :::
 :::
+
+## git diff
+
+:::{.incremental}
+  - `git diff` shows how files differ between their current state and a different version.
+:::
+
+::: {.fragment}
+::: {.absolute left="0%" top="35%"}
+<span class='tab'></span>terminal version: <br>
+<img src='images/git_diff_terminal.png' alt='' width='55%'>
+:::
+
+::: {.absolute .xsmall top="80%" left="0%" width='50%'}
+`git diff` on the terminal will print (in highlighted colors) what
+has been added or removed from the referenced file since the last
+commit.
+:::
+:::
+
+::: {.fragment}
+::: {.absolute left="55%" top="35%"}
+<center>RStudio Panel version:</center>
+<img src='images/git_diff_panel.png' alt=''>
+:::
+:::
+
+::: {.fragment}
+::: {.absolute left="55%" top="42%"}
+<img src='images/git_diff_panel2.png' alt="">
+:::
+
+::: {.xsmall .absolute top="80%" left="55%"}
+in the rstudio git panel you can click on the diff
+button and it will pop open a window showing the changes
+that have been made to the file since the last commit.
+:::
+:::
+
+## git pull 
+
+:::{.incremental .small}
+  - download and integrate code from one repository to another (i.e., to get up to date with 
+  a remote server)
+:::
+
+::: {.fragment}
+::: {.absolute left="0%" top="30%"}
+<span class='tab'></span>terminal version: <br>
+<img src='images/git_pull_terminal.png' alt='' width='55%'>
+:::
+
+::: {.absolute .xxsmall top="75%" left="0%" width='50%'}
+calling `git pull` on the terminal will download any 
+commits from the remote server and apply them to your codebase.
+you may get hints from `git` that you can be more explicit 
+about your `git` configuration as to how you'd like to 
+apply commits if there are conflicts.
+:::
+:::
+
+::: {.fragment}
+::: {.absolute left="56%" top="35%"}
+<center>RStudio Panel version:</center>
+<img src='images/git_pull_panel.png' alt=''>
+:::
+
+::: {.xxsmall .absolute top="80%" left="55%"}
+in the rstudio git panel you can click on the pull
+button and it will pop open a window showing the changes
+that have been made to the file as a result of pulling 
+any commits from the remote server.
+:::
+
+:::
+
+::: {.fragment}
+::: {.absolute left="55%" top="45%"}
+<img src='images/git_pull_panel2.png' alt="">
+:::
+:::
+
+# workflows for collaboration {background-color='black' background-image="images/mountains.jpg"}
+
+## workflows for collaboration
+
+:::{.columns}
+
+:::{.column width='60%'}
+:::{.incremental .small}
+  - small changes – can be reasonable to work on same branch.
+  - large changes – create a branch and pull request.
+  - outside developer – fork repository and pull request.
+  - remember – when working with collaborators, communication is key!
+:::
+:::
+
+:::{.fragment .column width='40%'}
+<img src="images/collaborative_workflow.jpg" alt="diagram of a remote repository with code going back and forth between three developers, each of whom push and pull from the remote repository">
+
+:::{.xsmall}
+In the centralized workflow depicted, all developers synchronize their work through 
+a main shared repository (like one on GitHub).
+:::
+:::
+:::
+
+## git branches 
+
+:::{.incremental .small}
+  - Branches let you continue to work on your code without affecting the main 
+  line of development
+  - Creating branches for bug fixes and feature development prevents
+  unstable code from disrupting your project or workflow.
+:::
+
+::: {.fragment}
+::: {.absolute left="0%" top="40%"}
+<span class='tab'></span>terminal version: <br>
+<img src='images/git_branch_terminal.png' alt='' width='55%'>
+:::
+
+::: {.absolute .xxsmall top="65%" left="0%" width='50%'}
+`git checkout -b new_branch` creates a new branch named `new_branch` 
+that diverges from the most recent commit on whichever branch one was
+on, in this case the `main` branch.
+:::
+:::
+
+::: {.fragment}
+::: {.absolute left="56%" top="40%"}
+<center>RStudio Panel version:</center>
+<img src='images/git_branch_panel.png' alt=''>
+:::
+
+::: {.xxsmall .absolute top="85%" left="55%" }
+In the RStudio Git panel you can click on the New Branch
+button (which sometimes appears as just an icon to the left of the current branch name) and it will pop open a window allowing you to specify what you'd like to name your branch.
+:::
+
+:::
+
+::: {.fragment}
+::: {.absolute left="55%" top="45%" width='35%'}
+<img src='images/git_branch_panel2.png' alt="">
+:::
+:::
+
+## git forks
+
+:::{.columns}
+:::{.column .small .incremental width='50%'}
+:::{.incremental}
+  - forking crates a copy of a repository which allows development that will not
+  affect the main project.
+  - forking is particularly useful when you would like to develop on another person’s project.
+  - forking can also be useful for versions of a project that are being developed in parallel without intention of future merge.
+:::
+:::
+
+:::{.column width='50%'}
+:::{.fragment}
+<img src="images/github_forking.png" alt='A screenshot with an arrow indicating the fork button on GitHub for the example repository'>
+:::
+:::
+:::
+
+## pull requests
+
+:::{.columns}
+
+:::{.column .small .incremental width='40%'}
+  - A pull request alerts the
+repository owner that
+changes have been made.
+  - Gives a chance to review and
+test the code before adding
+it into the repository.
+  - Optimizing language in pull
+requests is also important!
+
+:::{.fragment}
+More helpful advice: <br>
+<https://github.blog/2015-01-21-how-to-write-the-perfect-pull-request/>
+:::
+:::
+
+:::{.column width='60%'}
+
+:::{.fragment .absolute top='0%'}
+<img src='images/pull_request1.png' alt='the Compare and Create Pull Request button that appears on GitHub'>
+
+:::{.xsmall}
+GitHub automatically will create a <span class='carrot'>**Compare & Pull Request**</span> button when it sees that you've pushed changes onto a new branch. If you click that, it will open up a form where you can document why you're submitting a pull request.
+:::
+:::
+
+:::{.fragment .absolute top='0%'}
+<img src='images/pull_request2.png' alt='the form for creating a pull request, including a title and body'>
+:::
+
+:::
+:::
+
+# key takeaways {background-color='black' background-image="images/mountains.jpg"}
+
+## key takeaways
+
+:::{.columns}
+:::{.column width='50%'}
+:::{.incremental .xsmall}
+  - git will help you version control your code, similar to track changes in MS Word,
+  and collaborate with others.
+  - GitHub is an online platform that will let you freely host your git repositories, 
+  share them with others, and is one way to host a professional portfolio of code-based
+  projects.
+  - A typical individual workflow will look like: 
+    1. create your R Project and
+  a repository on GitHub
+    2. connect them 
+    3. make changes to the project
+    4. add changes to the staging area (with `git add`)
+    5. commit them (`git commit`)
+    6. push those (`git push`), and continue making commits until the project is finished.
+:::
+:::
+
+:::{.column width='50%'}
+:::{.fragment}
+<img src="https://happygitwithr.com/img/watch-me-diff-watch-me-rebase-smaller.png"
+ height = '250px' alt = 'Watch me Diff, Watch me Rebase from the Happy Git and GitHub for the useR book'>
+:::
+
+:::{.incremental .xsmall}
+:::{.fragment}
+Some helpful resources: 
+:::
+
+  - [git — the simple guide](https://rogerdudler.github.io/git-guide/)
+  - *Happy Git and GitHub for the useR*: 
+  <https://happygitwithr.com/> 
+  - For those who want to become experts on 
+  git, *Pro Git* book: <https://git-scm.com/book/en/v2>
+  - <https://ohshitgit.com/> [profane] or <https://dangitgit.com/en> [not profane].
+:::
+:::
+
+:::
+
+## some hard-won advice
+
+:::{.columns}
+:::{.column width='60%'}
+:::{.incremental}
+  - Try out new git procedures in a dummy repository.
+  - If you “break” something (or everything), keep calm, there is almost always a fix.
+:::
+
+:::{.fragment}
+<img src="images/meditating_po.jpg" height='220px' alt='Po from Kung Fu Panda meditating'>
+
+:::{.xxsmall}
+image from <https://www.youtube.com/watch?v=wcx6SH8Oqhs>
+:::
+:::
+:::
+
+:::{.column width='40%'}
+:::{.fragment}
+<img src="images/xkcd_git.jpg"
+  alt = "An XKCD comic: This is git. It tracks collaborative work on projects through a beautiful distributed graph theory tree model. Cool, how do we use it? No idea. Just memorize these shell commands and type them to sync up. If you get errors, save your work elsewhere, delete the project, and download a fresh copy.">
+:::
+:::
+
+:::
+
+
+# time for a live demo 🤞 {background-color='black'  background-opacity='40%' background-image="transition_slides/yen-vu.jpg"}

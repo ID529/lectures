@@ -60,3 +60,8 @@ span.tab{
 .sourceCode .xsmall {
   font-size: 24px !important;
 }
+
+
+section.has-dark-background h1 {
+  text-shadow: #000 0 0 10px;
+}

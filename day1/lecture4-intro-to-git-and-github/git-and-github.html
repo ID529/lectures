@@ -439,7 +439,7 @@
 <li class="fragment">git is an <strong><span class="carrot">open-source version control system</span></strong>.</li>
 <li class="fragment">git stores code and its history in a <span class="carrot"><strong>repository</strong></span>.</li>
 <li class="fragment">each revision to the code is added to the repository through a <span class="carrot"><strong>commit</strong></span> process.</li>
-<li class="fragment">git allows you to have <strong>branches</strong> of your code that keeps development <span class="carrot"><strong>separate</strong></span> from the main codebase until it is complete.
+<li class="fragment">git allows you to have <span class="carrot"><strong>branches</strong></span> of your code that keeps development <span class="carrot"><strong>separate</strong></span> from the main codebase until it is complete.
 <ul>
 <li class="fragment">the main version of your code is often on the <span class="carrot"><strong>“main”</strong></span> branch (what used to be called the <span class="carrot"><strong>“master”</strong></span> branch).</li>
 </ul></li>
@@ -940,11 +940,244 @@ RStudio Panel version:
 <p><img src="images/git_push_panel2.png" alt="After you close that window, you'll see that RStudio lets you know you have a commit ready to be pushed"></p>
 </div>
 </div>
-<p><img src="git-and-github-bw.png" class="slide-logo"></p>
-<div class="footer footer-default">
-
+</section>
+<section id="git-diff" class="slide level2">
+<h2>git diff</h2>
+<div>
+<ul>
+<li class="fragment"><code>git diff</code> shows how files differ between their current state and a different version.</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 35%; left: 0%; ">
+<p><span class="tab"></span>terminal version: <br> <img src="images/git_diff_terminal.png" alt="" width="55%"></p>
+</div>
+<div class="absolute xsmall" style="top: 80%; left: 0%; width: 50%; ">
+<p><code>git diff</code> on the terminal will print (in highlighted colors) what has been added or removed from the referenced file since the last commit.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 35%; left: 55%; ">
+<center>
+RStudio Panel version:
+</center>
+<p><img src="images/git_diff_panel.png" alt=""></p>
+</div>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 42%; left: 55%; ">
+<p><img src="images/git_diff_panel2.png" alt=""></p>
+</div>
+<div class="xsmall absolute" style="top: 80%; left: 55%; ">
+<p>in the rstudio git panel you can click on the diff button and it will pop open a window showing the changes that have been made to the file since the last commit.</p>
+</div>
+</div>
+</section>
+<section id="git-pull" class="slide level2">
+<h2>git pull</h2>
+<div class="small">
+<ul>
+<li class="fragment">download and integrate code from one repository to another (i.e., to get up to date with a remote server)</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 30%; left: 0%; ">
+<p><span class="tab"></span>terminal version: <br> <img src="images/git_pull_terminal.png" alt="" width="55%"></p>
+</div>
+<div class="absolute xxsmall" style="top: 75%; left: 0%; width: 50%; ">
+<p>calling <code>git pull</code> on the terminal will download any commits from the remote server and apply them to your codebase. you may get hints from <code>git</code> that you can be more explicit about your <code>git</code> configuration as to how you’d like to apply commits if there are conflicts.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 35%; left: 56%; ">
+<center>
+RStudio Panel version:
+</center>
+<p><img src="images/git_pull_panel.png" alt=""></p>
+</div>
+<div class="xxsmall absolute" style="top: 80%; left: 55%; ">
+<p>in the rstudio git panel you can click on the pull button and it will pop open a window showing the changes that have been made to the file as a result of pulling any commits from the remote server.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 45%; left: 55%; ">
+<p><img src="images/git_pull_panel2.png" alt=""></p>
+</div>
 </div>
 </section></section>
+<section>
+<section id="workflows-for-collaboration" class="title-slide slide level1 center" data-background-color="black" data-background-image="images/mountains.jpg">
+<h1>workflows for collaboration</h1>
+
+</section>
+<section id="workflows-for-collaboration-1" class="slide level2">
+<h2>workflows for collaboration</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="small">
+<ul>
+<li class="fragment">small changes – can be reasonable to work on same branch.</li>
+<li class="fragment">large changes – create a branch and pull request.</li>
+<li class="fragment">outside developer – fork repository and pull request.</li>
+<li class="fragment">remember – when working with collaborators, communication is key!</li>
+</ul>
+</div>
+</div><div class="fragment column" style="width:40%;">
+<p><img src="images/collaborative_workflow.jpg" alt="diagram of a remote repository with code going back and forth between three developers, each of whom push and pull from the remote repository"></p>
+<div class="xsmall">
+<p>In the centralized workflow depicted, all developers synchronize their work through a main shared repository (like one on GitHub).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="git-branches" class="slide level2">
+<h2>git branches</h2>
+<div class="small">
+<ul>
+<li class="fragment">Branches let you continue to work on your code without affecting the main line of development</li>
+<li class="fragment">Creating branches for bug fixes and feature development prevents unstable code from disrupting your project or workflow.</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 40%; left: 0%; ">
+<p><span class="tab"></span>terminal version: <br> <img src="images/git_branch_terminal.png" alt="" width="55%"></p>
+</div>
+<div class="absolute xxsmall" style="top: 65%; left: 0%; width: 50%; ">
+<p><code>git checkout -b new_branch</code> creates a new branch named <code>new_branch</code> that diverges from the most recent commit on whichever branch one was on, in this case the <code>main</code> branch.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 40%; left: 56%; ">
+<center>
+RStudio Panel version:
+</center>
+<p><img src="images/git_branch_panel.png" alt=""></p>
+</div>
+<div class="xxsmall absolute" style="top: 85%; left: 55%; ">
+<p>In the RStudio Git panel you can click on the New Branch button (which sometimes appears as just an icon to the left of the current branch name) and it will pop open a window allowing you to specify what you’d like to name your branch.</p>
+</div>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 45%; left: 55%; width: 35%; ">
+<p><img src="images/git_branch_panel2.png" alt=""></p>
+</div>
+</div>
+</section>
+<section id="git-forks" class="slide level2">
+<h2>git forks</h2>
+<div class="columns">
+<div class="column small" style="width:50%;">
+<div>
+<ul>
+<li class="fragment">forking crates a copy of a repository which allows development that will not affect the main project.</li>
+<li class="fragment">forking is particularly useful when you would like to develop on another person’s project.</li>
+<li class="fragment">forking can also be useful for versions of a project that are being developed in parallel without intention of future merge.</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<p><img src="images/github_forking.png" alt="A screenshot with an arrow indicating the fork button on GitHub for the example repository"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="pull-requests" class="slide level2">
+<h2>pull requests</h2>
+<div class="columns">
+<div class="column small" style="width:40%;">
+<ul>
+<li class="fragment">A pull request alerts the repository owner that changes have been made.</li>
+<li class="fragment">Gives a chance to review and test the code before adding it into the repository.</li>
+<li class="fragment">Optimizing language in pull requests is also important!</li>
+</ul>
+<div class="fragment">
+<p>More helpful advice: <br> <a href="https://github.blog/2015-01-21-how-to-write-the-perfect-pull-request/" class="uri">https://github.blog/2015-01-21-how-to-write-the-perfect-pull-request/</a></p>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="fragment absolute" style="top: 0%; ">
+<p><img src="images/pull_request1.png" alt="the Compare and Create Pull Request button that appears on GitHub"></p>
+<div class="xsmall">
+<p>GitHub automatically will create a <span class="carrot"><strong>Compare &amp; Pull Request</strong></span> button when it sees that you’ve pushed changes onto a new branch. If you click that, it will open up a form where you can document why you’re submitting a pull request.</p>
+</div>
+</div>
+<div class="fragment absolute" style="top: 0%; ">
+<p><img src="images/pull_request2.png" alt="the form for creating a pull request, including a title and body"></p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="key-takeaways" class="title-slide slide level1 center" data-background-color="black" data-background-image="images/mountains.jpg">
+<h1>key takeaways</h1>
+
+</section>
+<section id="key-takeaways-1" class="slide level2">
+<h2>key takeaways</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="xsmall">
+<ul>
+<li class="fragment">git will help you version control your code, similar to track changes in MS Word, and collaborate with others.</li>
+<li class="fragment">GitHub is an online platform that will let you freely host your git repositories, share them with others, and is one way to host a professional portfolio of code-based projects.</li>
+<li class="fragment">A typical individual workflow will look like:
+<ol type="1">
+<li class="fragment">create your R Project and a repository on GitHub</li>
+<li class="fragment">connect them</li>
+<li class="fragment">make changes to the project</li>
+<li class="fragment">add changes to the staging area (with <code>git add</code>)</li>
+<li class="fragment">commit them (<code>git commit</code>)</li>
+<li class="fragment">push those (<code>git push</code>), and continue making commits until the project is finished.</li>
+</ol></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<p><img src="https://happygitwithr.com/img/watch-me-diff-watch-me-rebase-smaller.png" height="250px" alt="Watch me Diff, Watch me Rebase from the Happy Git and GitHub for the useR book"></p>
+</div>
+<div class="xsmall">
+<div class="fragment">
+<p>Some helpful resources:</p>
+</div>
+<ul>
+<li class="fragment"><a href="https://rogerdudler.github.io/git-guide/">git — the simple guide</a></li>
+<li class="fragment"><em>Happy Git and GitHub for the useR</em>: <a href="https://happygitwithr.com/" class="uri">https://happygitwithr.com/</a></li>
+<li class="fragment">For those who want to become experts on git, <em>Pro Git</em> book: <a href="https://git-scm.com/book/en/v2" class="uri">https://git-scm.com/book/en/v2</a></li>
+<li class="fragment"><a href="https://ohshitgit.com/" class="uri">https://ohshitgit.com/</a> [profane] or <a href="https://dangitgit.com/en" class="uri">https://dangitgit.com/en</a> [not profane].</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="some-hard-won-advice" class="slide level2">
+<h2>some hard-won advice</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div>
+<ul>
+<li class="fragment">Try out new git procedures in a dummy repository.</li>
+<li class="fragment">If you “break” something (or everything), keep calm, there is almost always a fix.</li>
+</ul>
+</div>
+<div class="fragment">
+<p><img src="images/meditating_po.jpg" height="220px" alt="Po from Kung Fu Panda meditating"></p>
+<div class="xxsmall">
+<p>image from <a href="https://www.youtube.com/watch?v=wcx6SH8Oqhs" class="uri">https://www.youtube.com/watch?v=wcx6SH8Oqhs</a></p>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="fragment">
+<p><img src="images/xkcd_git.jpg" alt="An XKCD comic: This is git. It tracks collaborative work on projects through a beautiful distributed graph theory tree model. Cool, how do we use it? No idea. Just memorize these shell commands and type them to sync up. If you get errors, save your work elsewhere, delete the project, and download a fresh copy."></p>
+</div>
+</div>
+</div>
+</section></section>
+<section id="time-for-a-live-demo" class="title-slide slide level1 center" data-background-color="black" data-background-opacity="40%" data-background-image="transition_slides/yen-vu.jpg">
+<h1>time for a live demo 🤞</h1>
+
+<img src="git-and-github-bw.png" class="slide-logo r-stretch"><div class="footer footer-default">
+
+</div>
+</section>
     </div>
   </div>
 
