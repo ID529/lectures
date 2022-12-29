@@ -1,0 +1,143 @@
+---
+format: 
+  revealjs:
+    theme: [simple, ../../day2/lecture3-reading-in-data/custom.scss]
+    highlight: pygments
+    logo: images/id529-sticker.png
+    slide-number: true
+    footer: "<https://id529.github.io/>"
+---
+
+# Data Manipulation with dplyr {.white-title .white-code background-image="images/bg-planet-1.png" background-size="110% auto"}
+
+::: white-15-pt
+ID 529: Data Management and Analytic Workflows in R
+:::
+
+::: white-12-pt
+Dean Marengi \| Wednesday, January 11<sup>th</sup>
+:::
+
+## Context {.smaller}
+- **So far, we've learned a bit about:**
+  -   [R programming]{.blue-bold} fundamentals using base R syntax
+  -   [Reading data]{.blue-bold} into R from different storage methods
+  -   [Visualizing data]{.blue-bold} using `ggplot`
+
+<br>
+
+- **Base R is very powerful for data manipulation, but can be difficult to write and read.**
+  -   Code that's complex and time-consuming to write can threaten reproducibility
+  -   Many R packages, such as `dplyr`, emphasize clean and efficient code for manipulating data
+  -   While base R is still important, we can leverage these new packages to:  
+      -   Write efficient and readable code to perform most data manipulation tasks 
+      -   Concisely chain together a sequence of data manipulation operations
+
+## Learning objectives {.smaller}
+
+-   **Understand the basic principles of dplyr, including core functions for data manipulation**
+    -   `rename()`
+    -   `select()`
+    -   `mutate()`
+    -   `filter()`
+    -   `arrange()`
+
+::: {.small-break}
+:::
+
+-   **Understand utility functions that help `dplyr` functions perform specific tasks. For example:**
+    -   Performing column- and row-wise operations
+    -   Modifying data based on conditional logic
+
+::: {.small-break}
+:::
+
+-  **Learn how to implement `dplyr` functions to prepare data for analysis**
+    -   Identifying and correcting data quality issues
+    -   Restructuring and organizing data
+    -   Deriving new variables
+
+## What is data manipulation? {.smaller}
+
+-   **The common tasks**
+    -   Cleaning and renaming variables 
+    -   Selecting a subset of columns to work with from a larger dataset
+    -   Creating new variables (e.g., based on conditionals or calculations involving other columns)
+    -   Filtering data based for a subset of rows (e.g., based on a specific group)
+  
+  
+# `dplyr`: a grammar of data manipulation {.white-code .white-title background-image="images/bg-planet-2.png" background-size="110% auto"}
+
+## `dplyr` {.smaller}
+
+![](images/hex-dplyr.png){.absolute right="0" bottom="1" height="30%"}
+
+:::: {.columns}
+::: {.column width="60%"}
+-   Part of the core `tidyverse` package ecosystem
+-   Verbs that address common data manipulation tasks
+    -   Fast and efficient
+-   Concise syntax for chaining together data cleaning steps
+    -   Improves code readability
+
+
+::: {.small-break}
+:::
+
+-   **Several core functions:**
+    -   `rename()`: Rename variables
+    -   `select()`: Pick variables by name
+    -   `mutate()`: Create new or modify existing variables
+    -   `filter()`: Subset observations using conditionals
+    -   `arrange()`: Reorder observations based on data
+:::
+
+::: {.small-break}
+:::
+
+::: {.column width="40%"}
+
+<br> <br>
+
+[This is not an exhaustive list! We will discuss `dplyr` join, summary, and other functions in subsequent lectures]{.blue-bold}
+:::
+::::
+
+::: aside
+<https://dplyr.tidyverse.org/>
+:::
+
+## `dplyr` syntax {.smaller}
+
+-   Note magrittr and basic syntax 
+-   Example of chaining arguments to contextualize slides about specific dplyr verbs
+-   Highlight dplyr verbs work together in sequence
+
+## `dplyr::rename()`
+  
+## `dplyr::select()` 
+  
+## `dplyr::mutate()`
+  
+## `dplyr::case_when()`
+  
+## `dplyr::if_else()`
+  
+## `dplyr::accross()`
+  
+## `dplyr::filter()`
+  
+## `dplyr::arrange()`
+  
+<!-- ## `dplyr::summarize()` -->
+
+<!-- ## `dplyr::group_by()` -->
+  
+## Summary {.smaller}
+
+## Key takeaways {.smaller}
+  
+## References {.smaller}
+  
+  
+  

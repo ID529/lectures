@@ -1,0 +1,655 @@
+---
+format: 
+  revealjs:
+    theme: [simple, custom.scss]
+    highlight: pygments
+    logo: images/id529-sticker.png
+    slide-number: true
+    footer: "<https://id529.github.io/>"
+---
+
+
+# On Reading Data into R {.white-title background-image="images/bg-collatz-2.png" background-size="cover"}
+
+::: {.white-15-pt}
+ID 529: Data Management and Analytic Workflows in R
+:::
+
+::: {.white-12-pt}
+Dean Marengi \| Tuesday, January 10<sup>th</sup>
+:::
+
+## 
+
+<br> <br> <br>
+
+<center>
+
+> "See the data, read the data, be the data."
+>
+> -- <cite>*Someone, somewhere, probably*</cite>
+
+</center>
+
+
+## Context {.smaller}
+
+- **So far, we've learned a bit about:**
+  -   [Data documentation]{.blue-bold} and its importance for reproducible research
+  -   [Git and GitHub]{.blue-bold} for code version control and management
+  -   [R and R Studio]{.blue-bold} as tools for working with and analyzing data
+
+<br>
+
+- **Before data cleaning, analysis, and visualization can begin data must be imported into R**
+  -   First step in a data analysis workflow
+  -   Reading data into R is often straightforward
+  -   However, it is important to be aware of idiosyncrasies in data storage methods to ensure:
+      -   The data import process is efficient
+      -   The accuracy and integrity of data is maintained
+
+## Learning objectives {.smaller}
+
+-   **Learn about [common storage methods]{.blue-bold} you may encounter as researcher**
+    -   Flat data files
+    -   Statistical software files
+    -   Excel files
+    -   Databases
+    -   JSON
+
+::: {.small-break}
+:::
+
+-  **Learn [different approaches for reading data]{.blue-bold} into R**
+    -   Base R functions
+    -   R packages with functions to accommodate more file types
+
+::: {.small-break}
+:::
+
+-   **Understand the [potential challenges]{.blue-bold} one may encounter when reading data into R**
+    -   File types
+    -   Data formatting
+    -   Data types
+
+# Data Storage Methods {.white-title background-image="images/bg-collatz-3.png" background-size="cover"}
+
+<!-- ## Sources of data in research {.smaller} -->
+
+## Flat files {.smaller}
+
+-   **Class of file types that store data in a simple, text-based format**
+    -   Each row represents a data record
+    -   Each column represents a variable
+    -   [Parsed using a delimiter]{.blue-bold} (comma, tab, etc.)
+    -   [Highly compatible]{.blue-bold} with most software tools
+        -   No formatting or other features
+        -   Small file size relative to other formats
+
+::: {.small-break}
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+-   **Flat file types typically include:**
+    -   `csv`: comma-separated values
+    -   `tsv`: tab-separated values
+    -   `txt`: plain text with other delimiter
+    -   `fwf`: fixed-width files (stored as a `txt` file)
+:::
+::::
+
+![](images/read-flat-files.png){.absolute right="0" bottom="120" height="60%"}
+
+
+## Excel files {.smaller}
+-   **Excel can store data in file formats other than a csv**
+    -    `xlsx` and the older `xls` format 
+-   Supports Excel formatting, formulas, or other features
+-   Distinct from flat data files, which store data in a simple text format
+
+::: {.small-break}
+:::
+
+-   **Drawbacks include:**
+    -   [Less portable]{.blue-bold} between statistical software packages and data systems
+    -   [Require specific import functions]{.blue-bold} to accommodate unique data storage features
+    -   [Compatibility issues from updates]{.blue-bold} to proprietary file formats over time 
+  
+
+## Statistical software files {.smaller}
+
+-   **Most statistical software packages have proprietary file formats (binary files)**
+    -   **R**: `rds` and `rda`
+    -   **Stata**: `dta` 
+    -   **SAS**: `sas7bdat` 
+    -   **SPSS**: `sav`
+-   Optimized storage and use in the software for which they were developed
+-   Leverage internal software capabilities not available in other formats
+
+::: {.small-break}
+:::
+
+-   **Drawbacks include:**
+    -   [Less portable]{.blue-bold} between statistical software packages and data systems
+    -   [Require specific import functions]{.blue-bold} to accommodate unique data storage features
+        -   Data types, layout, or other attributes, such as variable labels
+    -   [Compatibility issues from updates]{.blue-bold} to proprietary file formats over time 
+  
+
+## Relational databases {.smaller}
+
+-   **Databases are efficient, scalable, and secure modes of data storage**
+-   Several R packages enable users to connect to databases to read data. For example:
+    -   `RODBC`
+    -   `RMySQL`
+    -   `RSQLite`
+    -   `RPostgreSQL`
+-   Users must supply database credentials and other information to connect to databases
+    -   Hostname, port number, and other parameters
+-   Database tables can be queried from R once a connection is established
+
+
+## JSON {.smaller}
+
+## How can we import data into R? {.smaller}
+
+-   **Base R read functions**
+    -   Installed as part of the core R distribution
+    -   Fast, simple solution for data imports
+    -   Limited range of file types supported
+
+::: {.small-break}
+:::
+
+-   **Packages for reading data**
+    -   User-friendly functions with good documentation
+    -   Functions that accommodate many data formats
+    -   Robust error handling
+    -   Some packages optimized for performance
+        -   Efficient for importing large datasets
+
+::: {.small-break}
+:::
+
+- **The read functions you use will ultimately depend on:** 
+  -   The unique needs of your project
+  -   The characteristics of the underlying data
+
+
+# Base R read functions {.white-title background-image="images/bg-collatz-1.png" background-size="cover"}
+
+## Base R read funtions {.smaller}
+:::: {.columns}
+::: {.column width="60%"}
+-   Reading tabular data from flat and rds files
+-   Imported data stored as a data frame
+-   Fewer function arguments to customize data import
+-   Less efficient data handling for large datasets
+
+::: {.small-break}
+:::
+
+-   **Core functions:**
+    -   `read.table()`: multiple file types
+    -   `read.csv()`: comma-separated values (csv)
+    -   `read.delim()`: delimited text files
+    -   `read.fwf()`: fixed-width text files
+    -   `readRDS()`: R data stream (rds) files
+
+::: {.small-break}
+:::
+
+-   These read functions are wrappers around `read.table` (with the exception of `readRDS`)
+
+:::
+::: {.column width="40%"}
+```{r, eval = F, echo=T}
+read.table(file, 
+           header = FALSE, 
+           sep = "", 
+           quote = "\"'",
+           dec = ".", 
+           numerals = c("no.loss"),
+           row.names, 
+           col.names, 
+           as.is = !stringsAsFactors,
+           na.strings = "NA", 
+           colClasses = NA, 
+           nrows = -1,
+           skip = 0, 
+           check.names = TRUE, 
+           fill = !blank.lines.skip,
+           strip.white = FALSE, 
+           blank.lines.skip = TRUE,
+           comment.char = "#",
+           allowEscapes = FALSE, 
+           stringsAsFactors = FALSE,
+           fileEncoding = "")
+```
+:::
+::::
+
+![](images/logo-base-r.png){.absolute right="0" bottom="1" height="25%"}
+
+
+# R Packages for Importing Data {.white-title background-image="images/bg-collatz-2.png" background-size="cover"}
+
+## `readr` {.smaller}
+
+![](images/hex-readr.png){.absolute right="0" bottom="1" height="30%"}
+
+:::: {.columns}
+::: {.column width="60%"}
+-   Reading tabular data from flat and rds files
+-   Part of the [core]{.blue-bold} `tidyverse` package ecosystem
+  -   Imported data stored as [tibble data frame]{.blue-bold}
+  -   Informative error and warning messages
+
+::: {.small-break}
+:::
+
+-   **Core functions:**
+    -   `read_table()`: multiple file types
+    -   `read_csv()`: comma-separated values (csv)
+    -   `read_tsv()`: tab-separated values (tsv)
+    -   `read_delim()`: delimited text files
+    -   `read_fwf()`: fixed-width text files
+    -   `read_rds()`: R data stream (rds) files
+:::
+
+::: {.column width="40%"}
+```{r, eval = F, echo=T}
+read_csv(
+  file,
+  col_names = TRUE,
+  col_types = NULL,
+  col_select = NULL,
+  id = NULL,
+  locale = default_locale(),
+  na = c("", "NA"),
+  quoted_na = TRUE,
+  quote = "\"",
+  comment = "",
+  trim_ws = TRUE,
+  skip = 0,
+  n_max = Inf,
+  guess_max = min(1000, n_max),
+  name_repair = "unique",
+  num_threads = readr_threads(),
+  progress = show_progress(),
+  show_col_types = should_show_types(),
+  skip_empty_rows = TRUE,
+  lazy = should_read_lazy()
+)
+```
+:::
+::::
+
+::: aside
+<https://readr.tidyverse.org/>
+:::
+
+## Example: `read_csv()` {.smaller}
+
+```{r, echo=T}
+# Load readr package (not necessary if you've installed the tidyverse)
+library(readr)
+
+# Read in data, which is stored in a csv file 
+data <- read_csv("data/cvdstudy.csv", na = "")
+
+# Look at the data
+data
+```
+-   Returns a tibble, which displays useful information about the dataset
+-   Note that these functions guess data types for each column, and are not always correct
+  -   [**Let's try explicitly defining data types for `id `, `smoke`, and `edu` during the import!**]{.blue-bold}
+
+## Example: `read_csv()` {.smaller}
+
+```{r, echo=T}
+# Load readr package (not necessary if you've installed the tidyverse)
+library(readr)
+
+# Read in data and specify data types for specific columns 
+data <- read_csv("data/cvdstudy.csv", na = "",
+                 col_types = cols(
+                   id = col_character(),
+                   smoke = col_factor(levels = c("0", "1")),
+                   edu = col_factor(levels = c("1", "2", "3", "4"))
+                   )
+                 )
+
+# Look at the data
+data
+```
+
+- We did it! Many read functions include arguments to define data types or address other issues
+- [**Always look at your data, and be vigilant about potential data import problems**]{.blue-bold}
+
+## Example: `read_delim()` {.smaller}
+```{r, echo=T}
+
+# Read in data and specify data types for specific columns and the delimiter used in the file
+data <- read_delim("data/cvdstudy.txt", delim = "\t", na = "NA",
+                   col_types = cols(
+                     id = col_character(),
+                     smoke = col_factor(levels = c("0", "1")),
+                     edu = col_factor(levels = c("1", "2", "3", "4"))
+                   )
+                 )
+
+# Look at the data
+data
+```
+
+-   Notice that the syntax is identical to read_csv, with the exception of the `delim` argument
+    -   `\t` is passed to the `delim` argument to indicate a tab delimiter in the file
+-   We also had to indicate `NA` as the character string to interpret as missing values
+    -   The source data includes the text "NA" in place of missing values 
+
+<!-- ![](images/read-tsv-file.png){.absolute right="0" center="20" height="20%"} -->
+
+## `readxl` {.smaller}
+
+![](images/hex-readxl.png){.absolute right="0" bottom="1" height="30%"}
+
+:::: {.columns}
+::: {.column width="60%"}
+-   Reading tabular data from Excel files
+-   Part of the `tidyverse` package ecosystem
+    -   Requires separate package installation
+    -   Imported data stored as [tibble data frame]{.blue-bold}
+    -   Informative error and warning messages
+
+::: {.small-break}
+:::
+
+-   **Core functions:**
+    -   `read_excel()`: xls or xlsx (uses file extension)
+    -   `read_xlsx()`: xlsx only
+    -   `read_xls()`: xls only
+:::
+
+::: {.column width="40%"}
+```{r, eval=F, echo=T}
+read_xlsx(
+  path,
+  sheet = NULL,
+  range = NULL,
+  col_names = TRUE,
+  col_types = NULL,
+  na = "",
+  trim_ws = TRUE,
+  skip = 0,
+  n_max = Inf,
+  guess_max = min(1000, n_max),
+  progress = readxl_progress(),
+  .name_repair = "unique"
+)
+```
+:::
+::::
+
+::: aside
+<https://readxl.tidyverse.org/>
+:::
+
+
+## Example: `read_xlsx()` {.smaller}
+```{r, eval = T, echo=T}
+# Load readxl package
+library(readxl)
+
+# Read in the xlsx file, which we know is located on sheet 2 inside of the file
+data <- read_xlsx("data/cvdstudy.xlsx", sheet = 2, na = "")
+
+# Look at the data
+data
+```
+-   Oh no! A pesky collaborator included summary statistics at the top of the excel file
+-   [Not to worry! Let's take advantage of the `skip` argument to read in the correct data]{.blue-bold}
+
+
+## Example: `read_xlsx()` {.smaller}
+```{r, eval = T, echo=T}
+# Create a vector of column types (limited to skip, guess, logical, numeric, date, text or list)
+col_types <- c("text", "date", "numeric", "guess", "guess", "numeric", 
+               "numeric", "numeric", "numeric", "numeric")
+
+# Read in the xlsx file, which we know is located on sheet 2 inside of the file
+data <- read_xlsx("data/cvdstudy.xlsx", sheet = 2, skip = 10, 
+                  col_names = TRUE, col_types = col_types)
+
+# Look at the data
+data
+```
+-   A little better, but we introduced new problems
+-   The `col_types` argument in this particular function is limited (subset of possible data types)
+    -   Moreover, our attempt to coerce the `survdate` variable to a date led to data loss!
+-   [Sometimes it's easier to let functions guess data types and coerce them after the import]{.blue-bold}
+
+
+## Example: `read_xlsx()` {.smaller}
+```{r, eval = T, echo=T}
+
+# Read in the xlsx file, which we know is located on sheet 2 inside of the file
+data <- read_xlsx("data/cvdstudy.xlsx", sheet = 2, skip = 10, col_names = TRUE)
+
+# Base R approach to updating column data types (we'll learn more elegant solutions, soon!)
+data$survdate <- as.Date(data$survdate)
+data$edu <- factor(data$edu, levels = c("1", "2", "3", "4"))
+data$smoke <- factor(data$smoke, levels = c("0", "1"))
+
+# Look at the data
+data
+```
+
+:::{.small-break}
+:::
+
+<br>
+
+[Much better. We've come so far!]{.blue-bold}
+
+. . .
+
+![](images/meme-thumbs-up.png){.absolute right="0" bottom="100" height="40%"}
+
+
+## `haven` {.smaller}
+
+![](images/hex-haven.png){.absolute right="0" bottom="1" height="30%"}
+
+:::: {.columns}
+::: {.column width="60%"}
+-   Reading data formats used by other statistical packages
+-   Part of the `tidyverse` package ecosystem
+    -   Requires separate package installation
+    -   Imported data stored as [tibble data frame]{.blue-bold}
+    -   Informative error and warning messages
+    -   [Preserves label attributes]{.blue-bold} from other software
+
+::: {.small-break}
+:::
+
+-   **Core functions:**
+    -   `read_sas()`: SAS files (.sas7bdat, sas7bcat)
+    -   `read_sav()`: SPSS files (.sav)
+    -   `read_dta()`: Stata files (.dta)
+:::
+
+::: {.column width="40%"}
+```{r, eval=F, echo=T}
+read_dta(
+  file,
+  encoding = NULL,
+  col_select = NULL,
+  skip = 0,
+  n_max = Inf,
+  .name_repair = "unique"
+)
+```
+:::
+::::
+
+::: aside
+<https://haven.tidyverse.org/>
+:::
+
+## Example: `read_dta()` {.smaller}
+```{r, eval=T, echo=T}
+# Load the haven package
+library(haven)
+
+# Read in the stata (.dta) file
+data <- read_dta("data/cvdstudy.dta")
+
+# There's no built in col types argument, so we'll use the base R approach to update data types 
+data$survdate <- as.Date(data$survdate)
+data$edu <- factor(data$edu, levels = c("1", "2", "3", "4"))
+data$smoke <- factor(data$smoke, levels = c("0", "1"))
+
+# Look at the data
+data
+```
+
+-   Note that Stata and other statistical software packages can include variable labels
+  -   [Let's see if the data we just imported has these label attributes]{.blue-bold}   
+
+
+## Example: `read_dta()` {.smaller}
+```{r, eval=T, echo=T}
+# Look at the structure of the data object to which we assigned the imported dataset
+str(data)
+
+```
+
+. . . 
+
+-   Yes! Our data do have variable labels! 
+  -   [Labels can be very helpful for providing further detail about variables in the dataset]{.blue-bold}
+
+
+::: {.absolute top="31%" left="0" width="550"}
+::: {.one-line-box .red}
+:::
+:::
+
+
+![](images/read-dta-labels.png){.absolute right="0" bottom="195" height="29%"}
+
+
+## Common challenges and tips {.smaller}
+-   File types 
+-   Data formatting
+-   Data types
+
+
+## Case study 1 {.smaller}
+
+Your non-technical colleague has reached out to you for assistance with preparing an old dataset for an upcoming project. Your colleague typically receives curated datasets and has not previously worked with data stored in a fixed width file format.
+
+As an expert R programmer, you offer to help. Upon receiving the dataset, you read the data into R to inspect its contents and observe the following:
+
+```{r, echo=T}
+read_fwf("data/newstudy.txt")
+```
+
+<br>
+
+[What additional information do you need from your colleague before you provide support?]{.blue-bold}
+
+## Case study 1 {.smaller auto-animate="true"}
+
+. . .
+
+```{r}
+#| echo: true
+#| code-line-numbers: "3|1-2|1-5|1-8"
+# Vector of column positions
+col_widths <- c(5, 2, 2, 1, 2, 5, 5, 3, 3)
+
+# Vector of column names
+col_names <- c("id", "age", "edu", "smoke", "cigs", "sbp", "dbp", "chol", "glucose")
+
+# Read in the data, specifying column names and positions
+data <- read_fwf("data/newstudy.txt", fwf_widths(widths = col_widths, col_names = col_names))
+```
+
+. . .
+
+<br>
+
+```{r}
+# Look at the data
+data
+```
+
+
+## Case study 2 {.smaller}
+
+Your colleague asks for another favor. As part of their planned analysis, the research team hopes to incorporate exercise testing data obtained from a subset of study participants who had clinical assessments. Your colleague tells you that the data are stored in a formatted excel file that's exported directly from the exercise testing software, and their team has had trouble getting data into R to analyze. You offer to help, and your colleague provides you with a sample dataset to inspect. You observe the following: 
+
+```{r, echo=T}
+# Read in the xlsx file
+data <- read_xlsx("data/exercise.xlsx")
+
+# Look at the data
+data
+```
+
+
+[What problems do you see, and how should we fix them?]{.blue-bold}
+
+## Case study 2 (cont.) {.smaller}
+
+-   The data structure issue can be resolved fairly easily
+    -   Use the `skip` argument skip the non-rectangular data at the top of the file
+    -   After rows are skipped, drop the first row of data containing units using `[-1,]`
+
+```{r}
+# The data formatting issue can be 
+data <- read_xlsx("data/exercise.xlsx", skip = 3, col_types = "text", )[-1,]
+
+# Look at the data
+data
+```
+
+
+[... But there's also an issue with the time variable, which should be formatted as minutes:seconds. Fixing this might be tricky, but let's give it a shot.]{.blue-bold}
+
+
+## Case study 2  (cont.) {.smaller}
+-   Add code to correct data type issue (incorrect time variable: should be M:S, source data does not have leading 0)
+
+## A note on exporting data {.smaller}
+
+- Add table 
+
+- package1 | read_* | write_*
+  - etc.
+
+
+## Summary {.smaller}
+
+::: incremental
+-   Reading data into R is typically the first step in a data analysis workflow.
+-   In addition to base R functions, many R packages include functions with more robust functionality
+    -   Different functions have implications for how data are handled when read into R
+        -   For example, whether the data are stored as a standard data frame or tibble data frame
+            - Useful packages include: `readr`, `readxl`, and `haven` (but there are many more!)
+
+-   Importing data is often straightforward, but there are potential challenges:
+  -   Idiosyncrasies data storage methods warrant specific considerations. For example:
+    -   Reading xls and xlsx excel files require specific functions, which can accommodate specific formatting issues
+      -   Skipping rows before reading data
+      -   Selecting a specific range of cells or sheets to read data
+
+:::
+
+## Key takeaways {.smaller}
+
+
+## References {.smaller}
