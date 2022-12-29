@@ -24,6 +24,11 @@
   font-size: 28px;
 }
 
+.small code {
+  font-size: 28px !important;
+}
+
+
 .xsmall {
   font-size: 24px !important;
 }
@@ -39,6 +44,15 @@
 .xxsmall code {
   font-size: 18px !important;
 }
+
+.xxxsmall {
+  font-size: 16px !important;
+}
+
+.xxxsmall code {
+  font-size: 16px !important;
+}
+
 
 .popup {
     background-color: #74b9ff; /* Changing background color */
