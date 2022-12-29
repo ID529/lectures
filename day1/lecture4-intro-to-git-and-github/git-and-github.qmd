@@ -2,7 +2,7 @@
 title: "git and github"
 format:
   revealjs:
-    theme: [style.css]
+    theme: [git_and_github_style.css]
 template-partials:
   - title-slide.html
 title-graphic: git-and-github.png

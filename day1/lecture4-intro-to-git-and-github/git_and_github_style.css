@@ -1,0 +1,67 @@
+/*-- scss:defaults --*/
+.column {
+  float: left;
+  width: 50%;
+  display: table;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+} 
+
+.carrot {
+  color: #e67e22;
+}
+
+.smaller {
+  font-size: 36px;
+}
+
+.small {
+  font-size: 28px;
+}
+
+.xsmall {
+  font-size: 24px !important;
+}
+
+.xsmall code {
+  font-size: 24px !important;
+}
+
+.xxsmall {
+  font-size: 18px !important;
+}
+
+.xxsmall code {
+  font-size: 18px !important;
+}
+
+.popup {
+    background-color: #74b9ff; /* Changing background color */
+    border-radius: 20px; /* Making border radius */
+    width: auto; /* Making auto-sizable width */
+    height: auto; /* Making auto-sizable height */
+    padding: 5px 30px 5px 30px; /* Making space around letters */
+}
+
+span.tab{
+    padding: 0 40px; /* Or desired space*/
+}
+
+.reveal code {
+  font-size: 36px;
+  background-color: #E0E0E0 !important;
+}
+
+.sourceCode .xsmall {
+  font-size: 24px !important;
+}
+
+
+section.has-dark-background h1 {
+  text-shadow: #000 0 0 10px;
+}

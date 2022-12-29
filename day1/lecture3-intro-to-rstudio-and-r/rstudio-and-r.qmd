@@ -1,26 +1,199 @@
 ---
-title: "Intro to R and RStudio"
+title: "R and RStudio: the basics"
 format: 
   revealjs:
-    theme: [serif, style.css]
+    theme: [default, rstudio_and_r_style.css]
 template-partials:
   - title-slide.html
 title-graphic: R-and-Rstudio.png
 slide-number: true
+title-slide-attributes: 
+  data-background-image: "transition_slides/manuel-will.jpg"
+  data-background-opacity: "40%"
+  data-background-color: "black"
+revealjs-plugins:
+  - pointer
 ---
 
-## Installing R and RStudio
+## installing R and RStudio
 
-If you haven't installed R and RStudio yet, 
-please download and install them from here: 
+::: fragment
+If you haven't installed R and RStudio yet, please download and install them from here:
+:::
 
-  * https://www.r-project.org/
-  * https://posit.co/ 
-  
-::: {.notes}
-These are some speaker notes about how easy it is to get started with R! 
+::: incremental
+-   <https://www.r-project.org/>
+-   <https://posit.co/>
 :::
-  
-::: footer
-Hi! Learn more about R: <https://r-project.org>
+
+## installing R and RStudio 
+
+<img src='images/initial_workflow/download_r.png'>
+
+## installing R and RStudio 
+
+<img src='images/initial_workflow/download_rstudio1.png'>
+
+## installing R and RStudio 
+
+<img src='images/initial_workflow/download_rstudio2.png'>
+
+## installing R and RStudio 
+
+<img src='images/initial_workflow/download_versions.png'>
+
+# let's start with RStudio {background-color='black' background-image="transition_slides/manuel-will.jpg" background-opacity='70%'}
+
+## open up RStudio
+
+first let's talk about what the different panes are.
+
+---
+
+<img src="images/rstudio_blank.png"/>
+
+:::{.notes}
+What to notice: You should see four panes, and notice that there's a file-menu-bar (like File, Edit, etc., and Help)
 :::
+
+## source pane
+
+<img src="images/rstudio_source_pane.png"/>
+
+:::{.notes}
+This is where you'll write your scripts and code that you save.
+
+This is where you'll edit text based files in general.
+
+You should try to use this pane a lot, because in general that means you're
+leaning towards saving your work.
+:::
+
+## console pane
+
+<img src="images/rstudio_console_pane.png"/>
+
+:::{.notes}
+This is the console pane;  This is where R commands are run and their
+text-based output is shown.
+
+You'll see that there are some friendly messages on startup about which 
+version of R you're running, your default settings, etc.  **Do** read
+those and think about them since they're put there to help you.
+
+The bit about the ABSOLUTELY NO WARRANTY is really just saying you can't sue the
+developers of R for giving out a free software program if it has a bug.  The R
+community in general is very good about resolving bugs, so you shouldn't let
+that alarm you.
+
+Notice that this pane has a few more tabs to it, including the Terminal and
+Background Jobs.  The Terminal tab is very close to the Terminal app on your
+computer if you're running Mac OS or Linux.  The Terminal is very handy to have
+closeby for programmers since it allows for very precise file manipulations and 
+software operations.
+:::
+
+## environment pane
+
+<img src="images/rstudio_environment_pane.png"/>
+
+:::{.notes}
+This pane is where you'll be able to see what variables you have loaded in your current R 
+session. 
+
+Notice that there's also History, Connections, and a Tutorial pane.
+
+The History pane will keep a history of your commands you've run, and the Connections 
+pane is there in case you want to connect to online databases.
+:::
+
+## files pane
+
+<img src="images/rstudio_files_pane.png"/>
+
+:::{.notes}
+This is the files pane;  here you can navigate your computers' folders, open files, rename files, 
+move files, delete files, etc. 
+
+Notice that this quadrant also has Plots, Packages, Help, Viewer, and Presentation tabs.
+:::
+
+## writing code
+
+<img src="images/initial_workflow/assignment.png">
+
+## run button
+
+<img src="images/initial_workflow/run_button.png">
+
+## the result of running that line
+
+<img src="images/initial_workflow/running_assignment.png">
+
+## we can run more code
+
+<img src="images/initial_workflow/more_statements.png">
+
+## File → Save As
+
+<img src="images/initial_workflow/save_as.png">
+
+## the print command
+
+<img src="images/initial_workflow/print.png">
+
+## navigating using the file pane
+
+<img src="images/initial_workflow/navigating1.png">
+
+## navigating using the file pane
+
+<img src="images/initial_workflow/navigating2.png">
+
+## notice the path to the folder shown 
+
+<img src="images/initial_workflow/folder_in_view.png">
+
+## pay attention to your working directory
+
+<img src="images/initial_workflow/set_as_working_directory.png">
+
+## you can set the working directory through commands
+
+<img src="images/initial_workflow/set_wd_cli.png">
+
+## some helpful settings
+
+<img src="images/initial_workflow/global_options.png">
+
+## highly suggested settings to disable
+
+<img src="images/initial_workflow/disable_bad_settings.png">
+
+## dark mode / other themes
+
+<img src="images/initial_workflow/appearance.png">
+
+## dark mode / other themes
+
+<img src="images/initial_workflow/dark_mode.png">
+
+## keyboard shortcuts
+
+<img src="images/initial_workflow/keyboard_shortcuts_in_menu.png">
+
+## keyboard shortcuts
+
+<img src="images/initial_workflow/popup_keyboard_shortcut.png">
+
+## keyboard shortcuts
+
+<img src="images/initial_workflow/keyboard_shortcuts.png">
+
+## RStudio IDE cheatsheet
+
+<img src="images/initial_workflow/rstudio_ide_cheatsheet_in_menu.png">
+
+## RStudio IDE cheatsheet
+
+<img src="images/initial_workflow/rstudio_ide_cheatsheet.png">

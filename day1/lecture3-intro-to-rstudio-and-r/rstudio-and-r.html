@@ -9,7 +9,7 @@
 <link href="rstudio-and-r_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.269">
 
-  <title>Intro to R and RStudio</title>
+  <title>R and RStudio: the basics</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -32,6 +32,7 @@
   <link href="rstudio-and-r_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="rstudio-and-r_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="rstudio-and-r_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="rstudio-and-r_files/libs/revealjs/plugin/reveal-pointer/pointer.css" rel="stylesheet">
   <link href="rstudio-and-r_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -322,10 +323,10 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="center">
+<section id="title-slide" data-background-color="black" data-background-image="transition_slides/manuel-will.jpg" data-background-opacity="40%" class="center">
    <div class="row">
   <div class="column">
-  <h1 class="title" style="font-size: 2.25em;">Intro to R and RStudio</h1>
+  <h1 class="title" style="font-size: 2.25em;">R and RStudio: the basics</h1>
   </div>
   <div class="column">
   <img class="title-graphic" src="R-and-Rstudio.png">
@@ -333,18 +334,47 @@
   </div> 
 </section>
 <section id="installing-r-and-rstudio" class="slide level2">
-<h2>Installing R and RStudio</h2>
+<h2>installing R and RStudio</h2>
+<div class="fragment">
 <p>If you haven’t installed R and RStudio yet, please download and install them from here:</p>
+</div>
+<div>
 <ul>
-<li>https://www.r-project.org/</li>
-<li>https://posit.co/</li>
+<li class="fragment"><a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a></li>
+<li class="fragment"><a href="https://posit.co/" class="uri">https://posit.co/</a></li>
 </ul>
-<aside class="notes">
-<p>These are some speaker notes about how easy it is to get started with R!</p>
-<p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero’s De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with:</p>
-<pre><code>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”</code></pre>
-<p>The purpose of lorem ipsum is to create a natural looking block of text (sentence, paragraph, page, etc.) that doesn’t distract from the layout. A practice not without controversy, laying out pages with meaningless filler text can be very useful when the focus is meant to be on design, not content.</p>
-<p>The passage experienced a surge in popularity during the 1960s when Letraset used it on their dry-transfer sheets, and again during the 90s as desktop publishers bundled the text with their software. Today it’s seen all around the web; on templates, websites, and stock designs. Use our generator to get your own, or read on for the authoritative history of lorem ipsum.</p>
+</div>
+</section>
+<section id="installing-r-and-rstudio-1" class="slide level2">
+<h2>installing R and RStudio</h2>
+
+<img src="images/initial_workflow/download_r.png" class="r-stretch"></section>
+<section id="installing-r-and-rstudio-2" class="slide level2">
+<h2>installing R and RStudio</h2>
+
+<img src="images/initial_workflow/download_rstudio1.png" class="r-stretch"></section>
+<section id="installing-r-and-rstudio-3" class="slide level2">
+<h2>installing R and RStudio</h2>
+
+<img src="images/initial_workflow/download_rstudio2.png" class="r-stretch"></section>
+<section id="installing-r-and-rstudio-4" class="slide level2">
+<h2>installing R and RStudio</h2>
+
+<img src="images/initial_workflow/download_versions.png" class="r-stretch"></section>
+<section>
+<section id="lets-start-with-rstudio" class="title-slide slide level1 center" data-background-color="black" data-background-image="transition_slides/manuel-will.jpg" data-background-opacity="70%">
+<h1>let’s start with RStudio</h1>
+
+</section>
+<section id="open-up-rstudio" class="slide level2">
+<h2>open up RStudio</h2>
+<p>first let’s talk about what the different panes are.</p>
+</section>
+<section class="slide level2">
+
+
+<img src="images/rstudio_blank.png" class="r-stretch"><aside class="notes">
+<p>What to notice: You should see four panes, and notice that there’s a file-menu-bar (like File, Edit, etc., and Help)</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -356,13 +386,166 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-<div class="footer">
-<p>Hi! Learn more about R: <a href="https://r-project.org" class="uri">https://r-project.org</a></p>
-</div>
-<div class="footer footer-default">
+</section>
+<section id="source-pane" class="slide level2">
+<h2>source pane</h2>
+
+<img src="images/rstudio_source_pane.png" class="r-stretch"><aside class="notes">
+<p>This is where you’ll write your scripts and code that you save.</p>
+<p>This is where you’ll edit text based files in general.</p>
+<p>You should try to use this pane a lot, because in general that means you’re leaning towards saving your work.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="console-pane" class="slide level2">
+<h2>console pane</h2>
+
+<img src="images/rstudio_console_pane.png" class="r-stretch"><aside class="notes">
+<p>This is the console pane; This is where R commands are run and their text-based output is shown.</p>
+<p>You’ll see that there are some friendly messages on startup about which version of R you’re running, your default settings, etc. <strong>Do</strong> read those and think about them since they’re put there to help you.</p>
+<p>The bit about the ABSOLUTELY NO WARRANTY is really just saying you can’t sue the developers of R for giving out a free software program if it has a bug. The R community in general is very good about resolving bugs, so you shouldn’t let that alarm you.</p>
+<p>Notice that this pane has a few more tabs to it, including the Terminal and Background Jobs. The Terminal tab is very close to the Terminal app on your computer if you’re running Mac OS or Linux. The Terminal is very handy to have closeby for programmers since it allows for very precise file manipulations and software operations.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="environment-pane" class="slide level2">
+<h2>environment pane</h2>
+
+<img src="images/rstudio_environment_pane.png" class="r-stretch"><aside class="notes">
+<p>This pane is where you’ll be able to see what variables you have loaded in your current R session.</p>
+<p>Notice that there’s also History, Connections, and a Tutorial pane.</p>
+<p>The History pane will keep a history of your commands you’ve run, and the Connections pane is there in case you want to connect to online databases.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="files-pane" class="slide level2">
+<h2>files pane</h2>
+
+<img src="images/rstudio_files_pane.png" class="r-stretch"><aside class="notes">
+<p>This is the files pane; here you can navigate your computers’ folders, open files, rename files, move files, delete files, etc.</p>
+<p>Notice that this quadrant also has Plots, Packages, Help, Viewer, and Presentation tabs.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="writing-code" class="slide level2">
+<h2>writing code</h2>
+
+<img src="images/initial_workflow/assignment.png" class="r-stretch"></section>
+<section id="run-button" class="slide level2">
+<h2>run button</h2>
+
+<img src="images/initial_workflow/run_button.png" class="r-stretch"></section>
+<section id="the-result-of-running-that-line" class="slide level2">
+<h2>the result of running that line</h2>
+
+<img src="images/initial_workflow/running_assignment.png" class="r-stretch"></section>
+<section id="we-can-run-more-code" class="slide level2">
+<h2>we can run more code</h2>
+
+<img src="images/initial_workflow/more_statements.png" class="r-stretch"></section>
+<section id="file-save-as" class="slide level2">
+<h2>File → Save As</h2>
+
+<img src="images/initial_workflow/save_as.png" class="r-stretch"></section>
+<section id="the-print-command" class="slide level2">
+<h2>the print command</h2>
+
+<img src="images/initial_workflow/print.png" class="r-stretch"></section>
+<section id="navigating-using-the-file-pane" class="slide level2">
+<h2>navigating using the file pane</h2>
+
+<img src="images/initial_workflow/navigating1.png" class="r-stretch"></section>
+<section id="navigating-using-the-file-pane-1" class="slide level2">
+<h2>navigating using the file pane</h2>
+
+<img src="images/initial_workflow/navigating2.png" class="r-stretch"></section>
+<section id="notice-the-path-to-the-folder-shown" class="slide level2">
+<h2>notice the path to the folder shown</h2>
+
+<img src="images/initial_workflow/folder_in_view.png" class="r-stretch"></section>
+<section id="pay-attention-to-your-working-directory" class="slide level2">
+<h2>pay attention to your working directory</h2>
+
+<img src="images/initial_workflow/set_as_working_directory.png" class="r-stretch"></section>
+<section id="you-can-also-set-the-working-directory-through-commands" class="slide level2">
+<h2>you can also set the working directory through commands</h2>
+
+<img src="images/initial_workflow/set_wd_cli.png" class="r-stretch"></section>
+<section id="some-helpful-settings" class="slide level2">
+<h2>some helpful settings</h2>
+
+<img src="images/initial_workflow/global_options.png" class="r-stretch"></section>
+<section id="highly-suggested-settings-to-disable" class="slide level2">
+<h2>highly suggested settings to disable</h2>
+
+<img src="images/initial_workflow/disable_bad_settings.png" class="r-stretch"></section>
+<section id="dark-mode-other-themes" class="slide level2">
+<h2>dark mode / other themes</h2>
+
+<img src="images/initial_workflow/appearance.png" class="r-stretch"></section>
+<section id="dark-mode-other-themes-1" class="slide level2">
+<h2>dark mode / other themes</h2>
+
+<img src="images/initial_workflow/dark_mode.png" class="r-stretch"></section>
+<section id="keyboard-shortcuts" class="slide level2">
+<h2>keyboard shortcuts</h2>
+
+<img src="images/initial_workflow/keyboard_shortcuts_in_menu.png" class="r-stretch"></section>
+<section id="keyboard-shortcuts-1" class="slide level2">
+<h2>keyboard shortcuts</h2>
+
+<img src="images/initial_workflow/popup_keyboard_shortcut.png" class="r-stretch"></section>
+<section id="keyboard-shortcuts-2" class="slide level2">
+<h2>keyboard shortcuts</h2>
+
+<img src="images/initial_workflow/keyboard_shortcuts.png" class="r-stretch"></section>
+<section id="rstudio-ide-cheatsheet" class="slide level2">
+<h2>RStudio IDE cheatsheet</h2>
+
+<img src="images/initial_workflow/rstudio_ide_cheatsheet_in_menu.png" class="r-stretch"></section>
+<section id="rstudio-ide-cheatsheet-1" class="slide level2">
+<h2>RStudio IDE cheatsheet</h2>
+
+<img src="images/initial_workflow/rstudio_ide_cheatsheet.png" class="r-stretch"><div class="footer footer-default">
 
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
@@ -373,6 +556,7 @@
   <script src="rstudio-and-r_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="rstudio-and-r_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="rstudio-and-r_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="rstudio-and-r_files/libs/revealjs/plugin/reveal-pointer/pointer.js"></script>
   <script src="rstudio-and-r_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -395,6 +579,7 @@
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'pointer': {"key":"q","color":"red","pointerSize":16,"alwaysVisible":false},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -565,7 +750,7 @@
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealPointer, QuartoSupport,
 
           RevealMath,
           RevealNotes,
