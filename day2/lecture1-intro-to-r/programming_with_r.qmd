@@ -1,0 +1,414 @@
+---
+title: "Programming with R: Conditionals, Loops, and Logic"
+format: 
+  revealjs:
+    theme: [default, programming_with_r.scss]
+slide-number: true
+title-slide-attributes: 
+  data-background-image: "transition_slides/tyler-springhetti.jpg"
+  data-background-opacity: "60%"
+  data-background-color: "black"
+revealjs-plugins:
+  - pointer
+execute: 
+  echo: true
+---
+
+## some morals
+
+:::{.fragment .small}
+> “Don’t worry if it doesn’t work right.  If everything did, you’d be out of a
+job.” (Mosher’s Law of Software Engineering)
+
+:::
+
+:::{.fragment .small}
+> “Measuring programming progress by lines of code is like measuring aircraft building progress by weight.”
+> — Bill Gates
+
+:::
+
+# conditionals {background-image='transition_slides/tyler-springhetti.jpg' background-color='black' background-opacity='60%'}
+
+## if 
+
+:::{.fragment .small}
+in programming, <span class='carrot'>**control statements**</span> refer to code
+that the computer uses to decide what set of following code statements (also called
+expressions) should be run.
+:::
+
+:::{.fragment .small}
+the first control statement we'll be looking at is the `if` statement. 
+:::
+
+:::{.fragment .small}
+```r
+# the syntax for an if statement:
+if (logical_expression) {
+  code_to_run 
+}
+```
+:::
+
+:::{.fragment .small}
+the `code_to_run` in the example will only be run if the `logical_expression` is
+`TRUE`.
+:::
+
+:::{.fragment .xsmall .popup}
+occasionally you may see R code where an `if` statement is written inline
+without curly braces like `if (condition) code_to_run` — this is not considered
+to be best practice and should generally be avoided.
+:::
+
+## an example 
+
+
+:::{.fragment .small}
+meet the `sample.int()` function: given an argument `n`, and a `size`, it will randomly choose
+`size` number of integers (with or without replacement depending on the `replace` argument) from 
+the integers 1 through `n`.
+<br><br>
+:::
+
+
+:::{.fragment .xsmall}
+```r
+x <- sample.int(n = 10, size = 1) # sample a number between 1 and 10
+
+# if x is greater than or equal to 5, print the result
+if (x >= 5) { 
+  print(x)
+}
+
+# => this might print something like 7, or it might not print anything!
+```
+:::
+
+## another example 
+
+:::{.fragment .small}
+here's an example where we have characters in a list, along with their pets, and
+we want to grab random a random character and print their pet's name, but avoid
+printing NULL to the console.
+:::
+
+:::{.fragment .xxsmall}
+```r
+characters <- list(
+  harry = list(pet = 'hedwig'),
+  ron = list(pet = c('scabbers', 'pigwidgeon')),
+  hermione = list(pet = 'crookshanks'),
+  hagrid = list(pet = c('fang', 'aragog')),
+  dumbledore = list(pet = 'fawkes'),
+  filch = list(pet = 'mrs. norris')
+  fred = list(), # fred and george don't have pets
+  george = list()
+)
+
+random_character <- characters[[sample.int(n = length(characters), size = 1)]]
+random_character_pet <- random_character$pet
+
+if (! is.null(random_character_pet)) {
+  print(random_character_pet)
+}
+
+# this might print one or two pets, or it might not print anything! 
+
+# to be clear, this will _not_ print NULL, which is what the value of 
+# characters$fred$pet is, for example.
+```
+:::
+
+## paste0
+
+:::{.fragment .small}
+before introducing the next <span class='carrot'>**control statement**</span>
+let's talk about the `paste0` command: `paste0("string one", "string two")` will
+concatenate the strings given to it and return `"string onestring two"`. it will
+take as many arguments as you give it. <br><br>
+:::
+
+:::{.fragment .small}
+`paste0` is a sister function to `paste` which takes `sep` as an argument for
+what should be inserted between the strings given, and defaults to a single 
+space.
+:::
+
+:::{.fragment .small}
+here's an example: 
+```r
+x <- "hello "
+y <- "world"
+z <- "!"
+paste0(x, y, z)
+#> "hello world!"
+```
+:::
+
+## if and else 
+
+:::{.fragment .small}
+now we can add another branch to the code by adding an else condition.
+:::
+
+:::{.fragment .xxsmall}
+```{.r code-line-numbers="|12-15|17-18|19-22|24-27|"}
+characters <- list(
+  harry = list(pet = 'hedwig'),
+  ron = list(pet = c('scabbers', 'pigwidgeon')),
+  hermione = list(pet = 'crookshanks'),
+  hagrid = list(pet = c('fang', 'aragog')),
+  dumbledore = list(pet = 'fawkes'),
+  filch = list(pet = 'mrs. norris')
+  fred = list(), # fred and george don't have pets
+  george = list()
+)
+
+random_int <- sample.int(n = length(characters), size = 1) # get a random number
+random_character <- characters[[random_int]]               # get the corresponding character
+random_character_name <- names(characters)[random_int]     # get their name
+random_character_pet <- random_character$pet               # get their pet(s)
+
+if (is.null(random_character_pet)) {
+  print(paste0(random_character_name, " doesn't have any pets!"))
+} else {
+  print(paste0(random_character_name, "'s pet(s):"))
+  print(random_character_pet)
+}
+
+# this might print "george doesn't have any pets!" or it might print something
+# like: 
+#   "these are ron's pets:"
+#   "scabbers"   "pigwidgeon"
+```
+:::
+
+## else if 
+
+:::{.fragment .small}
+let's say we draw a random number and want to classify it as a small, medium,
+or large number depending on if it's between 1-33 (small), 34-66 (medium), 
+or 66+ (large).
+:::
+
+:::{.fragment .xxsmall}
+```{.r code-line-numbers="|6-12|6-7|8-9|10-12|17-25|17-18|19-20|21-22|23-25|26-28|"}
+x <- sample.int(n = 100, size = 1) # draw a random number between 1-100
+
+
+# one way to write this:
+# this way takes advantage of what we know about how x was created
+if (x <= 33) {
+  print("x is small (i.e., between 1 and 33)")
+} else if (x <= 66) {
+  print("x is medium (i.e., between 34 and 66)")
+} else {
+  print("x is large (i.e., between 67 and 100)")
+}
+
+
+# another way:
+# this way doesn't take advantage of what we know about x
+if (x <= 33) {
+  print("x is small (i.e., 33 or less)")
+} else if (x <= 66) {
+  print("x is medium (i.e., above 33 and up to 66)")
+} else if (x <= 100) {
+  print("x is large (i.e., above 67 and up to 100)")
+} else {
+  stop("something has gone wrong! we weren't supposed to get here")
+}
+# this way has an error if an unexpected situation arises -- you might try
+# setting x to something silly like "apple" and running the two versions above
+# again.
+```
+:::
+
+# loops {background-image='transition_slides/tyler-springhetti.jpg' background-color='black' background-opacity='60%'}
+
+## for loops
+
+:::{.fragment .small}
+a <span class='carrot'>**for loop**</span> is used to iterate over a sequence.
+:::
+
+:::{.fragment .small}
+<span class='carrot'>**for loop**</span> are used when you have a block of code you want to repeat
+a fixed number of times.
+:::
+
+:::{.fragment .xsmall}
+```r
+# the syntax for a for loop
+for (iterator in sequence) {
+  code_to_repeat
+}
+```
+:::
+
+## an example 
+
+:::{.fragment .small}
+let's say you want to print out the squares of the numbers 1 through 25. that 
+would be fairly tedious to do by hand, but you can use a for loop to make it easy.
+:::
+
+
+:::{.fragment .xsmall}
+```r
+for (i in 1:25) {
+  print(i^2)
+}
+#> [1] 1
+#> [1] 4
+#> [1] 9
+#> [1] 16
+#> [1] 25
+#> [1] 36
+#> [1] 49
+#> [1] 64
+#> [1] 81
+#> [1] 100
+#> [1] 121
+#> [1] 144
+#> [1] 169
+#> [1] 196
+#> [1] 225
+#> [1] 256
+#> [1] 289
+#> [1] 324
+#> [1] 361
+#> [1] 400
+#> [1] 441
+#> [1] 484
+#> [1] 529
+#> [1] 576
+#> [1] 625
+
+# obviously the above code is much shorter than writing 
+print(1^2)
+print(2^2)
+print(3^2)
+print(4^2)
+print(5^2)
+# and so on and so forth...
+```
+:::
+
+## another example
+
+:::{.fragment .small}
+for loops can iterate over any data structure that can be sequenced (i.e., indexed by an integer),
+so feel free to use them with character vectors.
+:::
+
+:::{.fragment .small}
+```r
+animals <- c('sloths', 'platypus', 'sea otters', 'ringtail lemurs')
+
+for (animal in animals) {
+  print(paste0(animal, " rule!"))
+}
+#> [1] "sloths rule!"
+#> [1] "platypus rule!"
+#> [1] "sea otters rule!"
+#> [1] "ringtail lemurs rule!"
+```
+:::
+
+## a more realistic example
+
+:::{.fragment .small}
+here's one situation I find myself running into once a few times a year:
+occasionally I'll find U.S. national data in Excel or CSV files that are split
+up by state. If I'm lucky, they'll be named something like `Alabama.csv`,
+`Alaska.csv`, `Arizona.csv`, ...
+
+This is a great situation to use a for loop!
+:::
+
+:::{.fragment .xxsmall}
+```r
+state_data <- list() # start with an empty list
+
+for (state in state.name) {  # state.name is a list of state names built into R
+
+  # we'll talk more about reading in data later today
+  new_data <- read.csv(file = paste0(state, ".csv")) 
+  
+  # create a list element for the data being read in named after the state
+  state_data[[state]] <- state_data 
+}
+
+# clean up the state_data list
+```
+:::
+
+## another example with states
+
+:::{.fragment .small}
+sometimes you'll want to use indexing in a for loop to reference values
+within multiple sequences at the same time. 
+
+here's an example:
+:::
+
+:::{.fragment .xxsmall}
+```r
+for (i in 1:50) {
+  print(paste0("the abbreviation for ", state.name[i], " is ", state.abb[i]))
+}
+#> [1] "the abbreviation for Alabama is AL"
+#> [1] "the abbreviation for Alaska is AK"
+#> [1] "the abbreviation for Arizona is AZ"
+#> [1] "the abbreviation for Arkansas is AR"
+#> [1] "the abbreviation for California is CA"
+#> [1] "the abbreviation for Colorado is CO"
+#> [1] "the abbreviation for Connecticut is CT"
+#> [1] "the abbreviation for Delaware is DE"
+#> [1] "the abbreviation for Florida is FL"
+#> [1] "the abbreviation for Georgia is GA"
+#> [1] "the abbreviation for Hawaii is HI"
+#> [1] "the abbreviation for Idaho is ID"
+#> [1] "the abbreviation for Illinois is IL"
+#> [1] "the abbreviation for Indiana is IN"
+#> [1] "the abbreviation for Iowa is IA"
+#> [1] "the abbreviation for Kansas is KS"
+#> [1] "the abbreviation for Kentucky is KY"
+#> [1] "the abbreviation for Louisiana is LA"
+#> [1] "the abbreviation for Maine is ME"
+#> [1] "the abbreviation for Maryland is MD"
+#> [1] "the abbreviation for Massachusetts is MA"
+#> [1] "the abbreviation for Michigan is MI"
+#> [1] "the abbreviation for Minnesota is MN"
+#> [1] "the abbreviation for Mississippi is MS"
+#> [1] "the abbreviation for Missouri is MO"
+#> [1] "the abbreviation for Montana is MT"
+#> [1] "the abbreviation for Nebraska is NE"
+#> [1] "the abbreviation for Nevada is NV"
+#> [1] "the abbreviation for New Hampshire is NH"
+#> [1] "the abbreviation for New Jersey is NJ"
+#> [1] "the abbreviation for New Mexico is NM"
+#> [1] "the abbreviation for New York is NY"
+#> [1] "the abbreviation for North Carolina is NC"
+#> [1] "the abbreviation for North Dakota is ND"
+#> [1] "the abbreviation for Ohio is OH"
+#> [1] "the abbreviation for Oklahoma is OK"
+#> [1] "the abbreviation for Oregon is OR"
+#> [1] "the abbreviation for Pennsylvania is PA"
+#> [1] "the abbreviation for Rhode Island is RI"
+#> [1] "the abbreviation for South Carolina is SC"
+#> [1] "the abbreviation for South Dakota is SD"
+#> [1] "the abbreviation for Tennessee is TN"
+#> [1] "the abbreviation for Texas is TX"
+#> [1] "the abbreviation for Utah is UT"
+#> [1] "the abbreviation for Vermont is VT"
+#> [1] "the abbreviation for Virginia is VA"
+#> [1] "the abbreviation for Washington is WA"
+#> [1] "the abbreviation for West Virginia is WV"
+#> [1] "the abbreviation for Wisconsin is WI"
+#> [1] "the abbreviation for Wyoming is WY"
+```
+:::
