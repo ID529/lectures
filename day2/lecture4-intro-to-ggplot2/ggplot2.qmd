@@ -1,0 +1,154 @@
+---
+title: "Data Visualization with ggplot2"
+format:
+  revealjs:
+    theme: [default, ggplot2.scss]
+slide-number: true
+# title-slide-attributes: 
+#   data-background-image: ""
+#   data-background-opacity: "60%"
+#   data-background-color: "black"
+revealjs-plugins:
+  - pointer
+execute: 
+  echo: true
+---
+
+## tidy data
+
+> “Happy families are all alike; every unhappy family is unhappy in its own way.” —— Leo Tolstoy
+
+> “Tidy datasets are all alike, but every messy dataset is messy in its own way.” —— Hadley Wickham
+
+
+## the grammar of graphics
+
+## some morals
+
+> "The simple graph has brought more information to the data analyst's mind than any other device." —— John Tukey
+
+> "It is true that data visualization is part data science and part art. That being said, even the most creative art is supported by theories that explain why it works." —— Michiko Wolcott
+
+## basic structure 
+
+```r
+library(ggplot2) # or library(tidyverse)
+ggplot(dataset, aes(x = some_variable, y = another_variable)) + 
+  geom_point() + 
+  some other options
+```
+
+## palmerpenguins {.xxsmall}
+
+
+```{r, echo=T, eval=T}
+library(palmerpenguins)
+library(tidyverse)
+head(penguins)
+```
+
+
+## let's talk about visual channels
+
+## color
+
+## shape 
+
+## a list of visual channels 
+
+  - linesize 
+  - linetype
+  - alpha 
+  - fill 
+  
+## geom_line
+
+# univariate geoms 
+
+## geom_histogram
+
+## geom_density
+
+## geom_bar and geom_col
+
+# bivariate geoms
+
+## geom_point {.xxsmall}
+
+```{r, echo=F}
+theme_set(theme_gray(base_size = 21))
+```
+
+```{r}
+#| fig.dpi: 900
+#| out-width: 50%
+#| fig-asp: 0.618
+#| fig-align: center
+ggplot(penguins, 
+       aes(
+         x = body_mass_g, 
+         y = bill_length_mm, 
+         color = species)) +
+  geom_point()
+```
+
+
+## geom_line
+
+## geom_area
+
+## geom_text
+
+## geom_boxplot
+
+## geom_violin
+
+## geom_tile
+
+# facets 
+
+## facet_wrap
+
+## facet_grid 
+
+# statistics 
+
+## 
+
+  - geom_boxplot
+  - geom_violin
+  - geom_smooth
+  - geom_density
+  - geom_histogram
+  - geom_jitter
+  - geom_bar
+  - geom_contour
+
+## geom_hex
+
+## stat_summary
+
+# coordinates
+
+## scale_x_* and scale_y_* 
+
+## scale_color_* and scale_fill_* 
+
+# theme 
+
+## labels 
+
+## legend position 
+
+## adjusting axis labels
+
+# saving plots
+
+# extensions 
+
+## ggdist 
+
+## ggrepel 
+
+## patchwork 
+
