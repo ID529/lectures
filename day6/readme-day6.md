@@ -12,6 +12,11 @@
   * 4:30-4:45 Demonstration of how to do the homework
   * 4:45-5:30 Time to do the homework, work on the final project together, peruse recommended materials
   
+Homework 5: 
+
+  * Use R Markdown to document some exploratory data analyses
+  * Peer Review Homework 4
+
 Recommended Reading: 
 
   * R Packages: 

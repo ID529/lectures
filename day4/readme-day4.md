@@ -4,18 +4,16 @@
   * 2:00-2:20 Discussion: What kind of sources are students interested in using in their research or future work?
   * 2:20-2:50 Lecture: How to handle factors and date-times
   * 2:50-3:00 Break 
-  * 3:00-3:30 Lecture: Regression Modeling: How to fit regression models,
-  extracting model summaries from fit model objects, visualizing model estimates
+  * 3:00-3:30 Lecture: Working with Regression Model Objects: constructing and analyzing them
   * 3:30-4:15 Activity: Working with Regression Models in R
   * 4:15-4:45 Lecture: Creating maps in R
   * 4:45-5:00 Lecture: Reproducible Examples for Getting Help
   * 5:00-5:30 Time to work on final presentation materials together, peruse recommended materials, chat with classmates
 
-Homework 4:
+Homework 3:
 
-  * Choose one of the prespecified geospatial datasets and create a map in R
   * Fit and report on a regression model including categorical (factor) variables
-  * Peer Review for Homework 3
+  * Peer Review for Homework 2
 
 Available/Recommended Reading (Remember! You don't have to read all of this! Just focus on what's most useful to you):
 

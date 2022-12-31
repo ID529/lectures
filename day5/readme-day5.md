@@ -15,12 +15,12 @@
   * 5:25-5:30 Giveaway for a Copy of R for Data Science
   * 5:30 Meet Hodu!
   
-Homework 5 
+Homework 4
 
   * Read the Brown et al reproduction of Onikye et al, run their code, and fill out the worksheet
     * https://open.lnu.se/index.php/metapsychology/article/view/2071
     * https://osf.io/j32yw/ 
-  * Peer review for homework 4
+  * Peer review for homework 3
   
 Available/Recommended Reading:
 

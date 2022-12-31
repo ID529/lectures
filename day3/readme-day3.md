@@ -4,9 +4,9 @@
   * 2:00-2:50 Lecture: Intro to dplyr
   * 2:50-3:10 Activity: Work on dplyr learnr tutorial in groups
   * 3:10-3:15 Break
-  * 3:15-3:35 Lecture: Cleaning Text Data
-  * 3:35-4:05 Lecture: Writing Functions
-  * 4:05-4:30 Activity: Write functions together
+  * 3:15-3:45 Lecture: Cleaning Text Data
+  * 3:45-4:10 Lecture: Writing Functions
+  * 4:10-4:30 Activity: Write functions together
   * 4:30-4:45 Activity: Discussion Q&A from ggplot2 Homework
   * 4:45-4:55 Survey: Checking in on Pacing
   * 4:55-5:10 Demonstration of how to do the homework 

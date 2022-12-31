@@ -8,6 +8,10 @@
   * 3:40-4:10 Lecture: How to Keep Growing as a Programmer (and stay up to date)
   * 4:10-4:20 Details about turning in your final presentations
   * 4:20-5:30 Positive affirmations, free time to work together on final projects
+  
+Homework: 
+
+  * Work with classmates to finalize presentations and turn them in
 
 Recommended materials: 
 

@@ -9,6 +9,9 @@
   * 4:00-4:30 Lecture: Clean Code and Considerate Coding
   * 4:30-5:30 Free time to work together on the final project, chat with classmates, peruse recommended materials
 
+Homework: 
+
+  * Peer Review Homework 5
 
 Recommended reading: 
 
