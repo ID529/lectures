@@ -1,5 +1,5 @@
 ---
-title: "Programming with R: Conditionals, Loops, and Logic"
+title: "Programming with R: Logic, Conditionals, and Loops"
 format: 
   revealjs:
     theme: [default, programming_with_r.scss]
@@ -26,6 +26,211 @@ job.” (Mosher’s Law of Software Engineering)
 > “Measuring programming progress by lines of code is like measuring aircraft building progress by weight.”
 > — Bill Gates
 
+:::
+
+# logic {background-image='transition_slides/tyler-springhetti.jpg' background-color='black' background-opacity='60%'}
+
+## logical operators 
+
+:::{.fragment .small}
+the first three <span class='carrot'>**logical operators**</span> we'll talk
+about first are `!` ("not"), `&` ("and"), and `|` ("or").
+
+:::{.incremental}
+  * `!` negates (i.e., flips) the logical value placed on its right-hand-side
+  * `&` returns `TRUE` if its left-hand-side and right-hand-side are both `TRUE`;  otherwise `FALSE`
+  * `|` returns `TRUE` if at least one of its left-hand-side or right-hand-side are `TRUE`;  otherwise `FALSE`
+:::
+:::
+
+## logical operators
+
+:::{.fragment .small}
+let's do a really simple handful of examples first
+:::
+
+:::{.fragment .small}
+```r
+! TRUE        # evaluates to: FALSE
+TRUE & TRUE   # => TRUE
+TRUE | FALSE  # => TRUE
+```
+:::
+
+## logical operators
+
+:::{.fragment .small}
+in a rare case, you may need to determine if *only* one of the two arguments
+given is `TRUE`, and in those cases you can use `xor(x,y)`.
+:::
+
+:::{.fragment .small}
+```r
+xor(TRUE, FALSE)  # => TRUE
+xor(FALSE, TRUE)  # => TRUE
+xor(TRUE, TRUE)   # => FALSE
+xor(FALSE, FALSE) # => FALSE
+```
+:::
+
+## logical operators
+
+:::{.fragment .small}
+R is a <span class='carrot'>**vectorized language**</span> (meaning: many of its functions and most basic
+data types aim to work seamlessly with vectors of data), so these logical operators
+are vectorized too.
+:::
+
+:::{.fragment .small}
+```r
+! c(TRUE, FALSE, TRUE)         # => c(FALSE, TRUE, FALSE)
+c(TRUE, TRUE) & c(TRUE, FALSE) # => c(TRUE, FALSE)
+c(TRUE, TRUE) | c(TRUE, FALSE) # => c(TRUE, TRUE)
+
+xor(c(FALSE, TRUE, TRUE), c(TRUE, FALSE, TRUE))
+# => c(TRUE, TRUE, FALSE)
+```
+:::
+
+## logical operators
+
+:::{.fragment .small}
+there are a few more logical operators which you may not need to use
+often.
+:::
+
+:::{.incremental .small}
+  * `&&` and `||` are **not** vectorized and evaluate from left-to-right 
+  only proceeding until the result is determined (meaning: they exit early
+  if a result can be determined without looking at the whole expression)
+:::
+
+:::{.fragment .xxsmall}
+```{.r code-line-numbers="|1-5|7-11|"}
+# for example, the following code will never evaluate
+# `complicated_expression_that_yields_something` because the && operator will
+# exit early since it "knows" that both sides must be TRUE, otherwise the result
+# will be FALSE
+complicated_expression_that_yields_FALSE && complicated_expression_that_yields_something
+
+# similarly, the following code will never evaluate
+# `complicated_expression_that_yields_something` because the || operator will
+# exit early since it "knows" that if either side is TRUE, the result will be
+# TRUE
+complicated_expression_that_yields_TRUE || complicated_expression_that_yields_something
+```
+:::
+
+:::{.fragment .small}
+the point of these operators is fundamentally about <span
+class='carrot'>**computational efficiency**</span>. these operators become
+especially beneficial if the arguments given are especially computationally
+demanding to compute, or there's a real need for the code to be extremely fast.
+:::
+
+## logical operators
+
+:::{.fragment .small}
+remember, you can always get help for the logical operators by entering `?"&"`
+or `help("&")` into R.  doing this (or replacing `&` with any of the other
+logical operators) will bring up the help pages for the logical operators.
+:::
+
+:::{.fragment .small}
+those help pages are also online here:  <br>
+<https://stat.ethz.ch/R-manual/R-devel/library/base/html/Logic.html>
+:::
+
+## other ways to produce logical values
+
+:::{.fragment .small}
+the <span class='carrot'>**logical operators**</span> are not the only operators or functions in R that will
+produce logical values/vectors in R.
+:::
+
+:::{.fragment .small}
+some operators that will produce logical values are the
+<span class='carrot'>**relational operators**</span>: 
+
+:::{.incremental}
+  * `>` (greater than),  `>=` (greater than or equal to), `<` (less than),
+    `<=` (less than or equal to), `==` (equal to), `!=` (not equal to)
+:::
+:::
+
+:::{.fragment .small}
+```r
+5 > 1               # => TRUE
+5 >= 5              # => TRUE
+5 == 5              # => TRUE
+5 != 4              # => TRUE
+"apple" != "banana" # => TRUE
+```
+:::
+
+## other ways to produce logical values
+
+:::{.fragment .xsmall}
+some functions that will produce logical values are:
+
+:::{.incremental .xsmall}
+  * `any(x)` and `all(x)`
+  * the `any(x)` and `all(x)` functions are designed to work with vectors
+  and respectively test if *any* of the values in the vector `x` are 
+  `TRUE`, and if *all* of the values in the vector `x` are `TRUE`.
+  * both of these functions take an additional argument `na.rm` that defaults
+  to `FALSE`.  `na.rm.` stands for "remove NAs". 
+    * typically, any operation with NA is NA (and similarly for NaNs).  for example, `1 + NA == NA`.
+    * if set to `TRUE`, then `any(x, na.rm = TRUE)` and `all(x, na.rm = TRUE)` will ignore
+    `NA` values.
+:::
+:::
+
+:::{.fragment .small}
+```r
+all(c(TRUE, TRUE, TRUE)) # => TRUE
+any(c(FALSE, TRUE, FALSE)) # => TRUE
+
+all(c(TRUE, NA, TRUE))  # => NA
+any(c(FALSE, TRUE, NA)) # => NA
+
+all(c(TRUE, NA, TRUE), na.rm = TRUE)  # => TRUE
+any(c(FALSE, TRUE, NA), na.rm = TRUE) # => TRUE
+```
+:::
+
+## a quick note on T and F
+
+:::{.fragment .small}
+in R code, you may sometimes see `TRUE` and `FALSE` abbreviated to `T`
+and `F`.  
+:::
+
+:::{.fragment .small}
+however, this is generally advised against because the `T` and
+`F` variables may be overwritten with other values. 
+:::
+
+:::{.fragment .xsmall}
+```{.r code-line-numbers="|1-2|3-4|6-8|"}
+# an example 
+isTRUE(T) # => TRUE
+T <- 0
+isTRUE(T) # => FALSE
+
+# but you can't overwrite `TRUE` itself
+TRUE <- 0
+# => Error in TRUE <- 0 : invalid (do_set) left-hand side to assignment
+```
+:::
+
+:::{.fragment .small}
+read more: <br>
+<https://www.r-bloggers.com/2012/12/r-tip-avoid-using-t-and-f-as-synonyms-for-true-and-false/>
+:::
+
+:::{.fragment .small}
+in short, try not to use `T` and `F` as `TRUE` and `FALSE`. 
 :::
 
 # conditionals {background-image='transition_slides/tyler-springhetti.jpg' background-color='black' background-opacity='60%'}
@@ -412,3 +617,7 @@ for (i in 1:50) {
 #> [1] "the abbreviation for Wyoming is WY"
 ```
 :::
+
+## while
+
+# key takeaways
