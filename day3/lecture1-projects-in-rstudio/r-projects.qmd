@@ -1,0 +1,64 @@
+---
+title: "Data Visualization with ggplot2"
+format:
+  revealjs:
+    theme: [default, r-projects.scss]
+slide-number: true
+# title-slide-attributes: 
+#   data-background-image: ""
+#   data-background-opacity: "60%"
+#   data-background-color: "black"
+revealjs-plugins:
+  - pointer
+execute: 
+  echo: true
+---
+
+## morals {data-background-image='transition_slides/daniela-de-gol.jpg' data-background-opacity='30%' data-background-color="black"}
+
+:::{.fragment .small}
+> <span style='color: white;'>“For every minute spent organizing, an hour is earned.” — (maybe) Benjamin Franklin.</span>
+
+:::
+
+:::{.fragment .small}
+> <span style='color: white;'>“A good system shortens the road to the goal.” — Anonymous</span>
+
+:::
+
+:::{.fragment .small}
+> <span style='color: white;'>"Nobody has ever said <span class='carrot'>'I regret having such organized R code'</span>" — Me</span>
+
+:::
+
+## in brief... {data-background-image='transition_slides/daniela-de-gol.jpg' data-background-opacity='30%' data-background-color="black"}
+
+> <span style='color: white;'>An R project enables your work to be bundled in a <span class='carrot'>portable, self-contained folder</span>. Within the project, all the relevant <span class='carrot'>scripts, data files, figures/outputs,</span> and <span class='carrot'>history</span> are stored in sub-folders and importantly - the working directory is the <span class='carrot'>project’s root folder</span>. <br><br>—The Epidemiologist R Handbook </span>
+
+
+## creating an R project 
+
+## organizing your R project
+
+ https://kdestasio.github.io/post/r_best_practices/ 
+ 
+ https://www.rforecology.com/post/organizing-your-r-studio-projects/
+ 
+ https://github.com/GiuseppeTT/R-Project-Structure
+ 
+ https://www.r-bloggers.com/2018/08/structuring-r-projects/
+
+## using RStudio's support for projects
+
+## using the here package
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">The only two things that make <a href="https://twitter.com/JennyBryan?ref_src=twsrc%5Etfw">@JennyBryan</a> 😤😠🤯. Instead use projects + here::here() <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/GwxnHePL4n">pic.twitter.com/GwxnHePL4n</a></p>&mdash; Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/940021008764846080?ref_src=twsrc%5Etfw">December 11, 2017</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+### the 01_ 02_ 03_ ... 99_ workflow
+
+## renv 
+
+## targets
+
+## rocker
+

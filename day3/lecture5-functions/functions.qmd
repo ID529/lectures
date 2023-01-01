@@ -1,0 +1,239 @@
+---
+title: "Functions"
+format:
+  revealjs:
+    theme: [default, functions.scss]
+slide-number: true
+# title-slide-attributes: 
+#   data-background-image: ""
+#   data-background-opacity: "60%"
+#   data-background-color: "black"
+revealjs-plugins:
+  - pointer
+execute: 
+  echo: true
+---
+
+# morals 
+
+> “The function of good software is to make the complex appear to be simple.” ——Grady Booch
+
+> "Beware of bugs in the above code; I have only proved it correct, not tried it."
+——Donald Knuth
+
+> "If you can't informally describe a function in one
+line, the function is probably too large." —— (paraphrased) Eric S. Raymond
+
+# morals 
+
+> "You should consider writing a function 
+whenever you've copied and pasted a block of code more than
+twice (i.e., you now have three copies of the same code). --R for Data Science, Hadley Wickham, Garrett Grolemund
+
+
+
+# anatomy of a function 
+
+  - name 
+  - arguments 
+  - body 
+  - documentation 
+  - return values
+  
+# principles for functions
+
+  - use communicative names
+  - no side effects, please 
+  - write error conditions
+  - write tests 
+
+# examples 
+
+```{r}
+# here's a relatively simple example 
+
+# Calculate the Length of the Hypotenuse for a Triangle with Base of Length x
+# and Height of Length y
+#
+# description: 
+#   uses the Pythagorean theorem to calculate the length of the hypotenuse of
+#   a right triangle with the side-lengths given. 
+#   
+#   reference: https://en.wikipedia.org/wiki/Pythagorean_theorem
+# 
+# 
+# arguments: 
+#   x   length of the triangle base 
+#   y   height of the triangle 
+# 
+# returns: 
+#   the length of the hypotenuse of the triangle
+calculate_hypotenuse_length <- function(x,y) {
+  sqrt(x^2 + y^2)
+}
+
+# usage:
+calculate_hypotenuse_length(3,4)
+calculate_hypotenuse_length(5,12)
+calculate_hypotenuse_length(7,24)
+```
+
+# raising errors {.xxxsmall}
+
+we could improve on the function given by adding code to raise errors for
+unexpected input.
+
+```{r, error=TRUE}
+# first let's look at what happens without the code to raise errors:
+calculate_hypotenuse_length(1, "banana")
+```
+
+<br>
+```{r, error=TRUE}
+calculate_hypotenuse_length <- function(x,y) {
+  # make sure the arguments are numeric
+  if (! all("numeric" %in% class(x), "numeric" %in% class(y))) {
+    stop(paste0(
+      "calculate_hypotenuse_length expects numeric arguments for x and y.\n",
+      "Instead, calculate_hypotenuse_length was passed arguments of types ",
+      typeof(x), " and ", typeof(y), "."))
+  }
+  
+  sqrt(x^2 + y^2)
+}
+
+calculate_hypotenuse_length(1,"banana")
+```
+
+## arguments
+
+  - regular arguments
+  - default arguments 
+  - detecting missing arguments 
+  
+## returning early
+
+## scopes and environments in R
+
+what do you think will happen? 
+
+```{r}
+x <- 1 
+some_function <- function() {
+  x <- 2 
+  print(x)
+}
+
+some_function()
+print(x)
+```
+
+## some perhaps not-obvious things
+
+  - functions can call other functions 
+  - functions are first-class citizens
+    - so you can treat them similarly to other variables
+  - you can make functions that make functions
+  - dot-dot-dots
+  - anonymous functions 
+  - infix notation
+  
+## testing functions with test_that
+
+```{r}
+library(testthat)
+
+test_that("calculate_hypotenuse_length works as intended", {
+  # test known pythagorean triples 
+  expect_equal(calculate_hypotenuse_length(0, 0), 0)
+  expect_equal(calculate_hypotenuse_length(1, 1), sqrt(2))
+  expect_equal(calculate_hypotenuse_length(3, 4), 5)
+  expect_equal(calculate_hypotenuse_length(5, 12), 13)
+  expect_equal(calculate_hypotenuse_length(7, 24), 25)
+  
+  # test that non-numerics throw an error
+  expect_error(calculate_hypotenuse_length(1, 'apple'))
+  
+  # test that negative numbers are supported;
+  # this uses _random_ testing
+  expect_gt(calculate_hypotenuse_length(-1 * rlnorm(n=1), -1 * rlnorm(n=1)), 0)
+})
+```
+
+
+# key takeaways 
+
+# references
+
+https://r4ds.had.co.nz/functions.html
+
+https://adv-r.hadley.nz/functions.html 
+
+
+# challenges for the activity 
+
+
+(relatively easy): write a function that takes a numeric vector and returns the square of every element 
+
+(medium): write a function that takes a character vector and returns the shortest word (hint: use `nchar`)
+
+(quite hard): what's the scrabble points earned for a given word? (assume all letters were played
+with letter tiles, not blank tiles)
+
+here's the scrabble points for each letter: 
+
+    (1 point)-A, E, I, O, U, L, N, S, T, R
+    (2 points)-D, G
+    (3 points)-B, C, M, P
+    (4 points)-F, H, V, W, Y
+    (5 points)-K
+    (8 points)- J, X
+    (10 points)-Q, Z
+
+```{r}
+scrabble_points <- function(word) {
+  stopifnot(class(word) == 'character')
+  stopifnot(length(word) == 1)
+  
+  word <- tolower(word) # convert to lowercase
+  
+  # create a scoring lookup object
+  scoring <- setNames(nm = letters, object = c( 
+    1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10))
+  
+  # split the characters apart
+  # to be fair: I googled "r split string into characters" to find this
+  # then I realized it returns a list and I only needed the first element
+  word_chars <- strsplit(word, "")[[1]]
+  
+  # calculate the final score as a sum of the letter scores
+  score <- sum(scoring[word_chars], na.rm=TRUE)
+  
+  score
+}
+
+scrabble_points("quixotic")
+```
+
+```{r}
+scrabble_points <- function(word) {
+  stopifnot(class(word) == 'character')
+  stopifnot(length(word) == 1)
+  score <- 0
+  word <- tolower(word)
+  for (i in 1:nchar(word)) {
+    letter <- substring(word, i, i)
+    score <- score + case_when(
+      letter %in% c('a', 'e', 'i', 'o', 'u', 'l', 'n', 's', 't', 'r') ~ 1L,
+      letter %in% c('d', 'g') ~ 2L,
+      letter %in% c('b', 'c', 'm', 'p') ~ 3L,
+      letter %in% c('f', 'h', 'v', 'w', 'y') ~ 4L,
+      letter == 'k' ~5L,
+      letter %in% c('j', 'x') ~ 8L,
+      letter %in% c('q', 'z') ~ 10L
+    )
+  }
+  score
+}
+scrabble_points("quixotic")
+```

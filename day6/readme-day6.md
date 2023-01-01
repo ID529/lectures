@@ -8,7 +8,7 @@
   * 3:10-3:30 Activity: Experiment with different R Markdown features
   * 3:30-3:50 Lecture: Advice for Debugging
   * 3:50-4:10 Activity: Debugging
-  * 4:10-4:30 Activity: Getting Help Online and Debugging
+  * 4:10-4:30 Activity: Getting Help Online
   * 4:30-4:45 Demonstration of how to do the homework
   * 4:45-5:30 Time to do the homework, work on the final project together, peruse recommended materials
   

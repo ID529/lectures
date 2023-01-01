@@ -912,6 +912,7 @@ in this class, we are
 :::
 
 :::{.incremental .small}
+  * R for Data Science Online Community <https://www.rfordatasci.com/>
   * StackOverflow: <https://stackoverflow.com/questions/tagged/r?tab=Votes>
   * the RStudio Community: <https://community.rstudio.com/>
   * the /r/rstats reddit: <https://www.reddit.com/r/rstats/>

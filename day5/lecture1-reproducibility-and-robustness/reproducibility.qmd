@@ -1,0 +1,185 @@
+---
+title: "Reproducibility and Robustness"
+format:
+  revealjs:
+    theme: [default]
+slide-number: true
+# title-slide-attributes: 
+#   data-background-image: ""
+#   data-background-opacity: "60%"
+#   data-background-color: "black"
+revealjs-plugins:
+  - pointer
+execute: 
+  echo: true
+---
+
+# some vocabulary 
+
+  - reproducibility (same data, same code)
+  - replicability  (different data, same code)
+  - robustness (same data, different code)
+  - generality (different data, different code)
+  
+:::{.notes}
+these are four terms that are often thrown around a little bit too loosely 
+
+let's define them clearly 
+
+reproducibility refers to whether or not the exact same analysis can be performed
+again and yield the same results.  if an analysis is deemed to be reproducible,
+this implies that the steps were carried out as they were written down, and that
+the written instructions and provided data are enough to reproduce the results 
+published.
+
+replicability is about whether or not the results hold in the face of new data: 
+that is to say, if the underlying data can be updated to reflect observations
+from a new sample and the results still hold qualitatively, then the analysis 
+is said to be replicable. 
+
+robustness is about whether or not an analysis' findings still hold when the 
+same data are analyzed using a different analytic framework. 
+
+finally, generalizability is about whether or not a _theory_ is still supported
+when both the dataset and analysis framework are changed.
+
+I would note as a minor digression that generalizability also has a distinct
+meaning in the framework of selection bias when talking about whether or not 
+a result generalizes from a sub-population to a super-population.
+:::
+
+# 
+
+these are important concepts insofar as science is about uncovering the
+underlying
+**truth** behind what we observe and not just indiosyncracies of our data or our
+analytic methods.
+
+# 
+
+what is referred to as "the replication crisis" exists because of many reasons,
+including at least the following: 
+
+  1. researchers who are willing to bend, twist, and malign data until it fits
+  their world views
+  2. inadequate / unorganized research practices
+  3. "legitimate" randomness 
+  4. under-powered studies
+  5. bias against publishing null findings
+  6. uncontrolled selection bias
+  
+# 
+
+we're trying to give you the tools to make your analyses reproducible and 
+robust.
+
+we want you to be able to confidently say that your code can be shared and re-run 
+to yield the same results, and that you've looked at your data from multiple 
+perspectives to determine that your findings are robust across a few different
+flavors of analysis.
+
+# 
+
+what are some practices that encourage reproducibility and robustness? 
+
+  * no data tampering, please (i.e., preserve your raw data)
+  * transparency that can create accountability 
+  * organized workflows (R projects, R packages)
+  * asking collaborators to run your code 
+  
+# 
+
+how to deal with your collaborators / supervisors?
+
+my suggestions: 
+
+  * acknowledge how much time it takes for you to do things right
+  * under-promise (esp. in the short-term) and over-deliver (esp. in the long-term):
+    * "next week, I'll try to have a good handle on what's in the data"
+    * meanwhile, you work on starting a new R project and building a reproducible 
+    data cleaning pipeline
+    * this goes not just for data cleaning, but also exploratory data analysis, 
+    modeling, and manuscript writing.
+    
+    
+# 
+
+  * you can often ensure reproducibility; 
+    * if your code is organized, specifies R and package versions, and has a clear
+    workflow, you can be fairly confident that your results will be reproducible
+  * you can't always ensure robustness
+    * but you can poke and prod at it! 
+    
+:::{.notes}
+
+it would be ideal if collaborators agreed to publish materials that said 
+"our findings did not hold up when we did ...";  sometimes they'll settle
+to let these go into supplementary materials
+
+:::
+
+# 
+
+what about when your advisors put up a fight? 
+
+sometimes they might say "look just do it this way" and point you towards a pile
+of code that takes forever for you to even get running and is barely (if at all)
+reproducible.
+
+you should:
+
+  * express appreciation for the work that they're sharing with you
+  * establish mutually agreed-upon expected behavior
+  * use version control so you keep a copy of their original work
+  * try to adapt their code into an R project or package that makes sense to you
+  * emphasize the payoffs:
+    * when submitting to a journal, any analysis revisions or supplemental analyses requested
+    will be able to be done while preserving the original code and 
+    
+
+#  some examples
+
+  - the mass of the electron 
+  - the MMR vaccine controversy 
+  - power posing
+  - 
+
+# forces working against R&R 
+
+  - conflicts of interest
+    - rushed deadlines 
+  - cognitive bias, esp. pressure to publish
+    - the garden of forking paths
+  - un-shared data 
+  - contaminated (messed up) data
+  
+https://www.nature.com/articles/d42473-019-00004-y
+
+# 
+
+> Science always was and always will be a struggle to produce knowledge for the benefit of all of humanity against the cognitive and moral limitations of individual human beings, including the limitations of scientists themselves.
+
+> The new “science is in crisis” narrative is not only empirically unsupported, but also quite obviously counterproductive. Instead of inspiring younger generations to do more and better science, it might foster in them cynicism and indifference. Instead of inviting greater respect for and investment in research, it risks discrediting the value of evidence and feeding antiscientific agendas.
+
+> contemporary science could be more accurately portrayed as facing “new opportunities and challenges” or even a “revolution”
+
+
+https://www.pnas.org/doi/10.1073/pnas.1708272114 
+
+# 
+
+individual vs. systemic solutions
+
+https://frontlinegenomics.com/reproducibility-the-science-communities-ticking-timebomb-can-we-still-trust-published-research/ 
+
+FAIR 
+
+
+# 
+
+as a final word of wisdom, i think it's useful to think of what practices 
+we can adopt towards reproducibility and robustness as "preventative medicine"
+for science itself
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5989067/ 
+

@@ -1,0 +1,87 @@
+---
+title: Principles for Data Analysis from Start to Finish 
+---
+
+# morals
+
+> “Happy families are all alike; every unhappy family is unhappy in its own way.” –– Leo Tolstoy
+
+> “Tidy datasets are all alike, but every messy dataset is messy in its own way.” –– Hadley Wickham
+
+# 
+
+<img src="images/nytimes.png">
+
+> Yet far too much handcrafted work — what data scientists call “data wrangling,” “data munging” and “data janitor work” — is still required. Data scientists, according to interviews and expert estimates, spend from <span class='carrot'>**50 percent to 80 percent**</span> of their time mired in this more mundane labor of collecting and preparing unruly digital data, before it can be explored for useful nuggets. 
+
+# 
+
+<img src="images/data_cleaning_blocks.png">
+
+# fundamentals
+
+## 
+
+1. don't clean when you're hungry or tired 
+
+Data cleaning requires considerable concentration, and you need to allow suﬀicient time to
+do the work. If you’re in a hurry, you’ll miss things. 
+
+2. Don’t trust anyone (even yourself) 
+
+3. Think about what might have gone wrong and how it might be revealed
+
+4. Use care in merging
+
+5. Dates & categories suck
+
+# verify 
+
+## 
+
+6. Check that distinct things are distinct
+
+7. Check that matching things match
+
+8. Check calculations
+
+9. Look for other instances of a problem
+
+# explore
+
+10. Make lots of plots 
+
+11. Look at missing value patterns 
+
+12. With massive data, make more plots not fewer 
+
+13. Follow up all artifacts
+
+# ask
+
+14. Ask questions
+
+15. Ask for the primary data
+
+16. Ask for metadata
+
+17. Ask why data are missing
+
+# document
+
+18. Create checklists & pipelines
+
+19. Document not just what but why
+
+20. Expect to recheck
+
+# 
+
+<img src="images/data_cleaning_checklist.png">
+
+# references
+
+  - https://kbroman.org/Talk_DataCleaning/data_cleaning_notes.pdf
+  
+
+   
