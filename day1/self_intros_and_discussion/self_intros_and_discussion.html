@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="lecture1_files/libs/clipboard/clipboard.min.js"></script>
-<script src="lecture1_files/libs/quarto-html/tabby.min.js"></script>
-<script src="lecture1_files/libs/quarto-html/popper.min.js"></script>
-<script src="lecture1_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="lecture1_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="lecture1_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="lecture1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<link href="lecture1_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="lecture1_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
+<script src="self_intros_and_discussion_files/libs/clipboard/clipboard.min.js"></script>
+<script src="self_intros_and_discussion_files/libs/quarto-html/tabby.min.js"></script>
+<script src="self_intros_and_discussion_files/libs/quarto-html/popper.min.js"></script>
+<script src="self_intros_and_discussion_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="self_intros_and_discussion_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="self_intros_and_discussion_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="self_intros_and_discussion_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.269">
 
-  <title>Intro to ID529: Data Management and Analytic Workflows in R</title>
+  <title>self_intros_and_discussion</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="lecture1_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="lecture1_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="self_intros_and_discussion_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="self_intros_and_discussion_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -30,11 +28,11 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="lecture1_files/libs/revealjs/dist/theme/quarto.css" id="theme">
-  <link href="lecture1_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="lecture1_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="lecture1_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="lecture1_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="self_intros_and_discussion_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="self_intros_and_discussion_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="self_intros_and_discussion_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="self_intros_and_discussion_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="self_intros_and_discussion_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -324,423 +322,34 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-color="black" data-background-image="transition_slides/lilzidesigns.jpg" data-background-opacity="30%" class="center">
-   <div class="row">
-  <div class="column" style="width: 75%">
-  <h1 class="title" style="font-size: 2.05em;">Intro to ID529: Data Management and Analytic Workflows in R</h1>
-  </div>
-  <div class="column" style="width: 25%">
-  <img class="title-graphic" src="id529-sticker.png" style="max-width:90%;">
-  </div>
-  </div> 
-</section>
-<section>
-<section id="meet-your-instructors" class="title-slide slide level1 center">
-<h1>meet your instructors</h1>
 
-</section>
-<section id="christian-testa" class="slide level2 smaller">
-<h2>Christian Testa</h2>
-<div class="columns">
-<div class="column" style="width:30%;">
-<p><img data-src="christian_profile.jpeg"></p>
-</div><div class="column" style="width:70%;">
-<div class="small">
-<p>Hi! I’m Christian Testa 👋 I’ve been a statistical analyst working at the Harvard T.H. Chan School of Public Health for a little over 5 years.</p>
-<p>My recent research has focused on addressing health disparities and inequities in the US.</p>
-<p>These days I’m working on projects involving epigenetic aging, multiple types of discrimination, COVID-19, and spatiotemporal methods in epidemiology. <br><br></p>
-</div>
-<div class="small">
+<section class="slide level2">
 
-<table class="links" style="border: none;">
-<tbody><tr>
-<td class="links">
-<span class="tab"></span><i class="fa-brands fa-github" aria-label="github"></i>
-</td>
-<td class="links">
-<a href="https://github.com/ctesta01/">github.com/ctesta01</a>
-</td>
-</tr>
-<tr>
-<td class="links">
-<span class="tab"></span><i class="fa-brands fa-mastodon" aria-label="mastodon"></i>
-</td>
-<td class="links">
-<a href="https://fediscience.org/@ctesta/">fediscience.org/ctesta</a>
-</td>
-</tr>
-<tr>
-<td class="links">
-<span class="tab"></span><i class="fa-solid fa-earth-americas" aria-label="earth-americas"></i>
-</td>
-<td class="links">
-<a href="https://ctesta.com">ctesta.com</a>
-</td>
-</tr>
-<tr>
-<td class="links">
-<span class="tab"></span><i class="fa-solid fa-registered" aria-label="registered"></i>
-</td>
-<td class="links">
-<a href="https://rug-at-hdsi.org"> rug-at-hdsi.org </a>
-</td>
-</tr>
-
-</tbody></table>
-</div>
-</div>
-</div>
-</section>
-<section id="dean-marengi" class="slide level2">
-<h2>Dean Marengi</h2>
-<div class="columns">
-<div class="column" style="width:30%;">
-<p><img data-src="DeanMarengi.png"></p>
-</div><div class="column" style="width:70%;">
-<p>Hi! I’m Dean Marengi. I’m a second year PhD student in Environmental Health …</p>
-</div>
-</div>
-</section>
-<section id="amanda-hernandez" class="slide level2">
-<h2>Amanda Hernandez</h2>
-<div class="columns">
-<div class="column" style="width:30%;">
-<p><img data-src="AmandaHernandez.jpg"></p>
-</div><div class="column" style="width:70%;">
-<p>Hi! I’m Amanda Hernandez. I’m a second year Masters student in Environmental Health …</p>
-</div>
-</div>
-</section>
-<section id="jarvis-chen" class="slide level2">
-<h2>Jarvis Chen</h2>
-<div class="columns">
-<div class="column" style="width:30%;">
-<p><img data-src="JarvisChen.jpg"></p>
-</div><div class="column" style="width:70%;">
-<p>Hi! I’m Jarvis Chen. <br><br></p>
-<p>I’m a lecturer in the Dept. of Social and Behavioral Sciences and one of the nicest, kindest, wisest people you’ll ever meet [Christian wrote this]. <br><br></p>
-</div>
-</div>
-</section></section>
-<section>
-<section id="course-philosophy" class="title-slide slide level1 center" data-background-image="images/harvard-green.jpg" data-background-color="black" data-background-opacity="40%">
-<h1>course philosophy</h1>
-
-</section>
-<section id="our-goals" class="slide level2">
-<h2>our goals</h2>
-<p><br> our goal is to give you the roadmap, time, and space you need to grow your R skills. <br><br></p>
-<p>all our lecture recordings and slides will be online so you can refer back to them as you need to.</p>
-</section>
-<section id="some-pep-talk" class="slide level2">
-<h2>some pep talk</h2>
-<div class="smaller">
-<blockquote>
-<p>It’s easy when you start out programming to get really frustrated and think, “Oh it’s me, I’m really stupid,” or, “I’m not made out to program.” But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later. <br><br> —— Hadley Wickham, Chief Scientist at Posit (Formerly RStudio)</p>
-</blockquote>
-</div>
-</section>
-<section id="course-overview" class="slide level2">
-<h2>course overview</h2>
-<p>before we dive in, we want to make sure you have a few things in hand:</p>
-<ul>
-<li>our course website: <br> <span class="tab"></span><i class="fa-solid fa-earth-americas" aria-label="earth-americas"></i> <a href="https://id529.github.io/" class="uri">https://id529.github.io/</a></li>
-<li>our syllabus: <br> <span class="tab"></span><i class="fa-solid fa-graduation-cap" aria-label="graduation-cap"></i> <a href="https://id529.github.io/syllabus/" class="uri">https://id529.github.io/syllabus/</a></li>
-</ul>
-<center>
-<img height="200px" src="images/dog-with-paper.gif" alt="gif of a golden retriever with the newspaper">
-</center>
-</section>
-<section id="key-objectives" class="slide level2">
-<h2>key objectives</h2>
-<div class="smaller">
-<ul>
-<li class="fragment">students will learn <span class="carrot"><strong>best practices</strong></span> for data cleaning, management, and project organization in the context of R programming based analyses focused on Population Health Science.</li>
-<li class="fragment"><span class="carrot"><strong>reproducibility</strong></span> will be emphasized to teach students both the merits of reproducible workflows as well as how to build and implement them.</li>
-<li class="fragment">learning git and github to <span class="carrot"><strong>version control</strong><span> and <span class="carrot"><strong>disseminate</strong></span> code.</span></span></li>
-</ul>
-</div>
-</section>
-<section id="key-objectives-continued" class="slide level2">
-<h2>key objectives (continued)</h2>
-<div class="smaller">
-<ul>
-<li class="fragment"><span class="carrot"><strong>exploratory data analysis</strong></span> skills including:
-<ul>
-<li class="fragment"><span class="carrot"><strong>data visualization</strong></span></li>
-<li class="fragment">working with <span class="carrot"><strong>regression models</strong></span></li>
-<li class="fragment">creating <span class="carrot"><strong>professional reports</strong></span></li>
-</ul></li>
-<li class="fragment">how to leverage online resources to <span class="carrot"><strong>get help</strong></span> with any R programming challenges.</li>
-<li class="fragment">students will get great picture of the <span class="carrot"><strong>spectacular</strong></span> kinds of data analysis they can go on to do!</li>
-</ul>
-</div>
-</section>
-<section id="tracks-for-the-course" class="slide level2">
-<h2>tracks for the course</h2>
-<div style="font-size: 32px;">
-<p>keeping in mind that it’s impossible to learn <em>all</em> of r in any short period of time, we want to encourage you to pick a track to focus your energy on the most.</p>
-<div>
-<ul>
-<li class="fragment">Beginner/Novice</li>
-<li class="fragment">Data Visualization</li>
-<li class="fragment">Data Cleaning/Management and Working with Codebooks</li>
-<li class="fragment">Programming and Software Engineering</li>
-<li class="fragment">Other Niche Topics in R</li>
-</ul>
-</div>
-<aside class="notes">
-<ul>
-<li>Beginner/Novice
-<ul>
-<li>This track emphasizes learning the basics of R and RStudio, learning the terminology, data types, and how to formulate your questions/searches to best get help for R programming challenges.</li>
-</ul></li>
-<li>Data Visualization
-<ul>
-<li>This track emphasizes data visualization skills, learning how to use ggplot2, and the important considerations that go into making an effective data visualization (e.g., communicative precise language, appropriate and meaningful use of legends, accessibility, etc.).</li>
-</ul></li>
-<li>Data Cleaning/Management and Working with Codebooks
-<ul>
-<li>This track emphasizes how to go from a raw dataset to something that can be worked with in R, documenting the process, and making that process reproducible and robust.</li>
-</ul></li>
-<li>Programming and Software Engineering
-<ul>
-<li>This track emphasizes the role of designing software systems, writing packages in R, clean code and code hygiene, and leveraging tools designed to accelerate the effectiveness of programmers like automated testing.</li>
-</ul></li>
-<li>Other Niche Topics in R
-<ul>
-<li>Is there a specific functionality available in R that you want to get better with not listed above? Make sure to be precise. Examples include interactive web applications, interactive data visualizations, machine learning pipelines, etc.</li>
-</ul></li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</div>
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
-<center>
-<img src="shocked_pikachu_any_analysis.png" alt="That moment when you realize R can be used for basically any statistical analysis you can imagine, shocked pikachu meme" style="width: 50%">
-</center>
-</section>
-<section id="homework" class="slide level2">
-<h2>homework</h2>
-<div class="smaller">
-<div class="fragment">
-<p>each day will be accompanied by homework assignments that will be distributed and submitted through github. <br><br></p>
-</div>
-<div class="fragment">
-<p>additionally, we are asking you to do peer reviews on the homework so that:</p>
-</div>
-<div>
-<ol type="1">
-<li class="fragment">you benefit from learning how others approached the same problem, and</li>
-<li class="fragment">you practice articulating constructive feedback related to programming in R.</li>
-</ol>
-</div>
-</div>
-</section>
-<section id="rubric-for-homework" class="slide level2 small">
-<h2>rubric for homework</h2>
-<div class="fragment">
-<p>your homework will be evaluated on the following rubric:</p>
-</div>
-<div class="fragment">
-<table>
-<colgroup>
-<col style="width: 101%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><table>
-<colgroup>
-<col style="width: 71%">
-<col style="width: 28%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>objective/principle</th>
-<th style="text-align: right;">percent of grade</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>does it accomplish the stated goal? is it complete?</td>
-<td style="text-align: right;">25%</td>
-</tr>
-<tr class="even">
-<td>is it well documented and commented?</td>
-<td style="text-align: right;">25%</td>
-</tr>
-<tr class="odd">
-<td>is it transparent and clearly motivated? is it elegant, i.e., not kludgey?</td>
-<td style="text-align: right;">25%</td>
-</tr>
-<tr class="even">
-<td>does it incorporate what’s been taught? does it reflect growth?</td>
-<td style="text-align: right;">25%</td>
-</tr>
-</tbody>
-</table></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="fragment">
-<p>we really just want to see that you’re <span class="carrot"><strong>learning</strong></span>, <span class="carrot"><strong>growing as a programmer</strong></span>, and using the homeworks to <span class="carrot"><strong>challenge yourself in a healthy, productive way</strong></span>.</p>
-</div>
-<div class="fragment">
-<center>
-<img src="graphics/memes/its-fine-meme.jpg" height="280px" alt="a little dog surrounded by lush plants saying this is fine">
-</center>
-</div>
-</section>
-<section id="rubric-for-peer-review" class="slide level2 small">
-<h2>rubric for peer review</h2>
-<div class="fragment">
-<p>your peer reviews will be evaluated on the following rubric:</p>
-</div>
-<div class="fragment">
-<table>
-<colgroup>
-<col style="width: 101%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><table>
-<colgroup>
-<col style="width: 71%">
-<col style="width: 28%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>objective/principle</th>
-<th style="text-align: right;">percent of grade</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>does it include constructive criticism?</td>
-<td style="text-align: right;">50%</td>
-</tr>
-<tr class="even">
-<td>does it include positive feedback (i.e., things you liked about their approach)?</td>
-<td style="text-align: right;">50%</td>
-</tr>
-</tbody>
-</table></td>
-</tr>
-</tbody>
-</table>
-</div>
-<center>
-<div class="fragment">
-<p><img src="graphics/hodu_pics/constructive_feedback.jpeg" alt="one puppy barking at another who is standing on a platform" height="400px"> <img src="graphics/hodu_pics/hodu_and_sabre.jpeg" alt="one puppy barking at another who is standing on a platform" height="400px"></p>
-</div>
-</center>
-<aside class="notes">
-<p>not only was Hodu giving his brother some constructive feedback, but his brother is clearly safely secured in a supportive environment, elevated on a pedestal of positive intention.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="class-discussions" class="slide level2 smaller">
-<h2>class discussions</h2>
-<div class="fragment">
-<p>throughout the class, we’ll be having several discussion based activities in various formats. <br><br></p>
-</div>
-<div class="fragment">
-<p>we want to make sure everyone has a chance to shine, so please make sure that you 1) aren’t dominating the discussions and 2) please be aware that your questions are completely welcome in our discussions. <br><br></p>
-</div>
-<div class="fragment">
-<p>if you would like to prepare for the discussions in advance, make sure to take a look at the syllabus and timetables on our course website for what we’ll be covering in advance.</p>
-</div>
-<div class="absolute" style="top: 70%; left: 75%; ">
-<iframe src="https://giphy.com/embed/9Sxp3YOKKFEBi" width="480" height="258" frameborder="0" class="giphy-embed" allowfullscreen="">
+<div style="position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;">
+<iframe sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen="true" allowtransparency="true" frameborder="0" height="315" src="https://www.mentimeter.com/app/presentation/alniwitpfsavd4vszcem1e92if2yrom4/embed" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" width="420">
 </iframe>
-<p>
-<a href="https://giphy.com/gifs/film-total-fozzie-bear-9Sxp3YOKKFEBi">via GIPHY</a>
-</p>
-</div>
-</section>
-<section id="our-class-mascot" class="slide level2">
-<h2>our class mascot</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
-<center>
-<img src="graphics/hodu_pics/christmas_hodu.jpeg" alt="hodu, a white fluffy dog, in a santa hat with a tie" height="550px">
-</center>
-</div><div class="column smaller" style="width:40%;">
-<div class="fragment">
-<p>hodu is a 1.5 year old samoyed. <br><br></p>
-</div>
-<div class="fragment">
-<p>호두 (hodu) means walnut in korean. <br><br></p>
-</div>
-<div class="fragment">
-<p>he loves dogs, people, and treats. <br><br></p>
-</div>
-<div class="fragment">
-<p>you will have the chance to meet him friday at 5:30 pm in the courtyard.</p>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="time-for-a-live-demo" class="title-slide slide level1 center" data-background-color="black" data-background-opacity="40%" data-background-image="transition_slides/yen-vu.jpg">
-<h1>time for a live demo 🤞</h1>
-
-</section>
-<section id="what-are-some-of-the-principles-that-the-live-demo-employed" class="slide level2" data-background-color="black" data-background-opacity="30%" data-background-image="transition_slides/corey-bruce.jpg">
-<h2>what are some of the principles that the live demo employed?</h2>
-<div class="fragment">
-<p>enter your thoughts on <a href="https://bit.ly/day1-discussion">bit.ly/day1-discussion</a></p>
-</div>
-<div>
-<ul>
-<li class="fragment">code makes the analysis repeatable</li>
-<li class="fragment">project organization, code hygiene and documentation</li>
-<li class="fragment">data visualizations support exploratory data analysis and communicating results</li>
-<li class="fragment">ample reliance on tools that are already out there</li>
-</ul>
 </div>
 <div class="footer footer-default">
 
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="lecture1_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="self_intros_and_discussion_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="lecture1_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="lecture1_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="lecture1_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="lecture1_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="lecture1_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="self_intros_and_discussion_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="self_intros_and_discussion_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="self_intros_and_discussion_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="self_intros_and_discussion_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="self_intros_and_discussion_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="lecture1_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="lecture1_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="lecture1_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="lecture1_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="self_intros_and_discussion_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="self_intros_and_discussion_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="self_intros_and_discussion_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="self_intros_and_discussion_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -776,7 +385,7 @@
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: 'c/t',
+        slideNumber: false,
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
