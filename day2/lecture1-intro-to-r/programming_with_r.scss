@@ -16,6 +16,21 @@
   color: #e67e22;
 }
 
+code {
+  line-height: 1.5 !important;
+}
+
+code .dark-background {
+  color: white !important;
+  background-color: none;
+}
+
+div .cell-output.cell-output-stdout {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+
 .smaller {
   font-size: 36px;
 }
