@@ -25,14 +25,14 @@ Homework 4
 Available/Recommended Reading:
 
   * Reproducibility:
-    * *Draw Me A Project* https://masalmon.eu/2021/06/30/r-projects/
-    * *Reproducibility of Scientific Results* https://plato.stanford.edu/entries/scientific-reproducibility/ 
-    * *Best Practices for Scientific Computing* https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
-    * *Good Enough Practices for Scientific Computing* https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510 
-    * *Replicability, Robustness, and Reproducibility in Psychological Science* https://pure.uvt.nl/ws/portalfiles/portal/59415163/MTO_Nuijten_replicability_robustness_and_reproducibility_Annual_Review_of_Psy_2022.pdf 
-    * *A manifesto for reproducible science* https://www.nature.com/articles/s41562-016-0021
+    * *Draw Me A Project* <https://masalmon.eu/2021/06/30/r-projects/>
+    * *Reproducibility of Scientific Results* <https://plato.stanford.edu/entries/scientific-reproducibility/>
+    * *Best Practices for Scientific Computing* <https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745>
+    * *Good Enough Practices for Scientific Computing* <https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510>
+    * *Replicability, Robustness, and Reproducibility in Psychological Science* <https://pure.uvt.nl/ws/portalfiles/portal/59415163/MTO_Nuijten_replicability_robustness_and_reproducibility_Annual_Review_of_Psy_2022.pdf>
+    * *A manifesto for reproducible science* <https://www.nature.com/articles/s41562-016-0021>
   * Regression Modeling:
-    * *Introduction to Poisson Regression, Beyond Multiple Linear Regression* https://bookdown.org/roback/bookdown-BeyondMLR/ch-poissonreg.html 
-    * *Poisson Regression* https://rpubs.com/franzbischoff/poisson_regression 
-    * *Logistic Regression, Beyond Multiple Linear Regression* https://bookdown.org/roback/bookdown-BeyondMLR/ch-logreg.html 
+    * *Introduction to Poisson Regression, Beyond Multiple Linear Regression* <https://bookdown.org/roback/bookdown-BeyondMLR/ch-poissonreg.html>
+    * *Poisson Regression* <https://rpubs.com/franzbischoff/poisson_regression>
+    * *Logistic Regression, Beyond Multiple Linear Regression* <https://bookdown.org/roback/bookdown-BeyondMLR/ch-logreg.html>
     

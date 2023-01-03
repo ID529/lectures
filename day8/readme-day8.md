@@ -15,4 +15,4 @@ Homework:
 
 Recommended materials: 
 
-  * Hadley Wickham on Many Models: https://youtu.be/cU0-NrUxRw4
+  * Hadley Wickham on Many Models: <https://youtu.be/cU0-NrUxRw4>

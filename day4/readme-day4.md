@@ -19,31 +19,24 @@ Available/Recommended Reading (Remember! You don't have to read all of this! Jus
 
   * Tidy Data by Hadley Wickham <https://vita.had.co.nz/papers/tidy-data.pdf>
   * Diverse Data Sources
-    * The readme to the datapasta package: https://github.com/MilesMcBain/datapasta
-    * *Analyzing US Census Data by Kyle Walker*, Chapter 2: An introduction to tidycensus: https://walker-data.com/census-r/an-introduction-to-tidycensus.html
-    * The `readr` cheatsheet: https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf 
-    * *Working with Qualtrics Data - Part 1: Importing Data, ROpenSci* https://ropensci.org/blog/2022/08/02/working-with-qualtrics-data-importing/
+    * The readme to the datapasta package: <https://github.com/MilesMcBain/datapasta>
+    * *Analyzing US Census Data by Kyle Walker*, Chapter 2: An introduction to tidycensus: <https://walker-data.com/census-r/an-introduction-to-tidycensus.html>
+    * The `readr` cheatsheet: <https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf>
+    * *Working with Qualtrics Data - Part 1: Importing Data, ROpenSci* <https://ropensci.org/blog/2022/08/02/working-with-qualtrics-data-importing/>
   * Handling factors and date-times in R: 
-    * *Chapter 15: Factors, R for Data Science by Hadley Wickham and Garrett Grolemund* https://r4ds.had.co.nz/factors.html 
-    * *Chapter 16: Dates and Times, R for Data Science by Hadley Wickham and Garrett Grolemund* https://r4ds.had.co.nz/dates-and-times.html
-    * *Forcats cheatsheet* https://raw.githubusercontent.com/rstudio/cheatsheets/main/factors.pdf
-    * *Lubridate cheatsheet* https://raw.githubusercontent.com/rstudio/cheatsheets/main/lubridate.pdf
+    * *Chapter 15: Factors, R for Data Science by Hadley Wickham and Garrett Grolemund* <https://r4ds.had.co.nz/factors.html>
+    * *Chapter 16: Dates and Times, R for Data Science by Hadley Wickham and Garrett Grolemund* <https://r4ds.had.co.nz/dates-and-times.html>
+    * *Forcats cheatsheet* <https://raw.githubusercontent.com/rstudio/cheatsheets/main/factors.pdf>
+    * *Lubridate cheatsheet* <https://raw.githubusercontent.com/rstudio/cheatsheets/main/lubridate.pdf>
   * Working with Regression Models: 
-    * *Introduction to `broom`* https://broom.tidymodels.org/articles/broom.html 
-    * sjPlot: 
-      * *Summary of Regression Models as HTML Table* https://strengejacke.github.io/sjPlot/articles/tab_model_estimates.html 
-      * *Plotting Estimates of Regression Models* https://strengejacke.github.io/sjPlot/articles/plot_model_estimates.html 
-      * *How to Easily Visualize Data And Model Results* https://yuzar-blog.netlify.app/posts/2022-08-01-sjplot/
-    * A nice introduction to linear model diagnostics plots: https://book.stat420.org/model-diagnostics.html 
-    * *Interpretation of R's lm() output*: https://stats.stackexchange.com/questions/5135/interpretation-of-rs-lm-output 
+    * *Introduction to `broom`* <https://broom.tidymodels.org/articles/broom.html>
+    * A nice introduction to linear model diagnostics plots: <https://book.stat420.org/model-diagnostics.html>
+    * *Interpretation of R's lm() output*: <https://stats.stackexchange.com/questions/5135/interpretation-of-rs-lm-output>
   * Mapping:
-    * *Chapter 8 Plotting Spatial Data, Spatial Data Science* https://r-spatial.org/book/08-Plotting.html 
+    * *Chapter 8 Plotting Spatial Data, Spatial Data Science* <https://r-spatial.org/book/08-Plotting.html>
       * This focuses more on `sf` which is the most modern and increasingly most popular paradigm 
       for working with spatial data in R
-    * *Chapter 9 Making Maps with R, Geocomputation with R* https://geocompr.robinlovelace.net/adv-map.html 
+    * *Chapter 9 Making Maps with R, Geocomputation with R* <https://geocompr.robinlovelace.net/adv-map.html>
       * This chapter has a lot of focus on `tmap`, a package for creating thematic maps
-    
-    
-    
     
     

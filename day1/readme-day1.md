@@ -12,7 +12,7 @@
    * 4:45-5:00: Demo of how to do the homework
    * 5:00-5:05: Positive Affirmations
    * 5:05-5:30 Activity: Setup GitHub accounts + work
-   on the homework + chat with classmates
+   on the homework + peruse recommended materials + chat with classmates
  
 Recommended materials: 
 

@@ -16,4 +16,4 @@ Homework:
 Recommended reading: 
 
   * Harms and Ethics in Data Science and Machine Learning: 
-    * The *Data Science Ethics* chapter from the *Modern Data Science with R* book: https://mdsr-book.github.io/mdsr2e/ch-ethics.html
+    * The *Data Science Ethics* chapter from the *Modern Data Science with R* book: <https://mdsr-book.github.io/mdsr2e/ch-ethics.html>
