@@ -1,0 +1,1034 @@
+---
+title: "Factors and date-times"
+format: 
+  revealjs:
+    theme: [simple, custom.scss]
+    logo: images/id529-sticker.png
+    echo: true
+    slide-number: true
+---
+
+```{r}
+#| label: load-packages
+#| include: false
+
+library(tidyverse)
+library(lubridate)
+library(palmerpenguins)
+library(ID529data)
+load("data/covid22.rds")
+# data(nhanes, package = 'ID529data')
+```
+
+
+## Learning objectives {.smaller}
+
+-   Understand the importance of properly handling factors and date-times in data analysis
+
+-   Learn about challenges and common mistakes when working with factors and date-times in R
+
+-   Be familiar with packages for working with factors and date-times
+
+    -   `forcats::` for manipulating factors in R
+
+    -   `lubridate::` for handling date-times
+
+# Factors
+
+## What are factors? {.smaller}
+
+-   A **factor** is an integer vector that uses **levels** to store attribute information.
+
+    -   Levels serve as the logical link between **integers** and **categorical** values.
+
+-   You can transform numeric values or character strings into factors, it's just another class of data
+
+-   Factors retain the order of your variables through levels.
+
+-   Factors have a lot more rules than character strings
+
+    -   Once you understand the rules, you have a lot more manual control over your data (while still being reproducible)
+
+
+## What are factors? {.smaller}
+<br>
+
+::: columns
+
+::: {.column width="45%"}
+
+Factors are particularly useful for ordinal data, where our data is categorical, but there is an order to the categories.
+<br>
+<br>
+Factors are also useful when values are repeated frequently, and there's a pre-specified set of distinct levels. 
+:::
+
+::: {.column width="10%"}
+<br>
+:::
+
+::: {.column width="45%"}
+
+For example:
+
+-   Age groups
+
+-   Quantile groups
+
+-   Months/Days of the week
+
+:::
+
+:::
+
+## Working with factors {.smaller}
+<br>
+Your data may already have variables as factors, or you can set them manually with `factor()`.
+<br>
+<br>
+
+::: fragment
+::: columns 
+
+:::  {.column width="50%"}
+The penguins data has several variables that come pre-set as factors. Based on the column names, which ones seem like good factor candidates?
+:::
+
+:::  {.column width="10%"}
+:::
+
+::: {.column width="40%"}
+```{r}
+library(palmerpenguins)
+colnames(penguins)
+
+```
+:::
+:::
+:::
+
+## Working with factors {.smaller}
+
+The `glimpse()` function gives us an idea of the class of each column.
+<br>
+```{r}
+glimpse(penguins)
+
+```
+
+## Working with factors {.smaller}
+
+::: columns
+::: {.column width="50%"}
+Let's look at the `species` column to see how R handles factors.
+<br>
+<br>
+What do you notice about the output? 
+
+::: incremental 
+
+-   R returns the values in the order they appear in the dataset
+-   It also returns a "levels" statement with the values in alphabetical order
+
+:::
+:::
+
+::: {.column width="50%"}
+```{r}
+unique(penguins$species)
+```
+:::
+
+:::
+
+## Factor rules  {.smaller}
+
+-   R by default returns your data in the order it occurs
+
+-   Factors create an order and retain that order for all future uses of the variable
+
+```{r}
+#| output-location: fragment
+ggplot(penguins, aes(x = species)) + 
+  geom_bar()
+```
+
+## Factor rules: Missingness {.smaller}
+
+-   Factors have a specific set of rules for missing values
+
+    -   Factors retain NAs, but do not return NAs as a level by default
+    -   Helpfully, it doesn't drop NAs from the analysis, just because it's not a level
+    -   NAs will always be last in the factor order
+
+::: fragment
+Let's look at the `sex` column:
+```{r}
+unique(penguins$sex)
+```
+:::
+
+
+## Factor rules: Missingness {.smaller}
+
+```{r}
+#| output-location: fragment
+ggplot(penguins, aes(x = sex)) + 
+  geom_bar()
+```
+
+
+## Factor rules: Missingness {.smaller}
+```{r}
+#| output-location: fragment
+ggplot(penguins, aes(x = species, fill = sex)) +
+  geom_bar(position = "dodge") +
+  facet_wrap(~island)
+```
+
+## Empty groups + NAs in factors {.smaller}
+
+-   Once levels are set, they will be retained and kept consistent between groups, even when there is nothing in the group
+
+-   NAs are not considered their own group by default
+
+    -   They are not dropped, but they aren't considered a "level"
+
+## Empty groups + NAs in factors {.smaller}
+<br>
+Let's look at just the Adelie penguins. 
+<br>
+<br>
+Because `species` is a factor, the information about other species is retained, even when there is nothing in that category.
+<br>
+
+
+```{r}
+#| output-location: fragment
+adelie_penguins <- penguins %>% 
+  filter(species == "Adelie")
+
+unique(adelie_penguins$species)
+```
+
+<br>
+
+::: fragment
+```{r}
+#| output-location: column
+table(adelie_penguins$species)
+
+```
+<br>
+```{r}
+#| output-location: column
+table(as.character(adelie_penguins$species))
+```
+:::
+
+## Empty groups + NAs in factors {.smaller}
+
+<br>
+
+::: columns
+::: {.column width="50%"}
+``` r
+ggplot(adelie_penguins, 
+       aes(x = sex, fill = species)) +
+  geom_bar(position = "dodge") +
+  facet_wrap(~island)
+```
+
+::: fragment
+<br>
+```{r}
+#| echo: false
+ggplot(adelie_penguins, aes(x = sex, fill = species)) +
+  geom_bar(position = "dodge") +
+  facet_wrap(~island)
+
+```
+:::
+:::
+
+::: {.column width="50%"}
+::: fragment
+``` {.r code-line-numbers="4"}
+ggplot(adelie_penguins, 
+       aes(x = sex, fill = species)) +
+  geom_bar(position = "dodge") +
+  scale_fill_discrete(drop=FALSE) +
+  facet_wrap(~island)
+```
+:::
+
+::: fragment
+<br>
+```{r}
+#| echo: false
+ggplot(adelie_penguins, aes(x = sex, fill = species)) +
+  geom_bar(position = "dodge") +
+  scale_fill_discrete(drop=FALSE) +
+  facet_wrap(~island)
+
+```
+:::
+:::
+:::
+
+## Empty groups + NAs in factors {.smaller}
+
+-  Remember: NAs are not considered a factor level, so if we filter out the NAs, they will not be included in the legend even if we specify to keep all levels.
+
+```{r}
+#| output-location: fragment
+female_penguins <- penguins %>% 
+  filter(sex == "female")
+
+ggplot(female_penguins, aes(x = species, fill = sex)) +
+  geom_bar(position = "dodge") +
+  scale_fill_discrete(drop=FALSE) +
+  facet_wrap(~island)
+
+```
+
+## Advantages of factors/use cases {.smaller}
+
+-   Retain the order of a variable, even if it is different between facets
+
+    -   Improves reproducibility! Between scripts, computers, datasets...
+
+-   Recode variables to have more intuitive labels
+
+-   Regressions/other analyses
+
+    -   Set reference levels for categorical data
+
+
+## Case Study: NHANES {.smaller}
+
+Let's say we want to turn a continuous variable into categorical groups:
+
+-   Age quartiles
+
+-   Clinically relevant blood pressure categories
+
+
+::: aside
+Both would benefit from factors!
+:::
+
+## Creating age quartiles {.smaller}
+
+```{r}
+#| output-location: fragment
+
+# what is in the age column? 
+summary(nhanes$age)
+
+```
+
+```{r}
+#| output-location: fragment
+# create age quartiles
+nhanes$age_quartiles <- ntile(nhanes$age, 4)
+
+# what type of data is age_quartile? 
+class(nhanes$age_quartiles)
+```
+
+::: fragment
+```{r}
+#| output-location: fragment
+ggplot(nhanes, aes(x = age_quartiles, y = mean_BP)) + 
+  geom_boxplot()
+```
+:::
+
+## Transforming `age_quartiles` into a factor {.smaller}
+
+```{r}
+#| output-location: fragment
+
+nhanes$age_quartiles <- factor(nhanes$age_quartiles)
+
+# now what type of data is age_quartile? 
+class(nhanes$age_quartiles)
+```
+
+```{r}
+#| output-location: fragment
+ggplot(nhanes, aes(x = age_quartiles, y = mean_BP)) + 
+  geom_boxplot()
+```
+
+## Transforming `age_quartiles` into a factor {.smaller}
+
+What if we wanted the labels to convey more information?
+
+```{r}
+#| output-location: fragment
+nhanes <- nhanes %>% 
+  group_by(age_quartiles) %>% 
+  mutate(age_quartiles = factor(age_quartiles, 
+                                labels = c(paste0("[", min(age), "-", max(age), "]"))))
+
+unique(nhanes$age_quartiles)
+
+
+```
+
+## Transforming `age_quartiles` into a factor {.smaller}
+
+```{r}
+#| output-location: fragment
+ggplot(nhanes, aes(x = age_quartiles, y = mean_BP)) + 
+  geom_boxplot()
+```
+
+## Creating blood pressure categories {.smaller}
+
+We also want to create clinically relevant categories of blood pressure:
+
+```{r}
+nhanes$bp_cat <- case_when(nhanes$mean_BP < 90 ~ "low BP",
+                           nhanes$mean_BP > 140 ~ "high BP",
+                           TRUE ~ "normal BP")
+```
+
+## Creating blood pressure categories {.smaller}
+
+Because `bp_cat` is not a factor yet, R has plotted the variable in alphabetical order by default. There may be some situations where this is sufficient, but for ordinal data, the order of the data is important!
+
+```{r}
+#| output-location: fragment
+# look at blood pressure categories with age
+ggplot(nhanes, aes(x = bp_cat, y = age)) + 
+  geom_boxplot()
+```
+
+## Transforming `bp_cat` into a factor {.smaller}
+
+```{r}
+# manually set the order
+nhanes$bp_cat <- factor(nhanes$bp_cat, levels = c("high BP", "normal BP", "low BP"))
+
+# now the levels will retain the order for us 
+unique(nhanes$bp_cat)
+```
+
+::: fragment
+```{r}
+#| output-location: fragment
+# when we plot it, the order will 
+# be determined by the levels
+ggplot(nhanes, aes(x = bp_cat, y = age)) + 
+  geom_boxplot()
+```
+:::
+
+## Working with Factors {.smaller}
+
+The `forcats::` package (short for "**For Cat**egorical") is a helpful set of functions for working with factors.
+
+## Useful `forcats::` functionss {.smaller}
+
+Check out the `forcats::` cheatsheet for more info on how these functions work!
+
+-   `fct_drop()`
+
+-   `fct_relevel()`
+
+-   `fct_rev()`
+
+-   `fct_infreq()`
+
+-   `fct_inorder`
+
+::: aside
+These functions can be tempermental! If it's not working as you expect, you can always go back to manually setting the order with `factor()`
+:::
+
+## Incorporating factors into your work flow {.smaller}
+
+::: incremental
+-   When you read in data, check how your variables load
+
+    -   Do you have factors, when you really want strings? Do you have strings, when you really want factors?
+
+    -   If you do have factors, check the levels with `levels()` or `unique()`
+
+-   Plan out your script with pseudocode
+
+    -   On your second pass through, think through which stages factors might be most helpful for and add it to your pseudocode
+
+        -   Is your data ordinal? Do you want it sorted by another variable? Is there an initiative reference category?
+
+        -   How do you want to handle NAs?
+
+-   Once you have a first draft script, make sure to check that your factors aren't doing anything weird
+:::
+
+## ⚠️ Caution: factors {.smaller}
+
+Factors operate under a very strict set of rules. If you aren't careful, you can accidentally create issues in your dataset
+
+## ⚠️ Caution: factor → numeric {.smaller}
+
+Let's say we wanted to transform a "year" column from an integer to a factor to make a plot with a different boxplot for each year:
+
+```{r}
+#| output-location: fragment
+
+penguins_fctyr <- penguins %>% 
+  mutate(year = factor(year))
+
+ggplot(penguins_fctyr, aes(x = species, y = flipper_length_mm, color = year)) + 
+  geom_boxplot()
+
+```
+
+## ⚠️ Caution: factor → numeric {.smaller}
+
+Later in your script, you decide you want to include `year` as a continuous variable, so you transform `year` into an integer. Watch what happens:
+
+```{r}
+
+penguins_num <- penguins_fctyr %>% 
+  mutate(year = as.integer(year))
+
+unique(penguins_num$year)
+
+```
+<br>
+
+::: fragment
+
+So what do you do? 
+
+-   In some cases, you may want to set factors locally within a particular piece of your script, rather than globally. 
+-   For example, you could run `as.factor()` around `year` within your `ggplot()`.
+
+```r
+ggplot(penguins, aes(x = species, y = flipper_length_mm, color = as.factor(year))) + 
+  geom_boxplot()
+```
+
+:::
+
+## ⚠️ Caution: typos {.smaller}
+
+If you don't have **exact** matches when you assign factor levels and labels, you're going to end up with a lot of NAs
+
+```{r}
+
+penguins_sizes <- penguins %>% 
+  mutate(size_cat = case_when(bill_length_mm > mean(bill_length_mm, na.rm = T) &
+                                bill_depth_mm > mean(bill_depth_mm, na.rm = T) & 
+                                flipper_length_mm > mean(flipper_length_mm, na.rm = T) ~ "big penguins",
+                              bill_length_mm < mean(bill_length_mm, na.rm = T) &
+                                bill_depth_mm < mean(bill_depth_mm, na.rm = T) & 
+                                flipper_length_mm < mean(flipper_length_mm, na.rm = T) ~ "baby penguins",
+                              TRUE ~ "normal penguins"))
+
+table(penguins_sizes$size_cat, useNA = "ifany")
+
+```
+
+::: fragment
+```{r}
+
+penguins_sizes$size_cat <- factor(penguins_sizes$size_cat, levels = c("baby penguins", "normal penguins", "big pengiuns"))
+
+table(penguins_sizes$size_cat, useNA = "ifany")
+```
+
+:::
+
+# Date-Times
+
+## Working with dates {.smaller}
+
+<br>
+
+-   What are some challenges you might anticipate working with dates?
+
+## Working with dates {.smaller}
+<br>
+Often, we need dates to function as both strings and numbers
+
+-   As strings, we want to have a fair amount of control over how they are presented. 
+
+-   As numbers, we may want to add/subtract time, account for time zones, and present them at different scales.  
+
+## Working with dates {.smaller}
+<br>
+There are lots of packages and functions that are helpful for working with dates. We'll talk primarily about the `lubridate::` package, but the goal today is to understand the components and rules of date-time objects so that you can apply these functions in your work. 
+
+## Working with dates {.smaller}
+<br>
+There are 3 ways that R stores and presents date/time data:
+
+-   dates
+
+-   times
+
+-   date-times
+
+::: aside 
+date-times are the most granular way to represent a moment in time!
+:::
+
+
+## Working with dates {.smaller}
+<br>
+To get an idea of how R formats dates, let's ask for the current date/time:
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| output-location: fragment
+today()
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| output-location: fragment
+now()
+```
+:::
+:::
+
+## Working with dates {.smaller}
+<br>
+But how do we actually work with this data? In practice, we might want to:
+
+::: fragment
+-   Know how much time has elapsed between two samples
+-   Collapse daily measurements into monthly averages
+-   Check whether the measurement was taken in the morning or evening
+-   Know which day of the week a measurement was taken on
+-   Convert time zones
+:::
+
+## `lubridate::` {.smaller}
+<br>
+
+::: columns
+
+::: {.column width="40%"}
+The `lubridate::` package is a handy way of storing and processing date-time objects. `lubridate::` categorizes date-time objects by the component of the date-time string they represent:
+
+-   year
+-   month
+-   day
+-   hour
+-   minute
+-   second
+
+:::
+
+::: {.column width="60%"}
+
+[![Artwork by \@allison_horst](images/lubridate.png)](https://twitter.com/allison_horst)
+
+:::
+:::
+
+##
+<center>
+
+🚨**IMPORTANT**🚨
+<br>
+From this point forward, all times will be presented in 24-hour time!!
+
+</center>
+
+## `lubridate::` basics {.smaller}
+<br>
+
+Once you have a date-time object, you can use `lubridate::` functions to extract and manipulate the different components.  
+
+::: fragment
+```{r}
+#| output-location: column
+year(now())
+```
+:::
+::: fragment
+```{r}
+#| output-location: column
+month(now())
+```
+:::
+::: fragment
+```{r}
+#| output-location: column
+month(now(), label = TRUE)
+```
+:::
+::: fragment
+```{r}
+#| output-location: column
+day(now())
+```
+:::
+::: fragment
+```{r}
+#| output-location: column
+yday(now())
+```
+:::
+::: fragment
+```{r}
+#| output-location: column
+wday(now())
+```
+:::
+::: fragment
+```{r}
+#| output-location: column
+wday(now(), label = TRUE)
+```
+:::
+::: fragment
+```{r}
+#| output-location: column
+hour(now())
+```
+:::
+::: fragment
+```{r}
+#| output-location: column
+minute(now())
+```
+:::
+::: fragment
+```{r}
+#| output-location: column
+second(now())
+```
+:::
+
+
+
+## `lubridate::` basics {.smaller}
+
+<br>
+`now()` returns a date-time object, while `today()` returns just a date. `lubridate::` has functions that allow us to force the date into a date-time and the date-time into a date:
+
+::: columns
+::: {.column width="50%"}
+```{r}
+today()
+```
+
+```{r}
+#| output-location: fragment
+as_datetime(today())
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+now()
+```
+
+```{r}
+#| output-location: fragment
+as_date(now())
+```
+:::
+:::
+
+## `lubridate::` basics {.smaller}
+<br>
+
+With `lubridate::`, we can also work with dates as a whole, rather than their individual components. Let's say we have a character string with the date, but we want R to transform it into a date-time object:
+
+```{r}
+#| output-location: column-fragment
+ymd("2023-01-17")
+```
+
+```{r}
+#| output-location: column-fragment
+ymd_hms("2023-01-17 13:30:00")
+```
+
+```{r}
+#| output-location: column-fragment
+ymd_hms("2023-01-17 13:30:00", tz = "EST")
+```
+
+::: aside
+`lubridate::` also allows you to move around the order of `ymd()`, so you can also run `dmy()` or `mdy()` -- however, the order is telling R how to identify the different components of your date, rather than what you want it to be. 
+:::
+
+## Time spans {.smaller}
+
+There are three classes we can apply to our date-times so that we can work with them arithmetically (aka manipulate time aka be a time wizard):
+
+-   durations (measured in seconds)
+-   periods (measured in weeks/months)
+-   intervals (have a start and end point)
+
+
+## Time spans {.smaller}
+
+:::: {.columns}
+
+::: {.column width="30%"}
+**Durations**
+
+-   fixed length in seconds
+
+```{r}
+ddays(9)
+```
+
+:::
+
+::: {.column width="3%"}
+<br>
+:::
+
+::: {.column width="30%"}
+**Periods**
+
+-   "human" times
+
+```{r}
+days(9)
+```
+
+:::
+
+::: {.column width="3%"}
+<br>
+:::
+
+::: {.column width="33%"}
+**Intervals**
+
+-   a duration with a start/end point
+
+```{r}
+interval(start = today(), 
+         end = today() + days(1))
+```
+
+
+:::
+
+
+::::
+
+## Durations: Subtraction {.smaller}
+<br>
+We can use arithmetic operators with durations: 
+<br>
+```{r}
+# how long does this class meet for each day? 
+class_length <- ymd_hms("2023-01-17 17:30:00") -  ymd_hms("2023-01-17 13:30:00")
+class_length
+```
+<br>
+<br>
+
+::: fragment
+
+Using a `as.duration()` wrapper, the result will be returned as a duration object:
+<br>
+```{r}
+as.duration(class_length)
+```
+
+:::
+
+## Durations: Multiplication {.smaller}
+<br>
+What if we want to know the total amount of time we get to spend together? :)
+<br>
+
+::: fragment
+
+```{r}
+# how many days does this class meet for? 
+class_dates <- c(seq(ymd('2023-01-09'),ymd('2023-01-13'), by = 1),
+                 seq(ymd('2023-01-17'),ymd('2023-01-20'), by = 1))
+class_dates
+
+
+```
+<br>
+```{r}
+#| output-location: column-fragment
+class_length*length(class_dates)
+```
+
+```{r}
+#| output-location: column-fragment
+as.duration(class_length)*length(class_dates)
+```
+
+:::
+
+## Durations: Addition {.smaller}
+<br>
+How else might we calculate it? 
+<br>
+<br>
+```{r}
+class_meeting_times <- data.frame(dates =  class_dates,
+                 week = c(rep(1, 5), rep(2, 4)),
+                 start_time = c(rep(hms("13:30:00"), 9)),
+                 end_time = c(rep(hms("17:30:00"), 9)))
+
+
+```
+
+<br>
+
+```{r}
+#| output-location: column-fragment
+class(class_meeting_times$dates)
+```
+
+```{r}
+#| output-location: column-fragment
+class(class_meeting_times$start_time)
+```
+<br>
+
+::: fragment
+
+```{r}
+as.duration(sum(as.duration(class_meeting_times$end_time-class_meeting_times$start_time)))
+```
+
+:::
+
+## Periods {.smaller}
+<br>
+Since periods operate using "human" time, we can add to periods using functions like `minutes()`, `hours()`, `days()`, and `weeks()`
+```{r}
+
+class_meeting_times$start_time[1] + hours(4)
+
+```
+
+## Intervals {.smaller}
+<br>
+Intervals can be created with the `interval()` function or with `%--%`. By default, intervals will be created in the date-time format you input. 
+```{r}
+interval(start = today(), end = ymd("2023-01-17"))
+today() %--% ymd("2023-01-17")
+
+
+```
+<br>
+
+::: fragment
+We can use `%within%` to check whether a date falls within our interval:
+```{r}
+class_date_interval <- interval(start = min(ymd(class_dates)), 
+                                end = max(ymd(class_dates)))
+
+#check whether a date happens during class
+ymd("2023-01-22") %within% class_date_interval
+ymd("2023-01-17") %within% class_date_interval
+```
+::: 
+
+## ⚠️  Caution: Working with intervals, durations, and periods {.smaller}
+<br>
+```{r}
+#| output-location: column-fragment
+class_meeting_times$start_time[1] + hours(4)
+```
+
+```{r}
+#| error: TRUE
+#| output-location: column-fragment
+class_meeting_times$start_time[1] + dhours(4)
+
+```
+<br>
+```{r}
+#| output-location: column-fragment
+interval(start = now(), 
+         end = ymd_hms("2023-01-12 17:30:00"))
+```
+::: fragment
+<br>
+```{r}
+#| output-location: column-fragment
+interval(start = now(), 
+         end = ymd_hms("2023-01-12 17:30:00",
+                       tz = "EST"))
+```
+::: 
+## ⚠️ Caution: time is a construct 🫠 {.smaller}
+<br>
+<br>
+
+::: columns
+
+::: {.column width="40%"}
+Leap years
+:::
+
+::: {.column width="10%"}
+<br>
+:::
+
+::: {.column width="50%"}
+```{r}
+leap_year(2024)
+
+ymd("2024-01-12") - dyears(1)
+
+```
+:::
+
+:::
+
+
+::: fragment
+
+::: columns
+
+::: {.column width="40%"}
+<br>
+Daylight savings
+
+-   durations measure consistent time in seconds
+-   periods work more like "human" time 
+
+:::
+
+::: {.column width="10%"}
+<br>
+:::
+
+::: {.column width="50%"}
+<br> 
+```{r}
+dst(today())
+dst("2023-03-12 13:30:00")
+
+ymd_hms("2023-03-11 13:30:00") + ddays(1)
+ymd_hms("2023-03-11 13:30:00") + days(1)
+
+
+```
+:::
+:::
+
+:::
+
+
+
+## Key takeaways
