@@ -4,80 +4,314 @@ format:
   revealjs:
     theme: [default, ggplot2.scss]
 slide-number: true
-# title-slide-attributes: 
-#   data-background-image: ""
-#   data-background-opacity: "60%"
-#   data-background-color: "black"
+title-slide-attributes:
+  data-background-image: "graphics/transition_slides/conny-schneider.jpg"
+  data-background-opacity: "60%"
+  data-background-color: "black"
 revealjs-plugins:
   - pointer
 execute: 
   echo: true
 ---
 
-## tidy data
+## some morals
 
-> “Happy families are all alike; every unhappy family is unhappy in its own way.” —— Leo Tolstoy
+:::{.fragment}
+> "The simple graph has brought more information to the data analyst's mind than any other device." —John Tukey
 
-> “Tidy datasets are all alike, but every messy dataset is messy in its own way.” —— Hadley Wickham
+:::
 
+:::{.fragment}
+> "It is true that data visualization is part data science and part art. That being said, even the most creative art is supported by theories that explain why it works." <br>—Michiko Wolcott
+
+:::
+## what is tidy data
+
+<img src="images/tidydata_1.jpg" alt="tidy data is a standard way of mapping the meaning of a dataset to its structure; in tidy data, each variable forms a column, each observation forms a row, and each cell is a single measure">
+
+:::{.footer .xxxsmall}
+graphic from <https://www.openscapes.org/blog/2020/10/12/tidy-data/>
+:::
+
+## what is tidy data
+
+<img src="images/tidydata_2.jpg" alt="tidy datasets are all alike, but messy datasets are all unique">
+
+:::{.footer .xxxsmall}
+graphic from <https://www.openscapes.org/blog/2020/10/12/tidy-data/>
+:::
+
+## what is tidy data
+
+in essence, tidy data is data that can be put through standardized tools
+
+<img src="images/tidydata_5.jpg" alt="tidy datasets facilitate a standardized workflow">
+
+:::{.footer .xxxsmall}
+graphic from <https://www.openscapes.org/blog/2020/10/12/tidy-data/>
+:::
 
 ## the grammar of graphics
 
-## some morals
+the "grammar of graphics" is the answer to the question "what is a statistical
+graphic?"
 
-> "The simple graph has brought more information to the data analyst's mind than any other device." —— John Tukey
+:::{.columns}
+:::{.column width='40%'}
+<img src='images/wilkinson.jpg' alt='the grammar of graphics was a book written by leland wilkinson, originally released in 2000'>
+:::
+:::{.column width='55%'}
+<img src='images/gglayers.png' alt='the components of a statistical graphic include: data, aesthetics, geometries, facets, statistics, coordinates, and a theme'>
 
-> "It is true that data visualization is part data science and part art. That being said, even the most creative art is supported by theories that explain why it works." —— Michiko Wolcott
+:::{.xxxsmall}
+graphic from <https://r.qcbs.ca/workshop03/book-en/grammar-of-graphics-gg-basics.html>
+:::
+:::
+:::
 
-## basic structure 
+## basic structure {.xsmall}
+
+the basic structure of a ggplot looks something like: 
 
 ```r
-library(ggplot2) # or library(tidyverse)
-ggplot(dataset, aes(x = some_variable, y = another_variable)) + 
+library(ggplot2)
+ggplot(dataset, aes(x = some_column, y = another_column)) + 
   geom_point() + 
-  some other options
+  <more options as desired>
 ```
+
+# let's do an example
 
 ## palmerpenguins {.xxsmall}
 
+here's the `palmerpenguins` dataset
 
 ```{r, echo=T, eval=T}
 library(palmerpenguins)
-library(tidyverse)
 head(penguins)
 ```
 
+## our first ggplot 
 
-## let's talk about visual channels
+```{r, echo=F}
+library(tidyverse)
+theme_set(theme_gray(base_size = 21))
+```
 
-## color
+:::{.xxsmall}
+```{r}
+#| fig.dpi: 900
+#| out-width: 50%
+#| fig-asp: 0.618
+#| fig-align: center
+ggplot(penguins, aes(x = bill_length_mm, bill_depth_mm)) + 
+  geom_point()
+```
+:::
 
-## shape 
+## our first ggplot {auto-animate="true"}
 
-## a list of visual channels 
+:::{.xxsmall}
+```{r}
+#| fig.dpi: 900
+#| out-width: 50%
+#| fig-asp: 0.618
+#| fig-align: center
+ggplot(penguins, aes(x = bill_length_mm, bill_depth_mm, color = species)) + 
+  geom_point()
+```
+:::
 
-  - linesize 
-  - linetype
-  - alpha 
-  - fill 
-  
-## geom_line
+## our first ggplot {auto-animate="true"}
+
+:::{.xxsmall}
+```{r}
+#| fig.dpi: 900
+#| out-width: 50%
+#| fig-asp: 0.618
+#| fig-align: center
+ggplot(penguins, aes(x = bill_length_mm, bill_depth_mm, color = species)) + 
+  geom_point() + 
+  xlab("Bill Length [mm]")
+```
+:::
+
+## our first ggplot {auto-animate="true"}
+
+:::{.xxsmall}
+```{r}
+#| fig.dpi: 900
+#| out-width: 50%
+#| fig-asp: 0.618
+#| fig-align: center
+ggplot(penguins,
+       aes(
+         x = bill_length_mm,
+         y = bill_depth_mm,
+         color = species,
+         shape = species
+       )) + 
+  geom_point() + 
+  xlab("Bill Length [mm]") +
+  ylab("Bill Depth [mm]")
+```
+:::
+
+## our first ggplot {auto-animate="true" .xxsmall}
+
+:::{.panel-tabset}
+
+## code 
+:::{.xxsmall}
+```{r eval=F}
+#| fig.dpi: 900
+#| out-width: 100%
+#| fig-asp: 0.618
+#| fig-align: center
+ggplot(penguins,
+       aes(
+         x = bill_length_mm,
+         y = bill_depth_mm,
+         color = species,
+         shape = species,
+         label = species,
+         group = species
+       )) + 
+  stat_ellipse() + 
+  geom_point() + 
+  geom_label(
+    data = penguins |> group_by(species) |> summarize(across(c(bill_length_mm, bill_depth_mm), mean, na.rm=T)),
+    alpha = 0.8
+  ) + 
+  xlab("Bill Length [mm]") +
+  ylab("Bill Depth [mm]") + 
+  ggtitle("Relationship of Species, Bill Length, and Bill Depth",
+          "Penguins observed near Palmer Station, Antarctica, 2007-2009") +
+  theme_bw() + 
+  theme(legend.position = 'none')
+```
+:::
+
+## plot
+
+```{r echo=F}
+#| fig.dpi: 900
+#| out-width: 90%
+#| fig-asp: 0.618
+#| fig-width: 7
+#| fig-align: center
+ggplot(penguins,
+       aes(
+         x = bill_length_mm,
+         bill_depth_mm,
+         color = species,
+         shape = species,
+         label = species,
+         group = species
+       )) + 
+  stat_ellipse() + 
+  geom_point() + 
+  geom_label(
+    data = penguins |> group_by(species) |> summarize(across(c(bill_length_mm, bill_depth_mm), mean, na.rm=T)),
+    alpha = 0.8
+  ) + 
+  xlab("Bill Length [mm]") +
+  ylab("Bill Depth [mm]") + 
+  ggtitle("Relationship of Species, Bill Length, and Bill Depth",
+          "Penguins observed near Palmer Station, Antarctica, 2007-2009") +
+  theme_bw() + 
+  theme(legend.position = 'none')
+```
+
+:::
+
+## visual channels
+
+<img src='images/channels.png' alt='visual channels include: position, size, length, shape, color, texture, angle, linetype, transparency, luminance'>
+
+## visual channels
+
+<img src='images/plot_examples.png'>
+
+:::{.footer .xxxsmall}
+image from <https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/>
+:::
 
 # univariate geoms 
 
-## geom_histogram
+## geom_bar {.xsmall}
 
-## geom_density
+```{r}
+# if you want ggplot to tally up your data, use geom_bar
+ggplot(penguins, aes(x = species)) + 
+  geom_bar()
+```
 
-## geom_bar and geom_col
+## geom_col {.xsmall}
+
+```{r}
+# if your data are already tallied up, use geom_col
+counts_df <- count(penguins, species)
+counts_df
+```
+
+:::{.xxsmall}
+```{r}
+#| output-location: column
+ggplot(counts_df, aes(x = species, y = n)) + 
+  geom_col()
+```
+:::
+
+## geom_histogram {.xxsmall}
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm)) + 
+  geom_histogram()
+```
+
+
+## geom_histogram {.xxsmall}
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm)) + 
+  geom_histogram(bins = 50)
+```
+
+## geom_histogram {.xxsmall}
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, fill = species)) + 
+  geom_histogram()
+```
+
+## geom_density {.xsmall}
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm)) + 
+  geom_density()
+```
+
+## geom_density {.xsmall}
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, fill = species)) + 
+  geom_density()
+```
+
+## geom_density {.xsmall}
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, fill = species)) + 
+  geom_density(alpha = 0.7)
+```
 
 # bivariate geoms
 
+
+
 ## geom_point {.xxsmall}
 
-```{r, echo=F}
-theme_set(theme_gray(base_size = 21))
-```
 
 ```{r}
 #| fig.dpi: 900
@@ -86,55 +320,569 @@ theme_set(theme_gray(base_size = 21))
 #| fig-align: center
 ggplot(penguins, 
        aes(
-         x = body_mass_g, 
+         x = flipper_length_mm, 
          y = bill_length_mm, 
          color = species)) +
   geom_point()
 ```
 
+## geom_point {.xxsmall}
 
-## geom_line
 
-## geom_area
+```{r}
+#| fig.dpi: 900
+#| out-width: 50%
+#| fig-asp: 0.618
+#| fig-align: center
+ggplot(penguins, 
+       aes(
+         x = flipper_length_mm, 
+         y = bill_length_mm, 
+         color = species)) +
+  geom_point(size = 3)
+```
 
-## geom_text
+## geom_point {.xxsmall}
 
-## geom_boxplot
+```{r}
+#| fig.dpi: 900
+#| out-width: 50%
+#| fig-asp: 0.618
+#| fig-align: center
+ggplot(penguins, 
+       aes(
+         x = flipper_length_mm, 
+         y = bill_length_mm, 
+         color = species,
+         size = body_mass_g)) +
+  geom_point()
+```
 
-## geom_violin
+## geom_point {.xxsmall}
 
-## geom_tile
+```{r}
+#| fig.dpi: 900
+#| out-width: 50%
+#| fig-asp: 0.618
+#| fig-align: center
+ggplot(penguins, 
+       aes(
+         x = flipper_length_mm, 
+         y = bill_length_mm, 
+         color = species,
+         size = body_mass_g)) +
+  geom_point(alpha = 0.6)
+```
+
+## geom_line {.xxsmall}
+
+lines are great to use to depict observations that are
+conceptually connected — either across time, or 
+thematically.
+
+for example, maybe we would want to know if the average flipper length in the
+population of penguins observed is changing over time.
+
+:::{.xsmall}
+```{r}
+#| output-location: column
+flipper_length_over_time <- 
+  data.frame(
+  year = c(2007, 2007, 2007, 
+           2008, 2008, 2008, 
+           2009, 2009, 2009),
+  flipper_length_mm = 
+    c(186.5, 192.4, 215.1,
+      191.0, 197.7, 217.5,
+      192.0, 198.0, 218.4), 
+  species = as.factor(
+    c(
+      "Adelie", "Chinstrap", "Gentoo",
+      "Adelie", "Chinstrap", "Gentoo",
+      "Adelie", "Chinstrap", "Gentoo"
+    )))
+
+ggplot(flipper_length_over_time,
+       aes(x = year,
+           y = flipper_length_mm,
+           color = species)) + 
+  geom_line()
+```
+:::
+
+## geom_line {.xxsmall}
+
+a lot of the time when using `geom_line`, I like to pair 
+that with a `geom_point` layer on top of it, so where the observations
+are is more clear. 
+
+```{r}
+ggplot(flipper_length_over_time,
+       aes(x = year,
+           y = flipper_length_mm,
+           color = species)) + 
+  geom_line() + 
+  geom_point()
+```
+
+## geom_area {.xsmall}
+
+`geom_area` when used with only one group of data is similar to `geom_line`,
+except it fills in the area beneath. this can be useful for depicting
+how a population breaks down into strata over time.
+
+:::{.panel-tabset}
+
+## code
+```{r eval=F}
+ggplot(population_over_time,
+       aes(x = year,
+           y = population_size,
+           fill = group)) +
+  geom_area()
+```
+
+## data {.xxsmall}
+
+```{r echo=F}
+population_over_time <- 
+  longley |> 
+  select(Year, Employed, Unemployed, Armed.Forces) |> 
+  tidyr::pivot_longer(
+    cols = c(Employed, Unemployed, Armed.Forces),
+    names_to = 'group',
+    values_to = 'population_size'
+  ) |> 
+  rename(year = Year)
+
+knitr::kable(population_over_time)
+```
+
+## plot
+```{r echo=F}
+ggplot(population_over_time,
+       aes(x = year,
+           y = population_size,
+           fill = group)) +
+  geom_area(alpha = 0.8, color = 'dimgrey') + 
+  scale_fill_viridis_d(option = 'viridis', end = 0.75)
+```
+
+:::
+
+## geom_text {.xsmall}
+
+we can use `geom_text` similarly to `geom_point`, but instead of 
+plotting a small mark, `geom_text` places text on the graph.
+
+```{r}
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, label = species)) + 
+  geom_text()
+```
+
+## geom_text {.xxsmall}
+
+one use of `geom_text` that I particularly enjoy is to make 
+what usually has to be guesstimated precise:
+
+```{r}
+# remember counts_df from earlier? 
+counts_df
+```
+
+```{r}
+#| output-location: column
+ggplot(counts_df, aes(x = species, y = n)) + 
+  geom_col() + 
+  geom_text(
+    mapping = aes(y = n + 10, label = n),
+    size = 8
+  )
+```
+
+## geom_boxplot {.xsmall}
+
+```{r}
+ggplot(penguins, aes(x = species, y = flipper_length_mm)) + 
+  geom_boxplot()
+```
+
+## geom_boxplot {.xsmall}
+
+if i am going to use boxplots, something i often like to do is to 
+plot the data with jitter behind the boxplots and give the boxplots some transparency.
+
+also, i'm a sucker for colorful figures, so i'll almost always add color
+
+```{r}
+ggplot(penguins, aes(x = species, y = flipper_length_mm,
+                     color = species, fill = species)) + 
+  geom_jitter() + 
+  geom_boxplot(alpha = 0.6, color = 'black', outlier.color = NA)
+```
+
+## geom_violin {.xsmall}
+
+```{r}
+ggplot(penguins, aes(x = species, y = flipper_length_mm)) + 
+  geom_violin()
+```
+
+## geom_violin {.xsmall}
+
+a similar layout can be done with `geom_violin`
+
+```{r}
+ggplot(penguins, aes(x = species, y = flipper_length_mm,
+                     color = species, fill = species)) + 
+  geom_jitter() + 
+  geom_violin(color = 'black', alpha = 0.5)
+```
+
+## geom_tile {.xsmall}
+
+heatmaps can be created with `geom_tile`
+
+```{r, echo = FALSE}
+x <- 5:(5+352)
+
+days <- c('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday')
+
+xdays <- days[(x - 1) %% 7 + 1]
+
+y <- rnorm(n = length(x)) + sin(x/25) * 2 + 5 + ifelse(x %% 7 %in% 2:6, 2, 0)
+
+bound <- function(x, xmin, xmax) {
+  x <- ifelse(x < xmin, xmin, x)
+  x <- ifelse(x > xmax, xmax, x)
+  x
+}
+
+y <- bound(y, 0, 10)
+
+df <- 
+  data.frame(
+    weekday = xdays,
+    week = (x - 1) %/% 7,
+    productivity = y
+  )
+
+df$weekday <- forcats::fct_rev(factor(df$weekday, levels = days))
+```
+
+```{r}
+#| fig-asp: .3
+ggplot(df,
+       aes(x = week,
+           y = weekday,
+           fill = productivity)) + 
+  geom_tile()
+```
+
+# geom_tile {.small}
+
+```{r}
+#| fig-asp: .3
+ggplot(df, aes(x = week, y = weekday, fill = productivity)) + 
+  geom_tile() + 
+  scale_fill_viridis_c()
+```
 
 # facets 
 
-## facet_wrap
+## facet_wrap {.xsmall}
 
-## facet_grid 
+faceting generates multiple panels within a visualization, each showing
+a different subset of the data.
+
+```{r}
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point() + 
+  facet_wrap(~species)
+```
+
+## facet_grid {.xsmall}
+
+`facet_grid` gives you more precision in how the faceting panels are laid out by
+using the left-hand-side and right-hand-side to indicate to the rows and
+columns.
+
+```{r}
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point() + 
+  facet_grid(sex~species)
+```
+
+## {.small}
+
+:::{.columns}
+:::{.column}
+<img src="graphics/HoduTip.png" alt='Hodu tip!'>
+:::
+
+:::{.column}
+the easiest way for me to remember which variable corresponds to the columns vs.
+rows in the `facet_grid` formula is to remember how formulas usually look, as in
+`y ~ x` or `y = m*x + b`. <br><br>
+
+`y` is the variable that corresponds to the vertical dimension and is on the
+left-hand-side -- so `y` or the left-hand-side corresponds to the rows, while
+`x`  informs us about the horizontal dimension, so `x` or the right-hand-side
+corresponds to the columns.
+:::
+:::
 
 # statistics 
 
-## 
+## {.xsmall}
 
-  - geom_boxplot
-  - geom_violin
-  - geom_smooth
-  - geom_density
-  - geom_histogram
-  - geom_jitter
-  - geom_bar
-  - geom_contour
+let's say you have a ton of data such that creating a 
+scatter plot isn't all that useful.
 
-## geom_hex
+```{r}
+df <- data.frame(
+  x = c(rnorm(n = 10000, sd = .5), rnorm(n = 20000, mean = 1.5), sd = .35),
+  y = c(rnorm(n = 10000, sd = .5), rnorm(n = 20000, mean = 1.5), sd = .35)
+)
+
+ggplot(df, aes(x = x, y = y)) + 
+  geom_point()
+```
+
+##  {.xsmall}
+
+we want to know if this is one cluster or two... we 
+might look at histograms in x and y.
+
+:::{.columns}
+:::{.column}
+```{r}
+ggplot(df, aes(x = x)) + 
+  geom_histogram()
+```
+:::
+
+:::{.column}
+```{r}
+ggplot(df, aes(x = y)) + 
+  geom_histogram()
+```
+:::
+:::
+
+
+
+## geom_density2d {.xsmall}
+
+but when that still doesn't work, we can turn to 
+calculating some summary statistics in 2d with `geom_density2d`
+
+```{r}
+ggplot(df, aes(x = x, y = y)) + 
+  geom_point() + 
+  geom_density_2d()
+```
+
+## {.xsmall}
+
+:::{.columns}
+:::{.column}
+<img src="graphics/HoduTip.png" alt='Hodu tip!'>
+:::
+:::{.column}
+another handy way to deal with overplotting is
+to increase the transparency of the points
+plotted
+
+```{r}
+ggplot(df, aes(x = x, y = y)) + 
+  geom_point(alpha = 0.05)
+```
+:::
+:::
+
+## stat_summary {.xsmall}
+
+`stat_summary` is a very flexible layer that can perform computations for you
+and depict the results with a `geom` of your choice
+
+```{r}
+ggplot(penguins, aes(x = species, y = body_mass_g)) + 
+  stat_summary(fun = mean, geom = 'point', size = 5)
+```
 
 ## stat_summary
 
+we can use stat_summary to show us the mean, min and max 
+using a `pointrange` `geom`
+
+```{r}
+ggplot(penguins, aes(x = species, y = body_mass_g)) + 
+  stat_summary(fun = mean, geom = 'pointrange',
+               fun.max = max, fun.min = min,
+               size = 5)
+```
+
+## stat_summary
+
+we can use stat_summary to show us the mean, min and max 
+using a `pointrange` `geom`
+
+```{r}
+ggplot(penguins, aes(x = species, y = body_mass_g)) + 
+  stat_summary(fun.data = mean_cl_normal, geom = 'pointrange',
+               size = 5)
+```
+
 # coordinates
 
-## scale_x_* and scale_y_* 
+## scale_x_* and scale_y_* {.xsmall}
+
+occasionally we have data that is best represented on a non-linear scale, like
+the log-scale.  ggplot makes it very easy to do this. compare:
+
+```{r, echo=F}
+df <- data.frame(
+  x = rlnorm(n = 10000, meanlog = 5)
+)
+```
+
+:::{.columns}
+:::{.column}
+```{r}
+ggplot(df, aes(x = x)) + 
+  geom_histogram()
+```
+:::
+:::{.column}
+```{r}
+ggplot(df, aes(x = x)) + 
+  geom_histogram() + 
+  scale_x_log10()
+```
+:::
+:::
 
 ## scale_color_* and scale_fill_* 
 
-# theme 
+often you will want to customize the color and fill palettes
+in your plots. there are a handful of ways to do this, and they
+typically fall into 3 categories: 
+
+  * categorical
+    * `scale_*_discrete()`
+    * `scale_*_brewer()`
+  * quantitative
+    * `scale_*_continuous()`
+    * `scale_*_distiller()`
+    * `scale_*_gradient()`
+  * manual
+    * `scale_*_manual()`
+
+## scale_color_* and scale_fill_* {.xxxsmall}
+
+:::{.columns}
+:::{.column}
+RColorBrewer: <https://www.datanovia.com/en/blog/the-a-z-of-rcolorbrewer-palette/>
+
+```{r, echo=F}
+df <- expand.grid(x = seq(0, 1, 0.05), y = seq(0, 1, 0.05)) |> 
+ mutate(z = -1 * (x-.5)^2 - (y/2-.25 + .25*x)^2 + x * y)
+```
+
+:::{style='font-size: 12px;'}
+```{r}
+#| fig-asp: .35
+ggplot(df, aes(x = x, y = y, fill = z)) + 
+  geom_tile() +
+  scale_fill_distiller()
+
+ggplot(df, aes(x = x, y = y, fill = z)) + 
+  geom_tile() +
+  scale_fill_distiller(palette = 'RdYlBu')
+```
+:::
+:::
+
+:::{.column}
+viridis: <https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html>
+
+:::{style='font-size: 12px;'}
+```{r}
+#| fig-asp: .35
+ggplot(df, aes(x = x, y = y, fill = z)) + 
+  geom_tile() +
+  scale_fill_viridis_c()
+
+ggplot(df, aes(x = x, y = y, fill = z)) + 
+  geom_tile() +
+  scale_fill_viridis_c(option = 'magma')
+```
+:::
+:::
+:::
+
+## coordinate labelling
+
+sometimes you want to format the way the axis numbers appear 
+in a particular way, like in scientific format or in 
+dollars.
+
+:::{.columns}
+:::{.column}
+```{r echo=F}
+df <- data.frame(household_income = rlnorm(n = 1000, meanlog = log(50000)))
+```
+```{r}
+ggplot(df, aes(x = household_income)) + 
+  geom_histogram() + 
+  scale_x_log10(labels = scales::dollar_format())
+```
+:::
+
+:::{.column}
+```{r echo=F}
+df <- data.frame(program = c("BA/BS", "MA/MS", "PhD"),
+                 admit_rate = c(.125, .2, .05))
+```
+```{r}
+ggplot(df, aes(x = program, y = admit_rate)) + 
+  geom_point(size = 5) + 
+  scale_y_continuous(labels = scales::percent_format(), limits = c(0, NA))
+``` 
+:::
+:::
+
+# themes 
+
+## themes {.xxsmall}
+
+you can basically customize every aspect of the `theme` in 
+ggplot. 
+
+:::{.columns}
+:::{.column}
+```{r}
+#| fig-asp: .3
+plt <- ggplot(df, aes(x = program, y = admit_rate)) + 
+  geom_point(size = 5) + 
+  scale_y_continuous(labels = scales::percent_format(), limits = c(0, NA))
+
+plt + theme_classic()
+
+plt + theme_linedraw()
+```
+:::
+
+:::{.column}
+```{r}
+#| fig-asp: .3
+plt + theme_dark()
+
+plt + theme_void()
+``` 
+:::
+:::
 
 ## labels 
 
