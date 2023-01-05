@@ -822,6 +822,12 @@ ggplot(df, aes(x = x, y = y, fill = z)) +
 :::
 :::
 
+## {.xxxsmall}
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Having trouble picking a color palette for your <a href="https://twitter.com/hashtag/Rstats?src=hash&amp;ref_src=twsrc%5Etfw">#Rstats</a> visualization? Well here&#39;s a MEGA thread about all the ways you can choose a palette! 🧵[1/22]</p>&mdash; Moriah Taylor (she/her) (@moriah_taylor58) <a href="https://twitter.com/moriah_taylor58/status/1395431000977649665?ref_src=twsrc%5Etfw">May 20, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+<https://twitter.com/moriah_taylor58/status/1395431000977649665>
+
 ## coordinate labelling
 
 sometimes you want to format the way the axis numbers appear 
@@ -884,19 +890,98 @@ plt + theme_void()
 :::
 :::
 
-## labels 
+## labels {.xxsmall}
+
+use the `labs()` function to set labels for 
+any aesthetics.
+
+```{r}
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, color = species)) + 
+  geom_point() + 
+  labs(
+    x = "Bill Length [mm]",
+    y = "Bill Depth [mm]",
+    color = "Species of Penguin",
+    title = "Relationship between Bill Length and Bill Depth"
+  )
+```
 
 ## legend position 
 
-## adjusting axis labels
+the legend position can be moved using the `legend.position` 
+argument to `theme()`
 
-# saving plots
+```{r}
+ggplot(penguins,
+       aes(x = bill_length_mm, y = bill_depth_mm, color = species)) + 
+  geom_point() + 
+  labs(
+    x = "Bill Length [mm]",
+    y = "Bill Depth [mm]",
+    color = "Species of Penguin",
+    title = "Relationship between Bill Length and Bill Depth"
+  ) + 
+  theme(legend.position = 'bottom')
+```
+
+# saving plots {.xsmall}
+
+use `ggsave()` to save your plots. keep in mind that the filename 
+saved will be relative to your working directly unless you use
+an absolute path.
+
+```{.r}
+# one option: 
+# render your ggplot as normal
+ggplot(df, aes(...)) + ...
+# then run 
+ggsave(filename = "your_filename.png", width = 5, 
+  height = 7) # width and height default to inches
+  
+# another option:
+# assign your plot to an object
+plt <- ggplot(df, aes(...)) + ...
+ggsave(filename = "your_filename.png", 
+  plot = plt, # give the plt object to ggsave explicitly
+  width = 5, 
+  height = 7)
+```
 
 # extensions 
 
-## ggdist 
+## ggdist {.xxsmall}
 
-## ggrepel 
+<img src='images/ggdist.png' alt='screenshot of functionality 
+from the ggdist package'>
+
+learn more: <https://mjskay.github.io/ggdist/>
+
+## ggrepel {.xxsmall}
+
+<img src='images/ggrepel.png' alt='screenshot of functionality 
+from the ggrepel package'>
+
+learn more: <https://ggrepel.slowkow.com/>
+
 
 ## patchwork 
 
+<img src='images/patchwork.png' alt='screenshot of functionality 
+from the patchwork package'> 
+
+learn more: <https://patchwork.data-imaginist.com/>
+
+# key takeaways {.xsmall}
+
+  - ggplot2 is based on the grammar of graphics, meaning every plot is made up of:
+  data, aesthetics, geometries, facets, statistics, coordinates, and a theme.
+  - ggplot2 is "plug and play" (like legos) in the sense that there is a ton of varied
+  geoms, stats, and customizations you can make with interchangeable layers
+  - it's easiest to build up your plots incrementally, starting from an overly
+  simple, crude version and working your way up to something more refined; don't
+  try to make a masterpiece all in one go because it will make debugging your
+  code harder
+  - if the kind of data visualization you want to make isn't supported out of the 
+  box in ggplot2, likely you can either use or create an extension to ggplot2
+  that will do what you want. 

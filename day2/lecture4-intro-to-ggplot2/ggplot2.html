@@ -1421,6 +1421,17 @@
 </div>
 </div>
 </section>
+<section id="section-4" class="slide level2 xxxsmall">
+<h2></h2>
+<blockquote class="twitter-tweet">
+<p lang="en" dir="ltr">
+Having trouble picking a color palette for your <a href="https://twitter.com/hashtag/Rstats?src=hash&amp;ref_src=twsrc%5Etfw">#Rstats</a> visualization? Well here's a MEGA thread about all the ways you can choose a palette! 🧵[1/22]
+</p>
+— Moriah Taylor (she/her) (<span class="citation" data-cites="moriah_taylor58">@moriah_taylor58</span>) <a href="https://twitter.com/moriah_taylor58/status/1395431000977649665?ref_src=twsrc%5Etfw">May 20, 2021</a>
+</blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p><a href="https://twitter.com/moriah_taylor58/status/1395431000977649665" class="uri">https://twitter.com/moriah_taylor58/status/1395431000977649665</a></p>
+</section>
 <section id="coordinate-labelling" class="slide level2">
 <h2>coordinate labelling</h2>
 <p>sometimes you want to format the way the axis numbers appear in a particular way, like in scientific format or in dollars.</p>
@@ -1490,18 +1501,56 @@
 </div>
 </div>
 </section>
-<section id="labels" class="slide level2">
+<section id="labels" class="slide level2 xxsmall">
 <h2>labels</h2>
-</section>
+<p>use the <code>labs()</code> function to set labels for any aesthetics.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">ggplot</span>(penguins,</span>
+<span id="cb58-2"><a href="#cb58-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
+<span id="cb58-3"><a href="#cb58-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb58-4"><a href="#cb58-4"></a>  <span class="fu">labs</span>(</span>
+<span id="cb58-5"><a href="#cb58-5"></a>    <span class="at">x =</span> <span class="st">"Bill Length [mm]"</span>,</span>
+<span id="cb58-6"><a href="#cb58-6"></a>    <span class="at">y =</span> <span class="st">"Bill Depth [mm]"</span>,</span>
+<span id="cb58-7"><a href="#cb58-7"></a>    <span class="at">color =</span> <span class="st">"Species of Penguin"</span>,</span>
+<span id="cb58-8"><a href="#cb58-8"></a>    <span class="at">title =</span> <span class="st">"Relationship between Bill Length and Bill Depth"</span></span>
+<span id="cb58-9"><a href="#cb58-9"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="ggplot2_files/figure-revealjs/unnamed-chunk-59-1.png" width="960" class="r-stretch"></section>
 <section id="legend-position" class="slide level2">
 <h2>legend position</h2>
-</section>
-<section id="adjusting-axis-labels" class="slide level2">
-<h2>adjusting axis labels</h2>
-</section></section>
-<section id="saving-plots" class="title-slide slide level1 center">
-<h1>saving plots</h1>
+<p>the legend position can be moved using the <code>legend.position</code> argument to <code>theme()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="fu">ggplot</span>(penguins,</span>
+<span id="cb59-2"><a href="#cb59-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
+<span id="cb59-3"><a href="#cb59-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb59-4"><a href="#cb59-4"></a>  <span class="fu">labs</span>(</span>
+<span id="cb59-5"><a href="#cb59-5"></a>    <span class="at">x =</span> <span class="st">"Bill Length [mm]"</span>,</span>
+<span id="cb59-6"><a href="#cb59-6"></a>    <span class="at">y =</span> <span class="st">"Bill Depth [mm]"</span>,</span>
+<span id="cb59-7"><a href="#cb59-7"></a>    <span class="at">color =</span> <span class="st">"Species of Penguin"</span>,</span>
+<span id="cb59-8"><a href="#cb59-8"></a>    <span class="at">title =</span> <span class="st">"Relationship between Bill Length and Bill Depth"</span></span>
+<span id="cb59-9"><a href="#cb59-9"></a>  ) <span class="sc">+</span> </span>
+<span id="cb59-10"><a href="#cb59-10"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'bottom'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
+</div>
+<img data-src="ggplot2_files/figure-revealjs/unnamed-chunk-60-1.png" width="960" class="r-stretch"></section></section>
+<section id="saving-plots" class="title-slide slide level1 xsmall center">
+<h1>saving plots</h1>
+<p>use <code>ggsave()</code> to save your plots. keep in mind that the filename saved will be relative to your working directly unless you use an absolute path.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="co"># one option: </span></span>
+<span id="cb60-2"><a href="#cb60-2"></a><span class="co"># render your ggplot as normal</span></span>
+<span id="cb60-3"><a href="#cb60-3"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(...)) <span class="sc">+</span> ...</span>
+<span id="cb60-4"><a href="#cb60-4"></a><span class="co"># then run </span></span>
+<span id="cb60-5"><a href="#cb60-5"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"your_filename.png"</span>, <span class="at">width =</span> <span class="dv">5</span>, </span>
+<span id="cb60-6"><a href="#cb60-6"></a>  <span class="at">height =</span> <span class="dv">7</span>) <span class="co"># width and height default to inches</span></span>
+<span id="cb60-7"><a href="#cb60-7"></a>  </span>
+<span id="cb60-8"><a href="#cb60-8"></a><span class="co"># another option:</span></span>
+<span id="cb60-9"><a href="#cb60-9"></a><span class="co"># assign your plot to an object</span></span>
+<span id="cb60-10"><a href="#cb60-10"></a>plt <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(...)) <span class="sc">+</span> ...</span>
+<span id="cb60-11"><a href="#cb60-11"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"your_filename.png"</span>, </span>
+<span id="cb60-12"><a href="#cb60-12"></a>  <span class="at">plot =</span> plt, <span class="co"># give the plt object to ggsave explicitly</span></span>
+<span id="cb60-13"><a href="#cb60-13"></a>  <span class="at">width =</span> <span class="dv">5</span>, </span>
+<span id="cb60-14"><a href="#cb60-14"></a>  <span class="at">height =</span> <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 
 <section>
@@ -1509,18 +1558,36 @@
 <h1>extensions</h1>
 
 </section>
-<section id="ggdist" class="slide level2">
+<section id="ggdist" class="slide level2 xxsmall">
 <h2>ggdist</h2>
+
+<img src="images/ggdist.png" alt="screenshot of functionality 
+from the ggdist package" class="r-stretch"><p>learn more: <a href="https://mjskay.github.io/ggdist/" class="uri">https://mjskay.github.io/ggdist/</a></p>
 </section>
-<section id="ggrepel" class="slide level2">
+<section id="ggrepel" class="slide level2 xxsmall">
 <h2>ggrepel</h2>
+
+<img src="images/ggrepel.png" alt="screenshot of functionality 
+from the ggrepel package" class="r-stretch"><p>learn more: <a href="https://ggrepel.slowkow.com/" class="uri">https://ggrepel.slowkow.com/</a></p>
 </section>
 <section id="patchwork" class="slide level2">
 <h2>patchwork</h2>
+
+<img src="images/patchwork.png" alt="screenshot of functionality 
+from the patchwork package" class="r-stretch"><p>learn more: <a href="https://patchwork.data-imaginist.com/" class="uri">https://patchwork.data-imaginist.com/</a></p>
+</section></section>
+<section id="key-takeaways" class="title-slide slide level1 xsmall center">
+<h1>key takeaways</h1>
+<ul>
+<li>ggplot2 is based on the grammar of graphics, meaning every plot is made up of: data, aesthetics, geometries, facets, statistics, coordinates, and a theme.</li>
+<li>ggplot2 is “plug and play” (like legos) in the sense that there is a ton of varied geoms, stats, and customizations you can make with interchangeable layers</li>
+<li>it’s easiest to build up your plots incrementally, starting from an overly simple, crude version and working your way up to something more refined; don’t try to make a masterpiece all in one go because it will make debugging your code harder</li>
+<li>if the kind of data visualization you want to make isn’t supported out of the box in ggplot2, likely you can either use or create an extension to ggplot2 that will do what you want.</li>
+</ul>
 <div class="footer footer-default">
 
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
