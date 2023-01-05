@@ -8,8 +8,8 @@ slide-number: true
 #   data-background-image: ""
 #   data-background-opacity: "60%"
 #   data-background-color: "black"
-revealjs-plugins:
-  - pointer
+# revealjs-plugins:
+  # - pointer
 execute: 
   echo: true
 ---
@@ -100,7 +100,54 @@ my suggestions:
     data cleaning pipeline
     * this goes not just for data cleaning, but also exploratory data analysis, 
     modeling, and manuscript writing.
+  * be explicit about educating your supervisor about the steps that need to get
+    done
+  * if you can, be candid about making them aware of why things may take a long
+    time
+  * Try binning a new task:
+    * I could turn this around in 2-hours.
+    * I know how to do it, but it'll take me some time to do it;  I can describe 
+    what needs to be done.
+    * I don't know what I need to do, so figuring out how to do it is going to
+    take me a longer time.
+    * If you can pseudo-code the problem, that can help to explain (in plain english)
+    what can go wrong with the analysis can help your supervisors/colleagues
+    understand what the time-sinks might be. 
+      * gently let them know that the complexity may be greater than 
+      they're imagining
+  * sometimes the timeline issues are
+    * coding/programming;
+    * statistical;
+    * political; 
+    * lack of clarity about expectations; and/or 
+    * conceptual
+  
     
+:::{.notes}
+self-imposed short timelines ... 
+
+repetitive analytic tasks being cut & paste ... (cognitive bias against functions? or just plain harder.)
+
+being bit in the ass by irreproducible analysis getting off your computer
+and then you're expected to iterate on it 
+
+hours spent struggling to learn is almost always worth it, but you often have
+to know what is possible, what's been done before;
+  * it's good to spend a few hours working on something;
+  * but if you're spending too many hours, ask for help
+  
+  
+most of our (teaching team)'s learning came from researching how to 
+do things better.  use opportunities to practice honing your R skills,
+especially those that aren't related to your "actual" work. 
+
+often working on a side-passion-project can give you insights that pay 
+off on important projects
+
+some of what should motivate you to learn programming _is_ laziness
+
+
+:::
     
 # 
 
