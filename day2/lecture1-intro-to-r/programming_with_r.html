@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="programming_with_r_files/libs/clipboard/clipboard.min.js"></script>
+<script src="programming_with_r_files/libs/quarto-html/tabby.min.js"></script>
+<script src="programming_with_r_files/libs/quarto-html/popper.min.js"></script>
+<script src="programming_with_r_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="programming_with_r_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="programming_with_r_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="programming_with_r_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.2.269">
+
+  <title>Programming with R: Logic, Conditionals, and Loops</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="programming_with_r_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="programming_with_r_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="programming_with_r_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="programming_with_r_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="programming_with_r_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="programming_with_r_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="programming_with_r_files/libs/revealjs/plugin/reveal-pointer/pointer.css" rel="stylesheet">
+  <link href="programming_with_r_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="black" data-background-image="transition_slides/tyler-springhetti.jpg" data-background-opacity="60%" class="quarto-title-block center">
+  <h1 class="title">Programming with R: Logic, Conditionals, and Loops</h1>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section id="some-morals" class="slide level2">
+<h2>some morals</h2>
+<div class="fragment small">
+<blockquote>
+<p>“Don’t worry if it doesn’t work right. If everything did, you’d be out of a job.” (Mosher’s Law of Software Engineering)</p>
+</blockquote>
+</div>
+<div class="fragment small">
+<blockquote>
+<p>“Measuring programming progress by lines of code is like measuring aircraft building progress by weight.” — Bill Gates</p>
+</blockquote>
+</div>
+</section>
+<section>
+<section id="logic" class="title-slide slide level1 center" data-background-image="transition_slides/tyler-springhetti.jpg" data-background-color="black" data-background-opacity="60%">
+<h1>logic</h1>
+
+</section>
+<section id="logical-operators" class="slide level2">
+<h2>logical operators</h2>
+<div class="fragment small">
+<p>the first three <span class="carrot"><strong>logical operators</strong></span> we’ll talk about first are <code>!</code> (“not”), <code>&amp;</code> (“and”), and <code>|</code> (“or”).</p>
+<div>
+<ul>
+<li class="fragment"><code>!</code> negates (i.e., flips) the logical value placed on its right-hand-side</li>
+<li class="fragment"><code>&amp;</code> returns <code>TRUE</code> if its left-hand-side and right-hand-side are both <code>TRUE</code>; otherwise <code>FALSE</code></li>
+<li class="fragment"><code>|</code> returns <code>TRUE</code> if at least one of its left-hand-side or right-hand-side are <code>TRUE</code>; otherwise <code>FALSE</code></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="logical-operators-1" class="slide level2">
+<h2>logical operators</h2>
+<div class="fragment small">
+<p>let’s do a really simple handful of examples first</p>
+</div>
+<div class="fragment small">
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="sc">!</span> <span class="cn">TRUE</span>        <span class="co"># evaluates to: FALSE</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="cn">TRUE</span> <span class="sc">&amp;</span> <span class="cn">TRUE</span>   <span class="co"># =&gt; TRUE</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="cn">TRUE</span> <span class="sc">|</span> <span class="cn">FALSE</span>  <span class="co"># =&gt; TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="logical-operators-2" class="slide level2">
+<h2>logical operators</h2>
+<div class="fragment small">
+<p>in a rare case, you may need to determine if <em>only</em> one of the two arguments given is <code>TRUE</code>, and in those cases you can use <code>xor(x,y)</code>.</p>
+</div>
+<div class="fragment small">
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">xor</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>)  <span class="co"># =&gt; TRUE</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">xor</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>)  <span class="co"># =&gt; TRUE</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">xor</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>)   <span class="co"># =&gt; FALSE</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">xor</span>(<span class="cn">FALSE</span>, <span class="cn">FALSE</span>) <span class="co"># =&gt; FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="logical-operators-3" class="slide level2">
+<h2>logical operators</h2>
+<div class="fragment small">
+<p>R is a <span class="carrot"><strong>vectorized language</strong></span> (meaning: many of its functions and most basic data types aim to work seamlessly with vectors of data), so these logical operators are vectorized too.</p>
+</div>
+<div class="fragment small">
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="sc">!</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)         <span class="co"># =&gt; c(FALSE, TRUE, FALSE)</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>) <span class="co"># =&gt; c(TRUE, FALSE)</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>) <span class="sc">|</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>) <span class="co"># =&gt; c(TRUE, TRUE)</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">xor</span>(<span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>), <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>))</span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co"># =&gt; c(TRUE, TRUE, FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="logical-operators-4" class="slide level2">
+<h2>logical operators</h2>
+<div class="fragment small">
+<p>there are a few more logical operators which you may not need to use often.</p>
+</div>
+<div class="small">
+<ul>
+<li class="fragment"><code>&amp;&amp;</code> and <code>||</code> are <strong>not</strong> vectorized and evaluate from left-to-right only proceeding until the result is determined (meaning: they exit early if a result can be determined without looking at the whole expression)</li>
+</ul>
+</div>
+<div class="fragment xxsmall">
+<div class="sourceCode" id="cb4" data-code-line-numbers="|1-5|7-11|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># for example, the following code will never evaluate</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co"># `complicated_expression_that_yields_something` because the &amp;&amp; operator will</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co"># exit early since it "knows" that both sides must be TRUE, otherwise the result</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># will be FALSE</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>complicated_expression_that_yields_FALSE <span class="sc">&amp;&amp;</span> complicated_expression_that_yields_something</span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co"># similarly, the following code will never evaluate</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co"># `complicated_expression_that_yields_something` because the || operator will</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co"># exit early since it "knows" that if either side is TRUE, the result will be</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co"># TRUE</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>complicated_expression_that_yields_TRUE <span class="sc">||</span> complicated_expression_that_yields_something</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment xsmall">
+<p>the point of these operators is fundamentally about <span class="carrot"><strong>computational efficiency</strong></span>. these operators become especially beneficial if the arguments given are computationally demanding to compute, or there’s a real need for the code to be extremely fast.</p>
+</div>
+</section>
+<section id="logical-operators-5" class="slide level2">
+<h2>logical operators</h2>
+<div class="fragment small">
+<p>remember, you can always get help for the logical operators by entering <code>?"&amp;"</code> or <code>help("&amp;")</code> into R. doing this (or replacing <code>&amp;</code> with any of the other logical operators) will bring up the help pages for the logical operators.</p>
+</div>
+<div class="fragment small">
+<p>those help pages are also online here: <br> <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Logic.html" class="uri">https://stat.ethz.ch/R-manual/R-devel/library/base/html/Logic.html</a></p>
+</div>
+</section>
+<section id="other-ways-to-produce-logical-values" class="slide level2">
+<h2>other ways to produce logical values</h2>
+<div class="fragment small">
+<p>the <span class="carrot"><strong>logical operators</strong></span> are not the only operators or functions in R that will produce logical values/vectors in R.</p>
+</div>
+<div class="fragment small">
+<p>some operators that will produce logical values are the <span class="carrot"><strong>relational operators</strong></span>:</p>
+<div>
+<ul>
+<li class="fragment"><code>&gt;</code> (greater than), <code>&gt;=</code> (greater than or equal to), <code>&lt;</code> (less than), <code>&lt;=</code> (less than or equal to), <code>==</code> (equal to), <code>!=</code> (not equal to)</li>
+</ul>
+</div>
+</div>
+<div class="fragment small">
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">1</span>               <span class="co"># =&gt; TRUE</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="dv">5</span> <span class="sc">&gt;=</span> <span class="dv">5</span>              <span class="co"># =&gt; TRUE</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">5</span>              <span class="co"># =&gt; TRUE</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="dv">5</span> <span class="sc">!=</span> <span class="dv">4</span>              <span class="co"># =&gt; TRUE</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="st">"apple"</span> <span class="sc">!=</span> <span class="st">"banana"</span> <span class="co"># =&gt; TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="identical" class="slide level2 xsmall">
+<h2>identical</h2>
+<div class="columns">
+<div class="column">
+<p><img src="graphics/HoduTip.png" alt="Hodu Tip!"></p>
+</div><div class="column">
+<p>sometimes you don’t want to compare two objects element-wise, but rather to tell if they’re the exact same.</p>
+<p>in that situation, you can use <code>identical()</code> instead of <code>==</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">*</span> <span class="dv">10</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">10</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a>x <span class="sc">==</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">identical</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="other-ways-to-produce-logical-values-1" class="slide level2">
+<h2>other ways to produce logical values</h2>
+<div class="fragment xsmall">
+<p>some functions that will produce logical values are:</p>
+<div class="xsmall">
+<ul>
+<li class="fragment"><code>any(x)</code> and <code>all(x)</code></li>
+<li class="fragment">the <code>any(x)</code> and <code>all(x)</code> functions are designed to work with vectors and respectively test if <em>any</em> of the values in the vector <code>x</code> are <code>TRUE</code>, and if <em>all</em> of the values in the vector <code>x</code> are <code>TRUE</code>.</li>
+<li class="fragment">both of these functions take an additional argument <code>na.rm</code> that defaults to <code>FALSE</code>. <code>na.rm.</code> stands for “remove NAs”.
+<ul>
+<li class="fragment">typically, any operation with NA is NA (and similarly for NaNs). for example, <code>1 + NA == NA</code>.</li>
+<li class="fragment">if set to <code>TRUE</code>, then <code>any(x, na.rm = TRUE)</code> and <code>all(x, na.rm = TRUE)</code> will ignore <code>NA</code> values.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="fragment xxsmall">
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">all</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>)) <span class="co"># =&gt; TRUE</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">any</span>(<span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)) <span class="co"># =&gt; TRUE</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="fu">all</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">NA</span>, <span class="cn">TRUE</span>))  <span class="co"># =&gt; NA</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="fu">any</span>(<span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">NA</span>)) <span class="co"># =&gt; NA</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="fu">all</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">NA</span>, <span class="cn">TRUE</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  <span class="co"># =&gt; TRUE</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="fu">any</span>(<span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">NA</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co"># =&gt; TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="a-quick-note-on-t-and-f" class="slide level2">
+<h2>a quick note on T and F</h2>
+<div class="fragment small">
+<p>in R code, you may sometimes see <code>TRUE</code> and <code>FALSE</code> abbreviated to <code>T</code> and <code>F</code>.</p>
+</div>
+<div class="fragment small">
+<p>however, this is generally advised against because the <code>T</code> and <code>F</code> variables may be overwritten with other values.</p>
+</div>
+<div class="fragment xsmall">
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># an example </span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">isTRUE</span>(T) <span class="co"># =&gt; TRUE</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>T <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="fu">isTRUE</span>(T) <span class="co"># =&gt; FALSE</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="co"># but you can't overwrite `TRUE` itself</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="cn">TRUE</span> <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="co"># =&gt; Error in TRUE &lt;- 0 : invalid (do_set) left-hand side to assignment</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment small">
+<p>read more: <br> <a href="https://www.r-bloggers.com/2012/12/r-tip-avoid-using-t-and-f-as-synonyms-for-true-and-false/" class="uri">https://www.r-bloggers.com/2012/12/r-tip-avoid-using-t-and-f-as-synonyms-for-true-and-false/</a></p>
+</div>
+<div class="fragment small">
+<p>in short, try not to use <code>T</code> and <code>F</code> as <code>TRUE</code> and <code>FALSE</code>.</p>
+</div>
+</section>
+<section id="determining-true-values" class="slide level2 small">
+<h2>determining TRUE values</h2>
+<div class="fragment">
+<p>there may be times when you need to detect which items in a vector are <code>TRUE</code>, for example when you want to select only those values that satisfy some condition.</p>
+</div>
+<div class="fragment">
+<p>there’s two ways to solve this problem:</p>
+<ul>
+<li>use logical indexing with vectors; or</li>
+<li>use <code>which()</code></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r xxsmall number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="co"># x is a vector of 1, 2, 3, 4, 5</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>y <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="dv">3</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a>y <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span> <span class="co"># the %% operator can be read "remainder after division by ..." </span></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="co"># in this case, `y %% 2 == 0` will be TRUE if y is even</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7"></a>areEven <span class="ot">&lt;-</span> y <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>areEven</span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="co"># =&gt; c(FALSE, TRUE, FALSE, TRUE, FALSE)</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a></span>
+<span id="cb12-11"><a href="#cb12-11"></a>y[areEven]</span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="co"># =&gt; c(6, 12)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="determining-true-values-1" class="slide level2 small">
+<h2>determining TRUE values</h2>
+<div class="fragment">
+<p>equally valid is to use the <code>which()</code> operation to return an integer vector of indices where the value in the argument is <code>TRUE</code>.</p>
+</div>
+<div class="fragment">
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r xxsmall number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="co"># x is a vector of 1, 2, 3, 4, 5</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>y <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="dv">3</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a>y <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span> <span class="co"># the %% operator can be read "remainder after division by ..." </span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="co"># in this case, `y %% 2 == 0` will be TRUE if y is even</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a></span>
+<span id="cb13-7"><a href="#cb13-7"></a>areEven <span class="ot">&lt;-</span> y <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>areEven</span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="co"># =&gt; c(FALSE, TRUE, FALSE, TRUE, FALSE)</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a></span>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="fu">which</span>(areEven)</span>
+<span id="cb13-12"><a href="#cb13-12"></a><span class="co"># =&gt; c(2, 4)</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a><span class="co"># i.e., the 2nd and 4th values are even</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a></span>
+<span id="cb13-15"><a href="#cb13-15"></a>y[<span class="fu">which</span>(areEven)]</span>
+<span id="cb13-16"><a href="#cb13-16"></a><span class="co"># =&gt; c(6, 12)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="conditionals" class="title-slide slide level1 center" data-background-image="transition_slides/tyler-springhetti.jpg" data-background-color="black" data-background-opacity="60%">
+<h1>conditionals</h1>
+
+</section>
+<section id="if" class="slide level2">
+<h2>if</h2>
+<div class="fragment small">
+<p>in programming, <span class="carrot"><strong>control statements</strong></span> refer to code that the computer uses to decide what set of following code statements (also called expressions) should be run.</p>
+</div>
+<div class="fragment small">
+<p>the first control statement we’ll be looking at is the <code>if</code> statement.</p>
+</div>
+<div class="fragment small">
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># the syntax for an if statement:</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="cf">if</span> (logical_expression) {</span>
+<span id="cb14-3"><a href="#cb14-3"></a>  code_to_run </span>
+<span id="cb14-4"><a href="#cb14-4"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment small">
+<p>the <code>code_to_run</code> in the example will only be run if the <code>logical_expression</code> is <code>TRUE</code>.</p>
+</div>
+<div class="fragment xsmall popup">
+<p>occasionally you may see R code where an <code>if</code> statement is written inline without curly braces like <code>if (condition) code_to_run</code> — this is not considered to be best practice and should generally be avoided.</p>
+</div>
+</section>
+<section id="an-example" class="slide level2">
+<h2>an example</h2>
+<div class="fragment small">
+<p>meet the <code>sample.int()</code> function: given an argument <code>n</code>, and a <code>size</code>, it will randomly choose <code>size</code> number of integers (with or without replacement depending on the <code>replace</code> argument) from the integers 1 through <code>n</code>. <br><br></p>
+</div>
+<div class="fragment xsmall">
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="co"># sample a number between 1 and 10</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="co"># if x is greater than or equal to 5, print the result</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="cf">if</span> (x <span class="sc">&gt;=</span> <span class="dv">5</span>) { </span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">print</span>(x)</span>
+<span id="cb15-6"><a href="#cb15-6"></a>}</span>
+<span id="cb15-7"><a href="#cb15-7"></a></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="co"># =&gt; this might print something like 7, or it might not print anything!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="another-example" class="slide level2">
+<h2>another example</h2>
+<div class="fragment small">
+<p>here’s an example where we have characters in a list, along with their pets, and we want to grab random a random character and print their pet’s name, but avoid printing NULL to the console.</p>
+</div>
+<div class="fragment xxsmall">
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>characters <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="at">harry =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'hedwig'</span>),</span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="at">ron =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="fu">c</span>(<span class="st">'scabbers'</span>, <span class="st">'pigwidgeon'</span>)),</span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="at">hermione =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'crookshanks'</span>),</span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="at">hagrid =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="fu">c</span>(<span class="st">'fang'</span>, <span class="st">'aragog'</span>)),</span>
+<span id="cb16-6"><a href="#cb16-6"></a>  <span class="at">dumbledore =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'fawkes'</span>),</span>
+<span id="cb16-7"><a href="#cb16-7"></a>  <span class="at">filch =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'mrs. norris'</span>)</span>
+<span id="cb16-8"><a href="#cb16-8"></a>  <span class="at">fred =</span> <span class="fu">list</span>(), <span class="co"># fred and george don't have pets</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>  <span class="at">george =</span> <span class="fu">list</span>()</span>
+<span id="cb16-10"><a href="#cb16-10"></a>)</span>
+<span id="cb16-11"><a href="#cb16-11"></a></span>
+<span id="cb16-12"><a href="#cb16-12"></a>random_character <span class="ot">&lt;-</span> characters[[<span class="fu">sample.int</span>(<span class="at">n =</span> <span class="fu">length</span>(characters), <span class="at">size =</span> <span class="dv">1</span>)]]</span>
+<span id="cb16-13"><a href="#cb16-13"></a>random_character_pet <span class="ot">&lt;-</span> random_character<span class="sc">$</span>pet</span>
+<span id="cb16-14"><a href="#cb16-14"></a></span>
+<span id="cb16-15"><a href="#cb16-15"></a><span class="cf">if</span> (<span class="sc">!</span> <span class="fu">is.null</span>(random_character_pet)) {</span>
+<span id="cb16-16"><a href="#cb16-16"></a>  <span class="fu">print</span>(random_character_pet)</span>
+<span id="cb16-17"><a href="#cb16-17"></a>}</span>
+<span id="cb16-18"><a href="#cb16-18"></a></span>
+<span id="cb16-19"><a href="#cb16-19"></a><span class="co"># this might print one or two pets, or it might not print anything! </span></span>
+<span id="cb16-20"><a href="#cb16-20"></a></span>
+<span id="cb16-21"><a href="#cb16-21"></a><span class="co"># to be clear, this will _not_ print NULL, which is what the value of </span></span>
+<span id="cb16-22"><a href="#cb16-22"></a><span class="co"># characters$fred$pet is, for example.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="paste0" class="slide level2">
+<h2>paste0</h2>
+<div class="fragment small">
+<p>before introducing the next <span class="carrot"><strong>control statement</strong></span> let’s talk about the <code>paste0</code> command: <code>paste0("string one", "string two")</code> will concatenate the strings given to it and return <code>"string onestring two"</code>. it will take as many arguments as you give it. <br><br></p>
+</div>
+<div class="fragment small">
+<p><code>paste0</code> is a sister function to <code>paste</code> which takes <code>sep</code> as an argument for what should be inserted between the strings given, and defaults to a single space.</p>
+</div>
+<div class="fragment small">
+<p>here’s an example:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>x <span class="ot">&lt;-</span> <span class="st">"hello "</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>y <span class="ot">&lt;-</span> <span class="st">"world"</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>z <span class="ot">&lt;-</span> <span class="st">"!"</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="fu">paste0</span>(x, y, z)</span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="co">#&gt; "hello world!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="if-and-else" class="slide level2">
+<h2>if and else</h2>
+<div class="fragment small">
+<p>now we can add another branch to the code by adding an else condition.</p>
+</div>
+<div class="fragment xxsmall">
+<div class="sourceCode" id="cb18" data-code-line-numbers="|12-15|17-18|19-22|24-27|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>characters <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="at">harry =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'hedwig'</span>),</span>
+<span id="cb18-3"><a href="#cb18-3"></a>  <span class="at">ron =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="fu">c</span>(<span class="st">'scabbers'</span>, <span class="st">'pigwidgeon'</span>)),</span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="at">hermione =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'crookshanks'</span>),</span>
+<span id="cb18-5"><a href="#cb18-5"></a>  <span class="at">hagrid =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="fu">c</span>(<span class="st">'fang'</span>, <span class="st">'aragog'</span>)),</span>
+<span id="cb18-6"><a href="#cb18-6"></a>  <span class="at">dumbledore =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'fawkes'</span>),</span>
+<span id="cb18-7"><a href="#cb18-7"></a>  <span class="at">filch =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'mrs. norris'</span>)</span>
+<span id="cb18-8"><a href="#cb18-8"></a>  <span class="at">fred =</span> <span class="fu">list</span>(), <span class="co"># fred and george don't have pets</span></span>
+<span id="cb18-9"><a href="#cb18-9"></a>  <span class="at">george =</span> <span class="fu">list</span>()</span>
+<span id="cb18-10"><a href="#cb18-10"></a>)</span>
+<span id="cb18-11"><a href="#cb18-11"></a></span>
+<span id="cb18-12"><a href="#cb18-12"></a>random_int <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="fu">length</span>(characters), <span class="at">size =</span> <span class="dv">1</span>) <span class="co"># get a random number</span></span>
+<span id="cb18-13"><a href="#cb18-13"></a>random_character <span class="ot">&lt;-</span> characters[[random_int]]               <span class="co"># get the corresponding character</span></span>
+<span id="cb18-14"><a href="#cb18-14"></a>random_character_name <span class="ot">&lt;-</span> <span class="fu">names</span>(characters)[random_int]     <span class="co"># get their name</span></span>
+<span id="cb18-15"><a href="#cb18-15"></a>random_character_pet <span class="ot">&lt;-</span> random_character<span class="sc">$</span>pet               <span class="co"># get their pet(s)</span></span>
+<span id="cb18-16"><a href="#cb18-16"></a></span>
+<span id="cb18-17"><a href="#cb18-17"></a><span class="cf">if</span> (<span class="fu">is.null</span>(random_character_pet)) {</span>
+<span id="cb18-18"><a href="#cb18-18"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(random_character_name, <span class="st">" doesn't have any pets!"</span>))</span>
+<span id="cb18-19"><a href="#cb18-19"></a>} <span class="cf">else</span> {</span>
+<span id="cb18-20"><a href="#cb18-20"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(random_character_name, <span class="st">"'s pet(s):"</span>))</span>
+<span id="cb18-21"><a href="#cb18-21"></a>  <span class="fu">print</span>(random_character_pet)</span>
+<span id="cb18-22"><a href="#cb18-22"></a>}</span>
+<span id="cb18-23"><a href="#cb18-23"></a></span>
+<span id="cb18-24"><a href="#cb18-24"></a><span class="co"># this might print "george doesn't have any pets!" or it might print something</span></span>
+<span id="cb18-25"><a href="#cb18-25"></a><span class="co"># like: </span></span>
+<span id="cb18-26"><a href="#cb18-26"></a><span class="co">#   "these are ron's pets:"</span></span>
+<span id="cb18-27"><a href="#cb18-27"></a><span class="co">#   "scabbers"   "pigwidgeon"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="else-if" class="slide level2">
+<h2>else if</h2>
+<div class="fragment small">
+<p>let’s say we draw a random number and want to classify it as a small, medium, or large number depending on if it’s between 1-33 (small), 34-66 (medium), or 66+ (large).</p>
+</div>
+<div class="fragment xxsmall">
+<div class="sourceCode" id="cb19" data-code-line-numbers="|1|6-12|6-7|8-9|10-12|17-25|17-18|19-20|21-22|23-25|26-28|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="co"># draw a random number between 1-100</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="co"># one way to write this:</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="co"># this way takes advantage of what we know about how x was created</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a><span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="dv">33</span>) {</span>
+<span id="cb19-7"><a href="#cb19-7"></a>  <span class="fu">print</span>(<span class="st">"x is small (i.e., between 1 and 33)"</span>)</span>
+<span id="cb19-8"><a href="#cb19-8"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="dv">66</span>) {</span>
+<span id="cb19-9"><a href="#cb19-9"></a>  <span class="fu">print</span>(<span class="st">"x is medium (i.e., between 34 and 66)"</span>)</span>
+<span id="cb19-10"><a href="#cb19-10"></a>} <span class="cf">else</span> {</span>
+<span id="cb19-11"><a href="#cb19-11"></a>  <span class="fu">print</span>(<span class="st">"x is large (i.e., between 67 and 100)"</span>)</span>
+<span id="cb19-12"><a href="#cb19-12"></a>}</span>
+<span id="cb19-13"><a href="#cb19-13"></a></span>
+<span id="cb19-14"><a href="#cb19-14"></a></span>
+<span id="cb19-15"><a href="#cb19-15"></a><span class="co"># another way:</span></span>
+<span id="cb19-16"><a href="#cb19-16"></a><span class="co"># this way doesn't take advantage of what we know about x</span></span>
+<span id="cb19-17"><a href="#cb19-17"></a><span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="dv">33</span>) {</span>
+<span id="cb19-18"><a href="#cb19-18"></a>  <span class="fu">print</span>(<span class="st">"x is small (i.e., 33 or less)"</span>)</span>
+<span id="cb19-19"><a href="#cb19-19"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="dv">66</span>) {</span>
+<span id="cb19-20"><a href="#cb19-20"></a>  <span class="fu">print</span>(<span class="st">"x is medium (i.e., above 33 and up to 66)"</span>)</span>
+<span id="cb19-21"><a href="#cb19-21"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="dv">100</span>) {</span>
+<span id="cb19-22"><a href="#cb19-22"></a>  <span class="fu">print</span>(<span class="st">"x is large (i.e., above 67 and up to 100)"</span>)</span>
+<span id="cb19-23"><a href="#cb19-23"></a>} <span class="cf">else</span> {</span>
+<span id="cb19-24"><a href="#cb19-24"></a>  <span class="fu">stop</span>(<span class="st">"something has gone wrong! we weren't supposed to get here"</span>)</span>
+<span id="cb19-25"><a href="#cb19-25"></a>}</span>
+<span id="cb19-26"><a href="#cb19-26"></a><span class="co"># this way has an error if an unexpected situation arises -- you might try</span></span>
+<span id="cb19-27"><a href="#cb19-27"></a><span class="co"># setting x to something silly like "apple" and running the two versions above</span></span>
+<span id="cb19-28"><a href="#cb19-28"></a><span class="co"># again.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="loops" class="title-slide slide level1 center" data-background-image="transition_slides/tyler-springhetti.jpg" data-background-color="black" data-background-opacity="60%">
+<h1>loops</h1>
+
+</section>
+<section id="for-loops" class="slide level2">
+<h2>for loops</h2>
+<div class="fragment small">
+<p>a <span class="carrot"><strong>for loop</strong></span> is used to iterate over a sequence.</p>
+</div>
+<div class="fragment small">
+<p><span class="carrot"><strong>for loop</strong></span> are used when you have a block of code you want to repeat a fixed number of times.</p>
+</div>
+<div class="fragment xsmall">
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># the syntax for a for loop</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="cf">for</span> (iterator <span class="cf">in</span> sequence) {</span>
+<span id="cb20-3"><a href="#cb20-3"></a>  code_to_repeat</span>
+<span id="cb20-4"><a href="#cb20-4"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="an-example-1" class="slide level2">
+<h2>an example</h2>
+<div class="fragment small">
+<p>let’s say you want to print out the squares of the numbers 1 through 25. that would be fairly tedious to do by hand, but you can use a for loop to make it easy.</p>
+</div>
+<div class="fragment xsmall">
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>) {</span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">print</span>(i<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb21-3"><a href="#cb21-3"></a>}</span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a><span class="co">#&gt; [1] 9</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a><span class="co">#&gt; [1] 16</span></span>
+<span id="cb21-8"><a href="#cb21-8"></a><span class="co">#&gt; [1] 25</span></span>
+<span id="cb21-9"><a href="#cb21-9"></a><span class="co">#&gt; [1] 36</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a><span class="co">#&gt; [1] 49</span></span>
+<span id="cb21-11"><a href="#cb21-11"></a><span class="co">#&gt; [1] 64</span></span>
+<span id="cb21-12"><a href="#cb21-12"></a><span class="co">#&gt; [1] 81</span></span>
+<span id="cb21-13"><a href="#cb21-13"></a><span class="co">#&gt; [1] 100</span></span>
+<span id="cb21-14"><a href="#cb21-14"></a><span class="co">#&gt; [1] 121</span></span>
+<span id="cb21-15"><a href="#cb21-15"></a><span class="co">#&gt; [1] 144</span></span>
+<span id="cb21-16"><a href="#cb21-16"></a><span class="co">#&gt; [1] 169</span></span>
+<span id="cb21-17"><a href="#cb21-17"></a><span class="co">#&gt; [1] 196</span></span>
+<span id="cb21-18"><a href="#cb21-18"></a><span class="co">#&gt; [1] 225</span></span>
+<span id="cb21-19"><a href="#cb21-19"></a><span class="co">#&gt; [1] 256</span></span>
+<span id="cb21-20"><a href="#cb21-20"></a><span class="co">#&gt; [1] 289</span></span>
+<span id="cb21-21"><a href="#cb21-21"></a><span class="co">#&gt; [1] 324</span></span>
+<span id="cb21-22"><a href="#cb21-22"></a><span class="co">#&gt; [1] 361</span></span>
+<span id="cb21-23"><a href="#cb21-23"></a><span class="co">#&gt; [1] 400</span></span>
+<span id="cb21-24"><a href="#cb21-24"></a><span class="co">#&gt; [1] 441</span></span>
+<span id="cb21-25"><a href="#cb21-25"></a><span class="co">#&gt; [1] 484</span></span>
+<span id="cb21-26"><a href="#cb21-26"></a><span class="co">#&gt; [1] 529</span></span>
+<span id="cb21-27"><a href="#cb21-27"></a><span class="co">#&gt; [1] 576</span></span>
+<span id="cb21-28"><a href="#cb21-28"></a><span class="co">#&gt; [1] 625</span></span>
+<span id="cb21-29"><a href="#cb21-29"></a></span>
+<span id="cb21-30"><a href="#cb21-30"></a><span class="co"># obviously the above code is much shorter than writing </span></span>
+<span id="cb21-31"><a href="#cb21-31"></a><span class="fu">print</span>(<span class="dv">1</span><span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb21-32"><a href="#cb21-32"></a><span class="fu">print</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb21-33"><a href="#cb21-33"></a><span class="fu">print</span>(<span class="dv">3</span><span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb21-34"><a href="#cb21-34"></a><span class="fu">print</span>(<span class="dv">4</span><span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb21-35"><a href="#cb21-35"></a><span class="fu">print</span>(<span class="dv">5</span><span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb21-36"><a href="#cb21-36"></a><span class="co"># and so on and so forth...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="another-example-1" class="slide level2">
+<h2>another example</h2>
+<div class="fragment small">
+<p>for loops can iterate over any data structure that can be sequenced (i.e., indexed by an integer), so feel free to use them with character vectors.</p>
+</div>
+<div class="fragment xsmall">
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'sloths'</span>, <span class="st">'platypus'</span>, <span class="st">'sea otters'</span>, <span class="st">'ringtail lemurs'</span>)</span>
+<span id="cb22-2"><a href="#cb22-2"></a></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="cf">for</span> (animal <span class="cf">in</span> animals) {</span>
+<span id="cb22-4"><a href="#cb22-4"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(animal, <span class="st">" rule!"</span>))</span>
+<span id="cb22-5"><a href="#cb22-5"></a>}</span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="co">#&gt; [1] "sloths rule!"</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a><span class="co">#&gt; [1] "platypus rule!"</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a><span class="co">#&gt; [1] "sea otters rule!"</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a><span class="co">#&gt; [1] "ringtail lemurs rule!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="a-more-realistic-example" class="slide level2">
+<h2>a more realistic example</h2>
+<div class="fragment small">
+<p>here’s one situation I find myself running into at least a few times a year: occasionally I’ll find U.S. national data in Excel or CSV files that are split up by state. If I’m lucky, they’ll be named something like <code>Alabama.csv</code>, <code>Alaska.csv</code>, <code>Arizona.csv</code>, …</p>
+<p>This is a great situation to use a for loop!</p>
+</div>
+<div class="fragment xxsmall">
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>state_data <span class="ot">&lt;-</span> <span class="fu">list</span>() <span class="co"># start with an empty list</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a></span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="cf">for</span> (state <span class="cf">in</span> state.name) {  <span class="co"># state.name is a list of state names built into R</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a></span>
+<span id="cb23-5"><a href="#cb23-5"></a>  <span class="co"># we'll talk more about reading in data later today</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>  new_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="fu">paste0</span>(state, <span class="st">".csv"</span>)) </span>
+<span id="cb23-7"><a href="#cb23-7"></a>  </span>
+<span id="cb23-8"><a href="#cb23-8"></a>  <span class="co"># create a list element for the data being read in named after the state</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>  state_data[[state]] <span class="ot">&lt;-</span> state_data </span>
+<span id="cb23-10"><a href="#cb23-10"></a>}</span>
+<span id="cb23-11"><a href="#cb23-11"></a></span>
+<span id="cb23-12"><a href="#cb23-12"></a><span class="co"># clean up the state_data list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="another-example-with-states" class="slide level2">
+<h2>another example with states</h2>
+<div class="fragment small">
+<p>sometimes you’ll want to use indexing in a for loop to reference values within multiple sequences at the same time.</p>
+<p>here’s an example:</p>
+</div>
+<div class="fragment xxsmall">
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>) {</span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"the abbreviation for "</span>, state.name[i], <span class="st">" is "</span>, state.abb[i]))</span>
+<span id="cb24-3"><a href="#cb24-3"></a>}</span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="co">#&gt; [1] "the abbreviation for Alabama is AL"</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a><span class="co">#&gt; [1] "the abbreviation for Alaska is AK"</span></span>
+<span id="cb24-6"><a href="#cb24-6"></a><span class="co">#&gt; [1] "the abbreviation for Arizona is AZ"</span></span>
+<span id="cb24-7"><a href="#cb24-7"></a><span class="co">#&gt; [1] "the abbreviation for Arkansas is AR"</span></span>
+<span id="cb24-8"><a href="#cb24-8"></a><span class="co">#&gt; [1] "the abbreviation for California is CA"</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a><span class="co">#&gt; [1] "the abbreviation for Colorado is CO"</span></span>
+<span id="cb24-10"><a href="#cb24-10"></a><span class="co">#&gt; [1] "the abbreviation for Connecticut is CT"</span></span>
+<span id="cb24-11"><a href="#cb24-11"></a><span class="co">#&gt; [1] "the abbreviation for Delaware is DE"</span></span>
+<span id="cb24-12"><a href="#cb24-12"></a><span class="co">#&gt; [1] "the abbreviation for Florida is FL"</span></span>
+<span id="cb24-13"><a href="#cb24-13"></a><span class="co">#&gt; [1] "the abbreviation for Georgia is GA"</span></span>
+<span id="cb24-14"><a href="#cb24-14"></a><span class="co">#&gt; [1] "the abbreviation for Hawaii is HI"</span></span>
+<span id="cb24-15"><a href="#cb24-15"></a><span class="co">#&gt; [1] "the abbreviation for Idaho is ID"</span></span>
+<span id="cb24-16"><a href="#cb24-16"></a><span class="co">#&gt; [1] "the abbreviation for Illinois is IL"</span></span>
+<span id="cb24-17"><a href="#cb24-17"></a><span class="co">#&gt; [1] "the abbreviation for Indiana is IN"</span></span>
+<span id="cb24-18"><a href="#cb24-18"></a><span class="co">#&gt; [1] "the abbreviation for Iowa is IA"</span></span>
+<span id="cb24-19"><a href="#cb24-19"></a><span class="co">#&gt; [1] "the abbreviation for Kansas is KS"</span></span>
+<span id="cb24-20"><a href="#cb24-20"></a><span class="co">#&gt; [1] "the abbreviation for Kentucky is KY"</span></span>
+<span id="cb24-21"><a href="#cb24-21"></a><span class="co">#&gt; [1] "the abbreviation for Louisiana is LA"</span></span>
+<span id="cb24-22"><a href="#cb24-22"></a><span class="co">#&gt; [1] "the abbreviation for Maine is ME"</span></span>
+<span id="cb24-23"><a href="#cb24-23"></a><span class="co">#&gt; [1] "the abbreviation for Maryland is MD"</span></span>
+<span id="cb24-24"><a href="#cb24-24"></a><span class="co">#&gt; [1] "the abbreviation for Massachusetts is MA"</span></span>
+<span id="cb24-25"><a href="#cb24-25"></a><span class="co">#&gt; [1] "the abbreviation for Michigan is MI"</span></span>
+<span id="cb24-26"><a href="#cb24-26"></a><span class="co">#&gt; [1] "the abbreviation for Minnesota is MN"</span></span>
+<span id="cb24-27"><a href="#cb24-27"></a><span class="co">#&gt; [1] "the abbreviation for Mississippi is MS"</span></span>
+<span id="cb24-28"><a href="#cb24-28"></a><span class="co">#&gt; [1] "the abbreviation for Missouri is MO"</span></span>
+<span id="cb24-29"><a href="#cb24-29"></a><span class="co">#&gt; [1] "the abbreviation for Montana is MT"</span></span>
+<span id="cb24-30"><a href="#cb24-30"></a><span class="co">#&gt; [1] "the abbreviation for Nebraska is NE"</span></span>
+<span id="cb24-31"><a href="#cb24-31"></a><span class="co">#&gt; [1] "the abbreviation for Nevada is NV"</span></span>
+<span id="cb24-32"><a href="#cb24-32"></a><span class="co">#&gt; [1] "the abbreviation for New Hampshire is NH"</span></span>
+<span id="cb24-33"><a href="#cb24-33"></a><span class="co">#&gt; [1] "the abbreviation for New Jersey is NJ"</span></span>
+<span id="cb24-34"><a href="#cb24-34"></a><span class="co">#&gt; [1] "the abbreviation for New Mexico is NM"</span></span>
+<span id="cb24-35"><a href="#cb24-35"></a><span class="co">#&gt; [1] "the abbreviation for New York is NY"</span></span>
+<span id="cb24-36"><a href="#cb24-36"></a><span class="co">#&gt; [1] "the abbreviation for North Carolina is NC"</span></span>
+<span id="cb24-37"><a href="#cb24-37"></a><span class="co">#&gt; [1] "the abbreviation for North Dakota is ND"</span></span>
+<span id="cb24-38"><a href="#cb24-38"></a><span class="co">#&gt; [1] "the abbreviation for Ohio is OH"</span></span>
+<span id="cb24-39"><a href="#cb24-39"></a><span class="co">#&gt; [1] "the abbreviation for Oklahoma is OK"</span></span>
+<span id="cb24-40"><a href="#cb24-40"></a><span class="co">#&gt; [1] "the abbreviation for Oregon is OR"</span></span>
+<span id="cb24-41"><a href="#cb24-41"></a><span class="co">#&gt; [1] "the abbreviation for Pennsylvania is PA"</span></span>
+<span id="cb24-42"><a href="#cb24-42"></a><span class="co">#&gt; [1] "the abbreviation for Rhode Island is RI"</span></span>
+<span id="cb24-43"><a href="#cb24-43"></a><span class="co">#&gt; [1] "the abbreviation for South Carolina is SC"</span></span>
+<span id="cb24-44"><a href="#cb24-44"></a><span class="co">#&gt; [1] "the abbreviation for South Dakota is SD"</span></span>
+<span id="cb24-45"><a href="#cb24-45"></a><span class="co">#&gt; [1] "the abbreviation for Tennessee is TN"</span></span>
+<span id="cb24-46"><a href="#cb24-46"></a><span class="co">#&gt; [1] "the abbreviation for Texas is TX"</span></span>
+<span id="cb24-47"><a href="#cb24-47"></a><span class="co">#&gt; [1] "the abbreviation for Utah is UT"</span></span>
+<span id="cb24-48"><a href="#cb24-48"></a><span class="co">#&gt; [1] "the abbreviation for Vermont is VT"</span></span>
+<span id="cb24-49"><a href="#cb24-49"></a><span class="co">#&gt; [1] "the abbreviation for Virginia is VA"</span></span>
+<span id="cb24-50"><a href="#cb24-50"></a><span class="co">#&gt; [1] "the abbreviation for Washington is WA"</span></span>
+<span id="cb24-51"><a href="#cb24-51"></a><span class="co">#&gt; [1] "the abbreviation for West Virginia is WV"</span></span>
+<span id="cb24-52"><a href="#cb24-52"></a><span class="co">#&gt; [1] "the abbreviation for Wisconsin is WI"</span></span>
+<span id="cb24-53"><a href="#cb24-53"></a><span class="co">#&gt; [1] "the abbreviation for Wyoming is WY"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="while" class="slide level2 small">
+<h2>while</h2>
+<div class="fragment">
+<p>a <code>while</code> loop allows you to repeatedly run some code <span class="carrot"><strong>until a condition is met</strong></span>.</p>
+</div>
+<div class="fragment">
+<p>this has the advantage that you don’t have to know how many times the code will be run in advance, in contrast to a <code>for</code> loop where you have to have a pre-determined sequence that you’ll iterate along.</p>
+</div>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="fragment">
+<p>here’s a hypothetical: if you draw numbers between 1 through 10 randomly and sum them up, how long will it take you to get a value of at least 100? <br><br></p>
+</div>
+<div class="fragment">
+<p>it won’t ever take longer than 100 iterations, and it can’t take less than 10 iterations. <br><br></p>
+</div>
+<div class="fragment">
+<p>the expected draw is 5.5, so it should take around 18.2 summations on average, I would think.</p>
+</div>
+</section>
+<section id="while-1" class="slide level2 small">
+<h2>while</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>value <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="cf">while</span> (value <span class="sc">&lt;</span> <span class="dv">100</span>) {</span>
+<span id="cb25-3"><a href="#cb25-3"></a>  value <span class="ot">&lt;-</span> value <span class="sc">+</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb25-4"><a href="#cb25-4"></a>  <span class="fu">print</span>(value)</span>
+<span id="cb25-5"><a href="#cb25-5"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2
+[1] 3
+[1] 5
+[1] 11
+[1] 15
+[1] 16
+[1] 19
+[1] 29
+[1] 37
+[1] 43
+[1] 45
+[1] 49
+[1] 59
+[1] 61
+[1] 63
+[1] 72
+[1] 77
+[1] 79
+[1] 87
+[1] 96
+[1] 105</code></pre>
+</div>
+</div>
+</section>
+<section id="while-2" class="slide level2 small">
+<h2>while</h2>
+<p>that’s great, but it doesn’t tell us about how many iterations it took</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>n_iterations <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
+<span id="cb27-2"><a href="#cb27-2"></a>value <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="cf">while</span> (value <span class="sc">&lt;</span> <span class="dv">100</span>) {</span>
+<span id="cb27-4"><a href="#cb27-4"></a>  n_iterations <span class="ot">&lt;-</span> n_iterations <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a>  value <span class="ot">&lt;-</span> value <span class="sc">+</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb27-6"><a href="#cb27-6"></a>}</span>
+<span id="cb27-7"><a href="#cb27-7"></a><span class="fu">print</span>(n_iterations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 17</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">print</span>(value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 103</code></pre>
+</div>
+</div>
+</section>
+<section id="while-3" class="slide level2 xxsmall">
+<h2>while</h2>
+<p>what if we want to create a larger sample of data to see if our hypothesis was close to some observed data?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>iterations_needed <span class="ot">&lt;-</span> <span class="fu">numeric</span>() <span class="co"># create an empty numeric vector</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a></span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="co"># we'll run the experiment 10,000 times so we have a substantial amount of data</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>) {</span>
+<span id="cb31-5"><a href="#cb31-5"></a>  n_iterations <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
+<span id="cb31-6"><a href="#cb31-6"></a>  value <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
+<span id="cb31-7"><a href="#cb31-7"></a>  <span class="cf">while</span> (value <span class="sc">&lt;</span> <span class="dv">100</span>) {</span>
+<span id="cb31-8"><a href="#cb31-8"></a>    n_iterations <span class="ot">&lt;-</span> n_iterations <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb31-9"><a href="#cb31-9"></a>    value <span class="ot">&lt;-</span> value <span class="sc">+</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb31-10"><a href="#cb31-10"></a>  }</span>
+<span id="cb31-11"><a href="#cb31-11"></a>  iterations_needed <span class="ot">&lt;-</span> <span class="fu">c</span>(iterations_needed, n_iterations)</span>
+<span id="cb31-12"><a href="#cb31-12"></a>}</span>
+<span id="cb31-13"><a href="#cb31-13"></a></span>
+<span id="cb31-14"><a href="#cb31-14"></a><span class="fu">summary</span>(iterations_needed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  12.00   17.00   19.00   18.74   20.00   28.00 </code></pre>
+</div>
+</div>
+</section></section>
+<section id="key-takeaways" class="title-slide slide level1 center" data-background-image="transition_slides/tyler-springhetti.jpg" data-background-color="black" data-background-opacity="30%">
+<h1>key takeaways</h1>
+<div>
+<ul>
+<li class="fragment">!, &amp;, and <span style="font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;">|</span> should be your go-to logical operators</li>
+<li class="fragment">any(), all() and the relational operators ==, !=, &gt;, &lt;, &gt;=, &lt;= are some other functions that work with logical values</li>
+<li class="fragment">use if, if else and else if to run code depending on a specified condition</li>
+<li class="fragment">use for loops to run code with an iterator that goes through a given sequence</li>
+<li class="fragment">use while loops to run code until a given condition is met</li>
+</ul>
+</div>
+</section>
+
+<section id="lets-do-a-learnr-tutorial" class="title-slide slide level1 center" data-background-image="transition_slides/lode-lagrainge.jpg" data-background-color="black" data-background-opacity="50%">
+<h1>let’s do a learnr tutorial</h1>
+<div class="xsmall">
+<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># install devtools if you haven't already</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>) </span>
+<span id="cb33-3"><a href="#cb33-3"></a></span>
+<span id="cb33-4"><a href="#cb33-4"></a><span class="co"># install our ID529tutorials package</span></span>
+<span id="cb33-5"><a href="#cb33-5"></a>devtools<span class="sc">::</span><span class="fu">install_git</span>(<span class="st">"ID529/ID529tutorials"</span>)</span>
+<span id="cb33-6"><a href="#cb33-6"></a></span>
+<span id="cb33-7"><a href="#cb33-7"></a><span class="fu">library</span>(ID529tutorials)</span>
+<span id="cb33-8"><a href="#cb33-8"></a><span class="fu">run_tutorial</span>(<span class="st">'logic'</span>, <span class="st">'ID529tutorials'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="footer footer-default">
+
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="programming_with_r_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="programming_with_r_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="programming_with_r_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="programming_with_r_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="programming_with_r_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="programming_with_r_files/libs/revealjs/plugin/reveal-pointer/pointer.js"></script>
+  <script src="programming_with_r_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="programming_with_r_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="programming_with_r_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="programming_with_r_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="programming_with_r_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'pointer': {"key":"q","color":"red","pointerSize":16,"alwaysVisible":false},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealPointer, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

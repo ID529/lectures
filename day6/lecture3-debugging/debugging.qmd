@@ -1,0 +1,68 @@
+
+
+#  likely culprits 
+
+## syntax issues
+
+  - parentheses mismatch
+  - missing comma 
+  - `[[` ... `]]` vs. `[` ... `]`
+  - `==` vs. `=`
+  - floating point numbers being tricky
+    - examples: `.1 + .05 == .15` 
+  - unexpected vector recycling; vectorization not working properly
+  - elementwise comparison (=> use `identical()` or `all.equal()`)
+  - silent type conversions
+
+## logic issues
+
+  - confusing variable or function names 
+  - giving unnamed function arguments in the wrong order
+  - what you've written doesn't do what you mean to
+    - something was left out 
+    - the order of operations isn't right
+    - something extra is added 
+    - sometimes there are very small typos
+    
+## scope issues
+
+  - relying on a global variable and the global variable has changed
+  - assuming that changing a value inside one function will change it elsewhere
+  - confusing variables within a function with those from where the function was called
+  
+# what if those still don't fix it? 
+
+## traceback 
+
+## the print / message / warning method
+
+## simplify simplify simplify 
+
+  - reduce your unexpected behavior to the simplest possible case 
+
+## google your error message if you have no idea what it means
+
+## apply the scientific method to bugs
+
+hypothesize, test, repeat -- and keep track 
+
+## use the debugger
+
+## all of that still doesn't work? 
+
+  - try re-writing the code 
+  - try talking to a friend / colleague
+  - try the rubber ducky method
+  - take a break 
+  - take notes on your approaches and share with colleagues
+  - share a reprex on StackOverflow / the R4DS Slack
+  
+## resources
+
+https://www.r-bloggers.com/2019/11/debugging-in-r-how-to-easily-and-efficiently-conquer-errors-in-your-code/ 
+
+https://adv-r.hadley.nz/debugging.html 
+
+https://seananderson.ca/2013/08/23/debugging-r/ 
+
+https://www.stat.cmu.edu/~ryantibs/statcomp-F16/lectures/debugging_tools.html

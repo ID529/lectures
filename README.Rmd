@@ -12,29 +12,29 @@ The website for the course is online at <https://id529.github.io/>.
 ![](graphics/harvard-green.jpg)
 
 
-```{r, child='day1/readme.md'}
+```{r, child='day1/readme-day1.md'}
 ```
 
-```{r, child='day2/readme.md'}
+```{r, child='day2/readme-day2.md'}
 ```
 
-```{r, child='day3/readme.md'}
+```{r, child='day3/readme-day3.md'}
 ```
 
-```{r, child='day4/readme.md'}
+```{r, child='day4/readme-day4.md'}
 ```
 
-```{r, child='day5/readme.md'}
+```{r, child='day5/readme-day5.md'}
 ```
 
-```{r, child='day6/readme.md'}
+```{r, child='day6/readme-day6.md'}
 ```
 
-```{r, child='day7/readme.md'}
+```{r, child='day7/readme-day7.md'}
 ```
 
-```{r, child='day8/readme.md'}
+```{r, child='day8/readme-day8.md'}
 ```
 
-```{r, child='day9/readme.md'}
+```{r, child='day9/readme-day9.md'}
 ```

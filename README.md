@@ -11,16 +11,17 @@ The website for the course is online at <https://id529.github.io/>.
 
 ## Monday January 9th
 
-- 1:30-2:00 Introductory Lecture: Course Details
-- 2:00-2:30 Live Demonstration: Modern Data Science Practices in an R
+- 1:30-1:40 Welcome to ID529
+- 1:40-2:10 Introductory Lecture: Course Details
+- 2:10-2:40 Live Demonstration: Modern Data Science Practices in an R
   Project Based Workflow
-- 2:30-2:45 Activity: Q&A + Group reflection on principles shown in the
+- 2:40-2:55 Activity: Q&A + Group reflection on principles shown in the
   demonstration
-- 2:45-3:00 Lecture: Introduce the Final Presentations Format
-- 3:00-3:05 Break
-- 3:05-3:35: Intro to RStudio and R
-- 3:35-4:00: Discussion and Self-Introductions
-- 4:00-4:45: Lecture: Intro to Git and GitHub
+- 2:55-3:10 Lecture: Introduce the Final Presentations Format
+- 3:10-3:15 Break
+- 3:15-3:50: Intro to RStudio and R
+- 3:50-4:05: Discussion and Self-Introductions
+- 4:05-4:45: Lecture: Intro to Git and GitHub
 - 4:45-5:00: Demo of how to do the homework
 - 5:00-5:05: Positive Affirmations
 - 5:05-5:30 Activity: Setup GitHub accounts + work on the homework +
@@ -35,6 +36,8 @@ Recommended materials:
     Jennifer Bryan: <https://peerj.com/preprints/3159.pdf>
   - Tutorial: Getting Started with R and RStudio:
     <https://www.dataquest.io/blog/tutorial-getting-started-with-r-and-rstudio/>
+  - Quickstart from GitHub:
+    <https://docs.github.com/en/get-started/quickstart/hello-world>
 - Videos:
   - RStudio for the Total Beginner, HRAnalytics101:
     <https://www.youtube.com/watch?v=FIrsOBy5k58>
@@ -54,9 +57,9 @@ Homework:
 
 - 1:30-2:00 Lecture: Intro to R Programming (including conditionals,
   control flow, etc.)
-- Learnr Tutorial on Conditionals and Control Flow
-- 2:00-2:30 Lecture: Data Dictionaries and Documentation
-- 2:30-3:00 Activity: Q&A + Discussion
+- 2:00-2:15 Activity: learnr Tutorial on Conditionals and Control Flow
+- 2:15-2:45 Lecture: Data Dictionaries and Documentation
+- 2:45-3:00 Activity: Q&A + Discussion
 - 3:00-3:05 Break
 - 3:05-3:35 Lecture: Reading in data of various formats
 - 3:35-4:30 Lecture: Intro to ggplot2 (common types of figures,
@@ -65,9 +68,9 @@ Homework:
   an effective data visualization?
 - 4:50-5:10 Demonstration of how to do the homework
 - 5:10-5:30 Time to work on homework, chat with classmates, peruse
-  recommended reading, engage in self-affirmation
+  recommended materials, engage in self-affirmation
 
-Recommended reading:
+Recommended materials:
 
 - Our learnr tutorial on Conditionals, Control Flow, and Logic in R
 - *Smithsonian Data Management and Best Practices — Describing Your
@@ -120,19 +123,18 @@ What you can expect from the instructional team:
 
 ## Wednesday January 11th
 
-- 1:30-2:00 Lecture: Starting R Projects
-- 2:00-2:30 Lecture: Intro to dplyr
-- 2:30-2:40 Comparing base R vs. tidyverse
-- 2:40-3:00 Activity: Work on dplyr learnr tutorial in groups
-- 3:00-3:05 Break
-- 3:05-3:35 Lecture: Cleaning Text Data
+- 1:30-2:00 Lecture: R Projects
+- 2:00-2:50 Lecture: Intro to dplyr
+- 2:50-3:10 Activity: Work on dplyr learnr tutorial in groups
+- 3:10-3:15 Break
+- 3:15-3:35 Lecture: Cleaning Text Data
 - 3:35-4:05 Lecture: Writing Functions
 - 4:05-4:30 Activity: Write functions together
 - 4:30-4:45 Activity: Discussion Q&A from ggplot2 Homework
 - 4:45-4:55 Survey: Checking in on Pacing
 - 4:55-5:10 Demonstration of how to do the homework
 - 5:10-5:30 Time to work on homework, chat with classmates, peruse
-  recommended reading
+  recommended materials
 
 Recommended reading:
 
@@ -153,31 +155,23 @@ Recommended reading:
 
 Homework:
 
-- Choose one of the prespecified datasets and, using an R project,
-  implement concepts covered in lecture to prepare data for analysis and
-  visualization.
-- Provide a peer review to one of your classmates on their homework from
-  the previous day
-
-What you can expect from the instructional team:
-
-- We’ll be
+- No homework
 
 ## Thursday January 12th
 
 - 1:30-2:00 Lecture: Diverse Data Sources (APIs \[tidycensus, WHO, World
   Bank, qualtRics\], scraping web data, tabulizer, tesseract, datapasta)
 - 2:00-2:20 Discussion: What kind of sources are students interested in
-  using in their dissertation work?
+  using in their research or future work?
 - 2:20-2:50 Lecture: How to handle factors and date-times
 - 2:50-3:00 Break
 - 3:00-3:30 Lecture: Regression Modeling: How to fit regression models,
   extracting model summaries from fit model objects, visualizing model
   estimates
 - 3:30-4:15 Activity: Working with Regression Models in R
-- 3:15-4:15 Lecture: Creating maps in R
-- 4:15-4:30 Lecture: Reproducible Examples for Getting Help
-- 4:30-5:30 Time to work on final presentation materials together,
+- 4:15-4:45 Lecture: Creating maps in R
+- 4:45-5:00 Lecture: Reproducible Examples for Getting Help
+- 5:00-5:30 Time to work on final presentation materials together,
   peruse recommended materials, chat with classmates
 
 Homework 4:
@@ -244,20 +238,25 @@ this! Just focus on what’s most useful to you):
   pressures in academia that push people away from reproducible science
 - 2:00-2:15 Discussion
 - 2:15-2:45 Lecture: Visualizing and Reporting on Regression Models
-- 2:45-3:15 Lecture: Data Linkage Methods
-- 3:15-3:25 Break
-- 3:25-3:45 Activity: Working with Joins
-- 3:45-4:00 Lecture: Introduction of the Brown et al (partial)
+- 2:45-3:05 Lecture: Data Linkage Methods
+- 3:05-3:25 Activity: Working with Joins
+- 3:25-3:35 Break
+- 3:35-4:00 Activity: Hallway QR Code Challenges
+- 4:00-4:15 Lecture: Introduction of the Brown et al (partial)
   reproduction of Onikye et al’s results
-- 4:00-4:15 Homework demonstration
-- 4:15-5:25: Time to work on homework + chat together + work on final
+- 4:15-4:30 Homework demonstration
+- 4:30-5:25 Time to work on homework + chat together + work on final
   projects
-- 5:25-5:30: Giveaway for a Copy of R for Data Science
+- 5:25-5:30 Giveaway for a Copy of R for Data Science
+- 5:30 Meet Hodu!
 
-Homework 5 \* Read the Brown et al reproduction of Onikye et al, run
-their code, and fill out the worksheet \*
-<https://open.lnu.se/index.php/metapsychology/article/view/2071> \*
-<https://osf.io/j32yw/> \* Peer review for homework 4
+Homework 5
+
+- Read the Brown et al reproduction of Onikye et al, run their code, and
+  fill out the worksheet
+  - <https://open.lnu.se/index.php/metapsychology/article/view/2071>
+  - <https://osf.io/j32yw/>
+- Peer review for homework 4
 
 Available/Recommended Reading:
 
@@ -289,14 +288,14 @@ Available/Recommended Reading:
 - 1:50-2:10 Lecture: Introduction to R Packages
 - 2:10-2:30 Demonstration of how to create R packages that standardize
   data loading and cleaning processes
-- 2:30-2:40 Break
-- 2:40-3:10 Lecture: How to use R Markdown to produce reproducible
+- 2:30-3:00 Lecture: How to use R Markdown to produce reproducible
   reports including tables, visualizations, and inline-quantitative
   statements.
+- 3:00-3:10 Break
 - 3:10-3:30 Activity: Experiment with different R Markdown features
 - 3:30-3:50 Lecture: Advice for Debugging
 - 3:50-4:10 Activity: Debugging
-- 4:10-4:30 Activity: Online resources exercise
+- 4:10-4:30 Activity: Getting Help Online and Debugging
 - 4:30-4:45 Demonstration of how to do the homework
 - 4:45-5:30 Time to do the homework, work on the final project together,
   peruse recommended materials
@@ -324,9 +323,13 @@ Recommended Reading:
     better to reference as you need it than to try to read it
     cover-to-cover.
 
+Homework:
+
+- Use R Markdown to document some exploratory data analysis.
+
 ## Wednesday January 18th
 
-- 1:30-2:00 Lecture: Data Management from Start to Finish
+- 1:30-2:00 Lecture: A Data Analysis from Start to Finish
 - 2:00-2:30 Lecture: Longitudinal Data Analysis
 - 2:30-3:00 Lecture: Best practices for reporting on missing data
 - 3:00-3:30 Lecture: Intro to accessible exploratory data analysis
@@ -335,7 +338,8 @@ Recommended Reading:
 - 3:30-3:40 Break
 - 3:40-4:00 Discussion: What are the ethical principles involved in data
   analysis? What are the risks involved?
-- 4:00-5:30 Free time to work together on the final project, chat with
+- 4:00-4:30 Lecture: Clean Code and Considerate Coding
+- 4:30-5:30 Free time to work together on the final project, chat with
   classmates, peruse recommended materials
 
 Recommended reading:
@@ -346,13 +350,17 @@ Recommended reading:
 
 ## Thursday January 19th
 
-- 1:30-2:00 Lecture/Demo: A Data Analysis from Start to Finish
+- 1:30-2:00 Lecture/Demo: Principles for Data Analysis from Start to
+  Finish
 - 2:00-2:30 Lecture: Functional Programming
-- 2:30-3:00 Discussion + Live Demos: When does it make sense to use
-  functional programming?
+- 2:30-3:00 Discussion + Demo: When does it make sense to use functional
+  programming?
 - 3:00-3:10 Break
 - 3:10-3:40 Lecture: \[Students’ Choice\]
-- 3:40-5:30 Positive affirmations, free time to work together on final
+- 3:40-4:10 Lecture: How to Keep Growing as a Programmer (and stay up to
+  date)
+- 4:10-4:20 Details about turning in your final presentations
+- 4:20-5:30 Positive affirmations, free time to work together on final
   projects
 
 Recommended materials:
@@ -361,13 +369,14 @@ Recommended materials:
 
 ## Friday January 20th
 
-- 1:30-5:00 Final Presentations:
-  - Students will be divided into 10 groups with 15 minutes presentation
-    time and 5 minutes for feedback from the instructional team and Q&A
-    from the audience.
-  - 20 minutes × 10 groups = \~3.5 hours
-- 5:00-5:15 Lecture: Recap of Key Takeaways
-- 5:15-5:30:
+- 1:30-4:30 Final Presentations:
+  - Students will be divided into 10 groups with 10-12 minutes
+    presentation time and 3-5 minutes for feedback from the
+    instructional team and Q&A from the audience.
+  - 15 minutes × 10 groups = \~2.5 hours
+  - we’ll make sure to take some breaks between every few groups
+- 4:30-5:00 Lecture: Recap of Key Takeaways
+- 5:00-5:30:
   - Make sure you’ve uploaded your presentation!
   - Feedback and Course Evaluations
 

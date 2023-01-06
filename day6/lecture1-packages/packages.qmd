@@ -1,0 +1,136 @@
+---
+title: "R Packages"
+format:
+  revealjs:
+    theme: [default, packages.scss]
+slide-number: true
+# title-slide-attributes: 
+#   data-background-image: ""
+#   data-background-opacity: "60%"
+#   data-background-color: "black"
+revealjs-plugins:
+  - pointer
+execute: 
+  echo: true
+---
+
+# morals 
+
+> “Software and cathedrals are much the same; first we build them, then we pray.” ——Anonymous
+
+> "As a rule, software systems do not work well until they have been used, and have failed repeatedly, in real applications."
+——David Parnas
+
+# 
+
+Packages are [a] fundamental units of reproducible R code. They include reusable
+R functions, the documentation that describes how to use them, and sample data.
+
+--R Packages, Hadley Wickham and Jenny Bryan 
+
+# why would i prefer a package [to a regular R project?]
+
+if you have <span class='carrot'>**functionality**</span> that you want to
+share, or a dataset that you want to make not just widely accessible but
+genuinely popular, then a package will seriously reduce the friction in doing
+so.
+
+# parts of an R package
+
+  - code in the `R/` folder
+  - a `DESCRIPTION` file that describes the package, its dependencies, its license,
+  its authors, etc.
+  - (possibly) built-in data in the `inst/` folder (short for installed)
+  - documentation formatted through the `roxygen2` system
+  - (optionally, but highly recommended) testing with `testthat` in the `tests/` folder
+  - a `NAMESPACE` file (that is typically generated for you) of which functions and
+    data get exported
+
+# lucky for you, `devtools` and `usethis` exist 
+
+# let's follow along with "The Whole Game" in the R Packages book
+
+:::{.notes}
+the idea here is to build a package around using the pythagorean 
+theorem and storing some data on the pythagorean triples
+
+```{r}
+pythagorean_triples <- 
+  tibble::tribble(
+     ~V1, ~V2,   ~V3,
+      3L,  4L,  5L,
+      5L, 12L, 13L,
+      8L, 15L, 17L,
+      7L, 24L, 25L,
+     20L, 21L, 29L,
+     12L, 35L, 37L,
+      9L, 40L, 41L,
+     28L, 45L, 53L,
+     11L, 60L, 61L,
+     16L, 63L, 65L,
+     33L, 56L, 65L,
+     48L, 55L, 73L,
+     13L, 84L, 85L,
+     36L, 77L, 85L,
+     39L, 80L, 89L,
+     65L, 72L, 97L
+     )
+
+library(tidyverse)
+
+# to be completely transparent, I had to google: 
+# how to unlist a list column in r 
+# how to fix the aspect ratio in r 
+# how to use the labeller in facet_wrap 
+# 
+# and I tried to plot them on top of each other before I couldn't figure out 
+# transparency for the geom_polygon outlines
+# 
+# I also tried to use latex in the title, but eventually found it easier
+# to just insert the ≤ character
+
+pythagorean_triples |> 
+  tibble::rownames_to_column(var = "triple_id") |> 
+  group_by(triple_id) |> 
+  mutate(
+    x = list(c(0, V2, V2)),
+    y = list(c(0, 0, V3))
+  ) |> 
+  select(-c(V1, V2, V3)) |> 
+  mutate(triple_id = factor(triple_id, levels = 1:16)) |> 
+  unnest(cols = c(x,y)) |> 
+  ggplot(aes(x, y, fill = triple_id)) + 
+  facet_wrap(~triple_id, labeller = as_labeller(~ paste0("triple #", .))) + 
+  geom_polygon(alpha=0.8) + 
+  theme_classic() + 
+  theme(aspect.ratio = 1, legend.position = 'none') + 
+  labs(title = "The Pythagorean Triples with Sides ≤ 100")
+
+
+gcd <- function(x,y) {
+  r <- x%%y;
+  return(ifelse(r, gcd(y, r), y))
+}
+
+generate_triple <- function(m, n) {
+  
+  stopifnot(m > n)
+  stopifnot(n > 0)
+  stopifnot(m %% 1 == 0 & n %% 1 == 0)
+  stopifnot((m + n) %% 2 == 1)
+  stopifnot(gcd(m, n) == 1)
+  
+  c(a = m^2 - n^2, b = 2 * m * n, c = m^2 + n^2)
+}
+
+generate_triple(2,1)
+generate_triple(3,2)
+generate_triple(3,2)
+generate_triple(4,1)
+generate_triple(5,2)
+generate_triple(5,4)
+```
+
+:::
+
+  
