@@ -1,0 +1,20 @@
+
+## head
+
+## View
+
+## dplyr::glimpse
+
+## skimr::skim
+
+## gtsummary
+
+## DataExplorer::create_report
+
+## correlation 
+
+## inspectdf
+
+## GGally
+
+## variable importance

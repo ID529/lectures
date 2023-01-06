@@ -1,0 +1,183 @@
+---
+title: Principles for Data Analysis from Start to Finish 
+format:
+  revealjs:
+    theme: [default, principles.scss]
+slide-number: true
+title-slide-attributes:
+  data-background-image: "graphics/transition_slides/peter-f.jpg"
+  data-background-opacity: "100%"
+  data-background-color: "black"
+revealjs-plugins:
+  - pointer
+execute: 
+  echo: true
+
+---
+
+# morals
+
+> “Happy families are all alike; every unhappy family is unhappy in its own way.” <br> —Leo Tolstoy
+
+> “Tidy datasets are all alike, but every messy dataset is messy in its own way.” <br> —Hadley Wickham
+
+# data cleaning {.xsmall}
+
+:::{.columns}
+:::{.column}
+<img src="images/nytimes.png" alt='an nytimes article headline talking about janitor work in data science'>
+:::
+:::{.column}
+> Yet far too much handcrafted work — what data scientists call “data wrangling,” “data munging” and “data janitor work” — is still required. Data scientists, according to interviews and expert estimates, spend from <span class='carrot'>**50 percent to 80 percent**</span> of their time mired in this more mundane labor of collecting and preparing unruly digital data, before it can be explored for useful nuggets. 
+:::
+:::
+
+# If 80% of the data scientist’s job is data cleaning, perhaps that is the job. {.xxsmall}
+
+<center>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Cleaning data 🧼🧽 <a href="https://t.co/MMCJkTYmgL">pic.twitter.com/MMCJkTYmgL</a></p>&mdash; Chelsea Parlett-Pelleriti (@ChelseaParlett) <a href="https://twitter.com/ChelseaParlett/status/1221251025983565824?ref_src=twsrc%5Etfw">January 26, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+<https://twitter.com/ChelseaParlett/status/1221251025983565824> </center>
+
+# a framework for creating quality {.xxsmall}
+
+<center>
+<img src="images/data_cleaning_blocks.png" alt='a framework consisting of fundamentals, verify, explore, ask, and document' height='550px'>
+
+from <https://kbroman.org/Talk_DataCleaning/data_cleaning_notes.pdf>
+</center>
+
+# fundamentals
+
+## fundamentals {.small}
+
+:::{.incremental}
+  1. don't clean when you're hungry or tired
+      * data cleaning requires considerable concentration, and you need to allow suﬀicient time to do the work. if you’re in a hurry, you’ll miss things.
+  2. don’t trust anyone (even yourself) 
+:::
+
+## {.xxxsmall}
+
+
+<img src="images/dystopian_moonscape.jpg" alt="spreadsheets: a dystopian moonscape of unrecorded user actions">
+
+from Jenny Bryan's talk on spreadsheets <https://speakerdeck.com/jennybc/spreadsheets?slide=4>
+
+## {.xxxsmall}
+
+<img src="images/i_transposed_for_no_reason.jpg" alt="a dog with a sign saying they
+transposed sheet 4 in their workbook for no reason">
+
+from Jenny Bryan's talk on spreadsheets <https://speakerdeck.com/jennybc/spreadsheets?slide=28>
+
+## {.xxxsmall}
+
+<center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">If your collaborator asks, “In what form would you like the data?” you should respond, “In its current form.” via <a href="https://twitter.com/kwbroman?ref_src=twsrc%5Etfw">@kwbroman</a></p>&mdash; Jean Adams (@JeanVAdams) <a href="https://twitter.com/JeanVAdams/status/707241263645392896?ref_src=twsrc%5Etfw">March 8, 2016</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+<https://twitter.com/JeanVAdams/status/707241263645392896></center>
+
+## {.xxxsmall}
+
+<center><img src="https://imgs.xkcd.com/comics/algorithms.png" alt="There was a schism in 2007, when a sect advocating OpenOffice created a fork of Sunday.xlsx and maintained it independently for several months. The efforts to reconcile the conflicting schedules led to the reinvention, within the cells of the spreadsheet, of modern version control.">
+
+<https://xkcd.com/1667/>
+</center>
+
+## fundamentals {.small}
+
+  1. don't clean when you're hungry or tired
+      * data cleaning requires considerable concentration, and you need to allow suﬀicient time to do the work. if you’re in a hurry, you’ll miss things.
+  2. don’t trust anyone (even yourself) 
+
+  
+:::{.incremental}
+  3. think about what might have gone wrong and how it might be revealed
+  4. use care in merging
+  5. dates & categories suck
+:::
+
+## {.xsmall}
+
+<center>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Updated Turing Test concept:<br>A spreadsheet of dates, hand-entered by interns more than a decade ago, featuring such well-known time formats as &quot;1996ish&quot;, &quot;1941/xd01944&quot;, &quot;1955?&quot; and &quot;WWII.&quot;<br>I&#39;m not worried about AI until someone shows me the algorithm that can make sense of this. <a href="https://t.co/IhzofigX2b">pic.twitter.com/IhzofigX2b</a></p>&mdash; Brooke Watson Madubuonwu (@brookLYNevery1) <a href="https://twitter.com/brookLYNevery1/status/954368989181902848?ref_src=twsrc%5Etfw">January 19, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+<https://twitter.com/brookLYNevery1/status/954368989181902848></center>
+  
+# verify 
+
+## verify {.small}
+
+:::{.incremental}
+  6. check that distinct things are distinct
+  7. check that matching things match
+  8. check calculations
+  9. look for other instances of a problem
+:::
+
+# explore
+
+## explore {.small}
+
+:::{.incremental}
+  10. make lots of plots 
+:::
+
+## 
+
+<center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">I am often asked why I insist on complicating a plot by overlaying a violin plot on top of a box plot when the latter already gives a good visual summary of the distribution.<br><br>This gif provides a reason.<br><br>For a more nuanced argument, see:<a href="https://t.co/GhGmqxRoLi">https://t.co/GhGmqxRoLi</a><a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/dataviz?src=hash&amp;ref_src=twsrc%5Etfw">#dataviz</a> <a href="https://t.co/Qk1lQMuBJm">pic.twitter.com/Qk1lQMuBJm</a></p>&mdash; Indrajeet Patil (इंद्रजीत पाटील) (@patilindrajeets) <a href="https://twitter.com/patilindrajeets/status/1375006386795524098?ref_src=twsrc%5Etfw">March 25, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+<https://twitter.com/patilindrajeets/status/1375006386795524098></center>
+
+## explore {.small}
+
+  10. make lots of plots 
+:::{.incremental}
+  11. look at missing value patterns 
+  12. with massive data, make more plots not fewer 
+  13. follow up all artifacts
+:::
+
+
+# ask
+
+## ask {.small}
+
+:::{.incremental}
+14. ask questions
+15. ask for the primary data
+16. ask for metadata
+17. ask why data are missing
+:::
+
+# document
+
+## document {.small}
+
+:::{.incremental}
+  18. create checklists & pipelines
+  19. document not just what but why
+  20. expect to recheck
+:::
+
+## {.xxxsmall}
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">&quot;Writing documentation is all about making future you remember things that present you knows future you will forget&quot; -- <a href="https://twitter.com/data_stephanie?ref_src=twsrc%5Etfw">@data_stephanie</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/Rladies?src=hash&amp;ref_src=twsrc%5Etfw">#Rladies</a></p>&mdash; R-Ladies Chicago (@RLadiesChicago) <a href="https://twitter.com/RLadiesChicago/status/963576859152744456?ref_src=twsrc%5Etfw">February 14, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+<https://twitter.com/RLadiesChicago/status/963576859152744456>
+
+## {.xxxsmall}
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Every scientific project will be redone in its entirety about 10-20 times from start to publication. Plan your work flow accordingly, e.g. a piece of R code that takes a data file and produces the analysis and figure/s. Change the data? Just rerun the code.</p>&mdash; Trevor Branch (@TrevorABranch) <a href="https://twitter.com/TrevorABranch/status/1157006269292507136?ref_src=twsrc%5Etfw">August 1, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+<https://twitter.com/TrevorABranch/status/1157006269292507136>
+
+# in sum 
+
+<img src="images/data_cleaning_checklist.svg">
+
+# references
+
+  - Karl Broman's presentation on data cleaning <https://kbroman.org/Talk_DataCleaning/data_cleaning_notes.pdf>
+  
+
+   

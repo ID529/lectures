@@ -22,14 +22,21 @@ Note that you need to have Quarto >= version 1.2 -->
 
 :::{.fragment}
 <br>
-the final project will be group presentations on best practices related to a specific
+the final project will be group presentations on <span class='carrot'>**best practices**</span> related to a specific
 aspect of data analysis and management. 
 :::
 
 :::{.fragment}
 <br>
-you'll be in groups of five and have ten to twelve minutes of time to present and a
+you'll be in groups of five and have <span class='carrot'>**ten to twelve**</span> minutes of time to present and a
 brief q&a afterwards.
+:::
+
+:::{.fragment}
+<br>
+if you'd like, you can do a <span class='carrot'>**video recording**</span> 
+of your presentation so that you know you won't get cut off at the time-limit 
+and can make sure the delivery is exactly what you want it to be.
 :::
 
 ## final presentation topics

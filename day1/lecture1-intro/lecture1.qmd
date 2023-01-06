@@ -15,7 +15,7 @@ title-slide-attributes:
 
 # meet your instructors
 
-## Christian Testa {.smaller}
+## Christian Testa (he/him/his) {.smaller}
 
 :::: {.columns}
 ::: {.column width="30%"}
@@ -58,49 +58,80 @@ methods in epidemiology. <br><br>
 :::
 ::::
 
-## Dean Marengi
+## Dean Marengi (he/him/his) {.small}
 
 :::: {.columns}
 ::: {.column width="30%"}
-![](DeanMarengi.png)
+<img src="DeanMarengi.png" alt="Dean's pic">
 :::
 
 ::: {.column width="70%"}
-Hi!  I'm Dean Marengi. I'm a second year PhD student in 
-Environmental Health ... 
+Hi there! I’m Dean Marengi, a current PhD student in the Department of Environmental Health. I received my MPH in epidemiology from the Harvard T.H. Chan School of Public Health, and have been involved in public health research for over ten years. Broadly, I am interested in studying the relationship between prenatal environmental exposures and the subsequent development of neuropsychiatric outcomes. <br><br>
+
+I’m a self-taught R programmer who is very enthusiastic about data cleaning, and even more enthusiastic about helping others learn how to clean their data!
 :::
 ::::
 
-## Amanda Hernandez
+## Amanda Hernandez (she/her/hers) {.small}
 
 :::: {.columns}
 ::: {.column width="30%"}
-![](AmandaHernandez.jpg)
+<img src="AmandaHernandez.jpg" alt="Amanda's pic">
 :::
 
 ::: {.column width="70%"}
-Hi!  I'm Amanda Hernandez.  I'm a second year Masters student in Environmental 
-Health ...
+Hi! I’m Amanda Hernandez and I’m a second year Masters student in Environmental Health. My work is at the intersection of environmental geochemistry + public health, focused on addressing environmental health disparities through community-based participatory research and evidence-based decision-making.<br><br>
+
+I’m a self-taught R user, Shiny enthusiast, and advocate for coding in light mode.
 :::
 ::::
 
-## Jarvis Chen
+## Jarvis Chen (he/him/his) {.small}
 
 :::: {.columns}
 ::: {.column width="30%"}
-![](JarvisChen.jpg)
+<img src="JarvisChen.jpg" alt="Jarvis's pic">
 :::
 
 ::: {.column width="70%"}
-Hi!  I'm Jarvis Chen.  <br><br>
+Hi, I’m Jarvis Chen, a Lecturer in Social and Behavioral Sciences at the Harvard T.H. Chan School of Public Health and Associate Director of the PhD Program in Population Health Sciences at the Graduate School of Arts and Sciences. I teach multiple courses in quantitative research methods and I’m passionate about causal inference, methods development, and population health science pedagogy.<br><br>
 
-
-I'm a lecturer in the Dept. of Social and Behavioral Sciences
-and 
-one of the nicest, kindest, wisest people you'll ever meet [Christian
-wrote this]. <br><br>
+I've been a self-taught programmer for >25 years 🫠 and I love learning from other people about the different ways we can analyze and understand data.
 :::
 ::::
+
+# collaborator/co-conspirator/patron
+
+## our class mascot 
+
+:::{.columns}
+:::{.column width='60%'}
+
+<center>
+<img src="graphics/hodu_pics/christmas_hodu.jpeg" alt='hodu, a white fluffy dog, in a santa hat with a tie' height='550px'>
+</center>
+:::
+
+:::{.column width='40%' .smaller}
+:::{.fragment}
+hodu is a 1.5 year old samoyed.  <br><br>
+:::
+
+:::{.fragment}
+호두 (hodu) means walnut in korean.  <br><br>
+:::
+
+:::{.fragment}
+he loves dogs, people, and treats. <br><br>
+:::
+
+:::{.fragment}
+you will have the chance to meet him friday at 5:30 pm
+in the courtyard. 
+:::
+:::
+:::
+
 
 
 # course philosophy {background-image="images/harvard-green.jpg" background-color='black' background-opacity='40%'}
@@ -200,8 +231,7 @@ and submitted through github.  <br><br>
 :::
 
 :::{.fragment}
-additionally, we'll be asking you to provide peer reviews to another student so 
-that: 
+additionally, we are asking you to do peer reviews on the homework so that:
 :::
 
 :::{.incremental}
@@ -210,10 +240,92 @@ that:
 :::
 :::
 
+## rubric for homework {.small}
+
+:::{.fragment}
+your homework will be evaluated on the following rubric:
+:::
+
+:::{.fragment}
++---+---+
+| objective/principle                                     | percent of grade | 
+| -----                                                   | -:              |
+| does it accomplish the stated goal? is it complete?     | 25%             |
+| is it well documented and commented?                    | 25%             |
+| is it transparent and clearly motivated? is it elegant, i.e., not kludgey? | 25% | 
+| does it incorporate what's been taught? does it reflect growth? | 25% | 
++---+---+
+:::
+
+:::{.fragment}
+we really just want to see that you're <span class='carrot'>**learning**</span>, <span class='carrot'>**growing as a programmer**</span>, and
+using the homeworks to <span class='carrot'>**challenge yourself in a healthy, productive way**</span>.
+:::
+
+:::{.fragment}
+<center>
+<img src="graphics/memes/its-fine-meme.jpg" height='280px' alt='a little dog surrounded by lush plants saying this is fine'>
+</center>
+:::
+
+## rubric for peer review {.small}
+
+:::{.fragment}
+your peer reviews will be evaluated on the following rubric:
+:::
+
+:::{.fragment}
++---+---+
+| objective/principle                                     | percent of grade | 
+| -----                                                   | -:              |
+| does it include constructive criticism?     | 50%             |
+| does it include positive feedback (i.e., things you liked about their approach)? | 50% | 
++---+---+
+:::
+
+<center>
+:::{.fragment}
+<img src="graphics/hodu_pics/constructive_feedback.jpeg" alt='one puppy barking at another who is standing on a platform' height='400px'>
+<img src="graphics/hodu_pics/hodu_and_sabre.jpeg" alt='one puppy barking at another who is standing on a platform' height='400px'>
+:::
+</center>
+
+:::{.notes}
+not only was Hodu giving his brother some constructive feedback, but his brother is clearly safely secured in a supportive environment, elevated on a pedestal of positive intention.
+:::
+
+
+## class discussions {.smaller}
+
+:::{.fragment}
+throughout the class, we'll be having several discussion
+based activities in various formats. <br><br>
+:::
+
+:::{.fragment}
+we want to make sure everyone has a chance to shine, 
+so please make sure that you 1) aren't dominating the discussions and 2) please be aware that your questions are
+completely welcome in our discussions. <br><br>
+:::
+
+:::{.fragment}
+if you would like to prepare for the discussions in advance,
+make sure to take a look at the syllabus and timetables
+on our course website for what we'll be covering in advance.
+:::
+
+:::{.absolute top='70%' left='75%'}
+<iframe src="https://giphy.com/embed/9Sxp3YOKKFEBi" width="480" height="258" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/film-total-fozzie-bear-9Sxp3YOKKFEBi">via GIPHY</a></p>
+:::
+
+
 # time for a live demo 🤞 {background-color='black'  background-opacity='40%' background-image="transition_slides/yen-vu.jpg"}
 
-## what are some of the principles that the live demo employed?  {background-color='black'  background-opacity='40%' background-image="transition_slides/corey-bruce.jpg"}
+## what are some of the principles that the live demo employed?  {background-color='black'  background-opacity='30%' background-image="transition_slides/corey-bruce.jpg"}
 
+:::{.fragment}
+enter your questions / thoughts on <a href='https://bit.ly/day1-discussion'>bit.ly/day1-discussion</a>
+:::
 
 :::{.incremental}
   * code makes the analysis repeatable 

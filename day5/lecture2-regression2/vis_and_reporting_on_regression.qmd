@@ -1,0 +1,120 @@
+---
+title: "Functions"
+format:
+  revealjs:
+    theme: [default, functions.scss]
+slide-number: true
+# title-slide-attributes: 
+#   data-background-image: ""
+#   data-background-opacity: "60%"
+#   data-background-color: "black"
+revealjs-plugins:
+  - pointer
+execute: 
+  echo: true
+---
+
+# morals 
+
+## exploratory modeling
+
+```r
+geom_smooth()
+```
+
+## make a model 
+
+## broom::tidy
+
+## gtsummary 
+
+## forest plots
+
+## 
+
+# diagnostics 
+
+## qq plots
+
+## DHARMa
+
+## residuals 
+
+## standard diagnostic plots
+
+https://www.statology.org/scale-location-plot/
+
+https://www.statology.org/residuals-vs-leverage-plot/ 
+
+## variable importance 
+
+
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+library(NHANES)
+library(gtsummary)
+
+NHANES <- NHANES |> 
+  mutate(
+    Poverty_cut = cut(Poverty, quantile(NHANES$Poverty, seq(0,1,.25), na.rm=T))
+  )
+
+model <- 
+  lm(
+    BPSysAve ~ 
+      Gender * AgeDecade + 
+       Race1 + 
+       Education + 
+      BMI_WHO + 
+      MaritalStatus + 
+       Poverty_cut + 
+       PhysActiveDays + 
+       SmokeNow,
+    data = NHANES
+  )
+
+broom::tidy(model, conf.int=TRUE) |> 
+  ggplot(aes(x = estimate, xmin = conf.low, xmax = conf.high, y = term, color = p.value < 0.05)) + 
+  geom_vline(xintercept = 0) +
+  geom_linerange() + 
+  geom_point() 
+  
+tbl_regression(model, intercept = TRUE)
+
+library(easystats)
+
+plot(check_normality(model), type='qq')
+
+plot(parameters(model))
+
+report_performance(model)
+
+report_info(model)
+
+report_intercept(model)
+```
+
+```{r}
+library(randomForest)
+library(vip)
+
+rf_model <- randomForest(
+  BPSysAve ~ 
+    Gender +
+    AgeDecade +
+    Race1 +
+    Education +
+    BMI_WHO +
+    MaritalStatus +
+    Poverty_cut +
+    PhysActiveDays +
+    SmokeNow, 
+    data = NHANES,
+    na.action = na.omit
+)
+
+vip(rf_model)
+vip(model)
+```

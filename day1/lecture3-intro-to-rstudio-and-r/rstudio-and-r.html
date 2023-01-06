@@ -27,6 +27,70 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="rstudio-and-r_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="rstudio-and-r_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -361,13 +425,14 @@
 <h2>installing R and RStudio</h2>
 
 <img src="images/initial_workflow/download_versions.png" class="r-stretch"></section>
-<section>
 <section id="lets-start-with-rstudio" class="title-slide slide level1 center" data-background-color="black" data-background-image="transition_slides/manuel-will.jpg" data-background-opacity="70%">
 <h1>let’s start with RStudio</h1>
 
 </section>
-<section id="open-up-rstudio" class="slide level2">
-<h2>open up RStudio</h2>
+
+<section>
+<section id="rstudio" class="title-slide slide level1 center">
+<h1>RStudio</h1>
 <p>first let’s talk about what the different panes are.</p>
 </section>
 <section class="slide level2">
@@ -542,10 +607,655 @@
 <section id="rstudio-ide-cheatsheet-1" class="slide level2">
 <h2>RStudio IDE cheatsheet</h2>
 
-<img src="images/initial_workflow/rstudio_ide_cheatsheet.png" class="r-stretch"><div class="footer footer-default">
+<img src="images/initial_workflow/rstudio_ide_cheatsheet.png" class="r-stretch"></section></section>
+<section>
+<section id="basics-of-r" class="title-slide slide level1 center" data-background-color="black" data-background-image="transition_slides/manuel-will.jpg" data-background-opacity="40%">
+<h1>basics of R</h1>
+<aside class="notes">
+<p>Generally we would recommend that you run all your R code in RStudio</p>
+<p>we’ll generally try to go in order of importance for this class</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="arithmetic" class="slide level2">
+<h2>arithmetic</h2>
+<p>The usual arithmetic operators you’re familiar with are available to you</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="dv">5</span> <span class="sc">+</span> <span class="dv">4</span>  <span class="co"># evaluates to: 9</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="dv">5</span> <span class="sc">-</span> <span class="dv">4</span>  <span class="co"># evaluates to: 1</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="dv">5</span> <span class="sc">/</span> <span class="dv">2</span>  <span class="co"># =&gt; 2.5</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="dv">5</span> <span class="sc">*</span> <span class="dv">2</span>  <span class="co"># =&gt; 10</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="dv">5</span><span class="sc">^</span><span class="dv">2</span>    <span class="co"># =&gt; 25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="arithmetic-functions" class="slide level2">
+<h2>arithmetic functions</h2>
+<div class="small">
+<ul>
+<li class="fragment">logarithms and exponentials: <code>log2(x)</code>, <code>log10(x)</code>, <code>log(x)</code>, <code>exp(x)</code></li>
+<li class="fragment">trigonometric functions: <code>cos(x)</code>, <code>sin(x)</code>, <code>tan(x)</code>, etc.</li>
+<li class="fragment">other math functions: <span class="carrot"><code>abs(x)</code> (absolute value); <code>sqrt(x)</code> (square root)</span></li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">log2</span>(<span class="dv">4</span>) <span class="co"># =&gt; 2</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">abs</span>(<span class="sc">-</span><span class="dv">5</span>) <span class="co"># =&gt; 5</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">sqrt</span>(<span class="dv">9</span>) <span class="co"># =&gt; 3</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">exp</span>(<span class="dv">1</span>)  <span class="co"># =&gt; 2.718282</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="assigning-variables" class="slide level2">
+<h2>assigning variables</h2>
+<div class="xsmall">
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>my_age <span class="ot">&lt;-</span> <span class="dv">99</span>  <span class="co"># numeric variable; a wizard never shares their age</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>my_name <span class="ot">&lt;-</span> <span class="st">"Christian"</span> <span class="co"># a character variable</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># are you a data analyst? (yes/no) &lt;==&gt; (TRUE/FALSE)</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>is_a_data_analyst <span class="ot">&lt;-</span> <span class="cn">TRUE</span> <span class="co"># boolean values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="vectors" class="slide level2">
+<h2>vectors</h2>
+<div class="small">
+<div class="fragment">
+<p>vectors create combinations of multiple values which are <span class="carrot"><strong>all of the same type</strong></span> (i.e., one of numeric, character, or logical).</p>
+</div>
+<div class="fragment">
+<p>in fancy computer science language, we would say this makes vectors a <span class="carrot"><strong>homogeneous data structure</strong></span>.</p>
+</div>
+<div>
+<ul>
+<li class="fragment">create a vector using <code>c()</code> for concatenate</li>
+<li class="fragment">for missing data, use <code>NA</code> (not available/not applicable) or <code>NaN</code> (not a number)</li>
+<li class="fragment">extract individual items using <code>my_vector[i]</code> to get the ith element</li>
+<li class="fragment">calculate statistics on vectors with: <code>max(x)</code>, <code>min(x)</code>, <code>range(x)</code>, <code>length(x)</code>, <code>sum(x)</code>, <code>mean(x)</code>, <code>prod(x)</code>, <code>sd(x)</code>, <code>var(x)</code>, <code>sort(x)</code>, <code>summary(x)</code></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>classmate_ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">22</span>, <span class="dv">24</span>, <span class="dv">26</span>, <span class="dv">23</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">mean</span>(classmate_ages) <span class="co"># =&gt; 23.8</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="fu">max</span>(classmate_ages) <span class="co"># =&gt; 26</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="fu">summary</span>(classmate_ages) </span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt;   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt;   22.0    23.0    24.0    23.8    24.0    26.0 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="factors" class="slide level2">
+<h2>factors</h2>
+<div class="small fragment">
+<p>one particularly important type of vector is a <span class="carrot"><strong>factor</strong></span>, which is used to store <span class="carrot"><strong>categorical</strong></span> variables where values are repeated frequently and there is a pre-specified set of distinct levels.</p>
+</div>
+<div class="xxsmall fragment">
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># create a factor: let's say we have a study with 5 participants</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>study_participant_genders <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">c</span>(<span class="st">'non-binary'</span>, </span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="st">'transgender female'</span>, </span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="st">'non-binary'</span>, </span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="st">'cis female'</span>, </span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="st">'transgender female'</span>))</span>
+<span id="cb5-8"><a href="#cb5-8"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co"># create a frequency table</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="fu">table</span>(study_participant_genders)</span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt; study_participant_genders</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt;         cis female         non-binary transgender female </span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt;                  1                  2                  2 </span></span>
+<span id="cb5-14"><a href="#cb5-14"></a></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co"># get a list of the distinct levels</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="fu">levels</span>(study_participant_genders)</span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt; [1] "cis female"         "non-binary"         "transgender female"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="lists" class="slide level2">
+<h2>lists</h2>
+<div class="xsmall">
+<div class="fragment">
+<p>another important heterogeneous data structure are <span class="carrot"><strong>lists</strong></span></p>
+</div>
+<div class="fragment">
+<p>create a list using <code>list()</code>, extract elements from it using <code>my_list[[i]]</code> to get the ith element from it, or use the <code>my_list$element_name</code> syntax if the elements in the list are named.</p>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment xxsmall">
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>harrys_family <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="at">father =</span> <span class="st">"James Potter"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="at">mother =</span> <span class="st">"Lily Evans"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="at">aunt =</span> <span class="st">"Petunia Dursley"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="at">uncle =</span> <span class="st">"Vernon Dursley"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="at">cousin =</span> <span class="st">"Dudley Dursley"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7"></a>  <span class="at">parents_age =</span> <span class="dv">21</span>,</span>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="at">adoptive_family_ages =</span> <span class="fu">c</span>(<span class="dv">44</span>, <span class="dv">50</span>, <span class="dv">18</span>)</span>
+<span id="cb6-9"><a href="#cb6-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment xxsmall">
+<div class="sourceCode" id="cb7" data-code-line-numbers="false"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>$father</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>[1] "James Potter"</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>$mother</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>[1] "Lily Evans"</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>$aunt</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>[1] "Petunia Dursley"</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>$uncle</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>[1] "Vernon Dursley"</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>$cousin</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>[1] "Dudley Dursley"</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>$parents_age</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>[1] 21</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>$adoptive_family_ages</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>[1] 44 50 18</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-frames" class="slide level2">
+<h2>data frames</h2>
+<div class="small fragment">
+<p>data frames are a data structure composed of <span class="carrot"><strong>multiple columns of data</strong></span>, all of which have the same length, but which may differ in type.</p>
+</div>
+<div class="small fragment">
+<p>here’s an example:</p>
+</div>
+<div class="fragment xsmall">
+<div class="cell">
 
 </div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1"></a>   name  age height_cm is_from_middle_earth</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    Tom    4        90                FALSE</span>
+<span id="cb8-3"><a href="#cb8-3"></a>  Jerry    1        10                FALSE</span>
+<span id="cb8-4"><a href="#cb8-4"></a>Legolas 2000       180                 TRUE</span>
+<span id="cb8-5"><a href="#cb8-5"></a>  Gimli  140       137                 TRUE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="small fragment">
+<p>data frames will be <span class="carrot"><strong>the most important data structure</strong></span> in this class!</p>
+</div>
+<div class="fragment small">
+<p>as you might have guessed, the corresponding fancy computer science lingo would be to say that data frames are a <span class="carrot"><strong>heterogeneous data structure</strong></span>.</p>
+</div>
+</section>
+<section id="matrices" class="slide level2">
+<h2>matrices</h2>
+<div class="fragment xsmall">
+<p>matrices are data structures made up of columns of data, all of the same type, all with the same length.</p>
+</div>
+<div class="xsmall" style="line-height: 18px;">
+<div class="fragment">
+<p>some functions to use with matrices</p>
+</div>
+<ul>
+<li class="fragment">to create matrices, use: <code>matrix()</code>, <code>cbind()</code>, <code>rbind()</code></li>
+<li class="fragment">to name their rows or columns: <code>rownames()</code> and <code>colnames()</code></li>
+<li class="fragment">to check and convert: <code>is.matrix()</code> and <code>as.matrix()</code></li>
+<li class="fragment">transpose a matrix: <code>t()</code></li>
+<li class="fragment">get dimensions: <code>ncol()</code> <code>nrow()</code>, <code>dim()</code></li>
+<li class="fragment">subset a matrix: <code>my_matrix[row, col]</code></li>
+<li class="fragment">calculations with numeric matrices: <code>rowSums()</code>, <code>colSums()</code>, <code>rowMeans()</code>, <code>colMeans()</code></li>
+</ul>
+</div>
+</section>
+<section id="matrices-1" class="slide level2">
+<h2>matrices</h2>
+<div class="columns">
+<div class="column xxxsmall" style="width:50%;">
+<div class="fragment absolute" style="top: 10%; left: 0%; ">
+<p><img src="hodu_pics/IMG_1646.jpeg" width="300px" alt="Hodu body length"></p>
+</div>
+<div class="fragment absolute" style="top: 10%; left: 0%; ">
+<p><img src="hodu_pics/IMG_1648.jpeg" width="300px" alt="Hodu's ear width"></p>
+</div>
+<div class="fragment absolute" style="top: 10%; left: 0%; ">
+<p><img src="hodu_pics/IMG_1653.jpeg" width="300px" alt="Hodu's nose"></p>
+</div>
+<div class="fragment absolute" style="top: 10%; left: 0%; ">
+<p><img src="hodu_pics/IMG_7002.jpg" height="400px" alt="Hodu and three friends"></p>
+</div>
+</div><div class="column xxxsmall absolute" style="left: 50%; width: 50%; ">
+<div class="fragment">
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>pup_stats <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="at">data =</span> <span class="fu">c</span>(</span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fl">3.8</span>, <span class="fl">3.6</span>, <span class="fl">3.7</span>, <span class="fl">3.8</span>, <span class="fl">3.5</span>,     <span class="co"># 1st column</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fl">8.5</span>,   <span class="dv">6</span>, <span class="fl">7.7</span>,   <span class="dv">8</span>, <span class="fl">8.2</span>,     <span class="co"># 2nd column</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="dv">1</span>,    .<span class="dv">9</span>, <span class="fl">1.2</span>, <span class="fl">1.1</span>,  .<span class="dv">9</span>),    <span class="co"># 3rd column</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">5</span>)</span>
+<span id="cb9-7"><a href="#cb9-7"></a>  </span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="fu">colnames</span>(pup_stats) <span class="ot">&lt;-</span> </span>
+<span id="cb9-9"><a href="#cb9-9"></a>  <span class="fu">c</span>(<span class="st">'body_length_ft'</span>, </span>
+<span id="cb9-10"><a href="#cb9-10"></a>  <span class="st">'ear_width_in'</span>, </span>
+<span id="cb9-11"><a href="#cb9-11"></a>  <span class="st">'nose_width_in'</span>)</span>
+<span id="cb9-12"><a href="#cb9-12"></a>  </span>
+<span id="cb9-13"><a href="#cb9-13"></a><span class="fu">rownames</span>(pup_stats) <span class="ot">&lt;-</span> </span>
+<span id="cb9-14"><a href="#cb9-14"></a>  <span class="fu">c</span>(<span class="st">'hodu'</span>, </span>
+<span id="cb9-15"><a href="#cb9-15"></a>    <span class="st">'coco-chanel'</span>, </span>
+<span id="cb9-16"><a href="#cb9-16"></a>    <span class="st">'sabre'</span>,</span>
+<span id="cb9-17"><a href="#cb9-17"></a>    <span class="st">'kissy'</span>,</span>
+<span id="cb9-18"><a href="#cb9-18"></a>    <span class="st">'mochi'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+</div>
+<div class="fragment">
+<div class="sourceCode" id="cb10" data-code-line-numbers="false"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>          body_length_ft ear_width_in nose_width_in</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>hodu                 3.8          8.5           1.0</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>coco-chanel          3.6          6.0           0.9</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>sabre                3.7          7.7           1.2</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>kissy                3.8          8.0           1.1</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>mochi                3.5          8.2           0.9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="installing-packages" class="slide level2">
+<h2>installing packages</h2>
+<div class="fragment small">
+<p>R packages are extensions to the R programming language that contain code, data, and documentation.</p>
+</div>
+<div class="fragment small">
+<p>R packages provide reusable R functions, documentation on how to use them, tests, and sample data.</p>
+</div>
+<div class="fragment xxsmall">
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># to install a package from CRAN use install.packages("packageName") with quotes</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="co">#&gt; trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.2/tidyverse_1.3.2.tgz'</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co">#&gt; Content type 'application/x-gzip' length 425892 bytes (415 KB)</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="co">#&gt; ==================================================</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="co">#&gt; downloaded 415 KB</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="co">#&gt; </span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="co">#&gt; </span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="co">#&gt; The downloaded binary packages are in</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="co">#&gt;  /var/folders/m8/2_hpqf1n5g3__1ps7nn8t31r0000gn/T//RtmpxHXjRQ/downloaded_packages</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment small">
+<p>CRAN is the <span class="carrot"><em>Comprehensive R Archive Network</em></span> which acts to guarantee that packages downloaded from CRAN will compile, have documentation, and follow conventional norms about how packages should work.</p>
+</div>
+</section>
+<section id="installing-packages-1" class="slide level2">
+<h2>installing packages</h2>
+<div class="fragment small">
+<p>packages can also be installed from GitHub repositories using the <code>{devtools}</code> package.</p>
+</div>
+<div class="fragment small">
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="co"># call devtools::install_github("username/repositoryName")</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"wilkelab/ggtext"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="loading-packages" class="slide level2">
+<h2>loading packages</h2>
+<div class="fragment xxsmall">
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># to load a package use library(packageName) without quotes</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="co">#&gt; ── Attaching packages ───────────────────────────────────────────────────────────────────────────── tidyverse 1.3.2 ──</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="co">#&gt; ✔ ggplot2 3.3.6     ✔ purrr   0.3.4</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="co">#&gt; ✔ tibble  3.1.7     ✔ dplyr   1.0.9</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="co">#&gt; ✔ tidyr   1.2.0     ✔ stringr 1.4.0</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="co">#&gt; ✔ readr   2.1.2     ✔ forcats 0.5.1</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="co">#&gt; ── Conflicts ──────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="co">#&gt; ✖ dplyr::filter() masks stats::filter()</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="co">#&gt; ✖ dplyr::lag()    masks stats::lag()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="getting-help" class="slide level2">
+<h2>getting help</h2>
+<div class="xsmall">
+<p>Use <code>help()</code> or <code>?</code> to get help on a specific function.</p>
+</div>
+<div class="xxsmall">
+<div class="cell" height="50%">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">help</span>(mean) <span class="co"># or run ?mean</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="co">#&gt; mean                   package:base                    R Documentation</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="co">#&gt; </span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="co">#&gt; Arithmetic Mean</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="co">#&gt; </span></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="co">#&gt; Description:</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="co">#&gt; </span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="co">#&gt;      Generic function for the (trimmed) arithmetic mean.</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="co">#&gt; </span></span>
+<span id="cb14-10"><a href="#cb14-10"></a><span class="co">#&gt; Usage:</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a><span class="co">#&gt; </span></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="co">#&gt;      mean(x, ...)</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a><span class="co">#&gt; </span></span>
+<span id="cb14-14"><a href="#cb14-14"></a><span class="co">#&gt;      ## Default S3 method:</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a><span class="co">#&gt;      mean(x, trim = 0, na.rm = FALSE, ...)</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a><span class="co">#&gt; Arguments:</span></span>
+<span id="cb14-17"><a href="#cb14-17"></a><span class="co">#&gt; </span></span>
+<span id="cb14-18"><a href="#cb14-18"></a><span class="co">#&gt;        x: An R object.  Currently there are methods for numeric/logical</span></span>
+<span id="cb14-19"><a href="#cb14-19"></a><span class="co">#&gt;           vectors and date, date-time and time interval objects.</span></span>
+<span id="cb14-20"><a href="#cb14-20"></a><span class="co">#&gt;           Complex vectors are allowed for ‘trim = 0’, only.</span></span>
+<span id="cb14-21"><a href="#cb14-21"></a><span class="co">#&gt; </span></span>
+<span id="cb14-22"><a href="#cb14-22"></a><span class="co">#&gt;     trim: the fraction (0 to 0.5) of observations to be trimmed from</span></span>
+<span id="cb14-23"><a href="#cb14-23"></a><span class="co">#&gt;           each end of ‘x’ before the mean is computed.  Values of trim</span></span>
+<span id="cb14-24"><a href="#cb14-24"></a><span class="co">#&gt;           outside that range are taken as the nearest endpoint.</span></span>
+<span id="cb14-25"><a href="#cb14-25"></a><span class="co">#&gt; </span></span>
+<span id="cb14-26"><a href="#cb14-26"></a><span class="co">#&gt;    na.rm: a logical evaluating to ‘TRUE’ or ‘FALSE’ indicating whether</span></span>
+<span id="cb14-27"><a href="#cb14-27"></a><span class="co">#&gt;           ‘NA’ values should be stripped before the computation</span></span>
+<span id="cb14-28"><a href="#cb14-28"></a><span class="co">#&gt;           proceeds.</span></span>
+<span id="cb14-29"><a href="#cb14-29"></a><span class="co">#&gt; </span></span>
+<span id="cb14-30"><a href="#cb14-30"></a><span class="co">#&gt;      ...: further arguments passed to or from other methods.</span></span>
+<span id="cb14-31"><a href="#cb14-31"></a><span class="co">#&gt; </span></span>
+<span id="cb14-32"><a href="#cb14-32"></a><span class="co">#&gt; Value:</span></span>
+<span id="cb14-33"><a href="#cb14-33"></a><span class="co">#&gt; </span></span>
+<span id="cb14-34"><a href="#cb14-34"></a><span class="co">#&gt;      If ‘trim’ is zero (the default), the arithmetic mean of the values</span></span>
+<span id="cb14-35"><a href="#cb14-35"></a><span class="co">#&gt;      in ‘x’ is computed, as a numeric or complex vector of length one.</span></span>
+<span id="cb14-36"><a href="#cb14-36"></a><span class="co">#&gt;      If ‘x’ is not logical (coerced to numeric), numeric (including</span></span>
+<span id="cb14-37"><a href="#cb14-37"></a><span class="co">#&gt;      integer) or complex, ‘NA_real_’ is returned, with a warning.</span></span>
+<span id="cb14-38"><a href="#cb14-38"></a><span class="co">#&gt; </span></span>
+<span id="cb14-39"><a href="#cb14-39"></a><span class="co">#&gt;      If ‘trim’ is non-zero, a symmetrically trimmed mean is computed</span></span>
+<span id="cb14-40"><a href="#cb14-40"></a><span class="co">#&gt;      with a fraction of ‘trim’ observations deleted from each end</span></span>
+<span id="cb14-41"><a href="#cb14-41"></a><span class="co">#&gt;      before the mean is computed.</span></span>
+<span id="cb14-42"><a href="#cb14-42"></a><span class="co">#&gt; </span></span>
+<span id="cb14-43"><a href="#cb14-43"></a><span class="co">#&gt; References:</span></span>
+<span id="cb14-44"><a href="#cb14-44"></a><span class="co">#&gt; </span></span>
+<span id="cb14-45"><a href="#cb14-45"></a><span class="co">#&gt;      Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) _The New S</span></span>
+<span id="cb14-46"><a href="#cb14-46"></a><span class="co">#&gt;      Language_.  Wadsworth &amp; Brooks/Cole.</span></span>
+<span id="cb14-47"><a href="#cb14-47"></a><span class="co">#&gt; </span></span>
+<span id="cb14-48"><a href="#cb14-48"></a><span class="co">#&gt; See Also:</span></span>
+<span id="cb14-49"><a href="#cb14-49"></a><span class="co">#&gt; </span></span>
+<span id="cb14-50"><a href="#cb14-50"></a><span class="co">#&gt;      ‘weighted.mean’, ‘mean.POSIXct’, ‘colMeans’ for row and column</span></span>
+<span id="cb14-51"><a href="#cb14-51"></a><span class="co">#&gt;      means.</span></span>
+<span id="cb14-52"><a href="#cb14-52"></a><span class="co">#&gt; Examples:</span></span>
+<span id="cb14-53"><a href="#cb14-53"></a><span class="co">#&gt; </span></span>
+<span id="cb14-54"><a href="#cb14-54"></a><span class="co">#&gt;      x &lt;- c(0:10, 50)</span></span>
+<span id="cb14-55"><a href="#cb14-55"></a><span class="co">#&gt;      xm &lt;- mean(x)</span></span>
+<span id="cb14-56"><a href="#cb14-56"></a><span class="co">#&gt;      c(xm, mean(x, trim = 0.10))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="getting-help-1" class="slide level2">
+<h2>getting help</h2>
+<p>Using the <code>help()</code> command for most functions is straightforward, but there are situations where you need to be a little bit careful.</p>
+<div class="small">
+<ul>
+<li class="fragment">if you are looking for help for a function from a specific package, especially where that function appears in multiple packages, you should run <code>help(filter, package='dplyr')</code>.</li>
+<li class="fragment">if you’re trying to get help on a function in R that is a symbol, like the arithmetic operators (<code>/</code>, <code>+</code>, <code>-</code>, <code>*</code>, <code>^</code>), or the assignment operator <code>&lt;-</code>, then you should put it in quotes when you call help: <code>help("*")</code></li>
+<li class="fragment">there’s more advice on getting help from inside R here: <br><a href="https://www.r-project.org/help.html" class="uri">https://www.r-project.org/help.html</a></li>
+</ul>
+</div>
+</section>
+<section id="builtin-example-datasets" class="slide level2">
+<h2>builtin example datasets</h2>
+<div class="fragment">
+<div class="small">
+<p>there are a handful of builtin example datasets you can use to test out ideas on.</p>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:35%;">
+<div class="small fragment">
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>mtcars</span>
+<span id="cb15-2"><a href="#cb15-2"></a>iris</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+</div>
+<div class="xxxsmall fragment absolute" style="top: 20%; left: 40%; ">
+<div class="sourceCode" id="cb16" data-code-line-numbers="false" style="max-width: 600px;"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>                     mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:65%;">
+<div class="xxxsmall fragment absolute" style="top: 20%; left: 40%; ">
+<div class="sourceCode" id="cb17" data-code-line-numbers="false"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Sepal.Length Sepal.Width Petal.Length Petal.Width    Species</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>         5.1         3.5          1.4         0.2     setosa</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>         4.9         3.0          1.4         0.2     setosa</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>         4.7         3.2          1.3         0.2     setosa</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>         4.6         3.1          1.5         0.2     setosa</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>         5.0         3.6          1.4         0.2     setosa</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>         5.4         3.9          1.7         0.4     setosa</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>         4.6         3.4          1.4         0.3     setosa</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>         5.0         3.4          1.5         0.2     setosa</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>         4.4         2.9          1.4         0.2     setosa</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>         4.9         3.1          1.5         0.1     setosa</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>         5.4         3.7          1.5         0.2     setosa</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>         4.8         3.4          1.6         0.2     setosa</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>         4.8         3.0          1.4         0.1     setosa</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>         4.3         3.0          1.1         0.1     setosa</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>         5.8         4.0          1.2         0.2     setosa</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>         5.7         4.4          1.5         0.4     setosa</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>         5.4         3.9          1.3         0.4     setosa</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>         5.1         3.5          1.4         0.3     setosa</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>         5.7         3.8          1.7         0.3     setosa</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>         5.1         3.8          1.5         0.3     setosa</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>         5.4         3.4          1.7         0.2     setosa</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>         5.1         3.7          1.5         0.4     setosa</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>         4.6         3.6          1.0         0.2     setosa</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>         5.1         3.3          1.7         0.5     setosa</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>         4.8         3.4          1.9         0.2     setosa</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>         5.0         3.0          1.6         0.2     setosa</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>         5.0         3.4          1.6         0.4     setosa</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>         5.2         3.5          1.5         0.2     setosa</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>         5.2         3.4          1.4         0.2     setosa</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>         4.7         3.2          1.6         0.2     setosa</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>         4.8         3.1          1.6         0.2     setosa</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>         5.4         3.4          1.5         0.4     setosa</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>         5.2         4.1          1.5         0.1     setosa</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>         5.5         4.2          1.4         0.2     setosa</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>         4.9         3.1          1.5         0.2     setosa</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>         5.0         3.2          1.2         0.2     setosa</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>         5.5         3.5          1.3         0.2     setosa</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>         4.9         3.6          1.4         0.1     setosa</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>         4.4         3.0          1.3         0.2     setosa</span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>         5.1         3.4          1.5         0.2     setosa</span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>         5.0         3.5          1.3         0.3     setosa</span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>         4.5         2.3          1.3         0.3     setosa</span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>         4.4         3.2          1.3         0.2     setosa</span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>         5.0         3.5          1.6         0.6     setosa</span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>         5.1         3.8          1.9         0.4     setosa</span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a>         4.8         3.0          1.4         0.3     setosa</span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a>         5.1         3.8          1.6         0.2     setosa</span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a>         4.6         3.2          1.4         0.2     setosa</span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a>         5.3         3.7          1.5         0.2     setosa</span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>         5.0         3.3          1.4         0.2     setosa</span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a>         7.0         3.2          4.7         1.4 versicolor</span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>         6.4         3.2          4.5         1.5 versicolor</span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a>         6.9         3.1          4.9         1.5 versicolor</span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a>         5.5         2.3          4.0         1.3 versicolor</span>
+<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a>         6.5         2.8          4.6         1.5 versicolor</span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a>         5.7         2.8          4.5         1.3 versicolor</span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a>         6.3         3.3          4.7         1.6 versicolor</span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a>         4.9         2.4          3.3         1.0 versicolor</span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a>         6.6         2.9          4.6         1.3 versicolor</span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a>         5.2         2.7          3.9         1.4 versicolor</span>
+<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a>         5.0         2.0          3.5         1.0 versicolor</span>
+<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a>         5.9         3.0          4.2         1.5 versicolor</span>
+<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a>         6.0         2.2          4.0         1.0 versicolor</span>
+<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a>         6.1         2.9          4.7         1.4 versicolor</span>
+<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a>         5.6         2.9          3.6         1.3 versicolor</span>
+<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a>         6.7         3.1          4.4         1.4 versicolor</span>
+<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a>         5.6         3.0          4.5         1.5 versicolor</span>
+<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a>         5.8         2.7          4.1         1.0 versicolor</span>
+<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a>         6.2         2.2          4.5         1.5 versicolor</span>
+<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a>         5.6         2.5          3.9         1.1 versicolor</span>
+<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a>         5.9         3.2          4.8         1.8 versicolor</span>
+<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a>         6.1         2.8          4.0         1.3 versicolor</span>
+<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>         6.3         2.5          4.9         1.5 versicolor</span>
+<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a>         6.1         2.8          4.7         1.2 versicolor</span>
+<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a>         6.4         2.9          4.3         1.3 versicolor</span>
+<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a>         6.6         3.0          4.4         1.4 versicolor</span>
+<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a>         6.8         2.8          4.8         1.4 versicolor</span>
+<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a>         6.7         3.0          5.0         1.7 versicolor</span>
+<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a>         6.0         2.9          4.5         1.5 versicolor</span>
+<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a>         5.7         2.6          3.5         1.0 versicolor</span>
+<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a>         5.5         2.4          3.8         1.1 versicolor</span>
+<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a>         5.5         2.4          3.7         1.0 versicolor</span>
+<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a>         5.8         2.7          3.9         1.2 versicolor</span>
+<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a>         6.0         2.7          5.1         1.6 versicolor</span>
+<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a>         5.4         3.0          4.5         1.5 versicolor</span>
+<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a>         6.0         3.4          4.5         1.6 versicolor</span>
+<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a>         6.7         3.1          4.7         1.5 versicolor</span>
+<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a>         6.3         2.3          4.4         1.3 versicolor</span>
+<span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a>         5.6         3.0          4.1         1.3 versicolor</span>
+<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a>         5.5         2.5          4.0         1.3 versicolor</span>
+<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a>         5.5         2.6          4.4         1.2 versicolor</span>
+<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a>         6.1         3.0          4.6         1.4 versicolor</span>
+<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a>         5.8         2.6          4.0         1.2 versicolor</span>
+<span id="cb17-95"><a href="#cb17-95" aria-hidden="true" tabindex="-1"></a>         5.0         2.3          3.3         1.0 versicolor</span>
+<span id="cb17-96"><a href="#cb17-96" aria-hidden="true" tabindex="-1"></a>         5.6         2.7          4.2         1.3 versicolor</span>
+<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a>         5.7         3.0          4.2         1.2 versicolor</span>
+<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a>         5.7         2.9          4.2         1.3 versicolor</span>
+<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a>         6.2         2.9          4.3         1.3 versicolor</span>
+<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a>         5.1         2.5          3.0         1.1 versicolor</span>
+<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a>         5.7         2.8          4.1         1.3 versicolor</span>
+<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a>         6.3         3.3          6.0         2.5  virginica</span>
+<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a>         5.8         2.7          5.1         1.9  virginica</span>
+<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a>         7.1         3.0          5.9         2.1  virginica</span>
+<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a>         6.3         2.9          5.6         1.8  virginica</span>
+<span id="cb17-106"><a href="#cb17-106" aria-hidden="true" tabindex="-1"></a>         6.5         3.0          5.8         2.2  virginica</span>
+<span id="cb17-107"><a href="#cb17-107" aria-hidden="true" tabindex="-1"></a>         7.6         3.0          6.6         2.1  virginica</span>
+<span id="cb17-108"><a href="#cb17-108" aria-hidden="true" tabindex="-1"></a>         4.9         2.5          4.5         1.7  virginica</span>
+<span id="cb17-109"><a href="#cb17-109" aria-hidden="true" tabindex="-1"></a>         7.3         2.9          6.3         1.8  virginica</span>
+<span id="cb17-110"><a href="#cb17-110" aria-hidden="true" tabindex="-1"></a>         6.7         2.5          5.8         1.8  virginica</span>
+<span id="cb17-111"><a href="#cb17-111" aria-hidden="true" tabindex="-1"></a>         7.2         3.6          6.1         2.5  virginica</span>
+<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a>         6.5         3.2          5.1         2.0  virginica</span>
+<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a>         6.4         2.7          5.3         1.9  virginica</span>
+<span id="cb17-114"><a href="#cb17-114" aria-hidden="true" tabindex="-1"></a>         6.8         3.0          5.5         2.1  virginica</span>
+<span id="cb17-115"><a href="#cb17-115" aria-hidden="true" tabindex="-1"></a>         5.7         2.5          5.0         2.0  virginica</span>
+<span id="cb17-116"><a href="#cb17-116" aria-hidden="true" tabindex="-1"></a>         5.8         2.8          5.1         2.4  virginica</span>
+<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a>         6.4         3.2          5.3         2.3  virginica</span>
+<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a>         6.5         3.0          5.5         1.8  virginica</span>
+<span id="cb17-119"><a href="#cb17-119" aria-hidden="true" tabindex="-1"></a>         7.7         3.8          6.7         2.2  virginica</span>
+<span id="cb17-120"><a href="#cb17-120" aria-hidden="true" tabindex="-1"></a>         7.7         2.6          6.9         2.3  virginica</span>
+<span id="cb17-121"><a href="#cb17-121" aria-hidden="true" tabindex="-1"></a>         6.0         2.2          5.0         1.5  virginica</span>
+<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a>         6.9         3.2          5.7         2.3  virginica</span>
+<span id="cb17-123"><a href="#cb17-123" aria-hidden="true" tabindex="-1"></a>         5.6         2.8          4.9         2.0  virginica</span>
+<span id="cb17-124"><a href="#cb17-124" aria-hidden="true" tabindex="-1"></a>         7.7         2.8          6.7         2.0  virginica</span>
+<span id="cb17-125"><a href="#cb17-125" aria-hidden="true" tabindex="-1"></a>         6.3         2.7          4.9         1.8  virginica</span>
+<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a>         6.7         3.3          5.7         2.1  virginica</span>
+<span id="cb17-127"><a href="#cb17-127" aria-hidden="true" tabindex="-1"></a>         7.2         3.2          6.0         1.8  virginica</span>
+<span id="cb17-128"><a href="#cb17-128" aria-hidden="true" tabindex="-1"></a>         6.2         2.8          4.8         1.8  virginica</span>
+<span id="cb17-129"><a href="#cb17-129" aria-hidden="true" tabindex="-1"></a>         6.1         3.0          4.9         1.8  virginica</span>
+<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a>         6.4         2.8          5.6         2.1  virginica</span>
+<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a>         7.2         3.0          5.8         1.6  virginica</span>
+<span id="cb17-132"><a href="#cb17-132" aria-hidden="true" tabindex="-1"></a>         7.4         2.8          6.1         1.9  virginica</span>
+<span id="cb17-133"><a href="#cb17-133" aria-hidden="true" tabindex="-1"></a>         7.9         3.8          6.4         2.0  virginica</span>
+<span id="cb17-134"><a href="#cb17-134" aria-hidden="true" tabindex="-1"></a>         6.4         2.8          5.6         2.2  virginica</span>
+<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a>         6.3         2.8          5.1         1.5  virginica</span>
+<span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a>         6.1         2.6          5.6         1.4  virginica</span>
+<span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a>         7.7         3.0          6.1         2.3  virginica</span>
+<span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a>         6.3         3.4          5.6         2.4  virginica</span>
+<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a>         6.4         3.1          5.5         1.8  virginica</span>
+<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a>         6.0         3.0          4.8         1.8  virginica</span>
+<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a>         6.9         3.1          5.4         2.1  virginica</span>
+<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a>         6.7         3.1          5.6         2.4  virginica</span>
+<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a>         6.9         3.1          5.1         2.3  virginica</span>
+<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a>         5.8         2.7          5.1         1.9  virginica</span>
+<span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a>         6.8         3.2          5.9         2.3  virginica</span>
+<span id="cb17-146"><a href="#cb17-146" aria-hidden="true" tabindex="-1"></a>         6.7         3.3          5.7         2.5  virginica</span>
+<span id="cb17-147"><a href="#cb17-147" aria-hidden="true" tabindex="-1"></a>         6.7         3.0          5.2         2.3  virginica</span>
+<span id="cb17-148"><a href="#cb17-148" aria-hidden="true" tabindex="-1"></a>         6.3         2.5          5.0         1.9  virginica</span>
+<span id="cb17-149"><a href="#cb17-149" aria-hidden="true" tabindex="-1"></a>         6.5         3.0          5.2         2.0  virginica</span>
+<span id="cb17-150"><a href="#cb17-150" aria-hidden="true" tabindex="-1"></a>         6.2         3.4          5.4         2.3  virginica</span>
+<span id="cb17-151"><a href="#cb17-151" aria-hidden="true" tabindex="-1"></a>         5.9         3.0          5.1         1.8  virginica</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-packages" class="slide level2">
+<h2>data packages</h2>
+<div class="small fragment">
+<p>there are also packages that contain data; some that are particularly often referenced the <code>{nycflights13}</code> and <code>{palmerpenguins}</code> packages. <br></p>
+</div>
+<div class="xxsmall fragment">
+<div class="sourceCode" id="cb18" style="max-width: 500px;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">install.packages</span>(<span class="st">"nycflights13"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">install.packages</span>(<span class="st">"palmerpenguins"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3"></a></span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb18-6"><a href="#cb18-6"></a></span>
+<span id="cb18-7"><a href="#cb18-7"></a><span class="co"># you can use the help() or ? commands to </span></span>
+<span id="cb18-8"><a href="#cb18-8"></a><span class="co"># see documentaiton for data too</span></span>
+<span id="cb18-9"><a href="#cb18-9"></a>?flights</span>
+<span id="cb18-10"><a href="#cb18-10"></a>?penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment absolute" style="top: 25%; left: 50%; ">
+<p><img src="images/flights_docs.png" alt="doc pages for flights dataset"></p>
+</div>
+<div class="fragment absolute" style="top: 25%; left: 50%; ">
+<p><img src="images/penguins_docs.png" alt="doc pages for penguins dataset"></p>
+</div>
+</section>
+<section id="getting-help-2" class="slide level2">
+<h2>getting help</h2>
+<div class="fragment small">
+<p>in this class, we are <span class="carrot"><strong>encouraging</strong></span> you to reference online materials including:</p>
+</div>
+<div class="small">
+<ul>
+<li class="fragment">R for Data Science Online Community <a href="https://www.rfordatasci.com/" class="uri">https://www.rfordatasci.com/</a></li>
+<li class="fragment">StackOverflow: <a href="https://stackoverflow.com/questions/tagged/r?tab=Votes" class="uri">https://stackoverflow.com/questions/tagged/r?tab=Votes</a></li>
+<li class="fragment">the RStudio Community: <a href="https://community.rstudio.com/" class="uri">https://community.rstudio.com/</a></li>
+<li class="fragment">the /r/rstats reddit: <a href="https://www.reddit.com/r/rstats/" class="uri">https://www.reddit.com/r/rstats/</a></li>
+<li class="fragment">twitter / mastodon: the #rstats hashtag, <a href="https://www.t4rstats.com/" class="uri">https://www.t4rstats.com/</a></li>
+<li class="fragment">R Bloggers <a href="https://www.r-bloggers.com/" class="uri">https://www.r-bloggers.com/</a></li>
+<li class="fragment">Cross Validated: <a href="https://stats.stackexchange.com/questions?tab=Votes" class="uri">https://stats.stackexchange.com/questions?tab=Votes</a></li>
+</ul>
+</div>
+<div class="fragment">
+<p>learning how to <span class="carrot"><strong>help yourself</strong></span> learn R is one of the key skills we want you to take away from this class</p>
+</div>
 </section></section>
+<section id="key-takeaways" class="title-slide slide level1 center" data-background-image="transition_slides/manuel-will.jpg" data-background-color="black" data-background-opacity="40%">
+<h1>key takeaways</h1>
+<div>
+<ul>
+<li class="fragment">R and RStudio are available for you to download, for free</li>
+<li class="fragment">the basic classes of data you should become familiar with are:
+<ul>
+<li class="fragment">numeric, character, logical</li>
+</ul></li>
+<li class="fragment">the basic data structures you should become familiar with are:
+<ul>
+<li class="fragment">vectors, lists, data frames, matrices</li>
+</ul></li>
+<li class="fragment">get help in R using <code style="color: black;">help()</code> or <code style="color: black;">?</code>, or search online</li>
+</ul>
+</div>
+<div class="footer footer-default">
+
+</div>
+</section>
     </div>
   </div>
 
@@ -759,6 +1469,44 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

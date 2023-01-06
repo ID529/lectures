@@ -1,0 +1,277 @@
+---
+title: "R Projects"
+format:
+  revealjs:
+    theme: [default, r-projects.scss]
+slide-number: true
+title-slide-attributes:
+  data-background-image: "graphics/transition_slides/alex-mesmer.jpg"
+  data-background-opacity: "60%"
+  data-background-color: "black"
+revealjs-plugins:
+  - pointer
+execute: 
+  echo: true
+---
+
+## morals {data-background-image='transition_slides/daniela-de-gol.jpg' data-background-opacity='30%' data-background-color="black"}
+
+:::{.fragment .small}
+> <span style='color: white;'>“For every minute spent organizing, an hour is earned.” — (maybe) Benjamin Franklin.</span>
+
+:::
+
+:::{.fragment .small}
+> <span style='color: white;'>“A good system shortens the road to the goal.” — Anonymous</span>
+
+:::
+
+:::{.fragment .small}
+> <span style='color: white;'>"Nobody has ever said <span class='carrot'>'I regret having such organized R code'</span>" — Me</span>
+
+:::
+
+## in brief... {data-background-image='transition_slides/daniela-de-gol.jpg' data-background-opacity='30%' data-background-color="black"}
+
+> <span style='color: white;'>An R project enables your work to be bundled in a <span class='carrot'>portable, self-contained folder</span>. Within the project, all the relevant <span class='carrot'>scripts, data files, figures/outputs,</span> and <span class='carrot'>history</span> are stored in sub-folders and importantly - the working directory is the <span class='carrot'>project’s root folder</span>. <br><br>—The Epidemiologist R Handbook </span>
+
+## why wouldn't you? {.xxsmall}
+
+<img src="images/reluctant_for_projects.jpg" alt="a twitter thread:  @JennyBryan what made you reluctant? 
+were you worried it would be complicated? curious because I see the reluctance, then joy/relief, 
+often in STAT545. @kierisi I couldn't find any good explanation on what Projects did and why it 
+was better than manually saving all my R scripts in the same folder">
+
+from Jenny Bryan's talk <https://speakerdeck.com/jennybc/zen-and-the-art-of-workflow-maintenance>
+
+## {.xxsmall}
+
+<img src="images/cans.jpg" alt="two pictures: one of a room full of cans, and one with cans
+neatly hanging on the wall" height='500px'>
+
+from Jenny Bryan's talk <https://speakerdeck.com/jennybc/zen-and-the-art-of-workflow-maintenance>
+
+
+## R projects allow you ... 
+
+  * to have one folder per code project;
+  * to have one git repository per project;
+  * and to run one R session that's tied to that project
+  
+## creating an R project 
+
+you should see New Project in the File Menu in RStudio 
+
+<img src="images/filemenu.png" alt="File -> New Project">
+
+## creating an R project
+
+that will launch the New Project Wizard which will guide
+you through the project creation process
+
+<img src="images/new_project_wizard.png" alt="Create Project: 
+In a new directory? In an existing directory? 
+Checkout a version controlled repository?">
+
+## creating an R project
+
+that will launch the New Project Wizard which will guide
+you through the project creation process
+
+<img src="images/new_project_wizard2.png" alt="what kind of project will it be? an
+R project? an R Package? a Shiny application? a Quarto project? a Quarto website? etc.">
+
+## creating an R project
+
+that will launch the New Project Wizard which will guide
+you through the project creation process
+
+<img src="images/new_project_wizard3.png" alt="Set a name for the project, create it
+as a subdirectory of another folder on your computer, and create a git repository to go 
+with it. Optionally open the project in a new window.">
+
+## opening R projects
+
+there are a few ways you can open an R project
+
+<img src="images/project_file.png" alt="open the .Rproj file from Finder / Explorer">
+
+## opening R projects
+
+there are a few ways you can open an R project
+
+<img src="images/spotlight.png" alt="open the .Rproj file from Spotlight or the Start Menu">
+
+## opening R projects
+
+there are a few ways you can open an R project
+
+<img src="images/rstudio_project_dropdown.png" alt="open the project from RStudio dropdown">
+
+## opening R projects
+
+<img src="images/rstudio_project_dropdown_highlighted.jpg" alt="open the project from RStudio dropdown in a new 
+window using the small button on the right">
+
+## expect to iterate 
+
+i want to stress that on any major project, you will likely need to iterate
+substantially on the code between the first version and the final version.
+
+## prototyping
+
+therefore, sometimes it can be useful to prototype your work just to get
+a sense of what needs to be done, and then later on move onto a more robust
+workflow.
+
+## suggested project layout
+
+<img src="images/folder_layout.png" alt="folders including: code, docs, outputs, data along with a README and CHANGELOG">
+
+## working in a single file 
+
+<img src="images/code_layout.png" alt="working in a single file">
+
+## use the outline in RStudio
+
+<img src="images/outline.png" alt="the outline in RStudio">
+
+## working with multiple files 
+
+:::{.columns}
+:::{.column width='60%'}
+<img src="images/indexed_files.png" alt="9 files called 00_dependencies.R, 01_load_data.R, 02_clean_data.R, 03_merge_data.R, 04_exploratory_data_visualization.R, 05_model.R, 06_table_model_results.R, 07_supplementary_analysis.R, 99_run_everything.R">
+:::
+:::{.column width='40%'}
+<div style='padding-top: 40%'></div>
+versus: <br>
+<img src="images/scriptdotR.png" alt="just a file called script.R" height='75px'>
+:::
+:::
+
+## use the goto file/function 
+
+(on Windows/Mac/Linux): pressing Ctrl+. [period] will open the Goto Function/File
+popup: 
+
+<img src="images/goto file function.png" alt="window for go to file function">
+
+## use the here package {.xxsmall}
+
+<img src="images/laptop_fire.jpg"
+alt = "Burned laptop">
+
+original photo from <https://commons.wikimedia.org/wiki/File:Burned_laptop_secumem_11.jpg>
+
+<https://www.tidyverse.org/blog/2017/12/workflow-vs-script/>
+
+## 
+
+>    If the first line of your R script is
+>
+>    `setwd("C:\Users\jenny\path\that\only\I\have")`
+>
+>    I will come into your office and SET YOUR COMPUTER ON FIRE 🔥.
+>
+>    If the first line of your R script is
+>
+>    `rm(list = ls())`
+>
+>    I will come into your office and SET YOUR COMPUTER ON FIRE 🔥.
+
+## use the here package {.xsmall}
+
+the payoff of the `here` package is that it will automatically 
+detect the **root** of your package and construct paths based off
+it. 
+
+meaning, you can write code like the following without having to 
+worrying about where your working directory is set to or using absolute 
+paths that are specific to your computer:
+
+```r
+library(here)
+... 
+
+# read data from the data/ directory
+readr::read_csv(here("data/specific_data_file.csv"))
+
+... 
+
+# save a plot to the outputs/ directory 
+ggsave(filename = here("outputs/my_best_figure_yet.png"))
+```
+
+# extras
+
+## renv {.xsmall}
+
+<img src="images/renv.svg" alt='hex sticker for renv' align='right' height='150px'>
+
+`renv` let's you control exactly what versions of packages are used 
+within an R project and ensure that your collaborators also use
+exactly the same package versions. 
+
+the workflow is pretty simple: 
+
+```r
+install.packages("renv")
+renv::init() # to initialize a new package lockfile
+# work in the project as normal
+renv::snapshot() # to save the packages used
+# keep working ... 
+renv::snapshot() # take an updated snapshot
+
+# then when your collaborators want to load 
+# up the package versions as you've locked them
+# into the project: 
+renv::restore()
+```
+
+this prevents one of the very hardest bugs to debug: silent differences in
+functionality between versions of the same R package.
+
+learn more about renv: <https://rstudio.github.io/renv/>
+
+## targets {.xxsmall}
+
+<img src="images/targets-hex.png" alt='hex sticker for targets' align='right' height='150px'>
+
+the `targets` package allows users to write scripts that explicitly declare which
+code produces what outputs depending on what inputs and the result is that 
+`targets` is able to run your workflow from start to finish updating any
+processes where the underlying data or code have changed.
+
+this avoids the problem of having to ask yourself "do i need to update this
+intermediate output? i can't remember if i changed the data or code that
+underlies it."
+
+<img src="images/targets.png" alt="a targets diagram" height='400px'>
+
+learn more about targets: <https://books.ropensci.org/targets/>
+
+## rocker {.small}
+
+<img src="images/rocker.png" alt='a modified docker sticker with R written above it' align='right' height='150px'>
+what if i need the absolute most possible reproducibility because 
+my code has to execute exactly the same no matter the person running it?  <br><br>
+
+then the rocker project may be the solution for you: the rocker project provides
+docker (containerized) images to support R programming.  <br><br>
+
+(this is quite a bit beyond our course.)
+
+# key takeaways  {data-background-image='graphics/transition_slides/lilzidesigns-2.jpg' data-background-opacity='20%' data-background-color='black'}
+
+  - use R Projects to help organize your code
+  - use sections within your code to help organize .R files 
+  - use the names of your .R files to help you stay organized
+  - expect to iterate!
+  - use the here package to make working with paths easy
+  - use renv and targets to make reproducing your analysis easy
+
+## references {data-background-image='graphics/transition_slides/prateek-pisat.jpg' data-background-opacity='20%' data-background-color='black'}
+
+  * <https://kdestasio.github.io/post/r_best_practices/>
+  * <https://www.rforecology.com/post/organizing-your-r-studio-projects/>
+  * <https://speakerdeck.com/jennybc/zen-and-the-art-of-workflow-maintenance>
