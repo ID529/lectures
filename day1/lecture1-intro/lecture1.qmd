@@ -58,7 +58,7 @@ methods in epidemiology. <br><br>
 :::
 ::::
 
-## Dean Marengi (he/him/his)
+## Dean Marengi (he/him/his) {.small}
 
 :::: {.columns}
 ::: {.column width="30%"}
@@ -66,19 +66,13 @@ methods in epidemiology. <br><br>
 :::
 
 ::: {.column width="70%"}
-Hi!  I'm Dean Marengi. I'm a second year PhD student in 
-Environmental Health ... 🌎
+Hi there! I’m Dean Marengi, a current PhD student in the Department of Environmental Health. I received my MPH in epidemiology from the Harvard T.H. Chan School of Public Health, and have been involved in public health research for over ten years. Broadly, I am interested in studying the relationship between prenatal environmental exposures and the subsequent development of neuropsychiatric outcomes. <br><br>
 
-Let me tell you about these trucks outside the Harvard Square...
-Boy do they emit some pollution. 🚚💨
-
-We put these sensors out 10 and 15 meters away and detected _some stuff_. 📈😷
-
-I'm a real cool guy 😎
+I’m a self-taught R programmer who is very enthusiastic about data cleaning, and even more enthusiastic about helping others learn how to clean their data!
 :::
 ::::
 
-## Amanda Hernandez (she/her/hers)
+## Amanda Hernandez (she/her/hers) {.small}
 
 :::: {.columns}
 ::: {.column width="30%"}
@@ -86,8 +80,9 @@ I'm a real cool guy 😎
 :::
 
 ::: {.column width="70%"}
-Hi!  I'm Amanda Hernandez.  I'm a second year Masters student in Environmental 
-Health ...
+Hi! I’m Amanda Hernandez and I’m a second year Masters student in Environmental Health. My work is at the intersection of environmental geochemistry + public health, focused on addressing environmental health disparities through community-based participatory research and evidence-based decision-making.<br><br>
+
+I’m a self-taught R user, Shiny enthusiast, and advocate for coding in light mode.
 :::
 ::::
 
