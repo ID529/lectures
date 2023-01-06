@@ -8,8 +8,9 @@ slide-number: true
 #   data-background-image: ""
 #   data-background-opacity: "60%"
 #   data-background-color: "black"
-# revealjs-plugins:
-  # - pointer
+revealjs-plugins:
+  - pointer
+  - confetti
 execute: 
   echo: true
 ---

@@ -387,23 +387,30 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
+<section id="title-slide" data-background-color="black" data-background-image="graphics/transition_slides/inaki-del-olmo.jpg" data-background-opacity="30%" class="quarto-title-block center">
   <h1 class="title">Functions</h1>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="morals" class="title-slide slide level1 center">
+<section id="morals" class="title-slide slide level1 small center" data-background-image="graphics/transition_slides/sam-moghadam-khamseh.jpg" data-background-opacity="40%" data-background-color="black">
 <h1>morals</h1>
 <blockquote>
-<p>“The function of good software is to make the complex appear to be simple.” ——Grady Booch</p>
+<p><span style="color: white;">“The function of good software is to make the complex appear to be simple.” <br>—Grady Booch</span></p>
 </blockquote>
 <blockquote>
-<p>“Beware of bugs in the above code; I have only proved it correct, not tried it.” ——Donald Knuth</p>
+<p><span style="color: white;">“Beware of bugs in the above code; I have only proved it correct, not tried it.” <br>—Donald Knuth</span></p>
 </blockquote>
 <blockquote>
-<p>“If you can’t informally describe a function in one line, the function is probably too large.” —— (paraphrased) Eric S. Raymond</p>
+<p><span style="color: white;">“If you can’t informally describe a function in one line, the function is probably too large.” <br>—(paraphrased) Eric S. Raymond</span></p>
+</blockquote>
+</section>
+
+<section id="morals-1" class="title-slide slide level1 center" data-background-image="graphics/transition_slides/sam-moghadam-khamseh.jpg" data-background-opacity="40%" data-background-color="black">
+<h1>morals</h1>
+<blockquote>
+<p><span style="color: white;">“You should consider writing a function whenever you’ve copied and pasted a block of code more than twice (i.e., you now have three copies of the same code). <br>—R for Data Science, Hadley Wickham, Garrett Grolemund</span></p>
 </blockquote>
 </section>
 
@@ -412,9 +419,13 @@
 <ul>
 <li>name</li>
 <li>arguments</li>
-<li>body</li>
-<li>documentation</li>
-<li>return values</li>
+<li>body
+<ul>
+<li>return value(s)</li>
+<li>error/warning conditions</li>
+</ul></li>
+<li>its scope/environment</li>
+<li>documentation (not always present)</li>
 </ul>
 </section>
 
@@ -423,157 +434,573 @@
 <ul>
 <li>use communicative names</li>
 <li>no side effects, please</li>
-<li>write error conditions</li>
+<li>throw errors and warnings</li>
 <li>write tests</li>
 </ul>
 </section>
 
-<section id="examples" class="title-slide slide level1 center">
+<section id="examples" class="title-slide slide level1 xxsmall center">
 <h1>examples</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># here's a relatively simple example </span></span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># Calculate the Length of the Hypotenuse for a Triangle with Base of Length x</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># and Height of Length y</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># description: </span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#   uses the Pythagorean theorem to calculate the length of the hypotenuse of</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#   a right triangle with the side-lengths given. </span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#   </span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co">#   reference: https://en.wikipedia.org/wiki/Pythagorean_theorem</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># </span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Calculate the Length of the Hypotenuse for a Right Triangle with Base of</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co"># Length x and Height of Length y</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">#</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># Uses the Pythagorean theorem to calculate the length of the hypotenuse of a</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># right triangle with the side-lengths given.</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#   </span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># Reference: https://en.wikipedia.org/wiki/Pythagorean_theorem</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># </span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># arguments: </span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co">#   x   length of the triangle base </span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co">#   y   height of the triangle </span></span>
 <span id="cb1-12"><a href="#cb1-12"></a><span class="co"># </span></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="co"># arguments: </span></span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="co">#   x   length of the triangle base </span></span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="co">#   y   height of the triangle </span></span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="co"># </span></span>
-<span id="cb1-17"><a href="#cb1-17"></a><span class="co"># returns: </span></span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="co">#   the length of the hypotenuse of the triangle</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a>calculate_hypotenuse_length <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) {</span>
-<span id="cb1-20"><a href="#cb1-20"></a>  <span class="fu">sqrt</span>(x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> y<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb1-21"><a href="#cb1-21"></a>}</span>
-<span id="cb1-22"><a href="#cb1-22"></a></span>
-<span id="cb1-23"><a href="#cb1-23"></a><span class="co"># usage:</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a><span class="fu">calculate_hypotenuse_length</span>(<span class="dv">3</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="co"># returns: </span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co">#   the length of the hypotenuse of the triangle</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>calculate_hypotenuse_length <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) {</span>
+<span id="cb1-16"><a href="#cb1-16"></a>  <span class="fu">sqrt</span>(x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> y<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb1-17"><a href="#cb1-17"></a>}</span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="fu">calculate_hypotenuse_length</span>(<span class="dv">3</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">calculate_hypotenuse_length</span>(<span class="dv">5</span>,<span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 13</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">calculate_hypotenuse_length</span>(<span class="dv">7</span>,<span class="dv">24</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 25</code></pre>
 </div>
 </div>
 </section>
 
+<section id="examples-1" class="title-slide slide level1 xxsmall center">
+<h1>examples</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">calculate_hypotenuse_length</span>(<span class="dv">5</span>,<span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">calculate_hypotenuse_length</span>(<span class="dv">8</span>,<span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 17</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">calculate_hypotenuse_length</span>(<span class="dv">7</span>,<span class="dv">24</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 25</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">calculate_hypotenuse_length</span>(<span class="dv">20</span>,<span class="dv">21</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 29</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">calculate_hypotenuse_length</span>(<span class="dv">12</span>,<span class="dv">35</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 37</code></pre>
+</div>
+</div>
+<aside class="notes">
+<p>the idea is that we can automate the boring stuff, i.e., the arithmetic and have the computer do it instead of us</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+
 <section>
-<section id="raising-errors" class="title-slide slide level1 xxxsmall center">
-<h1>raising errors</h1>
-<p>we could improve on the function given by adding code to raise errors for unexpected input.</p>
+<section id="arguments" class="title-slide slide level1 center">
+<h1>arguments</h1>
+
+</section>
+<section id="arguments-1" class="slide level2 xsmall">
+<h2>arguments</h2>
+<p>arguments are a little bit like playing make-believe: “what if <code>x</code> were this? what if <code>argument2</code> were this?”</p>
+<p>in that sense, you need to make sure you suspend belief about whatever <code>x</code> or <code>argument2</code> are outside of the function because inside the function, they have whatever value they were given as to the function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># first let's look at what happens without the code to raise errors:</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">calculate_hypotenuse_length</span>(<span class="dv">1</span>, <span class="st">"banana"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in y^2: non-numeric argument to binary operator</code></pre>
-</div>
-</div>
-<p><br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>calculate_hypotenuse_length <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) {</span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="co"># make sure the arguments are numeric</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>  <span class="cf">if</span> (<span class="sc">!</span> <span class="fu">all</span>(<span class="st">"numeric"</span> <span class="sc">%in%</span> <span class="fu">class</span>(x), <span class="st">"numeric"</span> <span class="sc">%in%</span> <span class="fu">class</span>(y))) {</span>
-<span id="cb9-4"><a href="#cb9-4"></a>    <span class="fu">stop</span>(<span class="fu">paste0</span>(</span>
-<span id="cb9-5"><a href="#cb9-5"></a>      <span class="st">"calculate_hypotenuse_length expects numeric arguments for x and y.</span><span class="sc">\n</span><span class="st">"</span>,</span>
-<span id="cb9-6"><a href="#cb9-6"></a>      <span class="st">"Instead, calculate_hypotenuse_length was passed arguments of types "</span>,</span>
-<span id="cb9-7"><a href="#cb9-7"></a>      <span class="fu">typeof</span>(x), <span class="st">" and "</span>, <span class="fu">typeof</span>(y), <span class="st">"."</span>))</span>
-<span id="cb9-8"><a href="#cb9-8"></a>  }</span>
-<span id="cb9-9"><a href="#cb9-9"></a>  </span>
-<span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">sqrt</span>(x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> y<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb9-11"><a href="#cb9-11"></a>}</span>
-<span id="cb9-12"><a href="#cb9-12"></a></span>
-<span id="cb9-13"><a href="#cb9-13"></a><span class="fu">calculate_hypotenuse_length</span>(<span class="dv">1</span>,<span class="st">"banana"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in calculate_hypotenuse_length(1, "banana"): calculate_hypotenuse_length expects numeric arguments for x and y.
-Instead, calculate_hypotenuse_length was passed arguments of types double and character.</code></pre>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>argument2 <span class="ot">&lt;-</span> <span class="st">'spooky value!'</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a>my_fun_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x, argument2) {</span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"the value of x inside this function: "</span>, x))</span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"the value of tricky_argument inside this function: "</span>, </span>
+<span id="cb13-7"><a href="#cb13-7"></a>               argument2))</span>
+<span id="cb13-8"><a href="#cb13-8"></a>}</span>
+<span id="cb13-9"><a href="#cb13-9"></a></span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="fu">my_fun_function</span>(<span class="dv">1234</span>, <span class="st">"i'm not spooky!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "the value of x inside this function: 1234"
+[1] "the value of tricky_argument inside this function: i'm not spooky!"</code></pre>
 </div>
 </div>
 </section>
-<section id="arguments" class="slide level2">
+<section id="arguments-2" class="slide level2">
 <h2>arguments</h2>
 <ul>
-<li>regular arguments</li>
+<li>named arguments</li>
+<li>missing arguments</li>
 <li>default arguments</li>
 <li>detecting missing arguments</li>
 </ul>
 </section>
-<section id="returning-early" class="slide level2">
-<h2>returning early</h2>
+<section id="argument-names" class="slide level2 xsmall">
+<h2>argument names</h2>
+<p>note that you can provide the arguments in the order specified, or you can give named arguments when calling the function (in which case, order doesn’t matter):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">calculate_hypotenuse_length</span>(<span class="dv">5</span>, <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">calculate_hypotenuse_length</span>(<span class="at">x =</span> <span class="dv">5</span>, <span class="at">y =</span> <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">calculate_hypotenuse_length</span>(<span class="at">y =</span> <span class="dv">12</span>, <span class="at">x =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13</code></pre>
+</div>
+</div>
 </section>
-<section id="scopes-and-environments-in-r" class="slide level2">
-<h2>scopes and environments in R</h2>
+<section id="missing-arguments" class="slide level2 xxsmall">
+<h2>missing arguments</h2>
+<p>some functions do not require that all arguments be passed.</p>
+<p>when an argument is required and it’s not given, it will result in an error.</p>
+<p>here’s a simple example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># two_arguments_steve likes to talk a lot</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>two_arguments_steve <span class="ot">&lt;-</span> <span class="cf">function</span>(arg1, arg2) {</span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb21-4"><a href="#cb21-4"></a>    <span class="fu">print</span>(arg1)</span>
+<span id="cb21-5"><a href="#cb21-5"></a>  }</span>
+<span id="cb21-6"><a href="#cb21-6"></a>}</span>
+<span id="cb21-7"><a href="#cb21-7"></a></span>
+<span id="cb21-8"><a href="#cb21-8"></a><span class="fu">two_arguments_steve</span>(<span class="st">"hello!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "hello!"
+[1] "hello!"
+[1] "hello!"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># two_arguments_steve won't run without arg1</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">two_arguments_steve</span>(<span class="at">arg2 =</span> <span class="st">"what's up?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in print(arg1): argument "arg1" is missing, with no default</code></pre>
+</div>
+</div>
+</section>
+<section id="default-arguments" class="slide level2 xsmall">
+<h2>default arguments</h2>
+<p>one of the common situations in which arguments don’t need to be passed is if they have default values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>function_with_lovely_defaults <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">x =</span> <span class="st">"great"</span>, <span class="at">y =</span> <span class="st">"day"</span>) {</span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"i'm having a "</span>, x, <span class="st">" "</span>, y))</span>
+<span id="cb25-3"><a href="#cb25-3"></a>}</span>
+<span id="cb25-4"><a href="#cb25-4"></a></span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="fu">function_with_lovely_defaults</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "i'm having a great day"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">function_with_lovely_defaults</span>(<span class="st">"kale"</span>, <span class="st">"salad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "i'm having a kale salad"</code></pre>
+</div>
+</div>
+</section>
+<section id="detecting-missing-arguments" class="slide level2 xsmall">
+<h2>detecting missing arguments</h2>
+<p>sometimes you may need to detect within a function if an argument is missing.</p>
+<p>this can be done with the <code>missing()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>snarky_function <span class="ot">&lt;-</span> <span class="cf">function</span>(argument) {</span>
+<span id="cb29-2"><a href="#cb29-2"></a>  <span class="cf">if</span> (<span class="fu">missing</span>(argument)) {</span>
+<span id="cb29-3"><a href="#cb29-3"></a>    <span class="fu">print</span>(<span class="st">"i can't believe you've done this"</span>)</span>
+<span id="cb29-4"><a href="#cb29-4"></a>  } <span class="cf">else</span> {</span>
+<span id="cb29-5"><a href="#cb29-5"></a>    <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"here's your argument: "</span>, argument))</span>
+<span id="cb29-6"><a href="#cb29-6"></a>  }</span>
+<span id="cb29-7"><a href="#cb29-7"></a>}</span>
+<span id="cb29-8"><a href="#cb29-8"></a></span>
+<span id="cb29-9"><a href="#cb29-9"></a><span class="fu">snarky_function</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "i can't believe you've done this"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">snarky_function</span>(<span class="st">"did you know the earliest crocodilian evolved 95 million years ago?! 🐊"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "here's your argument: did you know the earliest crocodilian evolved 95 million years ago?! 🐊"</code></pre>
+</div>
+</div>
+</section>
+<section id="returning-early" class="slide level2 xsmall">
+<h2>returning early</h2>
+<p>sometimes you may have situations in which you don’t need to run all of the code. a classic example is when the output of a function should depend on an <code>if</code> <code>else</code> code block.</p>
+<p>in those situations, you should write out a <code>return()</code> function call explicitly.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>sum_and_square <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) {</span>
+<span id="cb33-2"><a href="#cb33-2"></a>  <span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">c</span>(<span class="fu">is.numeric</span>(x), <span class="fu">is.numeric</span>(y)))) { </span>
+<span id="cb33-3"><a href="#cb33-3"></a>    <span class="fu">return</span>((x <span class="sc">+</span> y)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb33-4"><a href="#cb33-4"></a>  } <span class="cf">else</span> {</span>
+<span id="cb33-5"><a href="#cb33-5"></a>    <span class="fu">warning</span>(<span class="st">"x and y aren't both numeric"</span>)</span>
+<span id="cb33-6"><a href="#cb33-6"></a>    <span class="fu">return</span>(<span class="cn">NA</span>)</span>
+<span id="cb33-7"><a href="#cb33-7"></a>  }</span>
+<span id="cb33-8"><a href="#cb33-8"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="raising-errors" class="slide level2 xxxsmall">
+<h2>raising errors</h2>
+<p>we could improve on the function given by adding code to raise errors for problematic input.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># first let's look at what happens without the code to raise errors:</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="fu">calculate_hypotenuse_length</span>(<span class="fl">1.3e154</span>, <span class="fl">1.3e154</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Inf</code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>calculate_hypotenuse_length <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) {</span>
+<span id="cb36-2"><a href="#cb36-2"></a>  <span class="co"># make sure the arguments aren't too big</span></span>
+<span id="cb36-3"><a href="#cb36-3"></a>  <span class="cf">if</span> (x <span class="sc">&gt;=</span> <span class="fl">1.3e154</span> <span class="sc">|</span> y <span class="sc">&gt;=</span> <span class="fl">1.3e154</span>) {</span>
+<span id="cb36-4"><a href="#cb36-4"></a>    <span class="fu">stop</span>(<span class="st">"calculate_hypotenuse_length only supports arguments less than 1.3e154"</span>)</span>
+<span id="cb36-5"><a href="#cb36-5"></a>  }</span>
+<span id="cb36-6"><a href="#cb36-6"></a>  </span>
+<span id="cb36-7"><a href="#cb36-7"></a>  <span class="fu">sqrt</span>(x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> y<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb36-8"><a href="#cb36-8"></a>}</span>
+<span id="cb36-9"><a href="#cb36-9"></a></span>
+<span id="cb36-10"><a href="#cb36-10"></a><span class="fu">calculate_hypotenuse_length</span>(<span class="fl">1.3e154</span>, <span class="fl">1.3e154</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in calculate_hypotenuse_length(1.3e+154, 1.3e+154): calculate_hypotenuse_length only supports arguments less than 1.3e154</code></pre>
+</div>
+</div>
+</section>
+<section id="write-your-own-error-messages" class="slide level2 small">
+<h2>write your own error messages</h2>
+<div style="padding-top: 5%">
+
+</div>
+<div class="columns">
+<div class="column">
+<p><img src="graphics/hodu_lilac.png" alt="Hodu Tip! with lilac color styling"></p>
+</div><div class="column">
+<div style="padding-top: 10%;">
+
+</div>
+<p>it’s often the case that R will <span class="carrot"><strong>automatically raise errors</strong></span> when the arguments given to a function are incompatible with the steps being done inside the function; <br><br></p>
+<p>however, R’s errors can be incredibly <span class="carrot"><strong>terse</strong></span>, so it may be more <span class="carrot"><strong>user-friendly</strong></span> to write your own errors, especially ones that give a little bit more <span class="carrot"><strong>context</strong></span>.</p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="scopes-and-environments" class="title-slide slide level1 xsmall center">
+<h1>scopes and environments</h1>
+
+</section>
+<section id="scopes-and-environments-1" class="slide level2 xsmall">
+<h2>scopes and environments</h2>
 <p>what do you think will happen?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span> </span>
-<span id="cb11-2"><a href="#cb11-2"></a>some_function <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb11-3"><a href="#cb11-3"></a>  x <span class="ot">&lt;-</span> <span class="dv">2</span> </span>
-<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">print</span>(x)</span>
-<span id="cb11-5"><a href="#cb11-5"></a>}</span>
-<span id="cb11-6"><a href="#cb11-6"></a></span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="fu">some_function</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span> </span>
+<span id="cb38-2"><a href="#cb38-2"></a>some_function <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb38-3"><a href="#cb38-3"></a>  x <span class="ot">&lt;-</span> <span class="dv">2</span> </span>
+<span id="cb38-4"><a href="#cb38-4"></a>  <span class="fu">print</span>(x)</span>
+<span id="cb38-5"><a href="#cb38-5"></a>}</span>
+<span id="cb38-6"><a href="#cb38-6"></a></span>
+<span id="cb38-7"><a href="#cb38-7"></a><span class="fu">some_function</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
 </div>
 </section>
-<section id="some-perhaps-not-obvious-things" class="slide level2">
-<h2>some perhaps not-obvious things</h2>
-<ul>
-<li>functions can call other functions</li>
-<li>functions are first-class citizens
-<ul>
-<li>so you can treat them similarly to other variables</li>
-</ul></li>
-<li>you can make functions that make functions</li>
-<li>dot-dot-dots</li>
-<li>anonymous functions</li>
-<li>infix notation</li>
-</ul>
+<section id="scopes-and-environments-2" class="slide level2 xsmall">
+<h2>scopes and environments</h2>
+<p>how about now?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a>tricky_function <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb42-3"><a href="#cb42-3"></a>  inner_function <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb42-4"><a href="#cb42-4"></a>    x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb42-5"><a href="#cb42-5"></a>  }</span>
+<span id="cb42-6"><a href="#cb42-6"></a>  </span>
+<span id="cb42-7"><a href="#cb42-7"></a>  <span class="fu">inner_function</span>()</span>
+<span id="cb42-8"><a href="#cb42-8"></a>  <span class="fu">print</span>(x)</span>
+<span id="cb42-9"><a href="#cb42-9"></a>}</span>
+<span id="cb42-10"><a href="#cb42-10"></a></span>
+<span id="cb42-11"><a href="#cb42-11"></a><span class="fu">tricky_function</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
 </section>
-<section id="testing-functions-with-test_that" class="slide level2">
+<section id="scopes-and-environments-3" class="slide level2 xsmall">
+<h2>scopes and environments</h2>
+<p>and how about now?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a>tricky_function <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb46-3"><a href="#cb46-3"></a>  inner_function <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb46-4"><a href="#cb46-4"></a>    <span class="fu">print</span>(x)</span>
+<span id="cb46-5"><a href="#cb46-5"></a>  }</span>
+<span id="cb46-6"><a href="#cb46-6"></a>  </span>
+<span id="cb46-7"><a href="#cb46-7"></a>  x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb46-8"><a href="#cb46-8"></a>  <span class="fu">inner_function</span>()</span>
+<span id="cb46-9"><a href="#cb46-9"></a>}</span>
+<span id="cb46-10"><a href="#cb46-10"></a></span>
+<span id="cb46-11"><a href="#cb46-11"></a><span class="fu">tricky_function</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+</section>
+<section id="scopes-and-environments-4" class="slide level2 xsmall">
+<h2>scopes and environments</h2>
+<p>let’s make those examples a little less mysterious:</p>
+<div>
+<ul>
+<li class="fragment">objects referenced will assume the value of where they were defined in either the <span class="carrot"><strong>scope in which they are referenced</strong></span>, or the <span class="carrot"><strong>scope most immediately parental</strong></span> to the current scope in which they’ve been defined.</li>
+<li class="fragment">here’s an analogy: let’s say both your grandmother and your mom are both named Elphaba, and someone asks you “Who is Elphaba?” If you’re R, you’d say “my mom.”</li>
+<li class="fragment">objects assigned within a function will <span class="carrot"><strong>not</strong></span> be updated in the <span class="carrot"><strong>global scope</strong></span> or that function’s <span class="carrot"><strong>parent scope(s)</strong></span>.</li>
+<li class="fragment">here’s an analogy: if a function is like considering a <span class="carrot"><strong>hypothetical</strong></span> written down for you, then if the hypothetical says “let’s say dogs had five legs” or <code>"x is 5"</code>, you could work out some <span class="carrot"><strong>conclusions</strong></span> (dog booties would be sold in packs of five, or <code>x^2 == 25</code>), but that hypothetical <strong>doesn’t</strong> change anything about the rest of the world.</li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="some-things-worth-explicitly-discussing" class="title-slide slide level1 xsmall center">
+<h1>some things worth explicitly discussing</h1>
+<div>
+<ul>
+<li class="fragment">functions can call other functions
+<ul>
+<li class="fragment">we’ve already seen this</li>
+</ul></li>
+<li class="fragment">functions are first-class citizens
+<ul>
+<li class="fragment">so you can treat them similarly to other variables</li>
+</ul></li>
+<li class="fragment">you can make functions that make functions</li>
+<li class="fragment">anonymous functions</li>
+<li class="fragment">infix notation</li>
+</ul>
+</div>
+</section>
+<section id="functions-as-first-class-citizens" class="slide level2 xxsmall">
+<h2>functions as first-class citizens</h2>
+<p>you can do things with functions in R that you can’t do in all languages, like put them in a list or pass them as arguments.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb50-2"><a href="#cb50-2"></a>  <span class="fu">cat</span>(<span class="st">"hello "</span>)</span>
+<span id="cb50-3"><a href="#cb50-3"></a>}</span>
+<span id="cb50-4"><a href="#cb50-4"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb50-5"><a href="#cb50-5"></a>  <span class="fu">cat</span>(<span class="st">"world"</span>)</span>
+<span id="cb50-6"><a href="#cb50-6"></a>}</span>
+<span id="cb50-7"><a href="#cb50-7"></a>f3 <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb50-8"><a href="#cb50-8"></a>  <span class="fu">cat</span>(<span class="st">"!"</span>)</span>
+<span id="cb50-9"><a href="#cb50-9"></a>}</span>
+<span id="cb50-10"><a href="#cb50-10"></a>my_functions <span class="ot">&lt;-</span> <span class="fu">list</span>(f1, f2, f3)</span>
+<span id="cb50-11"><a href="#cb50-11"></a></span>
+<span id="cb50-12"><a href="#cb50-12"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb50-13"><a href="#cb50-13"></a>  my_functions[[i]]()</span>
+<span id="cb50-14"><a href="#cb50-14"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>hello world!</code></pre>
+</div>
+</div>
+</section>
+<section id="functions-as-first-class-citizens-1" class="slide level2 xxsmall">
+<h2>functions as first-class citizens</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52" data-code-line-numbers="|1-3|5-7|9-11|13-14|15-16|17-18|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>my_fancy_function <span class="ot">&lt;-</span> <span class="cf">function</span>(arg_f) {</span>
+<span id="cb52-2"><a href="#cb52-2"></a>  <span class="fu">arg_f</span>(<span class="dv">10</span>)</span>
+<span id="cb52-3"><a href="#cb52-3"></a>}</span>
+<span id="cb52-4"><a href="#cb52-4"></a></span>
+<span id="cb52-5"><a href="#cb52-5"></a>secondary_function1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb52-6"><a href="#cb52-6"></a>  x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb52-7"><a href="#cb52-7"></a>}</span>
+<span id="cb52-8"><a href="#cb52-8"></a></span>
+<span id="cb52-9"><a href="#cb52-9"></a>secondary_function2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb52-10"><a href="#cb52-10"></a>  <span class="fu">factorial</span>(x)</span>
+<span id="cb52-11"><a href="#cb52-11"></a>}</span>
+<span id="cb52-12"><a href="#cb52-12"></a></span>
+<span id="cb52-13"><a href="#cb52-13"></a><span class="fu">my_fancy_function</span>(<span class="at">arg_f =</span> secondary_function1)</span>
+<span id="cb52-14"><a href="#cb52-14"></a><span class="co">#&gt; 100</span></span>
+<span id="cb52-15"><a href="#cb52-15"></a><span class="fu">my_fancy_function</span>(<span class="at">arg_f =</span> secondary_function2)</span>
+<span id="cb52-16"><a href="#cb52-16"></a><span class="co">#&gt; 3628800</span></span>
+<span id="cb52-17"><a href="#cb52-17"></a><span class="fu">my_fancy_function</span>(<span class="at">arg_f =</span> factorial)</span>
+<span id="cb52-18"><a href="#cb52-18"></a><span class="co">#&gt; 3628800</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="functions-as-first-class-citizens-2" class="slide level2">
+<h2>functions as first-class citizens</h2>
+<div style="padding-top: 5%">
+
+</div>
+<div class="columns">
+<div class="column">
+<p><img src="graphics/hodu_magenta.png" alt="Hodu Tip! with magenta color styling"></p>
+</div><div class="column smaller">
+<div style="padding-top: 10%;">
+
+</div>
+<p>in programming languages, if functions are first-class citizens, then we say that programming language supports <span class="magenta"><strong>functional programming</strong></span>, or that it is a <span class="magenta"><strong>functional programming language</strong></span></p>
+</div>
+</div>
+</section>
+<section id="making-functions-with-functions-function-factories" class="slide level2 xxsmall">
+<h2>making functions with functions (function factories)</h2>
+<p>the key principle behind function factories can be described simply:</p>
+<blockquote>
+<p>The enclosing environment of the manufactured function is an execution environment of the function factory.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>power2 <span class="ot">&lt;-</span> <span class="cf">function</span>(exp) {</span>
+<span id="cb53-2"><a href="#cb53-2"></a>  <span class="fu">force</span>(exp) <span class="co"># ensures exp is not lazily evaluated</span></span>
+<span id="cb53-3"><a href="#cb53-3"></a>  <span class="cf">function</span>(x) {</span>
+<span id="cb53-4"><a href="#cb53-4"></a>    x <span class="sc">^</span> exp</span>
+<span id="cb53-5"><a href="#cb53-5"></a>  }</span>
+<span id="cb53-6"><a href="#cb53-6"></a>}</span>
+<span id="cb53-7"><a href="#cb53-7"></a></span>
+<span id="cb53-8"><a href="#cb53-8"></a>square <span class="ot">&lt;-</span> <span class="fu">power2</span>(<span class="dv">2</span>)</span>
+<span id="cb53-9"><a href="#cb53-9"></a>cube <span class="ot">&lt;-</span> <span class="fu">power2</span>(<span class="dv">3</span>)</span>
+<span id="cb53-10"><a href="#cb53-10"></a></span>
+<span id="cb53-11"><a href="#cb53-11"></a><span class="fu">square</span>(<span class="dv">2</span>)</span>
+<span id="cb53-12"><a href="#cb53-12"></a><span class="co">#&gt; 4</span></span>
+<span id="cb53-13"><a href="#cb53-13"></a><span class="fu">cube</span>(<span class="dv">2</span>)</span>
+<span id="cb53-14"><a href="#cb53-14"></a><span class="co">#&gt; 8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>this isn’t a practice you will need to use often, if ever, but it is very helpful to know about to understand code you may come across and is quite instructive about how scoping/environments work in R.</p>
+<div class="footer">
+<p>read more: https://adv-r.hadley.nz/function-factories.html</p>
+</div>
+</section>
+<section id="anonymous-functions" class="slide level2 xsmall">
+<h2>anonymous functions</h2>
+<p>functions can be created without a name (as you may have noticed in the last example). these functions are called <span class="carrot"><strong>anonymous functions</strong></span>.</p>
+<p>there are a handful of ways to create anonymous functions in R, and some that are even in a specific syntax according to the package/framework you’re working in.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="co"># the oldest, most readable way:</span></span>
+<span id="cb54-2"><a href="#cb54-2"></a><span class="cf">function</span>(x) {</span>
+<span id="cb54-3"><a href="#cb54-3"></a>  x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb54-4"><a href="#cb54-4"></a>}</span>
+<span id="cb54-5"><a href="#cb54-5"></a><span class="co"># can be abbreviated to: </span></span>
+<span id="cb54-6"><a href="#cb54-6"></a><span class="cf">function</span>(x) { x<span class="sc">^</span><span class="dv">2</span> } <span class="co"># if writing inline</span></span>
+<span id="cb54-7"><a href="#cb54-7"></a></span>
+<span id="cb54-8"><a href="#cb54-8"></a><span class="co"># introduced in R 4.1.0 (May 2021)</span></span>
+<span id="cb54-9"><a href="#cb54-9"></a>\(x) x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb54-10"><a href="#cb54-10"></a></span>
+<span id="cb54-11"><a href="#cb54-11"></a><span class="co"># many functions in the tidyverse use the </span></span>
+<span id="cb54-12"><a href="#cb54-12"></a><span class="co"># tilde syntax (also called formula syntax)</span></span>
+<span id="cb54-13"><a href="#cb54-13"></a><span class="sc">~</span> .<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="anonymous-functions-1" class="slide level2 xsmall">
+<h2>anonymous functions</h2>
+<p>so how would i use anonymous functions?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb55-2"><a href="#cb55-2"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb55-3"><a href="#cb55-3"></a><span class="co"># map_dbl applies the function given to each element and returns</span></span>
+<span id="cb55-4"><a href="#cb55-4"></a><span class="co"># a numeric vector</span></span>
+<span id="cb55-5"><a href="#cb55-5"></a><span class="fu">map_dbl</span>(vec, <span class="cf">function</span>(x) { x<span class="sc">^</span><span class="dv">2</span> }) </span>
+<span id="cb55-6"><a href="#cb55-6"></a><span class="co">#&gt; c(1, 4, 9)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>we’re not going to fully get into functional programming right now, but this is a teaser for a later lecture on functional programming.</p>
+</section></section>
+<section>
+<section id="testing" class="title-slide slide level1 center">
+<h1>testing</h1>
+
+</section>
+<section id="testing-functions-with-test_that" class="slide level2 xxsmall">
 <h2>testing functions with test_that</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">library</span>(testthat)</span>
-<span id="cb15-2"><a href="#cb15-2"></a></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="fu">test_that</span>(<span class="st">"calculate_hypotenuse_length works as intended"</span>, {</span>
-<span id="cb15-4"><a href="#cb15-4"></a>  <span class="co"># test known pythagorean triples </span></span>
-<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">expect_equal</span>(<span class="fu">calculate_hypotenuse_length</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="dv">0</span>)</span>
-<span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">expect_equal</span>(<span class="fu">calculate_hypotenuse_length</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="fu">sqrt</span>(<span class="dv">2</span>))</span>
-<span id="cb15-7"><a href="#cb15-7"></a>  <span class="fu">expect_equal</span>(<span class="fu">calculate_hypotenuse_length</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="dv">5</span>)</span>
-<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">expect_equal</span>(<span class="fu">calculate_hypotenuse_length</span>(<span class="dv">5</span>, <span class="dv">12</span>), <span class="dv">13</span>)</span>
-<span id="cb15-9"><a href="#cb15-9"></a>  <span class="fu">expect_equal</span>(<span class="fu">calculate_hypotenuse_length</span>(<span class="dv">7</span>, <span class="dv">24</span>), <span class="dv">25</span>)</span>
-<span id="cb15-10"><a href="#cb15-10"></a>  </span>
-<span id="cb15-11"><a href="#cb15-11"></a>  <span class="co"># test that non-numerics throw an error</span></span>
-<span id="cb15-12"><a href="#cb15-12"></a>  <span class="fu">expect_error</span>(<span class="fu">calculate_hypotenuse_length</span>(<span class="dv">1</span>, <span class="st">'apple'</span>))</span>
-<span id="cb15-13"><a href="#cb15-13"></a>  </span>
-<span id="cb15-14"><a href="#cb15-14"></a>  <span class="co"># test that negative numbers are supported;</span></span>
-<span id="cb15-15"><a href="#cb15-15"></a>  <span class="co"># this uses _random_ testing</span></span>
-<span id="cb15-16"><a href="#cb15-16"></a>  <span class="fu">expect_gt</span>(<span class="fu">calculate_hypotenuse_length</span>(<span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">rlnorm</span>(<span class="at">n=</span><span class="dv">1</span>), <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">rlnorm</span>(<span class="at">n=</span><span class="dv">1</span>)), <span class="dv">0</span>)</span>
-<span id="cb15-17"><a href="#cb15-17"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="fu">library</span>(testthat)</span>
+<span id="cb56-2"><a href="#cb56-2"></a></span>
+<span id="cb56-3"><a href="#cb56-3"></a><span class="fu">test_that</span>(<span class="st">"calculate_hypotenuse_length works as intended"</span>, {</span>
+<span id="cb56-4"><a href="#cb56-4"></a>  <span class="co"># test known pythagorean triples </span></span>
+<span id="cb56-5"><a href="#cb56-5"></a>  <span class="fu">expect_equal</span>(<span class="fu">calculate_hypotenuse_length</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="dv">0</span>)</span>
+<span id="cb56-6"><a href="#cb56-6"></a>  <span class="fu">expect_equal</span>(<span class="fu">calculate_hypotenuse_length</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="fu">sqrt</span>(<span class="dv">2</span>))</span>
+<span id="cb56-7"><a href="#cb56-7"></a>  <span class="fu">expect_equal</span>(<span class="fu">calculate_hypotenuse_length</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="dv">5</span>)</span>
+<span id="cb56-8"><a href="#cb56-8"></a>  <span class="fu">expect_equal</span>(<span class="fu">calculate_hypotenuse_length</span>(<span class="dv">5</span>, <span class="dv">12</span>), <span class="dv">13</span>)</span>
+<span id="cb56-9"><a href="#cb56-9"></a>  <span class="fu">expect_equal</span>(<span class="fu">calculate_hypotenuse_length</span>(<span class="dv">7</span>, <span class="dv">24</span>), <span class="dv">25</span>)</span>
+<span id="cb56-10"><a href="#cb56-10"></a>  </span>
+<span id="cb56-11"><a href="#cb56-11"></a>  <span class="co"># test that non-numerics throw an error</span></span>
+<span id="cb56-12"><a href="#cb56-12"></a>  <span class="fu">expect_error</span>(<span class="fu">calculate_hypotenuse_length</span>(<span class="dv">1</span>, <span class="st">'apple'</span>))</span>
+<span id="cb56-13"><a href="#cb56-13"></a>  </span>
+<span id="cb56-14"><a href="#cb56-14"></a>  <span class="co"># test that negative numbers are supported;</span></span>
+<span id="cb56-15"><a href="#cb56-15"></a>  <span class="co"># this uses _random_ testing</span></span>
+<span id="cb56-16"><a href="#cb56-16"></a>  <span class="fu">expect_gt</span>(<span class="fu">calculate_hypotenuse_length</span>(</span>
+<span id="cb56-17"><a href="#cb56-17"></a>    <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>), </span>
+<span id="cb56-18"><a href="#cb56-18"></a>    <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>)), <span class="dv">0</span>)</span>
+<span id="cb56-19"><a href="#cb56-19"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Test passed 🥳</code></pre>
+<pre><code>Test passed 🌈</code></pre>
 </div>
+</div>
+</section></section>
+<section id="key-takeaways" class="title-slide slide level1 xsmall center" data-background-image="graphics/transition_slides/sam-moghadam-khamseh.jpg" data-background-opacity="40%" data-background-color="black">
+<h1>key takeaways</h1>
+<ul>
+<li>functions should help you automate the boring/repetitive stuff</li>
+<li>arguments can be:
+<ul>
+<li>named</li>
+<li>missing</li>
+<li>given default values</li>
+</ul></li>
+<li>take care around function scoping/environments – this can be the source of a lot of bugs</li>
+<li>throw warnings and errors in your functions to make future debugging easier</li>
+<li>use testing to ensure your functions work to your specification</li>
+</ul>
+</section>
+
+<section id="references" class="title-slide slide level1 center" data-background-image="graphics/transition_slides/inaki-del-olmo.jpg" data-background-opacity="20%" data-background-color="black">
+<h1>references</h1>
+<ul>
+<li><a href="https://r4ds.had.co.nz/functions.html" class="uri">https://r4ds.had.co.nz/functions.html</a></li>
+<li><a href="https://adv-r.hadley.nz/functions.html" class="uri">https://adv-r.hadley.nz/functions.html</a></li>
+<li><a href="https://testthat.r-lib.org/" class="uri">https://testthat.r-lib.org/</a></li>
+</ul>
+</section>
+
+<section id="challenges-for-the-activity" class="title-slide slide level1 xsmall center" data-background-image="graphics/transition_slides/sam-moghadam-khamseh.jpg" data-background-opacity="30%" data-background-color="black">
+<h1>challenges for the activity</h1>
+<ul>
+<li><p>relatively easy: write a function that takes a numeric vector and returns the square of every element</p></li>
+<li><p>medium: write a function that takes a character vector and returns the shortest word (hint: use nchar())</p></li>
+<li><p>quite hard: what’s the scrabble points earned for a given word? (assume all letters were played with letter tiles, not blank tiles)</p></li>
+</ul>
+<p>here’s the scrabble points for each letter:</p>
+<pre><code>(1 point)-A, E, I, O, U, L, N, S, T, R
+(2 points)-D, G
+(3 points)-B, C, M, P
+(4 points)-F, H, V, W, Y
+(5 points)-K
+(8 points)- J, X
+(10 points)-Q, Z</code></pre>
+<div class="cell">
+
+</div>
+<div class="cell">
+
 </div>
 <div class="footer footer-default">
 
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
@@ -585,6 +1012,7 @@ Instead, calculate_hypotenuse_length was passed arguments of types double and ch
   <script src="functions_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="functions_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="functions_files/libs/revealjs/plugin/reveal-pointer/pointer.js"></script>
+  <script src="functions_files/libs/revealjs/plugin/reveal-confetti/confetti.js"></script>
   <script src="functions_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -608,6 +1036,7 @@ Instead, calculate_hypotenuse_length was passed arguments of types double and ch
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'pointer': {"key":"q","color":"red","pointerSize":16,"alwaysVisible":false},
+'confetti': {"particleCount":150,"angle":90,"spread":360,"startVelocity":25,"decay":0.9,"gravity":0.65,"drift":0,"ticks":400,"colors":["#0366fc","#f54281","#1fd14f"],"shapes":null,"scalar":0.7,"zIndex":100,"disableForReducedMotion":false},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -778,7 +1207,7 @@ Instead, calculate_hypotenuse_length was passed arguments of types double and ch
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealPointer, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealPointer, RevealConfetti, QuartoSupport,
 
           RevealMath,
           RevealNotes,

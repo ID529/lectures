@@ -9,7 +9,7 @@
 <link href="r-projects_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.269">
 
-  <title>Data Visualization with ggplot2</title>
+  <title>R Projects</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -27,6 +27,70 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="r-projects_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="r-projects_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -323,8 +387,8 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Data Visualization with ggplot2</h1>
+<section id="title-slide" data-background-color="black" data-background-image="graphics/transition_slides/alex-mesmer.jpg" data-background-opacity="60%" class="quarto-title-block center">
+  <h1 class="title">R Projects</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -354,31 +418,204 @@
 <p><span style="color: white;">An R project enables your work to be bundled in a <span class="carrot">portable, self-contained folder</span>. Within the project, all the relevant <span class="carrot">scripts, data files, figures/outputs,</span> and <span class="carrot">history</span> are stored in sub-folders and importantly - the working directory is the <span class="carrot">project’s root folder</span>. <br><br>—The Epidemiologist R Handbook </span></p>
 </blockquote>
 </section>
+<section id="why-wouldnt-you" class="slide level2 xxsmall">
+<h2>why wouldn’t you?</h2>
+
+<img src="images/reluctant_for_projects.jpg" alt="a twitter thread:  @JennyBryan what made you reluctant? 
+were you worried it would be complicated? curious because I see the reluctance, then joy/relief, 
+often in STAT545. @kierisi I couldn't find any good explanation on what Projects did and why it 
+was better than manually saving all my R scripts in the same folder" class="r-stretch"><p>from Jenny Bryan’s talk <a href="https://speakerdeck.com/jennybc/zen-and-the-art-of-workflow-maintenance" class="uri">https://speakerdeck.com/jennybc/zen-and-the-art-of-workflow-maintenance</a></p>
+</section>
+<section id="section" class="slide level2 xxsmall">
+<h2></h2>
+<p><img src="images/cans.jpg" alt="two pictures: one of a room full of cans, and one with cans
+neatly hanging on the wall" height="500px"></p>
+<p>from Jenny Bryan’s talk <a href="https://speakerdeck.com/jennybc/zen-and-the-art-of-workflow-maintenance" class="uri">https://speakerdeck.com/jennybc/zen-and-the-art-of-workflow-maintenance</a></p>
+</section>
+<section id="r-projects-allow-you" class="slide level2">
+<h2>R projects allow you …</h2>
+<ul>
+<li>to have one folder per code project;</li>
+<li>to have one git repository per project;</li>
+<li>and to run one R session that’s tied to that project</li>
+</ul>
+</section>
 <section id="creating-an-r-project" class="slide level2">
 <h2>creating an R project</h2>
+<p>you should see New Project in the File Menu in RStudio</p>
+
+<img src="images/filemenu.png" alt="File -> New Project" class="r-stretch"></section>
+<section id="creating-an-r-project-1" class="slide level2">
+<h2>creating an R project</h2>
+<p>that will launch the New Project Wizard which will guide you through the project creation process</p>
+
+<img src="images/new_project_wizard.png" alt="Create Project: 
+In a new directory? In an existing directory? 
+Checkout a version controlled repository?" class="r-stretch"></section>
+<section id="creating-an-r-project-2" class="slide level2">
+<h2>creating an R project</h2>
+<p>that will launch the New Project Wizard which will guide you through the project creation process</p>
+
+<img src="images/new_project_wizard2.png" alt="what kind of project will it be? an
+R project? an R Package? a Shiny application? a Quarto project? a Quarto website? etc." class="r-stretch"></section>
+<section id="creating-an-r-project-3" class="slide level2">
+<h2>creating an R project</h2>
+<p>that will launch the New Project Wizard which will guide you through the project creation process</p>
+
+<img src="images/new_project_wizard3.png" alt="Set a name for the project, create it
+as a subdirectory of another folder on your computer, and create a git repository to go 
+with it. Optionally open the project in a new window." class="r-stretch"></section>
+<section id="opening-r-projects" class="slide level2">
+<h2>opening R projects</h2>
+<p>there are a few ways you can open an R project</p>
+
+<img src="images/project_file.png" alt="open the .Rproj file from Finder / Explorer" class="r-stretch"></section>
+<section id="opening-r-projects-1" class="slide level2">
+<h2>opening R projects</h2>
+<p>there are a few ways you can open an R project</p>
+
+<img src="images/spotlight.png" alt="open the .Rproj file from Spotlight or the Start Menu" class="r-stretch"></section>
+<section id="opening-r-projects-2" class="slide level2">
+<h2>opening R projects</h2>
+<p>there are a few ways you can open an R project</p>
+
+<img src="images/rstudio_project_dropdown.png" alt="open the project from RStudio dropdown" class="r-stretch"></section>
+<section id="opening-r-projects-3" class="slide level2">
+<h2>opening R projects</h2>
+
+<img src="images/rstudio_project_dropdown_highlighted.jpg" alt="open the project from RStudio dropdown in a new 
+window using the small button on the right" class="r-stretch"></section>
+<section id="expect-to-iterate" class="slide level2">
+<h2>expect to iterate</h2>
+<p>i want to stress that on any major project, you will likely need to iterate substantially on the code between the first version and the final version.</p>
 </section>
-<section id="organizing-your-r-project" class="slide level2">
-<h2>organizing your R project</h2>
-<p>https://kdestasio.github.io/post/r_best_practices/</p>
-<p>https://www.rforecology.com/post/organizing-your-r-studio-projects/</p>
-<p>https://github.com/GiuseppeTT/R-Project-Structure</p>
+<section id="prototyping" class="slide level2">
+<h2>prototyping</h2>
+<p>therefore, sometimes it can be useful to prototype your work just to get a sense of what needs to be done, and then later on move onto a more robust workflow.</p>
 </section>
-<section id="using-the-here-package" class="slide level2">
-<h2>using the here package</h2>
-<blockquote class="twitter-tweet">
-<p lang="en" dir="ltr">
-The only two things that make <a href="https://twitter.com/JennyBryan?ref_src=twsrc%5Etfw"><span class="citation" data-cites="JennyBryan">@JennyBryan</span></a> 😤😠🤯. Instead use projects + here::here() <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/GwxnHePL4n">pic.twitter.com/GwxnHePL4n</a>
-</p>
-— Hadley Wickham (<span class="citation" data-cites="hadleywickham">@hadleywickham</span>) <a href="https://twitter.com/hadleywickham/status/940021008764846080?ref_src=twsrc%5Etfw">December 11, 2017</a>
-</blockquote>
-<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<section id="suggested-project-layout" class="slide level2">
+<h2>suggested project layout</h2>
+
+<img src="images/folder_layout.png" alt="folders including: code, docs, outputs, data along with a README and CHANGELOG" class="r-stretch"></section>
+<section id="working-in-a-single-file" class="slide level2">
+<h2>working in a single file</h2>
+
+<img src="images/code_layout.png" alt="working in a single file" class="r-stretch"></section>
+<section id="use-the-outline-in-rstudio" class="slide level2">
+<h2>use the outline in RStudio</h2>
+
+<img src="images/outline.png" alt="the outline in RStudio" class="r-stretch"></section>
+<section id="working-with-multiple-files" class="slide level2">
+<h2>working with multiple files</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img src="images/indexed_files.png" alt="9 files called 00_dependencies.R, 01_load_data.R, 02_clean_data.R, 03_merge_data.R, 04_exploratory_data_visualization.R, 05_model.R, 06_table_model_results.R, 07_supplementary_analysis.R, 99_run_everything.R"></p>
+</div><div class="column" style="width:40%;">
+<div style="padding-top: 40%">
+
+</div>
+<p>versus: <br> <img src="images/scriptdotR.png" alt="just a file called script.R" height="75px"></p>
+</div>
+</div>
 </section>
-<section id="section" class="slide level2">
+<section id="use-the-goto-filefunction" class="slide level2">
+<h2>use the goto file/function</h2>
+<p>(on Windows/Mac/Linux): pressing Ctrl+. [period] will open the Goto Function/File popup:</p>
+
+<img src="images/goto file function.png" alt="window for go to file function" class="r-stretch"></section>
+<section id="use-the-here-package" class="slide level2 xxsmall">
+<h2>use the here package</h2>
+
+<img src="images/laptop_fire.jpg" alt="Burned laptop" class="r-stretch"><p>original photo from <a href="https://commons.wikimedia.org/wiki/File:Burned_laptop_secumem_11.jpg" class="uri">https://commons.wikimedia.org/wiki/File:Burned_laptop_secumem_11.jpg</a></p>
+<p><a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/" class="uri">https://www.tidyverse.org/blog/2017/12/workflow-vs-script/</a></p>
+</section>
+<section id="section-1" class="slide level2">
 <h2></h2>
+<blockquote>
+<p>If the first line of your R script is</p>
+<p><code>setwd("C:\Users\jenny\path\that\only\I\have")</code></p>
+<p>I will come into your office and SET YOUR COMPUTER ON FIRE 🔥.</p>
+<p>If the first line of your R script is</p>
+<p><code>rm(list = ls())</code></p>
+<p>I will come into your office and SET YOUR COMPUTER ON FIRE 🔥.</p>
+</blockquote>
+</section>
+<section id="use-the-here-package-1" class="slide level2 xsmall">
+<h2>use the here package</h2>
+<p>the payoff of the <code>here</code> package is that it will automatically detect the <strong>root</strong> of your package and construct paths based off it.</p>
+<p>meaning, you can write code like the following without having to worrying about where your working directory is set to or using absolute paths that are specific to your computer:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>... </span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># read data from the data/ directory</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/specific_data_file.csv"</span>))</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a>... </span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># save a plot to the outputs/ directory </span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="fu">here</span>(<span class="st">"outputs/my_best_figure_yet.png"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section>
+<section id="extras" class="title-slide slide level1 center">
+<h1>extras</h1>
+
+</section>
+<section id="renv" class="slide level2 xsmall">
+<h2>renv</h2>
+<p><img src="images/renv.svg" alt="hex sticker for renv" align="right" height="150px"></p>
+<p><code>renv</code> let’s you control exactly what versions of packages are used within an R project and ensure that your collaborators also use exactly the same package versions.</p>
+<p>the workflow is pretty simple:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>renv<span class="sc">::</span><span class="fu">init</span>() <span class="co"># to initialize a new package lockfile</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># work in the project as normal</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>() <span class="co"># to save the packages used</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co"># keep working ... </span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>() <span class="co"># take an updated snapshot</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co"># then when your collaborators want to load </span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co"># up the package versions as you've locked them</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co"># into the project: </span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>this prevents one of the very hardest bugs to debug: silent differences in functionality between versions of the same R package.</p>
+<p>learn more about renv: <a href="https://rstudio.github.io/renv/" class="uri">https://rstudio.github.io/renv/</a></p>
+</section>
+<section id="targets" class="slide level2 xxsmall">
+<h2>targets</h2>
+<p><img src="images/targets-hex.png" alt="hex sticker for targets" align="right" height="150px"></p>
+<p>the <code>targets</code> package allows users to write scripts that explicitly declare which code produces what outputs depending on what inputs and the result is that <code>targets</code> is able to run your workflow from start to finish updating any processes where the underlying data or code have changed.</p>
+<p>this avoids the problem of having to ask yourself “do i need to update this intermediate output? i can’t remember if i changed the data or code that underlies it.”</p>
+<p><img src="images/targets.png" alt="a targets diagram" height="400px"></p>
+<p>learn more about targets: <a href="https://books.ropensci.org/targets/" class="uri">https://books.ropensci.org/targets/</a></p>
+</section>
+<section id="rocker" class="slide level2 small">
+<h2>rocker</h2>
+<p><img src="images/rocker.png" alt="a modified docker sticker with R written above it" align="right" height="150px"> what if i need the absolute most possible reproducibility because my code has to execute exactly the same no matter the person running it? <br><br></p>
+<p>then the rocker project may be the solution for you: the rocker project provides docker (containerized) images to support R programming. <br><br></p>
+<p>(this is quite a bit beyond our course.)</p>
+</section></section>
+<section>
+<section id="key-takeaways" class="title-slide slide level1 center" data-background-image="graphics/transition_slides/lilzidesigns-2.jpg" data-background-opacity="20%" data-background-color="black">
+<h1>key takeaways</h1>
+<ul>
+<li>use R Projects to help organize your code</li>
+<li>use sections within your code to help organize .R files</li>
+<li>use the names of your .R files to help you stay organized</li>
+<li>expect to iterate!</li>
+<li>use the here package to make working with paths easy</li>
+<li>use renv and targets to make reproducing your analysis easy</li>
+</ul>
+</section>
+<section id="references" class="slide level2" data-background-image="graphics/transition_slides/prateek-pisat.jpg" data-background-opacity="20%" data-background-color="black">
+<h2>references</h2>
+<ul>
+<li><a href="https://kdestasio.github.io/post/r_best_practices/" class="uri">https://kdestasio.github.io/post/r_best_practices/</a></li>
+<li><a href="https://www.rforecology.com/post/organizing-your-r-studio-projects/" class="uri">https://www.rforecology.com/post/organizing-your-r-studio-projects/</a></li>
+<li><a href="https://speakerdeck.com/jennybc/zen-and-the-art-of-workflow-maintenance" class="uri">https://speakerdeck.com/jennybc/zen-and-the-art-of-workflow-maintenance</a></li>
+</ul>
 <div class="footer footer-default">
 
 </div>
-</section>
+</section></section>
     </div>
   </div>
 

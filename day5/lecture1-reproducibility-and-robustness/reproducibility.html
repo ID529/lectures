@@ -32,6 +32,7 @@
   <link href="reproducibility_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="reproducibility_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="reproducibility_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="reproducibility_files/libs/revealjs/plugin/reveal-pointer/pointer.css" rel="stylesheet">
   <link href="reproducibility_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -405,7 +406,46 @@
 <li>meanwhile, you work on starting a new R project and building a reproducible data cleaning pipeline</li>
 <li>this goes not just for data cleaning, but also exploratory data analysis, modeling, and manuscript writing.</li>
 </ul></li>
+<li>be explicit about educating your supervisor about the steps that need to get done</li>
+<li>if you can, be candid about making them aware of why things may take a long time</li>
+<li>Try binning a new task:
+<ul>
+<li>I could turn this around in 2-hours.</li>
+<li>I know how to do it, but it’ll take me some time to do it; I can describe what needs to be done.</li>
+<li>I don’t know what I need to do, so figuring out how to do it is going to take me a longer time.</li>
+<li>If you can pseudo-code the problem, that can help to explain (in plain english) what can go wrong with the analysis can help your supervisors/colleagues understand what the time-sinks might be.
+<ul>
+<li>gently let them know that the complexity may be greater than they’re imagining</li>
+</ul></li>
+</ul></li>
+<li>sometimes the timeline issues are
+<ul>
+<li>coding/programming;</li>
+<li>statistical;</li>
+<li>political;</li>
+<li>lack of clarity about expectations; and/or</li>
+<li>conceptual</li>
+</ul></li>
 </ul>
+<aside class="notes">
+<p>self-imposed short timelines …</p>
+<p>repetitive analytic tasks being cut &amp; paste … (cognitive bias against functions? or just plain harder.)</p>
+<p>being bit in the ass by irreproducible analysis getting off your computer and then you’re expected to iterate on it</p>
+<p>hours spent struggling to learn is almost always worth it, but you often have to know what is possible, what’s been done before; * it’s good to spend a few hours working on something; * but if you’re spending too many hours, ask for help</p>
+<p>most of our (teaching team)’s learning came from researching how to do things better. use opportunities to practice honing your R skills, especially those that aren’t related to your “actual” work.</p>
+<p>often working on a side-passion-project can give you insights that pay off on important projects</p>
+<p>some of what should motivate you to learn programming <em>is</em> laziness</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 
 <section id="section-5" class="title-slide slide level1 center">
@@ -518,6 +558,8 @@
   <script src="reproducibility_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="reproducibility_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="reproducibility_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="reproducibility_files/libs/revealjs/plugin/reveal-pointer/pointer.js"></script>
+  <script src="reproducibility_files/libs/revealjs/plugin/reveal-confetti/confetti.js"></script>
   <script src="reproducibility_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -540,6 +582,8 @@
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'pointer': {"key":"q","color":"red","pointerSize":16,"alwaysVisible":false},
+'confetti': {"particleCount":50,"angle":90,"spread":45,"startVelocity":45,"decay":0.9,"gravity":1,"drift":0,"ticks":200,"colors":null,"shapes":null,"scalar":1,"zIndex":100,"disableForReducedMotion":false},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -710,7 +754,7 @@
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealPointer, RevealConfetti, QuartoSupport,
 
           RevealMath,
           RevealNotes,

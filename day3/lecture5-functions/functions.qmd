@@ -3,64 +3,71 @@ title: "Functions"
 format:
   revealjs:
     theme: [default, functions.scss]
+    confetti:
+      particleCount: 150
+      angle: 90
+      spread: 360
+      startVelocity: 25
+      gravity: 0.65
+      drift: 0
+      ticks: 400
+      colors: ["#0366fc", "#f54281", "#1fd14f"]
+      scalar: 0.7
 slide-number: true
-# title-slide-attributes: 
-#   data-background-image: ""
-#   data-background-opacity: "60%"
-#   data-background-color: "black"
+title-slide-attributes:
+  data-background-image: "graphics/transition_slides/inaki-del-olmo.jpg"
+  data-background-opacity: "30%"
+  data-background-color: "black"
 revealjs-plugins:
   - pointer
+  - confetti
 execute: 
   echo: true
 ---
 
-# morals 
+# morals {.small data-background-image='graphics/transition_slides/sam-moghadam-khamseh.jpg' data-background-opacity='40%' data-background-color='black'} 
 
-> “The function of good software is to make the complex appear to be simple.” ——Grady Booch
+> <span style='color: white;'>“The function of good software is to make the complex appear to be simple.” <br>—Grady Booch</span>
 
-> "Beware of bugs in the above code; I have only proved it correct, not tried it."
-——Donald Knuth
+> <span style='color: white;'>"Beware of bugs in the above code; I have only proved it correct, not tried it."
+<br>—Donald Knuth</span>
 
-> "If you can't informally describe a function in one
-line, the function is probably too large." —— (paraphrased) Eric S. Raymond
+> <span style='color: white;'>"If you can't informally describe a function in one
+line, the function is probably too large." <br>—(paraphrased) Eric S. Raymond</span>
 
-# morals 
+# morals {data-background-image='graphics/transition_slides/sam-moghadam-khamseh.jpg' data-background-opacity='40%' data-background-color='black'}
 
-> "You should consider writing a function 
+>  <span style='color: white;'>"You should consider writing a function 
 whenever you've copied and pasted a block of code more than
-twice (i.e., you now have three copies of the same code). --R for Data Science, Hadley Wickham, Garrett Grolemund
-
-
+twice (i.e., you now have three copies of the same code). <br>—R for Data Science, Hadley Wickham, Garrett Grolemund</span>
 
 # anatomy of a function 
 
   - name 
   - arguments 
   - body 
-  - documentation 
-  - return values
+    - return value(s)
+    - error/warning conditions
+  - its scope/environment
+  - documentation (not always present)
   
 # principles for functions
 
   - use communicative names
   - no side effects, please 
-  - write error conditions
+  - throw errors and warnings
   - write tests 
 
-# examples 
+# examples {.xxsmall}
 
 ```{r}
-# here's a relatively simple example 
-
-# Calculate the Length of the Hypotenuse for a Triangle with Base of Length x
-# and Height of Length y
+# Calculate the Length of the Hypotenuse for a Right Triangle with Base of
+# Length x and Height of Length y
 #
-# description: 
-#   uses the Pythagorean theorem to calculate the length of the hypotenuse of
-#   a right triangle with the side-lengths given. 
+# Uses the Pythagorean theorem to calculate the length of the hypotenuse of a
+# right triangle with the side-lengths given.
 #   
-#   reference: https://en.wikipedia.org/wiki/Pythagorean_theorem
-# 
+# Reference: https://en.wikipedia.org/wiki/Pythagorean_theorem
 # 
 # arguments: 
 #   x   length of the triangle base 
@@ -72,52 +79,198 @@ calculate_hypotenuse_length <- function(x,y) {
   sqrt(x^2 + y^2)
 }
 
-# usage:
 calculate_hypotenuse_length(3,4)
-calculate_hypotenuse_length(5,12)
-calculate_hypotenuse_length(7,24)
 ```
 
-# raising errors {.xxxsmall}
+# examples {.xxsmall}
 
-we could improve on the function given by adding code to raise errors for
-unexpected input.
+```{r}
+calculate_hypotenuse_length(5,12)
+calculate_hypotenuse_length(8,15)
+calculate_hypotenuse_length(7,24)
+calculate_hypotenuse_length(20,21)
+calculate_hypotenuse_length(12,35)
+```
+
+:::{.notes}
+the idea is that we can automate the boring stuff, i.e., the arithmetic 
+and have the computer do it instead of us 
+:::
+
+
+# arguments
+
+## arguments {.xsmall}
+
+arguments are a little bit like playing make-believe:  "what if `x` were this? 
+what if `argument2` were this?"
+
+in that sense, you need to make sure you suspend belief about whatever `x`
+or `argument2` are outside of the function because inside the function, they have
+whatever value they were given as to the function. 
+
+```{r}
+x <- 1
+argument2 <- 'spooky value!'
+
+my_fun_function <- function(x, argument2) {
+  print(paste0("the value of x inside this function: ", x))
+  print(paste0("the value of tricky_argument inside this function: ", 
+               argument2))
+}
+
+my_fun_function(1234, "i'm not spooky!")
+```
+
+## arguments
+
+  - named arguments
+  - missing arguments
+  - default arguments 
+  - detecting missing arguments 
+  
+## argument names {.xsmall}
+
+note that you can provide the arguments in the order 
+specified, or you can give named arguments when calling
+the function (in which case, order doesn't matter):
+
+```{r}
+calculate_hypotenuse_length(5, 12)
+calculate_hypotenuse_length(x = 5, y = 12)
+calculate_hypotenuse_length(y = 12, x = 5)
+```
+
+## missing arguments {.xxsmall}
+
+some functions do not require that all arguments be passed. 
+
+when an argument is required and it's not given, it will result in an 
+error. 
+
+here's a simple example: 
 
 ```{r, error=TRUE}
+# two_arguments_steve likes to talk a lot
+two_arguments_steve <- function(arg1, arg2) {
+  for (i in 1:3) {
+    print(arg1)
+  }
+}
+
+two_arguments_steve("hello!")
+
+# two_arguments_steve won't run without arg1
+two_arguments_steve(arg2 = "what's up?")
+```
+
+## default arguments {.xsmall}
+
+one of the common situations in which arguments don't need to be 
+passed is if they have default values. 
+
+```{r}
+function_with_lovely_defaults <- function(x = "great", y = "day") {
+  print(paste0("i'm having a ", x, " ", y))
+}
+
+function_with_lovely_defaults()
+function_with_lovely_defaults("kale", "salad")
+```
+
+## detecting missing arguments {.xsmall}
+
+sometimes you may need to detect within a function if an argument is missing.
+
+this can be done with the `missing()` function.
+
+```{r}
+snarky_function <- function(argument) {
+  if (missing(argument)) {
+    print("i can't believe you've done this")
+  } else {
+    print(paste0("here's your argument: ", argument))
+  }
+}
+
+snarky_function()
+snarky_function("did you know the earliest crocodilian evolved 95 million years ago?! 🐊")
+```
+  
+## returning early {.xsmall}
+
+sometimes you may have situations in which you don't need to run 
+all of the code.  a classic example is when the output of
+a function should depend on an `if` `else` code block. 
+
+in those situations, you should write out a `return()` function
+call explicitly.
+
+```{r}
+sum_and_square <- function(x,y) {
+  if (all(c(is.numeric(x), is.numeric(y)))) { 
+    return((x + y)^2)
+  } else {
+    warning("x and y aren't both numeric")
+    return(NA)
+  }
+}
+```
+
+## raising errors {.xxxsmall}
+
+we could improve on the function given by adding code to raise errors for
+problematic input.
+
+```{r}
 # first let's look at what happens without the code to raise errors:
-calculate_hypotenuse_length(1, "banana")
+calculate_hypotenuse_length(1.3e154, 1.3e154)
 ```
 
 <br>
 ```{r, error=TRUE}
 calculate_hypotenuse_length <- function(x,y) {
-  # make sure the arguments are numeric
-  if (! all("numeric" %in% class(x), "numeric" %in% class(y))) {
-    stop(paste0(
-      "calculate_hypotenuse_length expects numeric arguments for x and y.\n",
-      "Instead, calculate_hypotenuse_length was passed arguments of types ",
-      typeof(x), " and ", typeof(y), "."))
+  # make sure the arguments aren't too big
+  if (x >= 1.3e154 | y >= 1.3e154) {
+    stop("calculate_hypotenuse_length only supports arguments less than 1.3e154")
   }
   
   sqrt(x^2 + y^2)
 }
 
-calculate_hypotenuse_length(1,"banana")
+calculate_hypotenuse_length(1.3e154, 1.3e154)
 ```
 
-## arguments
+## write your own error messages {.small}
 
-  - regular arguments
-  - default arguments 
-  - detecting missing arguments 
-  
-## returning early
+<div style='padding-top: 5%'></div>
 
-## scopes and environments in R
+:::{.columns}
+:::{.column}
+<img src='graphics/hodu_lilac.png' alt='Hodu Tip! with lilac color styling'>
+:::
+:::{.column}
+<div style='padding-top: 10%;'></div>
+it's often the case that R will <span class='carrot'>**automatically raise
+errors**</span> when the arguments given to a function are incompatible with the
+steps being done inside the function; <br><br>
+
+however, R's errors can be incredibly <span
+class='carrot'>**terse**</span>, so it may be more <span
+class='carrot'>**user-friendly**</span> to write your own errors, especially
+ones that give a little bit more <span class='carrot'>**context**</span>. 
+:::
+:::
+
+
+# scopes and environments {.xsmall}
+
+## scopes and environments {.xsmall}
 
 what do you think will happen? 
 
 ```{r}
+#| output-location: fragment
 x <- 1 
 some_function <- function() {
   x <- 2 
@@ -128,17 +281,218 @@ some_function()
 print(x)
 ```
 
-## some perhaps not-obvious things
+## scopes and environments {.xsmall}
 
+how about now? 
+
+```{r}
+#| output-location: fragment
+x <- 1
+tricky_function <- function() {
+  inner_function <- function() {
+    x <- 2
+  }
+  
+  inner_function()
+  print(x)
+}
+
+tricky_function()
+print(x)
+```
+
+## scopes and environments {.xsmall}
+
+and how about now? 
+
+```{r}
+#| output-location: fragment
+x <- 1
+tricky_function <- function() {
+  inner_function <- function() {
+    print(x)
+  }
+  
+  x <- 2
+  inner_function()
+}
+
+tricky_function()
+print(x)
+```
+
+## scopes and environments {.xsmall}
+
+let's make those examples a little less mysterious: 
+
+:::{.incremental}
+  * objects referenced will assume the value of where they were
+  defined in either the <span class='carrot'>**scope in which they are referenced**</span>, or the <span class='carrot'>**scope most
+  immediately parental**</span> to the current scope in which they've been defined.
+  * here's an analogy: let's say both your grandmother and your mom are both named Elphaba, and someone asks you "Who is Elphaba?" If you're R, you'd say "my mom."
+  * objects assigned within a function will <span class='carrot'>**not**</span> be updated in the <span class='carrot'>**global scope**</span>
+  or that function's <span class='carrot'>**parent scope(s)**</span>.
+  * here's an analogy: if a function is like considering a <span class='carrot'>**hypothetical**</span>
+  written down for you, then if the hypothetical says "let's say dogs had five
+  legs" or `"x is 5"`, you could work out some <span class='carrot'>**conclusions**</span> (dog booties would
+  be sold in packs of five, or `x^2 == 25`), but that hypothetical **doesn't**
+  change anything about the rest of the world.
+:::
+  
+
+# some things worth explicitly discussing {.xsmall}
+
+:::{.incremental}
   - functions can call other functions 
+    - we've already seen this
   - functions are first-class citizens
     - so you can treat them similarly to other variables
   - you can make functions that make functions
-  - dot-dot-dots
   - anonymous functions 
   - infix notation
-  
-## testing functions with test_that
+:::
+
+## functions as first-class citizens {.xxsmall}
+
+you can do things with functions in R that you can't do in all 
+languages, like put them in a list or pass them as arguments.
+
+```{r}
+#| output-location: fragment
+f1 <- function() {
+  cat("hello ")
+}
+f2 <- function() {
+  cat("world")
+}
+f3 <- function() {
+  cat("!")
+}
+my_functions <- list(f1, f2, f3)
+
+for (i in 1:3) {
+  my_functions[[i]]()
+}
+```
+
+## functions as first-class citizens {.xxsmall}
+
+```{r, eval=F}
+#| code-line-numbers: "|1-3|5-7|9-11|13-14|15-16|17-18|"
+my_fancy_function <- function(arg_f) {
+  arg_f(10)
+}
+
+secondary_function1 <- function(x) {
+  x^2
+}
+
+secondary_function2 <- function(x) {
+  factorial(x)
+}
+
+my_fancy_function(arg_f = secondary_function1)
+#> 100
+my_fancy_function(arg_f = secondary_function2)
+#> 3628800
+my_fancy_function(arg_f = factorial)
+#> 3628800
+```
+
+## functions as first-class citizens
+
+<div style='padding-top: 5%'></div>
+
+:::{.columns}
+:::{.column}
+<img src='graphics/hodu_magenta.png' alt='Hodu Tip! with magenta color styling'>
+:::
+:::{.column .smaller}
+<div style='padding-top: 10%;'></div>
+in programming languages, if functions are first-class citizens, then we say that
+programming language supports <span class='magenta'>**functional programming**</span>, or 
+that it is a <span class='magenta'>**functional programming language**</span>
+:::
+:::
+
+
+
+## making functions with functions (function factories) {.xxsmall}
+
+the key principle behind function factories can be described simply: 
+
+> The enclosing environment of the manufactured function is an execution
+environment of the function factory.
+
+```{r, eval=F}
+power2 <- function(exp) {
+  force(exp) # ensures exp is not lazily evaluated
+  function(x) {
+    x ^ exp
+  }
+}
+
+square <- power2(2)
+cube <- power2(3)
+
+square(2)
+#> 4
+cube(2)
+#> 8
+```
+
+this isn't a practice you will need to use often, if ever, but it is 
+very helpful to know about to understand code you may come across and 
+is quite instructive about how scoping/environments work in R.
+
+:::{.footer}
+read more: https://adv-r.hadley.nz/function-factories.html
+:::
+
+## anonymous functions {.xsmall}
+
+functions can be created without a name (as you may have noticed in the last
+example). these functions are called <span class='carrot'>**anonymous functions**</span>.
+
+there are a handful of ways to create anonymous functions in R, and some that
+are even in a specific syntax according to the package/framework you're working
+in.
+
+```{r, eval=F}
+# the oldest, most readable way:
+function(x) {
+  x^2
+}
+# can be abbreviated to: 
+function(x) { x^2 } # if writing inline
+
+# introduced in R 4.1.0 (May 2021)
+\(x) x^2
+
+# many functions in the tidyverse use the 
+# tilde syntax (also called formula syntax)
+~ .^2
+```
+
+## anonymous functions {.xsmall}
+
+so how would i use anonymous functions? 
+
+```{r, eval=F}
+library(purrr)
+vec <- c(1,2,3)
+# map_dbl applies the function given to each element and returns
+# a numeric vector
+map_dbl(vec, function(x) { x^2 }) 
+#> c(1, 4, 9)
+```
+
+we're not going to fully get into functional programming right now, but this is
+a teaser for a later lecture on functional programming.
+
+# testing
+
+## testing functions with test_that {.xxsmall}
 
 ```{r}
 library(testthat)
@@ -156,28 +510,38 @@ test_that("calculate_hypotenuse_length works as intended", {
   
   # test that negative numbers are supported;
   # this uses _random_ testing
-  expect_gt(calculate_hypotenuse_length(-1 * rlnorm(n=1), -1 * rlnorm(n=1)), 0)
+  expect_gt(calculate_hypotenuse_length(
+    -1 * sample.int(n = 10, size = 1), 
+    -1 * sample.int(n = 10, size = 1)), 0)
 })
 ```
 
 
-# key takeaways 
+# key takeaways {.xsmall data-background-image='graphics/transition_slides/sam-moghadam-khamseh.jpg' data-background-opacity='40%' data-background-color='black'}
 
-# references
+  * functions should help you automate the boring/repetitive stuff
+  * arguments can be: 
+    * named
+    * missing
+    * given default values
+  * take care around function scoping/environments -- this can be the source of a lot of
+  bugs
+  * throw warnings and errors in your functions to make future debugging easier
+  * use testing to ensure your functions work to your specification
 
-https://r4ds.had.co.nz/functions.html
+# references {data-background-image='graphics/transition_slides/inaki-del-olmo.jpg' data-background-opacity='20%' data-background-color='black'}
 
-https://adv-r.hadley.nz/functions.html 
+  * <https://r4ds.had.co.nz/functions.html>
+  * <https://adv-r.hadley.nz/functions.html>
+  * <https://testthat.r-lib.org/>
 
+# challenges for the activity {.xsmall  data-background-image='graphics/transition_slides/sam-moghadam-khamseh.jpg' data-background-opacity='30%' data-background-color='black'}
 
-# challenges for the activity 
+  * relatively easy: write a function that takes a numeric vector and returns the square of every element 
 
+  * medium: write a function that takes a character vector and returns the shortest word (hint: use nchar())
 
-(relatively easy): write a function that takes a numeric vector and returns the square of every element 
-
-(medium): write a function that takes a character vector and returns the shortest word (hint: use `nchar`)
-
-(quite hard): what's the scrabble points earned for a given word? (assume all letters were played
+  * quite hard: what's the scrabble points earned for a given word? (assume all letters were played
 with letter tiles, not blank tiles)
 
 here's the scrabble points for each letter: 
@@ -189,8 +553,8 @@ here's the scrabble points for each letter:
     (5 points)-K
     (8 points)- J, X
     (10 points)-Q, Z
-
-```{r}
+    
+```{r, echo=F, eval=F}
 scrabble_points <- function(word) {
   stopifnot(class(word) == 'character')
   stopifnot(length(word) == 1)
@@ -215,7 +579,8 @@ scrabble_points <- function(word) {
 scrabble_points("quixotic")
 ```
 
-```{r}
+```{r, echo=F, eval=F}
+library(tidyverse)
 scrabble_points <- function(word) {
   stopifnot(class(word) == 'character')
   stopifnot(length(word) == 1)
