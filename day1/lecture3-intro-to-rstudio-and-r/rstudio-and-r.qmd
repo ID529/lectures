@@ -161,6 +161,30 @@ Notice that this quadrant also has Plots, Packages, Help, Viewer, and Presentati
 
 <img src="images/initial_workflow/set_as_working_directory.png">
 
+## what is a working directory? {.smaller}
+
+:::{.fragment}
+the working directory is the <span class='carrot'>default location</span> where R will <span class='carrot'>look for files</span> you want to load and where it will <span class='carrot'>save files</span>. <br><br>
+:::
+
+:::{.fragment}
+example: let's say your working directory is
+`C:/Users/me/Documents/` and you instruct R 
+to load `file.txt` — then R will look for `file.txt`
+in ``C:/Users/me/Documents/``.  you can also use 
+full paths, so you can tell R that instead it should
+load `C:/Users/me/Documents/specific_folder/file.txt`. <br><br>
+:::
+
+:::{.fragment}
+the difference between `file.txt` vs. `C:/Users/me/Documents/specific_folder/file.txt` is that the first is a <span class='carrot'>relative path</span> (relative to the working directory) and the second is an <span class='carrot'>absolute path</span>. <br><br>
+:::
+
+:::{.fragment}
+you can think of the working directory as <span class='carrot'>"what
+folder does R have open right now?"</span>
+:::
+
 ## you can set the working directory through commands
 
 <img src="images/initial_workflow/set_wd_cli.png">
@@ -251,9 +275,7 @@ is_a_data_analyst <- TRUE # boolean values
 ```
 :::
 
-## vectors
-
-:::{.small}
+## vectors {.small}
 
 :::{.fragment}
 vectors create combinations of multiple values which are <span class='carrot'>**all 
@@ -272,6 +294,7 @@ in fancy computer science language, we would say this makes vectors a <span clas
   - calculate statistics on vectors with: `max(x)`, `min(x)`, `range(x)`, `length(x)`, `sum(x)`, `mean(x)`, `prod(x)`, `sd(x)`, `var(x)`, `sort(x)`, `summary(x)`
 :::
 
+## an example working with vectors
 
 :::{.fragment}
 ```r
@@ -282,7 +305,6 @@ summary(classmate_ages)
 #>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #>   22.0    23.0    24.0    23.8    24.0    26.0 
 ```
-:::
 :::
 
 ## factors
@@ -322,7 +344,7 @@ levels(study_participant_genders)
 
 :::{.xsmall}
 :::{.fragment}
-another important heterogeneous data structure are <span class='carrot'>**lists**</span> 
+<span class='carrot'>**lists**</span> are an important heterogeneous data structure 
 :::
 
 :::{.fragment}

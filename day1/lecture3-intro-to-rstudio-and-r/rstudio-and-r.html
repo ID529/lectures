@@ -568,6 +568,21 @@
 <h2>pay attention to your working directory</h2>
 
 <img src="images/initial_workflow/set_as_working_directory.png" class="r-stretch"></section>
+<section id="what-is-a-working-directory" class="slide level2 smaller">
+<h2>what is a working directory?</h2>
+<div class="fragment">
+<p>the working directory is the <span class="carrot">default location</span> where R will <span class="carrot">look for files</span> you want to load and where it will <span class="carrot">save files</span>. <br><br></p>
+</div>
+<div class="fragment">
+<p>example: let’s say your working directory is <code>C:/Users/me/Documents/</code> and you instruct R to load <code>file.txt</code> — then R will look for <code>file.txt</code> in <code>C:/Users/me/Documents/</code>. you can also use full paths, so you can tell R that instead it should load <code>C:/Users/me/Documents/specific_folder/file.txt</code>. <br><br></p>
+</div>
+<div class="fragment">
+<p>the difference between <code>file.txt</code> vs.&nbsp;<code>C:/Users/me/Documents/specific_folder/file.txt</code> is that the first is a <span class="carrot">relative path</span> (relative to the working directory) and the second is an <span class="carrot">absolute path</span>. <br><br></p>
+</div>
+<div class="fragment">
+<p>you can think of the working directory as <span class="carrot">“what folder does R have open right now?”</span></p>
+</div>
+</section>
 <section id="you-can-set-the-working-directory-through-commands" class="slide level2">
 <h2>you can set the working directory through commands</h2>
 
@@ -661,9 +676,8 @@
 <span id="cb3-5"><a href="#cb3-5"></a>is_a_data_analyst <span class="ot">&lt;-</span> <span class="cn">TRUE</span> <span class="co"># boolean values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="vectors" class="slide level2">
+<section id="vectors" class="slide level2 small">
 <h2>vectors</h2>
-<div class="small">
 <div class="fragment">
 <p>vectors create combinations of multiple values which are <span class="carrot"><strong>all of the same type</strong></span> (i.e., one of numeric, character, or logical).</p>
 </div>
@@ -678,6 +692,9 @@
 <li class="fragment">calculate statistics on vectors with: <code>max(x)</code>, <code>min(x)</code>, <code>range(x)</code>, <code>length(x)</code>, <code>sum(x)</code>, <code>mean(x)</code>, <code>prod(x)</code>, <code>sd(x)</code>, <code>var(x)</code>, <code>sort(x)</code>, <code>summary(x)</code></li>
 </ul>
 </div>
+</section>
+<section id="an-example-working-with-vectors" class="slide level2">
+<h2>an example working with vectors</h2>
 <div class="fragment">
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>classmate_ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">22</span>, <span class="dv">24</span>, <span class="dv">26</span>, <span class="dv">23</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="fu">mean</span>(classmate_ages) <span class="co"># =&gt; 23.8</span></span>
@@ -685,7 +702,6 @@
 <span id="cb4-4"><a href="#cb4-4"></a><span class="fu">summary</span>(classmate_ages) </span>
 <span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt;   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
 <span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt;   22.0    23.0    24.0    23.8    24.0    26.0 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </div>
 </section>
 <section id="factors" class="slide level2">

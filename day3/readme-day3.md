@@ -12,7 +12,7 @@
   * 4:55-5:10 Demonstration of how to do the homework 
   * 5:10-5:30 Time to work on homework, chat with classmates, peruse recommended materials
   
-Recommended reading: 
+### Recommended reading: 
 
   * On Projects: 
     - Tidyverse Blog, Project-Oriented Workflow by Jenny Bryan: <https://www.tidyverse.org/blog/2017/12/workflow-vs-script/> 
@@ -23,6 +23,6 @@ Recommended reading:
     - R for Data Science, Chapter 14 Strings:  <https://r4ds.had.co.nz/strings.html>
     - R for Data Science, Chapter 19 Functions: <https://r4ds.had.co.nz/functions.html> 
     
-Homework: 
+### Homework: 
 
   - No homework

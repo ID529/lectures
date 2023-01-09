@@ -20,6 +20,11 @@
   font-size: 36px;
 }
 
+.smaller code {
+  font-size: 28px !important;
+}
+
+
 .small {
   font-size: 28px;
 }

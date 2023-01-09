@@ -14,11 +14,11 @@
    * 5:05-5:30 Activity: Setup GitHub accounts + work
    on the homework + peruse recommended materials + chat with classmates
  
-Recommended materials: 
+### Recommended materials: 
 
   * Articles: 
      - The *Introduction* Chapter to R for Data Science: <https://r4ds.had.co.nz/explore-intro.html> (just one page)
-     - *Excuse me, do you have a moment to talk about version control?* by Jennifer Bryan: <https://peerj.com/preprints/3159.pdf>
+     - *Excuse me, do you have a moment to talk about version control?* by Jennifer Bryan: <https://peerj.com/preprints/3159/>
      - Tutorial: Getting Started with R and RStudio: <https://www.dataquest.io/blog/tutorial-getting-started-with-r-and-rstudio/>
      - Quickstart from GitHub: <https://docs.github.com/en/get-started/quickstart/hello-world>
      
@@ -29,7 +29,7 @@ Recommended materials:
          - Install R: <https://vimeo.com/203516510>
          - Install RStudio: <https://vimeo.com/203516968>
   
-Homework: 
+### Homework: 
 
   - Write a bio for yourself and include a picture!
   - Complete the intro to course survey
