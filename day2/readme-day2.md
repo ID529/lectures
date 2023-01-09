@@ -11,13 +11,13 @@
   * 4:50-5:10 Demonstration of how to do the homework
   * 5:10-5:30 Time to work on homework, chat with classmates, peruse recommended materials, engage in self-affirmation
   
-Homework: 
+### Homework: 
 
   - Read in a dataset of your choice [we will give you some example datasets you can use] and create a few figures using ggplot2. We want to see students include titles, subtitles, captions, data sources, legends, etc.
-    - The figures should include one histogram, one figure with boxplots, and one figure using facet_wrap or facet_grid
+    - The figures should include one univariate figure, one bivariate figure, and one figure using facet_wrap or facet_grid
     - If you're feeling extra, have fun stylizing your plots!  Go wild!  Try to change up the background, fonts, etc. 
 
-Recommended materials: 
+### Recommended materials: 
   
   - Our learnr tutorial on Conditionals, Control Flow, and Logic in R
   - *Smithsonian Data Management and Best Practices — Describing Your Data: Data Dictionaries*

@@ -134,6 +134,15 @@ you’re on windows, mac, or linux.
     - [download git for windows](https://git-scm.com/download/win)
     - [download git for linux](https://git-scm.com/download/linux)
 :::
+
+## a quick note about the terminal {.smaller}
+
+in RStudio you can open up a terminal in a window
+next to the R Console: 
+
+<img src="images/terminal.jpg" alt="the terminal 
+tab is located next to the Console in RStudio">
+
     
 ## local setup
 
@@ -677,6 +686,21 @@ any commits from the remote server.
 
 # workflows for collaboration {background-color='black' background-image="images/mountains.jpg"}
 
+## git clone
+
+:::{.columns}
+:::{.column width='30%'}
+<img src="graphics/HoduClone.png" alt="Hodu Tip! with two Dogs">
+:::
+:::{.column .xsmall width='70%'}
+you can use the `git clone` command to copy a repository from a remote server
+(like GitHub) onto your computer.
+
+`git clone git@github.com:ctesta01/ExampleRepository.git` or <br>
+`git clone https://github.com/ctesta01/ExampleRepository.git`
+:::
+:::
+
 ## workflows for collaboration
 
 :::{.columns}
@@ -798,6 +822,12 @@ GitHub automatically will create a <span class='carrot'>**Compare & Pull Request
 :::
 
 # key takeaways {background-color='black' background-image="images/mountains.jpg"}
+
+## a helpful cheatsheet {.xsmall}
+
+<center>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">I made a Git cheat sheet!💜 <a href="https://t.co/CfHVLmrxhw">pic.twitter.com/CfHVLmrxhw</a></p>&mdash; Elmira 💜 (@elmiracodes) <a href="https://twitter.com/elmiracodes/status/1460311181827219459?ref_src=twsrc%5Etfw">November 15, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+</center>
 
 ## key takeaways
 

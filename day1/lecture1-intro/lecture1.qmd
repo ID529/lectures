@@ -318,6 +318,35 @@ on our course website for what we'll be covering in advance.
 <iframe src="https://giphy.com/embed/9Sxp3YOKKFEBi" width="480" height="258" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/film-total-fozzie-bear-9Sxp3YOKKFEBi">via GIPHY</a></p>
 :::
 
+## slack & communication 
+
+we'll be active on the <span class='carrot'>Slack</span> that is linked to 
+through Canvas -- we'd love to see you on there,
+to answer questions for you, and to see you collaborate
+together.  if you are an enrolled (graded) student
+and have questions you'd like the instructional team 
+to answer, ask in <span class='carrot'>#student-questions</span>. please share 
+fun stuff on the </span class='carrot'>#fun</span> channel — doesn't have to 
+be course related! <br><br>
+
+if you have questions that you'd like to ask the instructional team in private, <span class='carrot'>
+please email *all four of us*</span> and we'll reply-all to you so the whole
+instructional team knows if your question has been answered by another one of
+us.
+
+## recordings 
+
+we'll be recording the lectures (but not discussions) and posting them online so
+you can refer back to them during the course and after.
+
+## covid policy {.small}
+
+<img src="https://www.mwra.com/biobot/MWRAData20230103-NorthGraph.JPG" alt="biobot wastewater data from the Boston area">
+
+source: <https://www.mwra.com/biobot/biobotdata.htm>
+
+  * please wear a mask 
+  * please stay home if you have symptoms / feel sick
 
 # time for a live demo 🤞 {background-color='black'  background-opacity='40%' background-image="transition_slides/yen-vu.jpg"}
 

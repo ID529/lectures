@@ -1,8 +1,13 @@
 Here are some examples of data sources relevant to students in population health science:
 
     Demographic and health surveys, such as the National Health and Nutrition Examination Survey (NHANES) and the Behavioral Risk Factor Surveillance System (BRFSS)
+    
     Health data from government agencies, such as the Centers for Disease Control and Prevention (CDC) and the World Health Organization (WHO)
+    
     Economic and social data from organizations such as the World Bank and the United Nations
+    
     Environmental data from sources such as the Environmental Protection Agency (EPA) and the National Oceanic and Atmospheric Administration (NOAA)
+    
     Geospatial data from sources such as the US Census Bureau and the National Geographic Society
+    
     Clinical data from electronic health records (EHRs) and clinical trials.
