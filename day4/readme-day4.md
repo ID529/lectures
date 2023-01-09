@@ -10,12 +10,14 @@
   * 4:45-5:00 Lecture: Reproducible Examples for Getting Help
   * 5:00-5:30 Time to work on final presentation materials together, peruse recommended materials, chat with classmates
 
-Homework 3:
+### Homework:
 
   * Fit and report on a regression model including categorical (factor) variables
   * Peer Review for Homework 2
 
-Available/Recommended Reading (Remember! You don't have to read all of this! Just focus on what's most useful to you):
+### Recommended Materials
+
+**Remember! You don't have to read all of this! Just focus on what's most useful to you**:
 
   * Tidy Data by Hadley Wickham <https://vita.had.co.nz/papers/tidy-data.pdf>
   * Diverse Data Sources

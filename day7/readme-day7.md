@@ -9,11 +9,11 @@
   * 4:00-4:30 Lecture: Clean Code and Considerate Coding
   * 4:30-5:30 Free time to work together on the final project, chat with classmates, peruse recommended materials
 
-Homework: 
+### Homework: 
 
   * Peer Review Homework 5
 
-Recommended reading: 
+### Recommended Materials: 
 
   * Harms and Ethics in Data Science and Machine Learning: 
     * The *Data Science Ethics* chapter from the *Modern Data Science with R* book: <https://mdsr-book.github.io/mdsr2e/ch-ethics.html>

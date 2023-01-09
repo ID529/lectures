@@ -9,10 +9,10 @@
   * 4:10-4:20 Details about turning in your final presentations
   * 4:20-5:30 Positive affirmations, free time to work together on final projects
   
-Homework: 
+### Homework: 
 
   * Work with classmates to finalize presentations and turn them in
 
-Recommended materials: 
+### Recommended materials: 
 
   * Hadley Wickham on Many Models: <https://youtu.be/cU0-NrUxRw4>
