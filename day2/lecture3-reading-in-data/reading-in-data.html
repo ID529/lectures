@@ -7,7 +7,7 @@
 <link href="reading-in-data_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="reading-in-data_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="reading-in-data_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.1.251">
+  <meta name="generator" content="quarto-1.2.280">
 
   <title>reading-in-data</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -388,13 +388,13 @@
 
 
 <section>
-<section id="on-reading-data-into-r" class="title-slide slide level1 white-title center" data-background-image="images/bg-collatz-2.png" data-background-size="cover">
-<h1>On Reading Data into R</h1>
+<section id="importing-data-into-r" class="title-slide slide level1 white-title center" data-background-image="images/bg-collatz-2.png" data-background-size="cover">
+<h1>Importing Data into R</h1>
 <div class="white-15-pt">
 <p>ID 529: Data Management and Analytic Workflows in R</p>
 </div>
 <div class="white-12-pt">
-<p>Dean Marengi | Tuesday, January 10<sup>th</sup></p>
+<p>Dean Marengi | Tuesday, January 10<sup>th</sup>, 2023</p>
 </div>
 </section>
 <section id="section" class="slide level2">
@@ -407,12 +407,12 @@
 </blockquote>
 </center>
 </section>
-<section id="context" class="slide level2 smaller">
-<h2>Context</h2>
+<section id="motivation" class="slide level2 smaller">
+<h2>Motivation</h2>
 <ul>
 <li><strong>So far, we’ve learned a bit about:</strong>
 <ul>
-<li><span class="blue-bold">Data documentation</span> and its importance for reproducible research</li>
+<li><span class="blue-bold">Data dictionaries</span> and their importance for reproducible research</li>
 <li><span class="blue-bold">Git and GitHub</span> for code version control and management</li>
 <li><span class="blue-bold">R and R Studio</span> as tools for working with and analyzing data</li>
 </ul></li>
@@ -434,20 +434,20 @@
 <section id="learning-objectives" class="slide level2 smaller">
 <h2>Learning objectives</h2>
 <ul>
-<li><strong>Learn about <span class="blue-bold">common storage methods</span> you may encounter as researcher</strong>
+<li><strong>Learn about common <span class="blue-bold">data storage methods</span> you may encounter as researcher</strong>
 <ul>
 <li>Flat data files</li>
 <li>Statistical software files</li>
 <li>Excel files</li>
 <li>Databases</li>
-<li>JSON</li>
-</ul></li>
+</ul>
+<!-- -   JSON --></li>
 </ul>
 <div class="small-break">
 
 </div>
 <ul>
-<li><strong>Learn <span class="blue-bold">different approaches for reading data</span> into R</strong>
+<li><strong>Learn <span class="blue-bold">different approaches</span> for reading data into R</strong>
 <ul>
 <li>Base R functions</li>
 <li>R packages with functions to accommodate more file types</li>
@@ -457,7 +457,7 @@
 
 </div>
 <ul>
-<li><strong>Understand the <span class="blue-bold">potential challenges</span> one may encounter when reading data into R</strong>
+<li><strong>Understand the <span class="blue-bold">potential challenges</span> you may face when reading data into R</strong>
 <ul>
 <li>File types</li>
 <li>Data formatting</li>
@@ -570,9 +570,7 @@
 </ul></li>
 <li>Database tables can be queried from R once a connection is established</li>
 </ul>
-</section>
-<section id="json" class="slide level2 smaller">
-<h2>JSON</h2>
+<!-- ## JSON {.smaller} -->
 </section>
 <section id="how-can-we-import-data-into-r" class="slide level2 smaller">
 <h2>How can we import data into R?</h2>
@@ -646,27 +644,29 @@
 </ul>
 </div><div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">read.table</span>(file, </span>
-<span id="cb1-2"><a href="#cb1-2"></a>           <span class="at">header =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb1-3"><a href="#cb1-3"></a>           <span class="at">sep =</span> <span class="st">""</span>, </span>
-<span id="cb1-4"><a href="#cb1-4"></a>           <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">'"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5"></a>           <span class="at">dec =</span> <span class="st">"."</span>, </span>
-<span id="cb1-6"><a href="#cb1-6"></a>           <span class="at">numerals =</span> <span class="fu">c</span>(<span class="st">"no.loss"</span>),</span>
-<span id="cb1-7"><a href="#cb1-7"></a>           row.names, </span>
-<span id="cb1-8"><a href="#cb1-8"></a>           col.names, </span>
-<span id="cb1-9"><a href="#cb1-9"></a>           <span class="at">as.is =</span> <span class="sc">!</span>stringsAsFactors,</span>
-<span id="cb1-10"><a href="#cb1-10"></a>           <span class="at">na.strings =</span> <span class="st">"NA"</span>, </span>
-<span id="cb1-11"><a href="#cb1-11"></a>           <span class="at">colClasses =</span> <span class="cn">NA</span>, </span>
-<span id="cb1-12"><a href="#cb1-12"></a>           <span class="at">nrows =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb1-13"><a href="#cb1-13"></a>           <span class="at">skip =</span> <span class="dv">0</span>, </span>
-<span id="cb1-14"><a href="#cb1-14"></a>           <span class="at">check.names =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb1-15"><a href="#cb1-15"></a>           <span class="at">fill =</span> <span class="sc">!</span>blank.lines.skip,</span>
-<span id="cb1-16"><a href="#cb1-16"></a>           <span class="at">strip.white =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb1-17"><a href="#cb1-17"></a>           <span class="at">blank.lines.skip =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-18"><a href="#cb1-18"></a>           <span class="at">comment.char =</span> <span class="st">"#"</span>,</span>
-<span id="cb1-19"><a href="#cb1-19"></a>           <span class="at">allowEscapes =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb1-20"><a href="#cb1-20"></a>           <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb1-21"><a href="#cb1-21"></a>           <span class="at">fileEncoding =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">read.table</span>(</span>
+<span id="cb1-2"><a href="#cb1-2"></a>  file,</span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="at">header =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="at">sep =</span> <span class="st">""</span>,</span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">'"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="at">dec =</span> <span class="st">"."</span>,</span>
+<span id="cb1-7"><a href="#cb1-7"></a>  <span class="at">numerals =</span> <span class="fu">c</span>(<span class="st">"no.loss"</span>),</span>
+<span id="cb1-8"><a href="#cb1-8"></a>  row.names,</span>
+<span id="cb1-9"><a href="#cb1-9"></a>  col.names,</span>
+<span id="cb1-10"><a href="#cb1-10"></a>  <span class="at">as.is =</span> <span class="sc">!</span>stringsAsFactors,</span>
+<span id="cb1-11"><a href="#cb1-11"></a>  <span class="at">na.strings =</span> <span class="st">"NA"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12"></a>  <span class="at">colClasses =</span> <span class="cn">NA</span>,</span>
+<span id="cb1-13"><a href="#cb1-13"></a>  <span class="at">nrows =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb1-14"><a href="#cb1-14"></a>  <span class="at">skip =</span> <span class="dv">0</span>,</span>
+<span id="cb1-15"><a href="#cb1-15"></a>  <span class="at">check.names =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-16"><a href="#cb1-16"></a>  <span class="at">fill =</span> <span class="sc">!</span>blank.lines.skip,</span>
+<span id="cb1-17"><a href="#cb1-17"></a>  <span class="at">strip.white =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-18"><a href="#cb1-18"></a>  <span class="at">blank.lines.skip =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-19"><a href="#cb1-19"></a>  <span class="at">comment.char =</span> <span class="st">"#"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20"></a>  <span class="at">allowEscapes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-21"><a href="#cb1-21"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-22"><a href="#cb1-22"></a>  <span class="at">fileEncoding =</span> <span class="st">""</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -736,7 +736,7 @@
 <section id="example-read_csv" class="slide level2 smaller">
 <h2>Example: <code>read_csv()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Load readr package (not necessary if you've installed the tidyverse)</span></span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Load readr package (not necessary if you've loaded the tidyverse)</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(readr)</span>
 <span id="cb3-3"><a href="#cb3-3"></a></span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="co"># Read in data, which is stored in a csv file </span></span>
@@ -770,7 +770,7 @@
 <section id="example-read_csv-1" class="slide level2 smaller">
 <h2>Example: <code>read_csv()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Load readr package (not necessary if you've installed the tidyverse)</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Load readr package (not necessary if you've loaded the tidyverse)</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(readr)</span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
 <span id="cb5-4"><a href="#cb5-4"></a><span class="co"># Read in data and specify data types for specific columns </span></span>
@@ -910,18 +910,18 @@
 <span id="cb10-8"><a href="#cb10-8"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2,411 × 10
-   `Summary statistics` ...2   ...3   ...4   ...5  ...6  ...7  ...8  ...9  ...10
-   &lt;chr&gt;                &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
- 1 &lt;NA&gt;                 Age    SBP    DBP    Chol  Gluc… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
- 2 Mean                 49.94… 132.2… 82.81… 236.… 49.9… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
- 3 Std. Dev             8.659… 21.85… 11.85… 45.4… 8.65… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
- 4 Min                  33     85.5   48     124   40    &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
- 5 Max                  70     244    141    696   370   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
- 6 &lt;NA&gt;                 &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
- 7 &lt;NA&gt;                 &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
- 8 &lt;NA&gt;                 &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
- 9 &lt;NA&gt;                 &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-10 id                   survd… age    edu    smoke cigs  sbp   dbp   chol  gluc…
+   `Summary statistics` ...2     ...3  ...4  ...5  ...6  ...7  ...8  ...9  ...10
+   &lt;chr&gt;                &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 &lt;NA&gt;                 Age      SBP   DBP   Chol  Gluc… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+ 2 Mean                 49.9433… 132.… 82.8… 236.… 49.9… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+ 3 Std. Dev             8.65920… 21.8… 11.8… 45.4… 8.65… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+ 4 Min                  33       85.5  48    124   40    &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+ 5 Max                  70       244   141   696   370   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+ 6 &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+ 7 &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+ 8 &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+ 9 &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+10 id                   survdate age   edu   smoke cigs  sbp   dbp   chol  gluc…
 # … with 2,401 more rows</code></pre>
 </div>
 </div>
@@ -1134,14 +1134,11 @@
 </div>
 <p><img data-src="images/read-dta-labels.png" class="absolute" style="bottom: 195px; right: 0px; height: 29%; "></p>
 </div>
-</section>
-<section id="common-challenges-and-tips" class="slide level2 smaller">
-<h2>Common challenges and tips</h2>
-<ul>
-<li>File types</li>
-<li>Data formatting</li>
-<li>Data types</li>
-</ul>
+</section></section>
+<section>
+<section id="case-studies" class="title-slide slide level1 white-title center" data-background-image="images/bg-collatz-2.png">
+<h1>Case Studies</h1>
+
 </section>
 <section id="case-study-1" class="slide level2 smaller">
 <h2>Case study 1</h2>
@@ -1167,7 +1164,7 @@
 </div>
 </div>
 <p><br></p>
-<p><span class="blue-bold">What additional information do you need from your colleague before you provide support?</span></p>
+<p><span class="blue-bold">What additional information do you need from your colleague before you can provide support?</span></p>
 </section>
 <section id="case-study-1-1" class="slide level2 smaller" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Case study 1</h2>
@@ -1182,9 +1179,12 @@
 <span id="cb23-7" class="hljs-ln-code"><a href="#cb23-7"></a><span class="co"># Read in the data, specifying column names and positions</span></span>
 <span id="cb23-8" class="hljs-ln-code"><a href="#cb23-8"></a>data <span class="ot">&lt;-</span> <span class="fu">read_fwf</span>(<span class="st">"data/newstudy.txt"</span>, <span class="fu">fwf_widths</span>(<span class="at">widths =</span> col_widths, <span class="at">col_names =</span> col_names))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><img data-src="images/codebook-example.png" class="absolute" style="bottom: 0px; right: 0px; height: 65%; "></p>
 </div>
 <div class="fragment">
 <p><br></p>
+<div class="columns">
+<div class="column" style="width:47%;">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 534 × 9
@@ -1204,6 +1204,8 @@
 </div>
 </div>
 </div>
+</div>
+</div>
 </section>
 <section id="case-study-2" class="slide level2 smaller">
 <h2>Case study 2</h2>
@@ -1216,18 +1218,18 @@
 <span id="cb25-5"><a href="#cb25-5"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 695 × 11
-   Participant   `123456` ...3  ...4  ...5  ...6   ...7  ...8  ...9  ...10 ...11
-   &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
- 1 Exercise      42776    &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
- 2 &lt;NA&gt;          &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
- 3 Time          Work     Speed Grade HR    VO2    RR    PETC… SpO2  sysBP diaBP
- 4 (min)         (Watts)  (MPH) (%)   (BPM) (mL/k… (br/… (mmH… (%)   (mmH… (mmH…
- 5 1.3194444444… 0        0     0.2   89    3.1    11    36    97    &lt;NA&gt;  &lt;NA&gt; 
- 6 1.9444444444… 0        0     0.2   91    9.4    6     38    97    &lt;NA&gt;  &lt;NA&gt; 
- 7 2.0833333333… 0        0     0.2   98    3.1    11    36    98    &lt;NA&gt;  &lt;NA&gt; 
- 8 2.8472222222… 0        0     0.2   104   6.4    8     38    98    &lt;NA&gt;  &lt;NA&gt; 
- 9 3.0555555555… 0        0     0.2   106   6.4    9     39    98    &lt;NA&gt;  &lt;NA&gt; 
-10 3.4722222222… 0        0     0.2   113   7      10    39    98    &lt;NA&gt;  &lt;NA&gt; 
+   Participant `123456` ...3  ...4  ...5  ...6     ...7  ...8  ...9  ...10 ...11
+   &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 Exercise    42776    &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+ 2 &lt;NA&gt;        &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+ 3 Time        Work     Speed Grade HR    VO2      RR    PETC… SpO2  sysBP diaBP
+ 4 (min)       (Watts)  (MPH) (%)   (BPM) (mL/kg/… (br/… (mmH… (%)   (mmH… (mmH…
+ 5 00:19       0        0     0.2   89    3.1      11    36    97    &lt;NA&gt;  &lt;NA&gt; 
+ 6 00:28       0        0     0.2   91    9.4      6     38    97    &lt;NA&gt;  &lt;NA&gt; 
+ 7 00:30       0        0     0.2   98    3.1      11    36    98    &lt;NA&gt;  &lt;NA&gt; 
+ 8 00:41       0        0     0.2   104   6.4      8     38    98    &lt;NA&gt;  &lt;NA&gt; 
+ 9 00:44       0        0     0.2   106   6.4      9     39    98    &lt;NA&gt;  &lt;NA&gt; 
+10 00:50       0        0     0.2   113   7        10    39    98    &lt;NA&gt;  &lt;NA&gt; 
 # … with 685 more rows</code></pre>
 </div>
 </div>
@@ -1238,48 +1240,65 @@
 <ul>
 <li>The data structure issue can be resolved fairly easily
 <ul>
-<li>Use the <code>skip</code> argument skip the non-rectangular data at the top of the file</li>
+<li>Use the <code>skip</code> argument to skip the non-rectangular data at the top of the file</li>
 <li>After rows are skipped, drop the first row of data containing units using <code>[-1,]</code></li>
 </ul></li>
 </ul>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># The data formatting issue can be </span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb27-3"><a href="#cb27-3"></a>data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/exercise.xlsx"</span>, <span class="at">skip =</span> <span class="dv">3</span>)[<span class="sc">-</span><span class="dv">1</span>,]</span>
+<span id="cb27-4"><a href="#cb27-4"></a></span>
+<span id="cb27-5"><a href="#cb27-5"></a><span class="co"># Look at the data</span></span>
+<span id="cb27-6"><a href="#cb27-6"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 691 × 11
-   Time             Work  Speed Grade HR    VO2   RR    PETCO2 SpO2  sysBP diaBP
-   &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
- 1 1.3194444444444… 0     0     0.2   89    3.1   11    36     97    &lt;NA&gt;  &lt;NA&gt; 
- 2 1.9444444444444… 0     0     0.2   91    9.4   6     38     97    &lt;NA&gt;  &lt;NA&gt; 
- 3 2.0833333333333… 0     0     0.2   98    3.1   11    36     98    &lt;NA&gt;  &lt;NA&gt; 
- 4 2.8472222222222… 0     0     0.2   104   6.4   8     38     98    &lt;NA&gt;  &lt;NA&gt; 
- 5 3.0555555555555… 0     0     0.2   106   6.4   9     39     98    &lt;NA&gt;  &lt;NA&gt; 
- 6 3.4722222222222… 0     0     0.2   113   7     10    39     98    &lt;NA&gt;  &lt;NA&gt; 
- 7 3.6805555555555… 0     0     0.2   110   7.6   9     39     98    120   70   
- 8 3.9583333333333… 0     0     0.2   109   8.6   9     39     98    120   70   
- 9 4.3055555555555… 0     0     0.2   105   8.6   11    39     97    120   70   
-10 4.8611111111111… 0     0     0.2   104   8.6   11    39     97    120   70   
+   Time  Work  Speed Grade HR    VO2   RR    PETCO2 SpO2  sysBP diaBP
+   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 00:19 0     0     0.2   89    3.1   11    36     97    &lt;NA&gt;  &lt;NA&gt; 
+ 2 00:28 0     0     0.2   91    9.4   6     38     97    &lt;NA&gt;  &lt;NA&gt; 
+ 3 00:30 0     0     0.2   98    3.1   11    36     98    &lt;NA&gt;  &lt;NA&gt; 
+ 4 00:41 0     0     0.2   104   6.4   8     38     98    &lt;NA&gt;  &lt;NA&gt; 
+ 5 00:44 0     0     0.2   106   6.4   9     39     98    &lt;NA&gt;  &lt;NA&gt; 
+ 6 00:50 0     0     0.2   113   7     10    39     98    &lt;NA&gt;  &lt;NA&gt; 
+ 7 00:53 0     0     0.2   110   7.6   9     39     98    120   70   
+ 8 00:57 0     0     0.2   109   8.6   9     39     98    120   70   
+ 9 01:02 0     0     0.2   105   8.6   11    39     97    120   70   
+10 01:10 0     0     0.2   104   8.6   11    39     97    120   70   
 # … with 681 more rows</code></pre>
 </div>
 </div>
-<p><span class="blue-bold">… But there’s also an issue with the time variable, which should be formatted as minutes:seconds. Fixing this might be tricky, but let’s give it a shot.</span></p>
 </section>
 <section id="case-study-2-cont.-1" class="slide level2 smaller">
 <h2>Case study 2 (cont.)</h2>
-<ul>
-<li>Add code to correct data type issue (incorrect time variable: should be M:S, source data does not have leading 0)</li>
-</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># Coerce all but the time column to a numeric data type</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>data[<span class="dv">2</span><span class="sc">:</span><span class="dv">11</span>] <span class="ot">&lt;-</span> <span class="fu">sapply</span>(data[<span class="dv">2</span><span class="sc">:</span><span class="dv">11</span>], as.numeric)</span>
+<span id="cb29-3"><a href="#cb29-3"></a></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="co"># Standardize the column names (all lower case)</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="fu">colnames</span>(data) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">colnames</span>(data))</span>
+<span id="cb29-6"><a href="#cb29-6"></a></span>
+<span id="cb29-7"><a href="#cb29-7"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 691 × 11
+   time   work speed grade    hr   vo2    rr petco2  spo2 sysbp diabp
+   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 00:19     0     0   0.2    89   3.1    11     36    97    NA    NA
+ 2 00:28     0     0   0.2    91   9.4     6     38    97    NA    NA
+ 3 00:30     0     0   0.2    98   3.1    11     36    98    NA    NA
+ 4 00:41     0     0   0.2   104   6.4     8     38    98    NA    NA
+ 5 00:44     0     0   0.2   106   6.4     9     39    98    NA    NA
+ 6 00:50     0     0   0.2   113   7      10     39    98    NA    NA
+ 7 00:53     0     0   0.2   110   7.6     9     39    98   120    70
+ 8 00:57     0     0   0.2   109   8.6     9     39    98   120    70
+ 9 01:02     0     0   0.2   105   8.6    11     39    97   120    70
+10 01:10     0     0   0.2   104   8.6    11     39    97   120    70
+# … with 681 more rows</code></pre>
+</div>
+</div>
 </section>
-<section id="a-note-on-exporting-data" class="slide level2 smaller">
-<h2>A note on exporting data</h2>
-<ul>
-<li><p>Add table</p></li>
-<li><p>package1 | read_* | write_*</p>
-<ul>
-<li>etc.</li>
-</ul></li>
-</ul>
-</section>
-<section id="summary" class="slide level2 smaller">
-<h2>Summary</h2>
+<section id="key-takeaways" class="slide level2 smaller">
+<h2>Key takeaways</h2>
 <div>
 <ul>
 <li class="fragment">Reading data into R is typically the first step in a data analysis workflow.</li>
@@ -1293,20 +1312,28 @@
 </ul></li>
 </ul></li>
 </ul></li>
-<li class="fragment">Importing data is often straightforward, but there are potential challenges:</li>
-<li class="fragment">Idiosyncrasies data storage methods warrant specific considerations. For example: - Reading xls and xlsx excel files require specific functions, which can accommodate specific formatting issues
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
+<li class="fragment">Idiosyncrasies data storage methods warrant specific considerations. For example:
+<ul>
+<li class="fragment">Reading xls and xlsx excel files require specific functions, which can accommodate specific formatting issues
 <ul>
 <li class="fragment">Skipping rows before reading data</li>
 <li class="fragment">Selecting a specific range of cells or sheets to read data</li>
 </ul></li>
+</ul></li>
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
+<li class="fragment"><span class="blue-bold">Always be vigilant about identifying potential issues during the data import process</span></li>
 </ul>
 </div>
-</section>
-<section id="key-takeaways" class="slide level2 smaller">
-<h2>Key takeaways</h2>
-</section>
-<section id="references" class="slide level2 smaller">
-<h2>References</h2>
+<!-- ## References {.smaller} -->
 
 <img src="images/id529-sticker.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p><a href="https://id529.github.io/" class="uri">https://id529.github.io/</a></p>
@@ -1529,12 +1556,15 @@
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
       (function () {
-        function fireSlideChanged(previousSlide, currentSlide) {
-
-          // dispatch for htmlwidgets
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
           const event = window.document.createEvent("Event");
           event.initEvent("slideenter", true, true);
           window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
 
           // dispatch for shiny
           if (window.jQuery) {
@@ -1545,13 +1575,6 @@
               window.jQuery(currentSlide).trigger("shown");
             }
           }
-        }
-
-        // hookup for reveal
-        if (window.Reveal) {
-          window.Reveal.addEventListener("slidechanged", function(event) {
-            fireSlideChanged(event.previousSlide, event.currentSlide);
-          });
         }
 
         // hookup for slidy
@@ -1603,7 +1626,24 @@
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
         button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
         setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
           button.setAttribute("title", currentTitle);
           button.classList.remove('code-copy-button-checked');
         }, 1000);
@@ -1641,24 +1681,42 @@
           return note.innerHTML;
         });
       }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
       var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
       for (var i=0; i<bibliorefs.length; i++) {
         const ref = bibliorefs[i];
-        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-        tippyHover(ref, function() {
-          var popup = window.document.createElement('div');
-          cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
           });
-          return popup.innerHTML;
-        });
+        }
       }
     });
     </script>

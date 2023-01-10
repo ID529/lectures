@@ -7,7 +7,7 @@
 <link href="intro-to-dplyr_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="intro-to-dplyr_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="intro-to-dplyr_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.1.251">
+  <meta name="generator" content="quarto-1.2.280">
 
   <title>intro-to-dplyr</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -27,6 +27,70 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="intro-to-dplyr_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="intro-to-dplyr_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -330,29 +394,27 @@
 <p>ID 529: Data Management and Analytic Workflows in R</p>
 </div>
 <div class="white-12-pt">
-<p>Dean Marengi | Wednesday, January 11<sup>th</sup></p>
+<p>Dean Marengi | Wednesday, January 11<sup>th</sup>, 2023</p>
 </div>
 </section>
 <section id="context" class="slide level2 smaller">
 <h2>Context</h2>
 <ul>
-<li><strong>So far, we’ve learned a bit about:</strong>
-<ul>
-<li><span class="blue-bold">R programming</span> fundamentals using base R syntax</li>
-<li><span class="blue-bold">Reading data</span> into R from different storage methods</li>
-<li><span class="blue-bold">Visualizing data</span> using <code>ggplot</code></li>
-</ul></li>
+<li><strong>So far, we’ve learned a bit about:</strong></li>
+<li><span class="blue-bold">Fundamentals</span> of R programming using base R syntax</li>
+<li><span class="blue-bold">Importing</span> data into R</li>
+<li><span class="blue-bold">Visualizing</span> data using <code>ggplot</code></li>
 </ul>
 <p><br></p>
 <ul>
-<li><strong>Base R is very powerful for data manipulation, but can be difficult to write and read.</strong>
+<li><strong>Base R is very powerful for data manipulation, but can be difficult to write and read</strong>
 <ul>
-<li>Code that’s complex and time-consuming to write can threaten reproducibility</li>
-<li>Many R packages, such as <code>dplyr</code>, emphasize clean and efficient code for manipulating data</li>
-<li>While base R is still important, we can leverage these new packages to:
+<li>Complex code that’s time-consuming to write can threaten reproducibility</li>
+<li><code>dplyr</code> and other R packages emphasize writing clean, readable, and efficient code</li>
+<li>We can leverage these R packages to:
 <ul>
-<li>Write efficient and readable code to perform most data manipulation tasks</li>
-<li>Concisely chain together a sequence of data manipulation operations</li>
+<li>Write efficient R code to perform most data manipulation tasks</li>
+<li>Chain together data manipulation operations in a logical, concise sequence</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -360,13 +422,10 @@
 <section id="learning-objectives" class="slide level2 smaller">
 <h2>Learning objectives</h2>
 <ul>
-<li><strong>Understand the basic principles of dplyr, including core functions for data manipulation</strong>
+<li><strong>Understand the basic principles of dplyr</strong>
 <ul>
-<li><code>rename()</code></li>
-<li><code>select()</code></li>
-<li><code>mutate()</code></li>
-<li><code>filter()</code></li>
-<li><code>arrange()</code></li>
+<li>Data structures</li>
+<li>Core functions for data manipulation <!-- -   `rename()` --> <!-- -   `select()` --> <!-- -   `mutate()` --> <!-- -   `filter()` --> <!-- -   `arrange()` --></li>
 </ul></li>
 </ul>
 <div class="small-break">
@@ -399,26 +458,23 @@
 <li>Cleaning and renaming variables</li>
 <li>Selecting a subset of columns to work with from a larger dataset</li>
 <li>Creating new variables (e.g., based on conditionals or calculations involving other columns)</li>
-<li>Filtering data based for a subset of rows (e.g., based on a specific group)</li>
+<li>Filtering data for a subset of rows (e.g., based on a specific group)</li>
 </ul></li>
 </ul>
 </section></section>
 <section>
-<section id="dplyr-a-grammar-of-data-manipulation" class="title-slide slide level1 white-code white-title center" data-background-image="images/bg-planet-2.png" data-background-size="110% auto">
-<h1><code>dplyr</code>: a grammar of data manipulation</h1>
+<section id="dplyr-a-grammar-of-data-manipulation" class="title-slide slide level1 white-code white-title center" data-background-image="images/bg-planet-4.png" data-background-size="110% auto">
+<h1><code>dplyr::</code> a grammar of data manipulation</h1>
 
 </section>
-<section id="dplyr" class="slide level2 smaller">
-<h2><code>dplyr</code></h2>
+<section id="dplyr-overview" class="slide level2 smaller">
+<h2><code>dplyr</code> overview</h2>
 <p><img data-src="images/hex-dplyr.png" class="absolute" style="bottom: 1px; right: 0px; height: 30%; "></p>
 <div class="columns">
 <div class="column" style="width:60%;">
 <ul>
 <li>Part of the core <code>tidyverse</code> package ecosystem</li>
-<li>Verbs that address common data manipulation tasks
-<ul>
-<li>Fast and efficient</li>
-</ul></li>
+<li>Fast and efficient functions for performing common data manipulation tasks</li>
 <li>Concise syntax for chaining together data cleaning steps
 <ul>
 <li>Improves code readability</li>
@@ -428,18 +484,19 @@
 
 </div>
 <ul>
-<li><strong>Several core functions:</strong>
+<li><strong>Core single table functions (verbs):</strong>
 <ul>
-<li><code>rename()</code>: Rename variables</li>
+<li><code>rename()</code>: Modify variable names</li>
 <li><code>select()</code>: Pick variables by name</li>
 <li><code>mutate()</code>: Create new or modify existing variables</li>
 <li><code>filter()</code>: Subset observations using conditionals</li>
 <li><code>arrange()</code>: Reorder observations based on data</li>
+<li><code>summarize()</code>: Reduce rows into a summary value</li>
 </ul></li>
 </ul>
 </div><div class="small-break">
 
-</div><div class="column" style="width:40%;">
+</div><div class="column" style="width:35%;">
 <p><br> <br></p>
 <p><span class="blue-bold">This is not an exhaustive list! We will discuss <code>dplyr</code> join, summary, and other functions in subsequent lectures</span></p>
 </div>
@@ -448,39 +505,236 @@
 <aside><div>
 <p><a href="https://dplyr.tidyverse.org/" class="uri">https://dplyr.tidyverse.org/</a></p>
 </div></aside></section>
-<section id="dplyr-syntax" class="slide level2 smaller">
-<h2><code>dplyr</code> syntax</h2>
+<section id="dplyr-syntax-overview" class="slide level2 smaller">
+<h2><code>dplyr</code> syntax overview</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
 <ul>
-<li>Note magrittr and basic syntax</li>
-<li>Example of chaining arguments to contextualize slides about specific dplyr verbs</li>
-<li>Highlight dplyr verbs work together in sequence</li>
+<li>First argument in all <code>dplyr</code> functions is always a data frame or tibble</li>
+<li>Variables referenced by name and without quotes (not <code>df$variable</code>)</li>
+<li><code>dplyr</code> functions always return a new data frame or tibble</li>
 </ul>
+<div class="small-break">
+
+</div>
+<ul>
+<li>Uses the <code>%&gt;%</code> (“pipe”) operator
+<ul>
+<li>Imported from <code>magrittr</code> package</li>
+<li>Can “pipe” function output from one data manipulation step to the next</li>
+<li>Produces clean, readable code that reads from left to right, top to bottom</li>
+<li><span class="blue-bold">Note:</span> The <code>%&gt;%</code> reads as “then”</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:5%;">
+<p><br></p>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 3
+     id group              num_gold_stars
+  &lt;int&gt; &lt;chr&gt;                       &lt;int&gt;
+1     2 i &lt;3 dplyr                     90
+2    10 dplyr rocks                    99
+3     7 dplyr rocks                    91
+4    11 i &lt;3 dplyr                     99
+5     5 i &lt;3 dplyr                     90
+6    12 clean code or bust             97
+7    15 clean code or bust            102
+8     8 i &lt;3 dplyr                    104
+# … with 7 more rows</code></pre>
+</div>
+</div>
+</div>
+<div class="code-break">
+
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="1-2|1-4|1-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Take our data, which is stored as a tibble</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>new_data <span class="ot">&lt;-</span> our_data <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="co"># THEN filter our data for a subset of rows</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">filter</span>(group <span class="sc">==</span> <span class="st">"i &lt;3 dplyr"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="co"># THEN arrange the result by number of gold stars</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(num_gold_stars))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+     id group      num_gold_stars
+  &lt;int&gt; &lt;chr&gt;               &lt;int&gt;
+1     8 i &lt;3 dplyr            104
+2    11 i &lt;3 dplyr             99
+3    14 i &lt;3 dplyr             92
+4     2 i &lt;3 dplyr             90
+5     5 i &lt;3 dplyr             90</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p><a href="https://dplyr.tidyverse.org/articles/dplyr.html" class="uri">https://dplyr.tidyverse.org/articles/dplyr.html</a></p>
+</div></aside></section>
+<section id="dplyr-syntax-overview-cont." class="slide level2 smaller">
+<h2><code>dplyr</code> syntax overview (cont.)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><strong>Dot notation</strong>
+<ul>
+<li><code>.</code>:</li>
+<li><code>.data</code>:</li>
+<li><code>.x</code>:</li>
+</ul></li>
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
+<li><strong>In-place pipe operator</strong> <code>%&lt;&gt;%</code>
+<ul>
+<li>Combines <code>%&gt;%</code> and <code>&lt;-</code></li>
+<li>Can be used in place of <code>&lt;-</code></li>
+<li>Assigns result back to the data frame object on which data manipulation operations are being performed</li>
+<li>Use of <code>%&lt;&gt;%</code> vs <code>&lt;-</code> is a <span class="blue-bold">matter of preference</span></li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+
+</div>
+</div>
 </section>
-<section id="dplyrrename" class="slide level2">
+<section id="dplyr-vs-base-r-syntax" class="slide level2 smaller">
+<h2><code>dplyr</code> vs base R syntax</h2>
+<ul>
+<li>Update this table to include column that briefly explains what each function does</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/dplyr-rbase-comparison.png" style="height:95.0%"></p>
+</figure>
+</div>
+</section>
+<section id="example-dataset" class="slide level2 smaller">
+<h2>Example dataset</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><code>NHANES</code> dataset available on the ID529 github</li>
+<li>The dataset includes individual-level:
+<ul>
+<li>Demographic and clinical characteristics</li>
+<li>Socioeconomic parameters</li>
+<li>Blood measures of PFAS/PFOA</li>
+<li>Dietary intake parameters</li>
+</ul></li>
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
+<li>We will use a subset of these variables to demonstrate how to implement <code>dplyr</code> for common data manipulation tasks</li>
+</ul>
+</div>
+</div>
+<div class="cell">
+
+</div>
+<!-- Although datasets can be manipulated in sophisticated ways by linking the 5 verbs of dplyr in conjunction, linking verbs together can be a bit verbose. -->
+<!-- Creating multiple objects, especially when working on a large dataset can slow you down in your analysis. Chaining functions directly together into one line of code is difficult to read. This is sometimes called the Dagwood sandwich problem: you have too much filling (too many long arguments) between your slices of bread (parentheses). Functions and arguments get further and further apart. -->
+</section>
+<section id="dplyrrename" class="slide level2 smaller">
 <h2><code>dplyr::rename()</code></h2>
+<!-- :::: {.columns} -->
+<!-- :::{.column width="50%"} -->
+<ul>
+<li><code>rename()</code>: Change names of specified variables in a data frame</li>
+<li><strong>Arguments (inputs)</strong>
+<ul>
+<li>A data frame</li>
+<li>The column name(s) to update and new name(s) to assign
+<ul>
+<li><strong>Format:</strong> <code>old_name = new_name</code></li>
+</ul></li>
+</ul></li>
+<li><code>rename()</code> and other <code>dplyr</code> functions return a modified data frame
+<ul>
+<li>This means we need to assign the result to either:</li>
+<li>The data frame we are performing operations on (update in place)</li>
+<li>A new data frame object</li>
+</ul></li>
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
+<li><code>rename_with()</code>: Change variable names using a function</li>
+<li><strong>Arguments (inputs)</strong>
+<ul>
+<li>A data frame</li>
+<li>The column name(s) to update and new name(s) to assign
+<ul>
+<li><strong>Format:</strong> <code>old_name = new_name</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<!-- ::: -->
+<!-- :::: -->
+<!-- ```{r, echo=T} -->
+<!-- #| output-location: column-fragment -->
+<!-- our_data %>% -->
+<!--   filter(group == "dplyr rocks") -->
+<!-- ``` -->
 </section>
-<section id="dplyrselect" class="slide level2">
-<h2><code>dplyr::select()</code></h2>
-</section>
-<section id="dplyrmutate" class="slide level2">
-<h2><code>dplyr::mutate()</code></h2>
-</section>
-<section id="dplyrcase_when" class="slide level2">
-<h2><code>dplyr::case_when()</code></h2>
-</section>
-<section id="dplyrif_else" class="slide level2">
-<h2><code>dplyr::if_else()</code></h2>
-</section>
-<section id="dplyraccross" class="slide level2">
-<h2><code>dplyr::accross()</code></h2>
-</section>
-<section id="dplyrfilter" class="slide level2">
+<section id="dplyrfilter" class="slide level2 smaller">
 <h2><code>dplyr::filter()</code></h2>
 </section>
-<section id="dplyrarrange" class="slide level2">
+<section id="dplyrarrange" class="slide level2 smaller">
 <h2><code>dplyr::arrange()</code></h2>
-<!-- ## `dplyr::summarize()` -->
-<!-- ## `dplyr::group_by()` -->
+</section>
+<section id="dplyrselect" class="slide level2 smaller">
+<h2><code>dplyr::select()</code></h2>
+</section>
+<section id="dplyraccross" class="slide level2 smaller">
+<h2><code>dplyr::accross()</code></h2>
+</section>
+<section id="dplyrmutate" class="slide level2 smaller">
+<h2><code>dplyr::mutate()</code></h2>
+</section>
+<section id="dplyrif_else" class="slide level2 smaller">
+<h2><code>dplyr::if_else()</code></h2>
+</section>
+<section id="dplyrcase_when" class="slide level2 smaller">
+<h2><code>dplyr::case_when()</code></h2>
+</section>
+<section id="dplyrsummarize" class="slide level2 smaller">
+<h2><code>dplyr::summarize()</code></h2>
+</section>
+<section id="dplyrgroup_by" class="slide level2 smaller">
+<h2><code>dplyr::group_by()</code></h2>
+</section>
+<section id="case-study-only-do-one" class="slide level2">
+<h2>Case study (only do one)</h2>
+<ul>
+<li>1st slide: read in the data and display it You received a new dataset from your colleague. The data are stored in a single file. You take a look at the data. (show data)</li>
+</ul>
+<p>You’ve used R to perform data analysis for many projects, and have a consistent workflow that you implement clean and prepare data for analysis. Based on what you observe in the data, write (or think through) pseudocode to perform these steps. What <code>dplr</code> functions can we use to perform these steps?</p>
+<p>We have a standard workflow for cleaning our data. We just began a new - ask: what are some things we may want to do to clean this data - take suggestions, and then show a chain of data cleaning steps using dplyr -</p>
+<ul>
+<li>HODO tip: glimpse()!</li>
+</ul>
+</section>
+<section id="complete-list-of-dplyr-functions" class="slide level2">
+<h2>Complete list of dplyr functions</h2>
+<p>(might require 2 slides; descriptions would be nice if possible; shirnk text)</p>
 </section>
 <section id="summary" class="slide level2 smaller">
 <h2>Summary</h2>
@@ -490,6 +744,7 @@
 </section>
 <section id="references" class="slide level2 smaller">
 <h2>References</h2>
+<p><a href="https://magrittr.tidyverse.org/" class="uri">https://magrittr.tidyverse.org/</a> <a href="https://dplyr.tidyverse.org/" class="uri">https://dplyr.tidyverse.org/</a> <a href="https://dplyr.tidyverse.org/articles/dplyr.html" class="uri">https://dplyr.tidyverse.org/articles/dplyr.html</a></p>
 
 <img src="images/id529-sticker.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p><a href="https://id529.github.io/" class="uri">https://id529.github.io/</a></p>
@@ -706,6 +961,44 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
@@ -744,7 +1037,24 @@
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
         button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
         setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
           button.setAttribute("title", currentTitle);
           button.classList.remove('code-copy-button-checked');
         }, 1000);
@@ -782,24 +1092,42 @@
           return note.innerHTML;
         });
       }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
       var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
       for (var i=0; i<bibliorefs.length; i++) {
         const ref = bibliorefs[i];
-        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-        tippyHover(ref, function() {
-          var popup = window.document.createElement('div');
-          cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
           });
-          return popup.innerHTML;
-        });
+        }
       }
     });
     </script>

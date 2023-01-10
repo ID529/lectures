@@ -10,37 +10,39 @@ format:
 
 # Data Manipulation with dplyr {.white-title .white-code background-image="images/bg-planet-1.png" background-size="110% auto"}
 
-::: white-15-pt
+::: {.white-15-pt}
 ID 529: Data Management and Analytic Workflows in R
 :::
 
-::: white-12-pt
-Dean Marengi \| Wednesday, January 11<sup>th</sup>
+::: {.white-12-pt}
+Dean Marengi \| Wednesday, January 11<sup>th</sup>, 2023
 :::
 
 ## Context {.smaller}
-- **So far, we've learned a bit about:**
-  -   [R programming]{.blue-bold} fundamentals using base R syntax
-  -   [Reading data]{.blue-bold} into R from different storage methods
-  -   [Visualizing data]{.blue-bold} using `ggplot`
+-   **So far, we've learned a bit about:**
+  -   [Fundamentals]{.blue-bold} of R programming using base R syntax
+  -   [Importing]{.blue-bold} data into R
+  -   [Visualizing]{.blue-bold} data using `ggplot`
 
 <br>
 
-- **Base R is very powerful for data manipulation, but can be difficult to write and read.**
-  -   Code that's complex and time-consuming to write can threaten reproducibility
-  -   Many R packages, such as `dplyr`, emphasize clean and efficient code for manipulating data
-  -   While base R is still important, we can leverage these new packages to:  
-      -   Write efficient and readable code to perform most data manipulation tasks 
-      -   Concisely chain together a sequence of data manipulation operations
+-   **Base R is very powerful for data manipulation, but can be difficult to write and read**
+    -   Complex code that's time-consuming to write can threaten reproducibility
+    -   `dplyr` and other R packages emphasize writing clean, readable, and efficient code
+    -   We can leverage these R packages to:
+        -   Write efficient R code to perform most data manipulation tasks
+        -   Chain together data manipulation operations in a logical, concise sequence
 
 ## Learning objectives {.smaller}
 
--   **Understand the basic principles of dplyr, including core functions for data manipulation**
-    -   `rename()`
-    -   `select()`
-    -   `mutate()`
-    -   `filter()`
-    -   `arrange()`
+-   **Understand the basic principles of dplyr**
+    -   Data structures
+    -   Core functions for data manipulation
+    <!-- -   `rename()` -->
+    <!-- -   `select()` -->
+    <!-- -   `mutate()` -->
+    <!-- -   `filter()` -->
+    <!-- -   `arrange()` -->
 
 ::: {.small-break}
 :::
@@ -63,40 +65,37 @@ Dean Marengi \| Wednesday, January 11<sup>th</sup>
     -   Cleaning and renaming variables 
     -   Selecting a subset of columns to work with from a larger dataset
     -   Creating new variables (e.g., based on conditionals or calculations involving other columns)
-    -   Filtering data based for a subset of rows (e.g., based on a specific group)
+    -   Filtering data for a subset of rows (e.g., based on a specific group)
   
-  
-# `dplyr`: a grammar of data manipulation {.white-code .white-title background-image="images/bg-planet-2.png" background-size="110% auto"}
+# `dplyr::` a grammar of data manipulation {.white-code .white-title background-image="images/bg-planet-4.png" background-size="110% auto"}
 
-## `dplyr` {.smaller}
+## `dplyr` overview {.smaller}
 
 ![](images/hex-dplyr.png){.absolute right="0" bottom="1" height="30%"}
 
 :::: {.columns}
 ::: {.column width="60%"}
 -   Part of the core `tidyverse` package ecosystem
--   Verbs that address common data manipulation tasks
-    -   Fast and efficient
+-   Fast and efficient functions for performing common data manipulation tasks
 -   Concise syntax for chaining together data cleaning steps
     -   Improves code readability
-
 
 ::: {.small-break}
 :::
 
--   **Several core functions:**
-    -   `rename()`: Rename variables
+-   **Core single table functions (verbs):**
+    -   `rename()`: Modify variable names
     -   `select()`: Pick variables by name
     -   `mutate()`: Create new or modify existing variables
     -   `filter()`: Subset observations using conditionals
     -   `arrange()`: Reorder observations based on data
+    -   `summarize()`: Reduce rows into a summary value
 :::
 
 ::: {.small-break}
 :::
 
-::: {.column width="40%"}
-
+::: {.column width="35%"}
 <br> <br>
 
 [This is not an exhaustive list! We will discuss `dplyr` join, summary, and other functions in subsequent lectures]{.blue-bold}
@@ -107,37 +106,220 @@ Dean Marengi \| Wednesday, January 11<sup>th</sup>
 <https://dplyr.tidyverse.org/>
 :::
 
-## `dplyr` syntax {.smaller}
+## `dplyr` syntax overview {.smaller}
 
--   Note magrittr and basic syntax 
--   Example of chaining arguments to contextualize slides about specific dplyr verbs
--   Highlight dplyr verbs work together in sequence
+:::: {.columns}
+::: {.column width=45%}
 
-## `dplyr::rename()`
-  
-## `dplyr::select()` 
-  
-## `dplyr::mutate()`
-  
-## `dplyr::case_when()`
-  
-## `dplyr::if_else()`
-  
-## `dplyr::accross()`
-  
-## `dplyr::filter()`
-  
-## `dplyr::arrange()`
-  
-<!-- ## `dplyr::summarize()` -->
+-   First argument in all `dplyr` functions is always a data frame or tibble
+-   Variables referenced by name and without quotes (not `df$variable`)
+-   `dplyr` functions always return a new data frame or tibble
 
-<!-- ## `dplyr::group_by()` -->
+::: {.small-break}
+:::
+
+-   Uses the `%>%` ("pipe") operator
+    -   Imported from `magrittr` package
+    -   Can "pipe" function output from one data manipulation step to the next
+    -   Produces clean, readable code that reads from left to right, top to bottom
+    -   [Note:]{.blue-bold} The `%>%` reads as "then"
+:::
+
+::: {.column width=5%}
+<br>
+:::
+
+::: {.column width=50%}
+```{r, echo=F}
+# Load tidyverse
+library(tidyverse)
+
+# Generate data for dplyr syntax example 
+our_data <- data.frame(id = 1:15,
+                       group = rep(c("dplyr rocks", "i <3 dplyr", "clean code or bust"), 5),
+                       num_gold_stars = sample(90:110, 15, replace = TRUE))
   
+# Shuffle data
+set.seed(12)
+our_data <- our_data %>% 
+  slice_sample(n = 15) %>% 
+  as_tibble()
+```
+
+::: fragment
+```{r}
+# Print the first 8 rows only (for slide formatting)
+print(our_data, n = 8)
+```
+:::
+
+:::{.code-break}
+:::
+
+::: fragment
+```{r, echo=T}
+#| code-line-numbers: "1-2|1-4|1-6"
+# Take our data, which is stored as a tibble
+new_data <- our_data %>%
+  # THEN filter our data for a subset of rows
+  filter(group == "i <3 dplyr") %>%
+  # THEN arrange the result by number of gold stars
+  arrange(desc(num_gold_stars))
+```
+:::
+
+::: fragment
+```{r}
+print(new_data)
+```
+:::
+
+:::
+::::
+
+::: aside
+<https://dplyr.tidyverse.org/articles/dplyr.html>
+:::
+
+## `dplyr` syntax overview (cont.) {.smaller}
+
+:::: {.columns}
+::: {.column width=50%}
+
+  -   **Dot notation**   
+      -   `.`: 
+      -   `.data`:
+      -   `.x`:
+      
+::: {.small-break}
+:::
+
+  -   **In-place pipe operator** `%<>%`
+      -   Combines `%>%` and `<-`
+      -   Can be used in place of `<-`
+      -   Assigns result back to the data frame object on which data manipulation operations are being performed
+      -   Use of `%<>%` vs `<-` is a [matter of preference]{.blue-bold}
+:::
+
+::: {.column width=50%}
+:::
+
+::::
+
+## `dplyr` vs base R syntax {.smaller}
+
+-   Update this table to include column that briefly explains what each function does
+
+![](images/dplyr-rbase-comparison.png){fig-align="center" height="95%"}
+
+## Example dataset {.smaller}
+
+:::: {.columns}
+::: {.column width=50%}
+-   `NHANES` dataset available on the ID529 github
+-   The dataset includes individual-level:
+    -   Demographic and clinical characteristics
+    -   Socioeconomic parameters 
+    -   Blood measures of PFAS/PFOA
+    -   Dietary intake parameters
+
+::: {.small-break}
+:::
+-   We will use a subset of these variables to demonstrate how to implement `dplyr` for common data manipulation tasks
+:::
+::::
+```{r}
+library(ID529data)
+data(nhanes_id529, package = 'ID529data')
+
+nhanes_id529
+```
+
+
+<!-- Although datasets can be manipulated in sophisticated ways by linking the 5 verbs of dplyr in conjunction, linking verbs together can be a bit verbose. -->
+
+<!-- Creating multiple objects, especially when working on a large dataset can slow you down in your analysis. Chaining functions directly together into one line of code is difficult to read. This is sometimes called the Dagwood sandwich problem: you have too much filling (too many long arguments) between your slices of bread (parentheses). Functions and arguments get further and further apart. -->
+
+## `dplyr::rename()` {.smaller}
+
+<!-- :::: {.columns} -->
+<!-- :::{.column width="50%"} -->
+-   `rename()`: Change names of specified variables in a data frame
+-   **Arguments (inputs)**
+    -   A data frame
+    -   The column name(s) to update and new name(s) to assign
+        -   **Format:** `old_name = new_name`
+-   `rename()` and other `dplyr` functions return a modified data frame
+    -   This means we need to assign the result to either: 
+      -   The data frame we are performing operations on (update in place)
+      -   A new data frame object
+
+:::{.small-break}
+:::
+
+-   `rename_with()`: Change variable names using a function
+-   **Arguments (inputs)**
+    -   A data frame
+    -   The column name(s) to update and new name(s) to assign
+        -   **Format:** `old_name = new_name`
+      
+<!-- ::: -->
+<!-- :::: -->
+
+<!-- ```{r, echo=T} -->
+<!-- #| output-location: column-fragment -->
+
+<!-- our_data %>% -->
+<!--   filter(group == "dplyr rocks") -->
+
+<!-- ``` -->
+
+
+## `dplyr::filter()` {.smaller}
+  
+## `dplyr::arrange()` {.smaller}
+
+## `dplyr::select()` {.smaller}
+
+## `dplyr::accross()` {.smaller}
+  
+## `dplyr::mutate()` {.smaller}
+
+## `dplyr::if_else()` {.smaller}
+
+## `dplyr::case_when()` {.smaller}
+  
+## `dplyr::summarize()` {.smaller}
+
+## `dplyr::group_by()` {.smaller}
+  
+## Case study (only do one)
+
+-   1st slide: read in the data and display it
+You received a new dataset from your colleague. The data are stored in a single file. You take a look at the data. (show data)
+
+
+You've used R to perform data analysis for many projects, and have a consistent workflow that you implement clean and prepare data for analysis. Based on what you observe in the data, write (or think through) pseudocode to perform these steps. What `dplr` functions can we use to perform these steps?
+
+
+
+We have a standard workflow for cleaning our data. We just began a new 
+  -   ask: what are some things we may want to do to clean this data
+  -   take suggestions, and then show a chain of data cleaning steps using dplyr
+  -   
+
+- HODO tip: glimpse()!
+
+## Complete list of dplyr functions
+(might require 2 slides; descriptions would be nice if possible; shirnk text)
+
 ## Summary {.smaller}
 
 ## Key takeaways {.smaller}
   
 ## References {.smaller}
-  
+<https://magrittr.tidyverse.org/>
+<https://dplyr.tidyverse.org/>
+<https://dplyr.tidyverse.org/articles/dplyr.html>
   
   
