@@ -907,7 +907,7 @@ ggplot(penguins,
   )
 ```
 
-## legend position 
+## legend position {.xsmall}
 
 the legend position can be moved using the `legend.position` 
 argument to `theme()`

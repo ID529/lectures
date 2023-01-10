@@ -820,3 +820,7 @@ library(ID529tutorials)
 run_tutorial('logic', 'ID529tutorials')
 ```
 :::
+
+:::{.small}
+plus here's a google doc for questions: <https://bit.ly/day2-doc>
+:::

@@ -570,6 +570,19 @@
 <span id="cb10-8"><a href="#cb10-8"></a><span class="fu">any</span>(<span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">NA</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co"># =&gt; TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
+<section id="testing-for-membership" class="slide level2">
+<h2>testing for membership</h2>
+<p>one function that produces logical values is the <code>%in%</code> operator. if you write <code>x %in% y</code>, R will return <code>TRUE</code> if <code>x</code> is contained in <code>y</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="dv">5</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="co">#&gt; TRUE</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="st">'a'</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>)</span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="co">#&gt; TRUE</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="co"># %in% is vectorized</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="co">#&gt;  TRUE FALSE  TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="a-quick-note-on-t-and-f" class="slide level2">
 <h2>a quick note on T and F</h2>
 <div class="fragment small">
@@ -579,14 +592,14 @@
 <p>however, this is generally advised against because the <code>T</code> and <code>F</code> variables may be overwritten with other values.</p>
 </div>
 <div class="fragment xsmall">
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># an example </span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">isTRUE</span>(T) <span class="co"># =&gt; TRUE</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>T <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="fu">isTRUE</span>(T) <span class="co"># =&gt; FALSE</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="co"># but you can't overwrite `TRUE` itself</span></span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="cn">TRUE</span> <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="co"># =&gt; Error in TRUE &lt;- 0 : invalid (do_set) left-hand side to assignment</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># an example </span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">isTRUE</span>(T) <span class="co"># =&gt; TRUE</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>T <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="fu">isTRUE</span>(T) <span class="co"># =&gt; FALSE</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="co"># but you can't overwrite `TRUE` itself</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="cn">TRUE</span> <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="co"># =&gt; Error in TRUE &lt;- 0 : invalid (do_set) left-hand side to assignment</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment small">
 <p>read more: <br> <a href="https://www.r-bloggers.com/2012/12/r-tip-avoid-using-t-and-f-as-synonyms-for-true-and-false/" class="uri">https://www.r-bloggers.com/2012/12/r-tip-avoid-using-t-and-f-as-synonyms-for-true-and-false/</a></p>
@@ -608,26 +621,6 @@
 </ul>
 </div>
 <div class="fragment">
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r xxsmall number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="co"># x is a vector of 1, 2, 3, 4, 5</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>y <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="dv">3</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a></span>
-<span id="cb12-4"><a href="#cb12-4"></a>y <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span> <span class="co"># the %% operator can be read "remainder after division by ..." </span></span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="co"># in this case, `y %% 2 == 0` will be TRUE if y is even</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a></span>
-<span id="cb12-7"><a href="#cb12-7"></a>areEven <span class="ot">&lt;-</span> y <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span></span>
-<span id="cb12-8"><a href="#cb12-8"></a>areEven</span>
-<span id="cb12-9"><a href="#cb12-9"></a><span class="co"># =&gt; c(FALSE, TRUE, FALSE, TRUE, FALSE)</span></span>
-<span id="cb12-10"><a href="#cb12-10"></a></span>
-<span id="cb12-11"><a href="#cb12-11"></a>y[areEven]</span>
-<span id="cb12-12"><a href="#cb12-12"></a><span class="co"># =&gt; c(6, 12)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="determining-true-values-1" class="slide level2 small">
-<h2>determining TRUE values</h2>
-<div class="fragment">
-<p>equally valid is to use the <code>which()</code> operation to return an integer vector of indices where the value in the argument is <code>TRUE</code>.</p>
-</div>
-<div class="fragment">
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r xxsmall number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="co"># x is a vector of 1, 2, 3, 4, 5</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a>y <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="dv">3</span></span>
 <span id="cb13-3"><a href="#cb13-3"></a></span>
@@ -638,12 +631,32 @@
 <span id="cb13-8"><a href="#cb13-8"></a>areEven</span>
 <span id="cb13-9"><a href="#cb13-9"></a><span class="co"># =&gt; c(FALSE, TRUE, FALSE, TRUE, FALSE)</span></span>
 <span id="cb13-10"><a href="#cb13-10"></a></span>
-<span id="cb13-11"><a href="#cb13-11"></a><span class="fu">which</span>(areEven)</span>
-<span id="cb13-12"><a href="#cb13-12"></a><span class="co"># =&gt; c(2, 4)</span></span>
-<span id="cb13-13"><a href="#cb13-13"></a><span class="co"># i.e., the 2nd and 4th values are even</span></span>
-<span id="cb13-14"><a href="#cb13-14"></a></span>
-<span id="cb13-15"><a href="#cb13-15"></a>y[<span class="fu">which</span>(areEven)]</span>
-<span id="cb13-16"><a href="#cb13-16"></a><span class="co"># =&gt; c(6, 12)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-11"><a href="#cb13-11"></a>y[areEven]</span>
+<span id="cb13-12"><a href="#cb13-12"></a><span class="co"># =&gt; c(6, 12)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="determining-true-values-1" class="slide level2 small">
+<h2>determining TRUE values</h2>
+<div class="fragment">
+<p>equally valid is to use the <code>which()</code> operation to return an integer vector of indices where the value in the argument is <code>TRUE</code>.</p>
+</div>
+<div class="fragment">
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r xxsmall number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="co"># x is a vector of 1, 2, 3, 4, 5</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>y <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="dv">3</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a></span>
+<span id="cb14-4"><a href="#cb14-4"></a>y <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span> <span class="co"># the %% operator can be read "remainder after division by ..." </span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="co"># in this case, `y %% 2 == 0` will be TRUE if y is even</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7"></a>areEven <span class="ot">&lt;-</span> y <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a>areEven</span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="co"># =&gt; c(FALSE, TRUE, FALSE, TRUE, FALSE)</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a></span>
+<span id="cb14-11"><a href="#cb14-11"></a><span class="fu">which</span>(areEven)</span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="co"># =&gt; c(2, 4)</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a><span class="co"># i.e., the 2nd and 4th values are even</span></span>
+<span id="cb14-14"><a href="#cb14-14"></a></span>
+<span id="cb14-15"><a href="#cb14-15"></a>y[<span class="fu">which</span>(areEven)]</span>
+<span id="cb14-16"><a href="#cb14-16"></a><span class="co"># =&gt; c(6, 12)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -660,10 +673,10 @@
 <p>the first control statement we’ll be looking at is the <code>if</code> statement.</p>
 </div>
 <div class="fragment small">
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># the syntax for an if statement:</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="cf">if</span> (logical_expression) {</span>
-<span id="cb14-3"><a href="#cb14-3"></a>  code_to_run </span>
-<span id="cb14-4"><a href="#cb14-4"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># the syntax for an if statement:</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="cf">if</span> (logical_expression) {</span>
+<span id="cb15-3"><a href="#cb15-3"></a>  code_to_run </span>
+<span id="cb15-4"><a href="#cb15-4"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment small">
 <p>the <code>code_to_run</code> in the example will only be run if the <code>logical_expression</code> is <code>TRUE</code>.</p>
@@ -678,14 +691,14 @@
 <p>meet the <code>sample.int()</code> function: given an argument <code>n</code>, and a <code>size</code>, it will randomly choose <code>size</code> number of integers (with or without replacement depending on the <code>replace</code> argument) from the integers 1 through <code>n</code>. <br><br></p>
 </div>
 <div class="fragment xsmall">
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="co"># sample a number between 1 and 10</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="co"># if x is greater than or equal to 5, print the result</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="cf">if</span> (x <span class="sc">&gt;=</span> <span class="dv">5</span>) { </span>
-<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">print</span>(x)</span>
-<span id="cb15-6"><a href="#cb15-6"></a>}</span>
-<span id="cb15-7"><a href="#cb15-7"></a></span>
-<span id="cb15-8"><a href="#cb15-8"></a><span class="co"># =&gt; this might print something like 7, or it might not print anything!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="co"># sample a number between 1 and 10</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="co"># if x is greater than or equal to 5, print the result</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="cf">if</span> (x <span class="sc">&gt;=</span> <span class="dv">5</span>) { </span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="fu">print</span>(x)</span>
+<span id="cb16-6"><a href="#cb16-6"></a>}</span>
+<span id="cb16-7"><a href="#cb16-7"></a></span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="co"># =&gt; this might print something like 7, or it might not print anything!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="another-example" class="slide level2">
@@ -694,28 +707,28 @@
 <p>here’s an example where we have characters in a list, along with their pets, and we want to grab random a random character and print their pet’s name, but avoid printing NULL to the console.</p>
 </div>
 <div class="fragment xxsmall">
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>characters <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="at">harry =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'hedwig'</span>),</span>
-<span id="cb16-3"><a href="#cb16-3"></a>  <span class="at">ron =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="fu">c</span>(<span class="st">'scabbers'</span>, <span class="st">'pigwidgeon'</span>)),</span>
-<span id="cb16-4"><a href="#cb16-4"></a>  <span class="at">hermione =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'crookshanks'</span>),</span>
-<span id="cb16-5"><a href="#cb16-5"></a>  <span class="at">hagrid =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="fu">c</span>(<span class="st">'fang'</span>, <span class="st">'aragog'</span>)),</span>
-<span id="cb16-6"><a href="#cb16-6"></a>  <span class="at">dumbledore =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'fawkes'</span>),</span>
-<span id="cb16-7"><a href="#cb16-7"></a>  <span class="at">filch =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'mrs. norris'</span>)</span>
-<span id="cb16-8"><a href="#cb16-8"></a>  <span class="at">fred =</span> <span class="fu">list</span>(), <span class="co"># fred and george don't have pets</span></span>
-<span id="cb16-9"><a href="#cb16-9"></a>  <span class="at">george =</span> <span class="fu">list</span>()</span>
-<span id="cb16-10"><a href="#cb16-10"></a>)</span>
-<span id="cb16-11"><a href="#cb16-11"></a></span>
-<span id="cb16-12"><a href="#cb16-12"></a>random_character <span class="ot">&lt;-</span> characters[[<span class="fu">sample.int</span>(<span class="at">n =</span> <span class="fu">length</span>(characters), <span class="at">size =</span> <span class="dv">1</span>)]]</span>
-<span id="cb16-13"><a href="#cb16-13"></a>random_character_pet <span class="ot">&lt;-</span> random_character<span class="sc">$</span>pet</span>
-<span id="cb16-14"><a href="#cb16-14"></a></span>
-<span id="cb16-15"><a href="#cb16-15"></a><span class="cf">if</span> (<span class="sc">!</span> <span class="fu">is.null</span>(random_character_pet)) {</span>
-<span id="cb16-16"><a href="#cb16-16"></a>  <span class="fu">print</span>(random_character_pet)</span>
-<span id="cb16-17"><a href="#cb16-17"></a>}</span>
-<span id="cb16-18"><a href="#cb16-18"></a></span>
-<span id="cb16-19"><a href="#cb16-19"></a><span class="co"># this might print one or two pets, or it might not print anything! </span></span>
-<span id="cb16-20"><a href="#cb16-20"></a></span>
-<span id="cb16-21"><a href="#cb16-21"></a><span class="co"># to be clear, this will _not_ print NULL, which is what the value of </span></span>
-<span id="cb16-22"><a href="#cb16-22"></a><span class="co"># characters$fred$pet is, for example.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>characters <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="at">harry =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'hedwig'</span>),</span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="at">ron =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="fu">c</span>(<span class="st">'scabbers'</span>, <span class="st">'pigwidgeon'</span>)),</span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="at">hermione =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'crookshanks'</span>),</span>
+<span id="cb17-5"><a href="#cb17-5"></a>  <span class="at">hagrid =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="fu">c</span>(<span class="st">'fang'</span>, <span class="st">'aragog'</span>)),</span>
+<span id="cb17-6"><a href="#cb17-6"></a>  <span class="at">dumbledore =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'fawkes'</span>),</span>
+<span id="cb17-7"><a href="#cb17-7"></a>  <span class="at">filch =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'mrs. norris'</span>)</span>
+<span id="cb17-8"><a href="#cb17-8"></a>  <span class="at">fred =</span> <span class="fu">list</span>(), <span class="co"># fred and george don't have pets</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a>  <span class="at">george =</span> <span class="fu">list</span>()</span>
+<span id="cb17-10"><a href="#cb17-10"></a>)</span>
+<span id="cb17-11"><a href="#cb17-11"></a></span>
+<span id="cb17-12"><a href="#cb17-12"></a>random_character <span class="ot">&lt;-</span> characters[[<span class="fu">sample.int</span>(<span class="at">n =</span> <span class="fu">length</span>(characters), <span class="at">size =</span> <span class="dv">1</span>)]]</span>
+<span id="cb17-13"><a href="#cb17-13"></a>random_character_pet <span class="ot">&lt;-</span> random_character<span class="sc">$</span>pet</span>
+<span id="cb17-14"><a href="#cb17-14"></a></span>
+<span id="cb17-15"><a href="#cb17-15"></a><span class="cf">if</span> (<span class="sc">!</span> <span class="fu">is.null</span>(random_character_pet)) {</span>
+<span id="cb17-16"><a href="#cb17-16"></a>  <span class="fu">print</span>(random_character_pet)</span>
+<span id="cb17-17"><a href="#cb17-17"></a>}</span>
+<span id="cb17-18"><a href="#cb17-18"></a></span>
+<span id="cb17-19"><a href="#cb17-19"></a><span class="co"># this might print one or two pets, or it might not print anything! </span></span>
+<span id="cb17-20"><a href="#cb17-20"></a></span>
+<span id="cb17-21"><a href="#cb17-21"></a><span class="co"># to be clear, this will _not_ print NULL, which is what the value of </span></span>
+<span id="cb17-22"><a href="#cb17-22"></a><span class="co"># characters$fred$pet is, for example.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="paste0" class="slide level2">
@@ -728,11 +741,11 @@
 </div>
 <div class="fragment small">
 <p>here’s an example:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>x <span class="ot">&lt;-</span> <span class="st">"hello "</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>y <span class="ot">&lt;-</span> <span class="st">"world"</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a>z <span class="ot">&lt;-</span> <span class="st">"!"</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="fu">paste0</span>(x, y, z)</span>
-<span id="cb17-5"><a href="#cb17-5"></a><span class="co">#&gt; "hello world!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>x <span class="ot">&lt;-</span> <span class="st">"hello "</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>y <span class="ot">&lt;-</span> <span class="st">"world"</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>z <span class="ot">&lt;-</span> <span class="st">"!"</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="fu">paste0</span>(x, y, z)</span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="co">#&gt; "hello world!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="if-and-else" class="slide level2">
@@ -741,33 +754,33 @@
 <p>now we can add another branch to the code by adding an else condition.</p>
 </div>
 <div class="fragment xxsmall">
-<div class="sourceCode" id="cb18" data-code-line-numbers="|12-15|17-18|19-22|24-27|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>characters <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb18-2"><a href="#cb18-2"></a>  <span class="at">harry =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'hedwig'</span>),</span>
-<span id="cb18-3"><a href="#cb18-3"></a>  <span class="at">ron =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="fu">c</span>(<span class="st">'scabbers'</span>, <span class="st">'pigwidgeon'</span>)),</span>
-<span id="cb18-4"><a href="#cb18-4"></a>  <span class="at">hermione =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'crookshanks'</span>),</span>
-<span id="cb18-5"><a href="#cb18-5"></a>  <span class="at">hagrid =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="fu">c</span>(<span class="st">'fang'</span>, <span class="st">'aragog'</span>)),</span>
-<span id="cb18-6"><a href="#cb18-6"></a>  <span class="at">dumbledore =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'fawkes'</span>),</span>
-<span id="cb18-7"><a href="#cb18-7"></a>  <span class="at">filch =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'mrs. norris'</span>)</span>
-<span id="cb18-8"><a href="#cb18-8"></a>  <span class="at">fred =</span> <span class="fu">list</span>(), <span class="co"># fred and george don't have pets</span></span>
-<span id="cb18-9"><a href="#cb18-9"></a>  <span class="at">george =</span> <span class="fu">list</span>()</span>
-<span id="cb18-10"><a href="#cb18-10"></a>)</span>
-<span id="cb18-11"><a href="#cb18-11"></a></span>
-<span id="cb18-12"><a href="#cb18-12"></a>random_int <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="fu">length</span>(characters), <span class="at">size =</span> <span class="dv">1</span>) <span class="co"># get a random number</span></span>
-<span id="cb18-13"><a href="#cb18-13"></a>random_character <span class="ot">&lt;-</span> characters[[random_int]]               <span class="co"># get the corresponding character</span></span>
-<span id="cb18-14"><a href="#cb18-14"></a>random_character_name <span class="ot">&lt;-</span> <span class="fu">names</span>(characters)[random_int]     <span class="co"># get their name</span></span>
-<span id="cb18-15"><a href="#cb18-15"></a>random_character_pet <span class="ot">&lt;-</span> random_character<span class="sc">$</span>pet               <span class="co"># get their pet(s)</span></span>
-<span id="cb18-16"><a href="#cb18-16"></a></span>
-<span id="cb18-17"><a href="#cb18-17"></a><span class="cf">if</span> (<span class="fu">is.null</span>(random_character_pet)) {</span>
-<span id="cb18-18"><a href="#cb18-18"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(random_character_name, <span class="st">" doesn't have any pets!"</span>))</span>
-<span id="cb18-19"><a href="#cb18-19"></a>} <span class="cf">else</span> {</span>
-<span id="cb18-20"><a href="#cb18-20"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(random_character_name, <span class="st">"'s pet(s):"</span>))</span>
-<span id="cb18-21"><a href="#cb18-21"></a>  <span class="fu">print</span>(random_character_pet)</span>
-<span id="cb18-22"><a href="#cb18-22"></a>}</span>
-<span id="cb18-23"><a href="#cb18-23"></a></span>
-<span id="cb18-24"><a href="#cb18-24"></a><span class="co"># this might print "george doesn't have any pets!" or it might print something</span></span>
-<span id="cb18-25"><a href="#cb18-25"></a><span class="co"># like: </span></span>
-<span id="cb18-26"><a href="#cb18-26"></a><span class="co">#   "these are ron's pets:"</span></span>
-<span id="cb18-27"><a href="#cb18-27"></a><span class="co">#   "scabbers"   "pigwidgeon"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19" data-code-line-numbers="|12-15|17-18|19-22|24-27|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>characters <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="at">harry =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'hedwig'</span>),</span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="at">ron =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="fu">c</span>(<span class="st">'scabbers'</span>, <span class="st">'pigwidgeon'</span>)),</span>
+<span id="cb19-4"><a href="#cb19-4"></a>  <span class="at">hermione =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'crookshanks'</span>),</span>
+<span id="cb19-5"><a href="#cb19-5"></a>  <span class="at">hagrid =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="fu">c</span>(<span class="st">'fang'</span>, <span class="st">'aragog'</span>)),</span>
+<span id="cb19-6"><a href="#cb19-6"></a>  <span class="at">dumbledore =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'fawkes'</span>),</span>
+<span id="cb19-7"><a href="#cb19-7"></a>  <span class="at">filch =</span> <span class="fu">list</span>(<span class="at">pet =</span> <span class="st">'mrs. norris'</span>)</span>
+<span id="cb19-8"><a href="#cb19-8"></a>  <span class="at">fred =</span> <span class="fu">list</span>(), <span class="co"># fred and george don't have pets</span></span>
+<span id="cb19-9"><a href="#cb19-9"></a>  <span class="at">george =</span> <span class="fu">list</span>()</span>
+<span id="cb19-10"><a href="#cb19-10"></a>)</span>
+<span id="cb19-11"><a href="#cb19-11"></a></span>
+<span id="cb19-12"><a href="#cb19-12"></a>random_int <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="fu">length</span>(characters), <span class="at">size =</span> <span class="dv">1</span>) <span class="co"># get a random number</span></span>
+<span id="cb19-13"><a href="#cb19-13"></a>random_character <span class="ot">&lt;-</span> characters[[random_int]]               <span class="co"># get the corresponding character</span></span>
+<span id="cb19-14"><a href="#cb19-14"></a>random_character_name <span class="ot">&lt;-</span> <span class="fu">names</span>(characters)[random_int]     <span class="co"># get their name</span></span>
+<span id="cb19-15"><a href="#cb19-15"></a>random_character_pet <span class="ot">&lt;-</span> random_character<span class="sc">$</span>pet               <span class="co"># get their pet(s)</span></span>
+<span id="cb19-16"><a href="#cb19-16"></a></span>
+<span id="cb19-17"><a href="#cb19-17"></a><span class="cf">if</span> (<span class="fu">is.null</span>(random_character_pet)) {</span>
+<span id="cb19-18"><a href="#cb19-18"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(random_character_name, <span class="st">" doesn't have any pets!"</span>))</span>
+<span id="cb19-19"><a href="#cb19-19"></a>} <span class="cf">else</span> {</span>
+<span id="cb19-20"><a href="#cb19-20"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(random_character_name, <span class="st">"'s pet(s):"</span>))</span>
+<span id="cb19-21"><a href="#cb19-21"></a>  <span class="fu">print</span>(random_character_pet)</span>
+<span id="cb19-22"><a href="#cb19-22"></a>}</span>
+<span id="cb19-23"><a href="#cb19-23"></a></span>
+<span id="cb19-24"><a href="#cb19-24"></a><span class="co"># this might print "george doesn't have any pets!" or it might print something</span></span>
+<span id="cb19-25"><a href="#cb19-25"></a><span class="co"># like: </span></span>
+<span id="cb19-26"><a href="#cb19-26"></a><span class="co">#   "these are ron's pets:"</span></span>
+<span id="cb19-27"><a href="#cb19-27"></a><span class="co">#   "scabbers"   "pigwidgeon"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="else-if" class="slide level2">
@@ -776,34 +789,34 @@
 <p>let’s say we draw a random number and want to classify it as a small, medium, or large number depending on if it’s between 1-33 (small), 34-66 (medium), or 66+ (large).</p>
 </div>
 <div class="fragment xxsmall">
-<div class="sourceCode" id="cb19" data-code-line-numbers="|1|6-12|6-7|8-9|10-12|17-25|17-18|19-20|21-22|23-25|26-28|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="co"># draw a random number between 1-100</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a></span>
-<span id="cb19-3"><a href="#cb19-3"></a></span>
-<span id="cb19-4"><a href="#cb19-4"></a><span class="co"># one way to write this:</span></span>
-<span id="cb19-5"><a href="#cb19-5"></a><span class="co"># this way takes advantage of what we know about how x was created</span></span>
-<span id="cb19-6"><a href="#cb19-6"></a><span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="dv">33</span>) {</span>
-<span id="cb19-7"><a href="#cb19-7"></a>  <span class="fu">print</span>(<span class="st">"x is small (i.e., between 1 and 33)"</span>)</span>
-<span id="cb19-8"><a href="#cb19-8"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="dv">66</span>) {</span>
-<span id="cb19-9"><a href="#cb19-9"></a>  <span class="fu">print</span>(<span class="st">"x is medium (i.e., between 34 and 66)"</span>)</span>
-<span id="cb19-10"><a href="#cb19-10"></a>} <span class="cf">else</span> {</span>
-<span id="cb19-11"><a href="#cb19-11"></a>  <span class="fu">print</span>(<span class="st">"x is large (i.e., between 67 and 100)"</span>)</span>
-<span id="cb19-12"><a href="#cb19-12"></a>}</span>
-<span id="cb19-13"><a href="#cb19-13"></a></span>
-<span id="cb19-14"><a href="#cb19-14"></a></span>
-<span id="cb19-15"><a href="#cb19-15"></a><span class="co"># another way:</span></span>
-<span id="cb19-16"><a href="#cb19-16"></a><span class="co"># this way doesn't take advantage of what we know about x</span></span>
-<span id="cb19-17"><a href="#cb19-17"></a><span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="dv">33</span>) {</span>
-<span id="cb19-18"><a href="#cb19-18"></a>  <span class="fu">print</span>(<span class="st">"x is small (i.e., 33 or less)"</span>)</span>
-<span id="cb19-19"><a href="#cb19-19"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="dv">66</span>) {</span>
-<span id="cb19-20"><a href="#cb19-20"></a>  <span class="fu">print</span>(<span class="st">"x is medium (i.e., above 33 and up to 66)"</span>)</span>
-<span id="cb19-21"><a href="#cb19-21"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="dv">100</span>) {</span>
-<span id="cb19-22"><a href="#cb19-22"></a>  <span class="fu">print</span>(<span class="st">"x is large (i.e., above 67 and up to 100)"</span>)</span>
-<span id="cb19-23"><a href="#cb19-23"></a>} <span class="cf">else</span> {</span>
-<span id="cb19-24"><a href="#cb19-24"></a>  <span class="fu">stop</span>(<span class="st">"something has gone wrong! we weren't supposed to get here"</span>)</span>
-<span id="cb19-25"><a href="#cb19-25"></a>}</span>
-<span id="cb19-26"><a href="#cb19-26"></a><span class="co"># this way has an error if an unexpected situation arises -- you might try</span></span>
-<span id="cb19-27"><a href="#cb19-27"></a><span class="co"># setting x to something silly like "apple" and running the two versions above</span></span>
-<span id="cb19-28"><a href="#cb19-28"></a><span class="co"># again.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20" data-code-line-numbers="|1|6-12|6-7|8-9|10-12|17-25|17-18|19-20|21-22|23-25|26-28|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="co"># draw a random number between 1-100</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="co"># one way to write this:</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="co"># this way takes advantage of what we know about how x was created</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="dv">33</span>) {</span>
+<span id="cb20-7"><a href="#cb20-7"></a>  <span class="fu">print</span>(<span class="st">"x is small (i.e., between 1 and 33)"</span>)</span>
+<span id="cb20-8"><a href="#cb20-8"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="dv">66</span>) {</span>
+<span id="cb20-9"><a href="#cb20-9"></a>  <span class="fu">print</span>(<span class="st">"x is medium (i.e., between 34 and 66)"</span>)</span>
+<span id="cb20-10"><a href="#cb20-10"></a>} <span class="cf">else</span> {</span>
+<span id="cb20-11"><a href="#cb20-11"></a>  <span class="fu">print</span>(<span class="st">"x is large (i.e., between 67 and 100)"</span>)</span>
+<span id="cb20-12"><a href="#cb20-12"></a>}</span>
+<span id="cb20-13"><a href="#cb20-13"></a></span>
+<span id="cb20-14"><a href="#cb20-14"></a></span>
+<span id="cb20-15"><a href="#cb20-15"></a><span class="co"># another way:</span></span>
+<span id="cb20-16"><a href="#cb20-16"></a><span class="co"># this way doesn't take advantage of what we know about x</span></span>
+<span id="cb20-17"><a href="#cb20-17"></a><span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="dv">33</span>) {</span>
+<span id="cb20-18"><a href="#cb20-18"></a>  <span class="fu">print</span>(<span class="st">"x is small (i.e., 33 or less)"</span>)</span>
+<span id="cb20-19"><a href="#cb20-19"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="dv">66</span>) {</span>
+<span id="cb20-20"><a href="#cb20-20"></a>  <span class="fu">print</span>(<span class="st">"x is medium (i.e., above 33 and up to 66)"</span>)</span>
+<span id="cb20-21"><a href="#cb20-21"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="dv">100</span>) {</span>
+<span id="cb20-22"><a href="#cb20-22"></a>  <span class="fu">print</span>(<span class="st">"x is large (i.e., above 67 and up to 100)"</span>)</span>
+<span id="cb20-23"><a href="#cb20-23"></a>} <span class="cf">else</span> {</span>
+<span id="cb20-24"><a href="#cb20-24"></a>  <span class="fu">stop</span>(<span class="st">"something has gone wrong! we weren't supposed to get here"</span>)</span>
+<span id="cb20-25"><a href="#cb20-25"></a>}</span>
+<span id="cb20-26"><a href="#cb20-26"></a><span class="co"># this way has an error if an unexpected situation arises -- you might try</span></span>
+<span id="cb20-27"><a href="#cb20-27"></a><span class="co"># setting x to something silly like "apple" and running the two versions above</span></span>
+<span id="cb20-28"><a href="#cb20-28"></a><span class="co"># again.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -820,10 +833,10 @@
 <p><span class="carrot"><strong>for loop</strong></span> are used when you have a block of code you want to repeat a fixed number of times.</p>
 </div>
 <div class="fragment xsmall">
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># the syntax for a for loop</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="cf">for</span> (iterator <span class="cf">in</span> sequence) {</span>
-<span id="cb20-3"><a href="#cb20-3"></a>  code_to_repeat</span>
-<span id="cb20-4"><a href="#cb20-4"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># the syntax for a for loop</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="cf">for</span> (iterator <span class="cf">in</span> sequence) {</span>
+<span id="cb21-3"><a href="#cb21-3"></a>  code_to_repeat</span>
+<span id="cb21-4"><a href="#cb21-4"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="an-example-1" class="slide level2">
@@ -832,42 +845,42 @@
 <p>let’s say you want to print out the squares of the numbers 1 through 25. that would be fairly tedious to do by hand, but you can use a for loop to make it easy.</p>
 </div>
 <div class="fragment xsmall">
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>) {</span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">print</span>(i<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb21-3"><a href="#cb21-3"></a>}</span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="co">#&gt; [1] 1</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a><span class="co">#&gt; [1] 4</span></span>
-<span id="cb21-6"><a href="#cb21-6"></a><span class="co">#&gt; [1] 9</span></span>
-<span id="cb21-7"><a href="#cb21-7"></a><span class="co">#&gt; [1] 16</span></span>
-<span id="cb21-8"><a href="#cb21-8"></a><span class="co">#&gt; [1] 25</span></span>
-<span id="cb21-9"><a href="#cb21-9"></a><span class="co">#&gt; [1] 36</span></span>
-<span id="cb21-10"><a href="#cb21-10"></a><span class="co">#&gt; [1] 49</span></span>
-<span id="cb21-11"><a href="#cb21-11"></a><span class="co">#&gt; [1] 64</span></span>
-<span id="cb21-12"><a href="#cb21-12"></a><span class="co">#&gt; [1] 81</span></span>
-<span id="cb21-13"><a href="#cb21-13"></a><span class="co">#&gt; [1] 100</span></span>
-<span id="cb21-14"><a href="#cb21-14"></a><span class="co">#&gt; [1] 121</span></span>
-<span id="cb21-15"><a href="#cb21-15"></a><span class="co">#&gt; [1] 144</span></span>
-<span id="cb21-16"><a href="#cb21-16"></a><span class="co">#&gt; [1] 169</span></span>
-<span id="cb21-17"><a href="#cb21-17"></a><span class="co">#&gt; [1] 196</span></span>
-<span id="cb21-18"><a href="#cb21-18"></a><span class="co">#&gt; [1] 225</span></span>
-<span id="cb21-19"><a href="#cb21-19"></a><span class="co">#&gt; [1] 256</span></span>
-<span id="cb21-20"><a href="#cb21-20"></a><span class="co">#&gt; [1] 289</span></span>
-<span id="cb21-21"><a href="#cb21-21"></a><span class="co">#&gt; [1] 324</span></span>
-<span id="cb21-22"><a href="#cb21-22"></a><span class="co">#&gt; [1] 361</span></span>
-<span id="cb21-23"><a href="#cb21-23"></a><span class="co">#&gt; [1] 400</span></span>
-<span id="cb21-24"><a href="#cb21-24"></a><span class="co">#&gt; [1] 441</span></span>
-<span id="cb21-25"><a href="#cb21-25"></a><span class="co">#&gt; [1] 484</span></span>
-<span id="cb21-26"><a href="#cb21-26"></a><span class="co">#&gt; [1] 529</span></span>
-<span id="cb21-27"><a href="#cb21-27"></a><span class="co">#&gt; [1] 576</span></span>
-<span id="cb21-28"><a href="#cb21-28"></a><span class="co">#&gt; [1] 625</span></span>
-<span id="cb21-29"><a href="#cb21-29"></a></span>
-<span id="cb21-30"><a href="#cb21-30"></a><span class="co"># obviously the above code is much shorter than writing </span></span>
-<span id="cb21-31"><a href="#cb21-31"></a><span class="fu">print</span>(<span class="dv">1</span><span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb21-32"><a href="#cb21-32"></a><span class="fu">print</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb21-33"><a href="#cb21-33"></a><span class="fu">print</span>(<span class="dv">3</span><span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb21-34"><a href="#cb21-34"></a><span class="fu">print</span>(<span class="dv">4</span><span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb21-35"><a href="#cb21-35"></a><span class="fu">print</span>(<span class="dv">5</span><span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb21-36"><a href="#cb21-36"></a><span class="co"># and so on and so forth...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>) {</span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">print</span>(i<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb22-3"><a href="#cb22-3"></a>}</span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="co">#&gt; [1] 9</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a><span class="co">#&gt; [1] 16</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a><span class="co">#&gt; [1] 25</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a><span class="co">#&gt; [1] 36</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a><span class="co">#&gt; [1] 49</span></span>
+<span id="cb22-11"><a href="#cb22-11"></a><span class="co">#&gt; [1] 64</span></span>
+<span id="cb22-12"><a href="#cb22-12"></a><span class="co">#&gt; [1] 81</span></span>
+<span id="cb22-13"><a href="#cb22-13"></a><span class="co">#&gt; [1] 100</span></span>
+<span id="cb22-14"><a href="#cb22-14"></a><span class="co">#&gt; [1] 121</span></span>
+<span id="cb22-15"><a href="#cb22-15"></a><span class="co">#&gt; [1] 144</span></span>
+<span id="cb22-16"><a href="#cb22-16"></a><span class="co">#&gt; [1] 169</span></span>
+<span id="cb22-17"><a href="#cb22-17"></a><span class="co">#&gt; [1] 196</span></span>
+<span id="cb22-18"><a href="#cb22-18"></a><span class="co">#&gt; [1] 225</span></span>
+<span id="cb22-19"><a href="#cb22-19"></a><span class="co">#&gt; [1] 256</span></span>
+<span id="cb22-20"><a href="#cb22-20"></a><span class="co">#&gt; [1] 289</span></span>
+<span id="cb22-21"><a href="#cb22-21"></a><span class="co">#&gt; [1] 324</span></span>
+<span id="cb22-22"><a href="#cb22-22"></a><span class="co">#&gt; [1] 361</span></span>
+<span id="cb22-23"><a href="#cb22-23"></a><span class="co">#&gt; [1] 400</span></span>
+<span id="cb22-24"><a href="#cb22-24"></a><span class="co">#&gt; [1] 441</span></span>
+<span id="cb22-25"><a href="#cb22-25"></a><span class="co">#&gt; [1] 484</span></span>
+<span id="cb22-26"><a href="#cb22-26"></a><span class="co">#&gt; [1] 529</span></span>
+<span id="cb22-27"><a href="#cb22-27"></a><span class="co">#&gt; [1] 576</span></span>
+<span id="cb22-28"><a href="#cb22-28"></a><span class="co">#&gt; [1] 625</span></span>
+<span id="cb22-29"><a href="#cb22-29"></a></span>
+<span id="cb22-30"><a href="#cb22-30"></a><span class="co"># obviously the above code is much shorter than writing </span></span>
+<span id="cb22-31"><a href="#cb22-31"></a><span class="fu">print</span>(<span class="dv">1</span><span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb22-32"><a href="#cb22-32"></a><span class="fu">print</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb22-33"><a href="#cb22-33"></a><span class="fu">print</span>(<span class="dv">3</span><span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb22-34"><a href="#cb22-34"></a><span class="fu">print</span>(<span class="dv">4</span><span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb22-35"><a href="#cb22-35"></a><span class="fu">print</span>(<span class="dv">5</span><span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb22-36"><a href="#cb22-36"></a><span class="co"># and so on and so forth...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="another-example-1" class="slide level2">
@@ -876,15 +889,15 @@
 <p>for loops can iterate over any data structure that can be sequenced (i.e., indexed by an integer), so feel free to use them with character vectors.</p>
 </div>
 <div class="fragment xsmall">
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'sloths'</span>, <span class="st">'platypus'</span>, <span class="st">'sea otters'</span>, <span class="st">'ringtail lemurs'</span>)</span>
-<span id="cb22-2"><a href="#cb22-2"></a></span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="cf">for</span> (animal <span class="cf">in</span> animals) {</span>
-<span id="cb22-4"><a href="#cb22-4"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(animal, <span class="st">" rule!"</span>))</span>
-<span id="cb22-5"><a href="#cb22-5"></a>}</span>
-<span id="cb22-6"><a href="#cb22-6"></a><span class="co">#&gt; [1] "sloths rule!"</span></span>
-<span id="cb22-7"><a href="#cb22-7"></a><span class="co">#&gt; [1] "platypus rule!"</span></span>
-<span id="cb22-8"><a href="#cb22-8"></a><span class="co">#&gt; [1] "sea otters rule!"</span></span>
-<span id="cb22-9"><a href="#cb22-9"></a><span class="co">#&gt; [1] "ringtail lemurs rule!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'sloths'</span>, <span class="st">'platypus'</span>, <span class="st">'sea otters'</span>, <span class="st">'ringtail lemurs'</span>)</span>
+<span id="cb23-2"><a href="#cb23-2"></a></span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="cf">for</span> (animal <span class="cf">in</span> animals) {</span>
+<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(animal, <span class="st">" rule!"</span>))</span>
+<span id="cb23-5"><a href="#cb23-5"></a>}</span>
+<span id="cb23-6"><a href="#cb23-6"></a><span class="co">#&gt; [1] "sloths rule!"</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a><span class="co">#&gt; [1] "platypus rule!"</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a><span class="co">#&gt; [1] "sea otters rule!"</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a><span class="co">#&gt; [1] "ringtail lemurs rule!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="a-more-realistic-example" class="slide level2">
@@ -894,18 +907,18 @@
 <p>This is a great situation to use a for loop!</p>
 </div>
 <div class="fragment xxsmall">
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>state_data <span class="ot">&lt;-</span> <span class="fu">list</span>() <span class="co"># start with an empty list</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="cf">for</span> (state <span class="cf">in</span> state.name) {  <span class="co"># state.name is a list of state names built into R</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a></span>
-<span id="cb23-5"><a href="#cb23-5"></a>  <span class="co"># we'll talk more about reading in data later today</span></span>
-<span id="cb23-6"><a href="#cb23-6"></a>  new_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="fu">paste0</span>(state, <span class="st">".csv"</span>)) </span>
-<span id="cb23-7"><a href="#cb23-7"></a>  </span>
-<span id="cb23-8"><a href="#cb23-8"></a>  <span class="co"># create a list element for the data being read in named after the state</span></span>
-<span id="cb23-9"><a href="#cb23-9"></a>  state_data[[state]] <span class="ot">&lt;-</span> state_data </span>
-<span id="cb23-10"><a href="#cb23-10"></a>}</span>
-<span id="cb23-11"><a href="#cb23-11"></a></span>
-<span id="cb23-12"><a href="#cb23-12"></a><span class="co"># clean up the state_data list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>state_data <span class="ot">&lt;-</span> <span class="fu">list</span>() <span class="co"># start with an empty list</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a></span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="cf">for</span> (state <span class="cf">in</span> state.name) {  <span class="co"># state.name is a list of state names built into R</span></span>
+<span id="cb24-4"><a href="#cb24-4"></a></span>
+<span id="cb24-5"><a href="#cb24-5"></a>  <span class="co"># we'll talk more about reading in data later today</span></span>
+<span id="cb24-6"><a href="#cb24-6"></a>  new_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="fu">paste0</span>(state, <span class="st">".csv"</span>)) </span>
+<span id="cb24-7"><a href="#cb24-7"></a>  </span>
+<span id="cb24-8"><a href="#cb24-8"></a>  <span class="co"># create a list element for the data being read in named after the state</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a>  state_data[[state]] <span class="ot">&lt;-</span> state_data </span>
+<span id="cb24-10"><a href="#cb24-10"></a>}</span>
+<span id="cb24-11"><a href="#cb24-11"></a></span>
+<span id="cb24-12"><a href="#cb24-12"></a><span class="co"># clean up the state_data list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="another-example-with-states" class="slide level2">
@@ -915,59 +928,59 @@
 <p>here’s an example:</p>
 </div>
 <div class="fragment xxsmall">
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>) {</span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"the abbreviation for "</span>, state.name[i], <span class="st">" is "</span>, state.abb[i]))</span>
-<span id="cb24-3"><a href="#cb24-3"></a>}</span>
-<span id="cb24-4"><a href="#cb24-4"></a><span class="co">#&gt; [1] "the abbreviation for Alabama is AL"</span></span>
-<span id="cb24-5"><a href="#cb24-5"></a><span class="co">#&gt; [1] "the abbreviation for Alaska is AK"</span></span>
-<span id="cb24-6"><a href="#cb24-6"></a><span class="co">#&gt; [1] "the abbreviation for Arizona is AZ"</span></span>
-<span id="cb24-7"><a href="#cb24-7"></a><span class="co">#&gt; [1] "the abbreviation for Arkansas is AR"</span></span>
-<span id="cb24-8"><a href="#cb24-8"></a><span class="co">#&gt; [1] "the abbreviation for California is CA"</span></span>
-<span id="cb24-9"><a href="#cb24-9"></a><span class="co">#&gt; [1] "the abbreviation for Colorado is CO"</span></span>
-<span id="cb24-10"><a href="#cb24-10"></a><span class="co">#&gt; [1] "the abbreviation for Connecticut is CT"</span></span>
-<span id="cb24-11"><a href="#cb24-11"></a><span class="co">#&gt; [1] "the abbreviation for Delaware is DE"</span></span>
-<span id="cb24-12"><a href="#cb24-12"></a><span class="co">#&gt; [1] "the abbreviation for Florida is FL"</span></span>
-<span id="cb24-13"><a href="#cb24-13"></a><span class="co">#&gt; [1] "the abbreviation for Georgia is GA"</span></span>
-<span id="cb24-14"><a href="#cb24-14"></a><span class="co">#&gt; [1] "the abbreviation for Hawaii is HI"</span></span>
-<span id="cb24-15"><a href="#cb24-15"></a><span class="co">#&gt; [1] "the abbreviation for Idaho is ID"</span></span>
-<span id="cb24-16"><a href="#cb24-16"></a><span class="co">#&gt; [1] "the abbreviation for Illinois is IL"</span></span>
-<span id="cb24-17"><a href="#cb24-17"></a><span class="co">#&gt; [1] "the abbreviation for Indiana is IN"</span></span>
-<span id="cb24-18"><a href="#cb24-18"></a><span class="co">#&gt; [1] "the abbreviation for Iowa is IA"</span></span>
-<span id="cb24-19"><a href="#cb24-19"></a><span class="co">#&gt; [1] "the abbreviation for Kansas is KS"</span></span>
-<span id="cb24-20"><a href="#cb24-20"></a><span class="co">#&gt; [1] "the abbreviation for Kentucky is KY"</span></span>
-<span id="cb24-21"><a href="#cb24-21"></a><span class="co">#&gt; [1] "the abbreviation for Louisiana is LA"</span></span>
-<span id="cb24-22"><a href="#cb24-22"></a><span class="co">#&gt; [1] "the abbreviation for Maine is ME"</span></span>
-<span id="cb24-23"><a href="#cb24-23"></a><span class="co">#&gt; [1] "the abbreviation for Maryland is MD"</span></span>
-<span id="cb24-24"><a href="#cb24-24"></a><span class="co">#&gt; [1] "the abbreviation for Massachusetts is MA"</span></span>
-<span id="cb24-25"><a href="#cb24-25"></a><span class="co">#&gt; [1] "the abbreviation for Michigan is MI"</span></span>
-<span id="cb24-26"><a href="#cb24-26"></a><span class="co">#&gt; [1] "the abbreviation for Minnesota is MN"</span></span>
-<span id="cb24-27"><a href="#cb24-27"></a><span class="co">#&gt; [1] "the abbreviation for Mississippi is MS"</span></span>
-<span id="cb24-28"><a href="#cb24-28"></a><span class="co">#&gt; [1] "the abbreviation for Missouri is MO"</span></span>
-<span id="cb24-29"><a href="#cb24-29"></a><span class="co">#&gt; [1] "the abbreviation for Montana is MT"</span></span>
-<span id="cb24-30"><a href="#cb24-30"></a><span class="co">#&gt; [1] "the abbreviation for Nebraska is NE"</span></span>
-<span id="cb24-31"><a href="#cb24-31"></a><span class="co">#&gt; [1] "the abbreviation for Nevada is NV"</span></span>
-<span id="cb24-32"><a href="#cb24-32"></a><span class="co">#&gt; [1] "the abbreviation for New Hampshire is NH"</span></span>
-<span id="cb24-33"><a href="#cb24-33"></a><span class="co">#&gt; [1] "the abbreviation for New Jersey is NJ"</span></span>
-<span id="cb24-34"><a href="#cb24-34"></a><span class="co">#&gt; [1] "the abbreviation for New Mexico is NM"</span></span>
-<span id="cb24-35"><a href="#cb24-35"></a><span class="co">#&gt; [1] "the abbreviation for New York is NY"</span></span>
-<span id="cb24-36"><a href="#cb24-36"></a><span class="co">#&gt; [1] "the abbreviation for North Carolina is NC"</span></span>
-<span id="cb24-37"><a href="#cb24-37"></a><span class="co">#&gt; [1] "the abbreviation for North Dakota is ND"</span></span>
-<span id="cb24-38"><a href="#cb24-38"></a><span class="co">#&gt; [1] "the abbreviation for Ohio is OH"</span></span>
-<span id="cb24-39"><a href="#cb24-39"></a><span class="co">#&gt; [1] "the abbreviation for Oklahoma is OK"</span></span>
-<span id="cb24-40"><a href="#cb24-40"></a><span class="co">#&gt; [1] "the abbreviation for Oregon is OR"</span></span>
-<span id="cb24-41"><a href="#cb24-41"></a><span class="co">#&gt; [1] "the abbreviation for Pennsylvania is PA"</span></span>
-<span id="cb24-42"><a href="#cb24-42"></a><span class="co">#&gt; [1] "the abbreviation for Rhode Island is RI"</span></span>
-<span id="cb24-43"><a href="#cb24-43"></a><span class="co">#&gt; [1] "the abbreviation for South Carolina is SC"</span></span>
-<span id="cb24-44"><a href="#cb24-44"></a><span class="co">#&gt; [1] "the abbreviation for South Dakota is SD"</span></span>
-<span id="cb24-45"><a href="#cb24-45"></a><span class="co">#&gt; [1] "the abbreviation for Tennessee is TN"</span></span>
-<span id="cb24-46"><a href="#cb24-46"></a><span class="co">#&gt; [1] "the abbreviation for Texas is TX"</span></span>
-<span id="cb24-47"><a href="#cb24-47"></a><span class="co">#&gt; [1] "the abbreviation for Utah is UT"</span></span>
-<span id="cb24-48"><a href="#cb24-48"></a><span class="co">#&gt; [1] "the abbreviation for Vermont is VT"</span></span>
-<span id="cb24-49"><a href="#cb24-49"></a><span class="co">#&gt; [1] "the abbreviation for Virginia is VA"</span></span>
-<span id="cb24-50"><a href="#cb24-50"></a><span class="co">#&gt; [1] "the abbreviation for Washington is WA"</span></span>
-<span id="cb24-51"><a href="#cb24-51"></a><span class="co">#&gt; [1] "the abbreviation for West Virginia is WV"</span></span>
-<span id="cb24-52"><a href="#cb24-52"></a><span class="co">#&gt; [1] "the abbreviation for Wisconsin is WI"</span></span>
-<span id="cb24-53"><a href="#cb24-53"></a><span class="co">#&gt; [1] "the abbreviation for Wyoming is WY"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>) {</span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"the abbreviation for "</span>, state.name[i], <span class="st">" is "</span>, state.abb[i]))</span>
+<span id="cb25-3"><a href="#cb25-3"></a>}</span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="co">#&gt; [1] "the abbreviation for Alabama is AL"</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="co">#&gt; [1] "the abbreviation for Alaska is AK"</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a><span class="co">#&gt; [1] "the abbreviation for Arizona is AZ"</span></span>
+<span id="cb25-7"><a href="#cb25-7"></a><span class="co">#&gt; [1] "the abbreviation for Arkansas is AR"</span></span>
+<span id="cb25-8"><a href="#cb25-8"></a><span class="co">#&gt; [1] "the abbreviation for California is CA"</span></span>
+<span id="cb25-9"><a href="#cb25-9"></a><span class="co">#&gt; [1] "the abbreviation for Colorado is CO"</span></span>
+<span id="cb25-10"><a href="#cb25-10"></a><span class="co">#&gt; [1] "the abbreviation for Connecticut is CT"</span></span>
+<span id="cb25-11"><a href="#cb25-11"></a><span class="co">#&gt; [1] "the abbreviation for Delaware is DE"</span></span>
+<span id="cb25-12"><a href="#cb25-12"></a><span class="co">#&gt; [1] "the abbreviation for Florida is FL"</span></span>
+<span id="cb25-13"><a href="#cb25-13"></a><span class="co">#&gt; [1] "the abbreviation for Georgia is GA"</span></span>
+<span id="cb25-14"><a href="#cb25-14"></a><span class="co">#&gt; [1] "the abbreviation for Hawaii is HI"</span></span>
+<span id="cb25-15"><a href="#cb25-15"></a><span class="co">#&gt; [1] "the abbreviation for Idaho is ID"</span></span>
+<span id="cb25-16"><a href="#cb25-16"></a><span class="co">#&gt; [1] "the abbreviation for Illinois is IL"</span></span>
+<span id="cb25-17"><a href="#cb25-17"></a><span class="co">#&gt; [1] "the abbreviation for Indiana is IN"</span></span>
+<span id="cb25-18"><a href="#cb25-18"></a><span class="co">#&gt; [1] "the abbreviation for Iowa is IA"</span></span>
+<span id="cb25-19"><a href="#cb25-19"></a><span class="co">#&gt; [1] "the abbreviation for Kansas is KS"</span></span>
+<span id="cb25-20"><a href="#cb25-20"></a><span class="co">#&gt; [1] "the abbreviation for Kentucky is KY"</span></span>
+<span id="cb25-21"><a href="#cb25-21"></a><span class="co">#&gt; [1] "the abbreviation for Louisiana is LA"</span></span>
+<span id="cb25-22"><a href="#cb25-22"></a><span class="co">#&gt; [1] "the abbreviation for Maine is ME"</span></span>
+<span id="cb25-23"><a href="#cb25-23"></a><span class="co">#&gt; [1] "the abbreviation for Maryland is MD"</span></span>
+<span id="cb25-24"><a href="#cb25-24"></a><span class="co">#&gt; [1] "the abbreviation for Massachusetts is MA"</span></span>
+<span id="cb25-25"><a href="#cb25-25"></a><span class="co">#&gt; [1] "the abbreviation for Michigan is MI"</span></span>
+<span id="cb25-26"><a href="#cb25-26"></a><span class="co">#&gt; [1] "the abbreviation for Minnesota is MN"</span></span>
+<span id="cb25-27"><a href="#cb25-27"></a><span class="co">#&gt; [1] "the abbreviation for Mississippi is MS"</span></span>
+<span id="cb25-28"><a href="#cb25-28"></a><span class="co">#&gt; [1] "the abbreviation for Missouri is MO"</span></span>
+<span id="cb25-29"><a href="#cb25-29"></a><span class="co">#&gt; [1] "the abbreviation for Montana is MT"</span></span>
+<span id="cb25-30"><a href="#cb25-30"></a><span class="co">#&gt; [1] "the abbreviation for Nebraska is NE"</span></span>
+<span id="cb25-31"><a href="#cb25-31"></a><span class="co">#&gt; [1] "the abbreviation for Nevada is NV"</span></span>
+<span id="cb25-32"><a href="#cb25-32"></a><span class="co">#&gt; [1] "the abbreviation for New Hampshire is NH"</span></span>
+<span id="cb25-33"><a href="#cb25-33"></a><span class="co">#&gt; [1] "the abbreviation for New Jersey is NJ"</span></span>
+<span id="cb25-34"><a href="#cb25-34"></a><span class="co">#&gt; [1] "the abbreviation for New Mexico is NM"</span></span>
+<span id="cb25-35"><a href="#cb25-35"></a><span class="co">#&gt; [1] "the abbreviation for New York is NY"</span></span>
+<span id="cb25-36"><a href="#cb25-36"></a><span class="co">#&gt; [1] "the abbreviation for North Carolina is NC"</span></span>
+<span id="cb25-37"><a href="#cb25-37"></a><span class="co">#&gt; [1] "the abbreviation for North Dakota is ND"</span></span>
+<span id="cb25-38"><a href="#cb25-38"></a><span class="co">#&gt; [1] "the abbreviation for Ohio is OH"</span></span>
+<span id="cb25-39"><a href="#cb25-39"></a><span class="co">#&gt; [1] "the abbreviation for Oklahoma is OK"</span></span>
+<span id="cb25-40"><a href="#cb25-40"></a><span class="co">#&gt; [1] "the abbreviation for Oregon is OR"</span></span>
+<span id="cb25-41"><a href="#cb25-41"></a><span class="co">#&gt; [1] "the abbreviation for Pennsylvania is PA"</span></span>
+<span id="cb25-42"><a href="#cb25-42"></a><span class="co">#&gt; [1] "the abbreviation for Rhode Island is RI"</span></span>
+<span id="cb25-43"><a href="#cb25-43"></a><span class="co">#&gt; [1] "the abbreviation for South Carolina is SC"</span></span>
+<span id="cb25-44"><a href="#cb25-44"></a><span class="co">#&gt; [1] "the abbreviation for South Dakota is SD"</span></span>
+<span id="cb25-45"><a href="#cb25-45"></a><span class="co">#&gt; [1] "the abbreviation for Tennessee is TN"</span></span>
+<span id="cb25-46"><a href="#cb25-46"></a><span class="co">#&gt; [1] "the abbreviation for Texas is TX"</span></span>
+<span id="cb25-47"><a href="#cb25-47"></a><span class="co">#&gt; [1] "the abbreviation for Utah is UT"</span></span>
+<span id="cb25-48"><a href="#cb25-48"></a><span class="co">#&gt; [1] "the abbreviation for Vermont is VT"</span></span>
+<span id="cb25-49"><a href="#cb25-49"></a><span class="co">#&gt; [1] "the abbreviation for Virginia is VA"</span></span>
+<span id="cb25-50"><a href="#cb25-50"></a><span class="co">#&gt; [1] "the abbreviation for Washington is WA"</span></span>
+<span id="cb25-51"><a href="#cb25-51"></a><span class="co">#&gt; [1] "the abbreviation for West Virginia is WV"</span></span>
+<span id="cb25-52"><a href="#cb25-52"></a><span class="co">#&gt; [1] "the abbreviation for Wisconsin is WI"</span></span>
+<span id="cb25-53"><a href="#cb25-53"></a><span class="co">#&gt; [1] "the abbreviation for Wyoming is WY"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="while" class="slide level2 small">
@@ -994,33 +1007,28 @@
 <section id="while-1" class="slide level2 small">
 <h2>while</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>value <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="cf">while</span> (value <span class="sc">&lt;</span> <span class="dv">100</span>) {</span>
-<span id="cb25-3"><a href="#cb25-3"></a>  value <span class="ot">&lt;-</span> value <span class="sc">+</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb25-4"><a href="#cb25-4"></a>  <span class="fu">print</span>(value)</span>
-<span id="cb25-5"><a href="#cb25-5"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>value <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="cf">while</span> (value <span class="sc">&lt;</span> <span class="dv">100</span>) {</span>
+<span id="cb26-3"><a href="#cb26-3"></a>  value <span class="ot">&lt;-</span> value <span class="sc">+</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb26-4"><a href="#cb26-4"></a>  <span class="fu">print</span>(value)</span>
+<span id="cb26-5"><a href="#cb26-5"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2
-[1] 3
-[1] 5
+<pre><code>[1] 10
 [1] 11
-[1] 15
-[1] 16
-[1] 19
+[1] 17
+[1] 24
 [1] 29
-[1] 37
-[1] 43
-[1] 45
-[1] 49
-[1] 59
-[1] 61
-[1] 63
-[1] 72
-[1] 77
+[1] 34
+[1] 41
+[1] 51
+[1] 53
+[1] 60
+[1] 69
+[1] 71
 [1] 79
-[1] 87
-[1] 96
-[1] 105</code></pre>
+[1] 86
+[1] 92
+[1] 101</code></pre>
 </div>
 </div>
 </section>
@@ -1028,19 +1036,19 @@
 <h2>while</h2>
 <p>that’s great, but it doesn’t tell us about how many iterations it took</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>n_iterations <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
-<span id="cb27-2"><a href="#cb27-2"></a>value <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
-<span id="cb27-3"><a href="#cb27-3"></a><span class="cf">while</span> (value <span class="sc">&lt;</span> <span class="dv">100</span>) {</span>
-<span id="cb27-4"><a href="#cb27-4"></a>  n_iterations <span class="ot">&lt;-</span> n_iterations <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb27-5"><a href="#cb27-5"></a>  value <span class="ot">&lt;-</span> value <span class="sc">+</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb27-6"><a href="#cb27-6"></a>}</span>
-<span id="cb27-7"><a href="#cb27-7"></a><span class="fu">print</span>(n_iterations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>n_iterations <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
+<span id="cb28-2"><a href="#cb28-2"></a>value <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="cf">while</span> (value <span class="sc">&lt;</span> <span class="dv">100</span>) {</span>
+<span id="cb28-4"><a href="#cb28-4"></a>  n_iterations <span class="ot">&lt;-</span> n_iterations <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a>  value <span class="ot">&lt;-</span> value <span class="sc">+</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb28-6"><a href="#cb28-6"></a>}</span>
+<span id="cb28-7"><a href="#cb28-7"></a><span class="fu">print</span>(n_iterations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 17</code></pre>
+<pre><code>[1] 21</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">print</span>(value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">print</span>(value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 103</code></pre>
+<pre><code>[1] 104</code></pre>
 </div>
 </div>
 </section>
@@ -1048,23 +1056,23 @@
 <h2>while</h2>
 <p>what if we want to create a larger sample of data to see if our hypothesis was close to some observed data?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>iterations_needed <span class="ot">&lt;-</span> <span class="fu">numeric</span>() <span class="co"># create an empty numeric vector</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a></span>
-<span id="cb31-3"><a href="#cb31-3"></a><span class="co"># we'll run the experiment 10,000 times so we have a substantial amount of data</span></span>
-<span id="cb31-4"><a href="#cb31-4"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>) {</span>
-<span id="cb31-5"><a href="#cb31-5"></a>  n_iterations <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
-<span id="cb31-6"><a href="#cb31-6"></a>  value <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
-<span id="cb31-7"><a href="#cb31-7"></a>  <span class="cf">while</span> (value <span class="sc">&lt;</span> <span class="dv">100</span>) {</span>
-<span id="cb31-8"><a href="#cb31-8"></a>    n_iterations <span class="ot">&lt;-</span> n_iterations <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb31-9"><a href="#cb31-9"></a>    value <span class="ot">&lt;-</span> value <span class="sc">+</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb31-10"><a href="#cb31-10"></a>  }</span>
-<span id="cb31-11"><a href="#cb31-11"></a>  iterations_needed <span class="ot">&lt;-</span> <span class="fu">c</span>(iterations_needed, n_iterations)</span>
-<span id="cb31-12"><a href="#cb31-12"></a>}</span>
-<span id="cb31-13"><a href="#cb31-13"></a></span>
-<span id="cb31-14"><a href="#cb31-14"></a><span class="fu">summary</span>(iterations_needed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>iterations_needed <span class="ot">&lt;-</span> <span class="fu">numeric</span>() <span class="co"># create an empty numeric vector</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a></span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="co"># we'll run the experiment 10,000 times so we have a substantial amount of data</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>) {</span>
+<span id="cb32-5"><a href="#cb32-5"></a>  n_iterations <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
+<span id="cb32-6"><a href="#cb32-6"></a>  value <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
+<span id="cb32-7"><a href="#cb32-7"></a>  <span class="cf">while</span> (value <span class="sc">&lt;</span> <span class="dv">100</span>) {</span>
+<span id="cb32-8"><a href="#cb32-8"></a>    n_iterations <span class="ot">&lt;-</span> n_iterations <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb32-9"><a href="#cb32-9"></a>    value <span class="ot">&lt;-</span> value <span class="sc">+</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb32-10"><a href="#cb32-10"></a>  }</span>
+<span id="cb32-11"><a href="#cb32-11"></a>  iterations_needed <span class="ot">&lt;-</span> <span class="fu">c</span>(iterations_needed, n_iterations)</span>
+<span id="cb32-12"><a href="#cb32-12"></a>}</span>
+<span id="cb32-13"><a href="#cb32-13"></a></span>
+<span id="cb32-14"><a href="#cb32-14"></a><span class="fu">summary</span>(iterations_needed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  12.00   17.00   19.00   18.74   20.00   28.00 </code></pre>
+  13.00   17.00   19.00   18.68   20.00   29.00 </code></pre>
 </div>
 </div>
 </section></section>
@@ -1084,14 +1092,17 @@
 <section id="lets-do-a-learnr-tutorial" class="title-slide slide level1 center" data-background-image="transition_slides/lode-lagrainge.jpg" data-background-color="black" data-background-opacity="50%">
 <h1>let’s do a learnr tutorial</h1>
 <div class="xsmall">
-<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># install devtools if you haven't already</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>) </span>
-<span id="cb33-3"><a href="#cb33-3"></a></span>
-<span id="cb33-4"><a href="#cb33-4"></a><span class="co"># install our ID529tutorials package</span></span>
-<span id="cb33-5"><a href="#cb33-5"></a>devtools<span class="sc">::</span><span class="fu">install_git</span>(<span class="st">"ID529/ID529tutorials"</span>)</span>
-<span id="cb33-6"><a href="#cb33-6"></a></span>
-<span id="cb33-7"><a href="#cb33-7"></a><span class="fu">library</span>(ID529tutorials)</span>
-<span id="cb33-8"><a href="#cb33-8"></a><span class="fu">run_tutorial</span>(<span class="st">'logic'</span>, <span class="st">'ID529tutorials'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># install devtools if you haven't already</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>) </span>
+<span id="cb34-3"><a href="#cb34-3"></a></span>
+<span id="cb34-4"><a href="#cb34-4"></a><span class="co"># install our ID529tutorials package</span></span>
+<span id="cb34-5"><a href="#cb34-5"></a>devtools<span class="sc">::</span><span class="fu">install_git</span>(<span class="st">"ID529/ID529tutorials"</span>)</span>
+<span id="cb34-6"><a href="#cb34-6"></a></span>
+<span id="cb34-7"><a href="#cb34-7"></a><span class="fu">library</span>(ID529tutorials)</span>
+<span id="cb34-8"><a href="#cb34-8"></a><span class="fu">run_tutorial</span>(<span class="st">'logic'</span>, <span class="st">'ID529tutorials'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="small">
+<p>plus here’s a google doc for questions: <a href="https://bit.ly/day2-doc" class="uri">https://bit.ly/day2-doc</a></p>
 </div>
 <div class="footer footer-default">
 
