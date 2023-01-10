@@ -235,6 +235,16 @@ read.table(
 
 ![](images/logo-base-r.png){.absolute right="0" bottom="1" height="25%"}
 
+## Example: `read.csv()` {.smaller}
+
+```{r, echo=T}
+# Read in the data
+data <- read.csv("data/cvdstudy.csv")
+
+data
+```
+
+
 # R Packages for Importing Data {.white-title background-image="images/bg-collatz-2.png" background-size="cover"}
 
 ## `readr` {.smaller}
@@ -635,7 +645,7 @@ data
 ## Key takeaways {.smaller}
 
 ::: incremental
--   Reading data into R is typically the first step in a data analysis workflow.
+-   Reading data into R is typically the first step in a data analysis workflow
 -   In addition to base R functions, many R packages include functions with more robust functionality
     -   Different functions have implications for how data are handled when read into R
         -   For example, whether the data are stored as a standard data frame or tibble data frame
@@ -644,8 +654,7 @@ data
 ::: {.small-break}
 :::
 
-
-  -   Idiosyncrasies data storage methods warrant specific considerations. For example:
+  -   Idiosyncrasies in data storage methods warrant specific considerations. For example:
       -   Reading xls and xlsx excel files require specific functions, which can accommodate specific formatting issues
           -   Skipping rows before reading data
           -   Selecting a specific range of cells or sheets to read data

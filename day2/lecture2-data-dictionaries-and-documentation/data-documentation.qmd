@@ -35,7 +35,7 @@ Dean Marengi \| Tuesday, January 10<sup>th</sup> 2023
 
 ## Learning objectives {.smaller}
 
--   **Understand the [importance of data dictionaries]{.blue-bold} and documentation for data analysis**
+-   **Understand the [importance of data dictionaries]{.blue-bold} for data analysis**
     -   Ensuring consistency of data, and how the data are used
     -   Facilitating research collaboration
 
@@ -153,7 +153,7 @@ Dean Marengi \| Tuesday, January 10<sup>th</sup> 2023
 
 -   **Variable Name:** Age 
 -   **Definition:** The age of the patient at the time of the study, measured in years 
--   **Data Type:** Dichotomous (yes/no)
+-   **Data Type:** Integer
 -   **Notes:** Age data was collected via self-report on the baseline questionnaire and verified with a government-issued ID.
 :::
 :::
@@ -167,7 +167,7 @@ Dean Marengi \| Tuesday, January 10<sup>th</sup> 2023
 [Bad Entry]{.blue-bold}  
 
 -   **Variable Name:** smk
--   **Smoking status Definition:** Smokes
+-   **Definition:** Smokes
 -   **Data Type:** Yes/No 
 -   **Notes:** N/A
 :::
@@ -179,8 +179,8 @@ Dean Marengi \| Tuesday, January 10<sup>th</sup> 2023
 
 -   **Variable Name:** Smoking status 
 -   **Definition:** Whether or not the patient currently smokes cigarettes 
--   **Data Type:** Dichotomous (Yes/No) 
--   **Notes:** Smoking status was determined through self-report on the baseline questionnaire and verified with at clinical study visits.
+-   **Data Type:** Dichotomous (yes=1 | no=0)
+-   **Notes:** Smoking status was determined through self-report on the baseline questionnaire and verified at clinical study visits.
 :::
 :::
 ::::
@@ -234,7 +234,7 @@ Dean Marengi \| Tuesday, January 10<sup>th</sup> 2023
 -   **Data dictionaries are important tools in research**
     -   Provide a clear, standardized way of describing the data being used
 		-   Ensure consistency in how data should be interpreted by investigators
-		-   Overall, help to promotes transparent and reproducible research!
+		-   Overall, help to promote transparent and reproducible research!
 
 ::: {.small-break}
 :::
@@ -245,12 +245,11 @@ Dean Marengi \| Tuesday, January 10<sup>th</sup> 2023
 			  -   Detailed variable descriptions
 			  -   Data types
 			  -   Notes relevant to data collection procedures, calculations, etc.
-    -   Ensures consistency in data definitions across phases of research
-    -   Minimize errors and can help to improve reliability of research findings
+			  -   Any other details that will help for interpreting the data
 
 ## Key takeaways (cont.) {.smaller}
 
 -   **Data dictionaries should be kept up to date over the course of a project**
     -   Include new and derived variables
     -   Document changes in data collection and/or analysis methods
-    -   Ensures data are accessible and interpretable
+    -   Ensures data are interpretable
