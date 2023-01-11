@@ -662,12 +662,14 @@ mutate(.data, ...)
 **Examples**
 
 ::: fragment
-```{r, echo=T, eval=T, R.options=list(width=50)}
-# Compute 
+```{r, echo=T, eval=T, R.options=list(width=80)}
+# Derive new variabes 
 data %>% 
   mutate(weight_lbs = round(weight * 2.20462, 2), 
-         height_in = round(height * 0.393701, 2)) %>% 
-  select(id, height, height_in, weight, weight_lbs) 
+         height_in = round(height * 0.393701, 2),
+         age_55 = if_else(age >= 60, 1, 0)
+         ) %>% 
+  select(id, age, age_55, height, height_in, weight, weight_lbs)
 ```
 ::: 
 
@@ -690,7 +692,7 @@ summarize(.data, .groups = NULL)
 **Main arguments**
 
 -   `.data` = a data frame 
--   `.groups` = Name value pairs of the summary function(s) to apply
+-   `...` = Name value pairs of the summary function(s) to apply
 
 **Description**
 
@@ -721,7 +723,6 @@ data %>%
 
 :::
 ::::
-
 
 ## Example {.smaller}
 
@@ -779,7 +780,6 @@ names(data)
 -   Explicitly rename a few variables
 -   Select sequences columns of interest
     -   `pf.*` looks for names that begin with 'pf' (with no specific text thereafter)
-    -   This is a regular expressions pattern (more to come soon)
 -   Move the `pfas_total` column to the end
 -   [Output on next slide!]{.blue-bold}
 
