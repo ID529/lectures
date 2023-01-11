@@ -563,16 +563,16 @@
 <pre><code># A tibble: 15 × 3
       id group              num_gold_stars
    &lt;int&gt; &lt;chr&gt;                       &lt;int&gt;
- 1     2 i &lt;3 dplyr                     96
- 2    10 dplyr rocks                    93
- 3     7 dplyr rocks                   104
- 4    11 i &lt;3 dplyr                    104
- 5     5 i &lt;3 dplyr                    108
- 6    12 clean code or bust            105
- 7    15 clean code or bust            108
- 8     8 i &lt;3 dplyr                     94
- 9     3 clean code or bust             90
-10     9 clean code or bust            100
+ 1     2 i &lt;3 dplyr                    108
+ 2    10 dplyr rocks                   103
+ 3     7 dplyr rocks                    92
+ 4    11 i &lt;3 dplyr                    101
+ 5     5 i &lt;3 dplyr                    106
+ 6    12 clean code or bust             94
+ 7    15 clean code or bust             99
+ 8     8 i &lt;3 dplyr                     93
+ 9     3 clean code or bust             91
+10     9 clean code or bust             96
 # … with 5 more rows</code></pre>
 </div>
 </div>
@@ -596,11 +596,11 @@
 <pre><code># A tibble: 5 × 3
      id group      num_gold_stars
   &lt;int&gt; &lt;chr&gt;               &lt;int&gt;
-1     5 i &lt;3 dplyr            108
-2    14 i &lt;3 dplyr            105
-3    11 i &lt;3 dplyr            104
-4     2 i &lt;3 dplyr             96
-5     8 i &lt;3 dplyr             94</code></pre>
+1     2 i &lt;3 dplyr            108
+2     5 i &lt;3 dplyr            106
+3    11 i &lt;3 dplyr            101
+4     8 i &lt;3 dplyr             93
+5    14 i &lt;3 dplyr             91</code></pre>
 </div>
 </div>
 </div>
@@ -1181,26 +1181,28 @@ $ PFDE           &lt;dbl&gt; 0.20, 0.30, 0.10, 0.20, 0.10, NA, 0.20, 1.70, NA, 0
 </div><div class="column" style="width:54%;">
 <p><strong>Examples</strong></p>
 <div class="fragment">
-<div class="cell" data-r.options="{&quot;width&quot;:50}">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co"># Compute </span></span>
+<div class="cell" data-r.options="{&quot;width&quot;:80}">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co"># Derive new variabes </span></span>
 <span id="cb37-2"><a href="#cb37-2"></a>data <span class="sc">%&gt;%</span> </span>
 <span id="cb37-3"><a href="#cb37-3"></a>  <span class="fu">mutate</span>(<span class="at">weight_lbs =</span> <span class="fu">round</span>(weight <span class="sc">*</span> <span class="fl">2.20462</span>, <span class="dv">2</span>), </span>
-<span id="cb37-4"><a href="#cb37-4"></a>         <span class="at">height_in =</span> <span class="fu">round</span>(height <span class="sc">*</span> <span class="fl">0.393701</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb37-5"><a href="#cb37-5"></a>  <span class="fu">select</span>(id, height, height_in, weight, weight_lbs) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-4"><a href="#cb37-4"></a>         <span class="at">height_in =</span> <span class="fu">round</span>(height <span class="sc">*</span> <span class="fl">0.393701</span>, <span class="dv">2</span>),</span>
+<span id="cb37-5"><a href="#cb37-5"></a>         <span class="at">age_55 =</span> <span class="fu">if_else</span>(age <span class="sc">&gt;=</span> <span class="dv">60</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb37-6"><a href="#cb37-6"></a>         ) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-7"><a href="#cb37-7"></a>  <span class="fu">select</span>(id, age, age_55, height, height_in, weight, weight_lbs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,339 × 5
-   id    height height_in weight weight_lbs
-   &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
- 1 73568   152.      60.0   47.1       104.
- 2 73571   172.      67.9  102.        226.
- 3 73574   158       62.2   56.8       125.
- 4 73576   170.      67.1   67.3       148.
- 5 73577   166.      65.4   79.7       176.
- 6 73578   175.      69.0  109.        241.
- 7 73584   145.      57.0   53.1       117.
- 8 73587   169.      66.5  110.        243.
- 9 73597   180.      71.1  104.        230.
-10 73598   165       65.0   86.7       191.
+<pre><code># A tibble: 2,339 × 7
+   id      age age_55 height height_in weight weight_lbs
+   &lt;chr&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+ 1 73568    26      0   152.      60.0   47.1       104.
+ 2 73571    76      1   172.      67.9  102.        226.
+ 3 73574    33      0   158       62.2   56.8       125.
+ 4 73576    16      0   170.      67.1   67.3       148.
+ 5 73577    32      0   166.      65.4   79.7       176.
+ 6 73578    18      0   175.      69.0  109.        241.
+ 7 73584    13      0   145.      57.0   53.1       117.
+ 8 73587    14      0   169.      66.5  110.        243.
+ 9 73597    50      0   180.      71.1  104.        230.
+10 73598    20      0   165       65.0   86.7       191.
 # … with 2,329 more rows</code></pre>
 </div>
 </div>
@@ -1222,7 +1224,7 @@ $ PFDE           &lt;dbl&gt; 0.20, 0.30, 0.10, 0.20, 0.10, NA, 0.20, 1.70, NA, 0
 <p><strong>Main arguments</strong></p>
 <ul>
 <li><code>.data</code> = a data frame</li>
-<li><code>.groups</code> = Name value pairs of the summary function(s) to apply</li>
+<li><code>...</code> = Name value pairs of the summary function(s) to apply</li>
 </ul>
 <p><strong>Description</strong></p>
 <ul>
@@ -8381,7 +8383,6 @@ $ PFDE           &lt;dbl&gt; 0.20, 0.30, 0.10, 0.20, 0.10, NA, 0.20, 1.70, NA, 0
 <li>Select sequences columns of interest
 <ul>
 <li><code>pf.*</code> looks for names that begin with ‘pf’ (with no specific text thereafter)</li>
-<li>This is a regular expressions pattern (more to come soon)</li>
 </ul></li>
 <li>Move the <code>pfas_total</code> column to the end</li>
 <li><span class="blue-bold">Output on next slide!</span></li>
