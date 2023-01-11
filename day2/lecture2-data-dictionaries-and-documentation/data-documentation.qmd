@@ -245,11 +245,10 @@ Dean Marengi \| Tuesday, January 10<sup>th</sup> 2023
 			  -   Detailed variable descriptions
 			  -   Data types
 			  -   Notes relevant to data collection procedures, calculations, etc.
-			  -   Any other details that will help for interpreting the data
+			  -   Any other details that will help to interpret the data
 
 ## Key takeaways (cont.) {.smaller}
 
 -   **Data dictionaries should be kept up to date over the course of a project**
     -   Include new and derived variables
     -   Document changes in data collection and/or analysis methods
-    -   Ensures data are interpretable

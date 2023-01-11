@@ -8,6 +8,7 @@ format:
     footer: "<https://id529.github.io/>"
 ---
 
+
 # Text Manipulation with R {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
 
 ::: {.white-15-pt}
@@ -180,6 +181,7 @@ Dean Marengi \| Wednesday, January 11<sup>th</sup>, 2023
 :::
 
 ::: {.column column-width="40%"}
+
 ```{r, echo=T}
 # Load tidyverse
 library(tidyverse)
@@ -199,6 +201,7 @@ str_view_all(string, pattern = "e(?!x|\\sa)")
 # Match exclamation point or spaces
 str_view_all(string, pattern = "\\!|\\s")
 ```
+
 :::
 ::::
 
@@ -352,10 +355,12 @@ Source: <https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf>
 Cheat-sheet: <https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf>
 :::
 
+
 ```{r}
 text <- "It was the best of times, it was the worst of times, it was an ID 529 lecture on text manipulation with R!!"
 files <- c("22419_neuropsych.csv", "22491_neuropsych.csv", "22248_neuropsych.csv", "NEW YEAR NEW ME version 22419.csv", "Summer Travel Plans.xlsx", "A Tale of Two Cites.pdf", "hodo_christmas_1.png", "hodo_christmas_2.png", "Frog and Toad - tomorrow.pdf")
 ```
+
   
 # `stringr` {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
 
@@ -411,10 +416,12 @@ Cheat-sheet: <https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf>
 -   A vector can contain a lot of different things (files names, numbers, words, etc.)
 -   [A simple way to conceptualize a vector is by thinking of it as a column in a table of  data]{.blue-bold}
 
+
 ```{r, echo=T, collapse=T}
 vector <- c("element 1", "element 2", "...", "element n")
 data.frame(column = vector)
 ```
+
 
 
 ![](images/gif-vector-to-column.gif){.absolute height="35%" left="260" bottom="75"}
@@ -444,6 +451,7 @@ data.frame(column = vector)
 ::: {.small-break}
 :::
 
+
 ```{r, echo=T}
 # Load stringr library
 library(stringr)
@@ -451,11 +459,13 @@ library(stringr)
 # Create a simple text string and print
 text_string <- "  Text manipulation with R is    FUN!!!   "
 ```
+
 :::
 
 ::: {.column width="45%"}
 ::: {.fragment}
 **Examples**
+
 ```{r, echo=T, eval=F}
 # To lower case
 str_to_lower(text_string)
@@ -475,11 +485,13 @@ str_trim(text_string, side = "both")
 # Remove white space, and extra internal spaces
 str_squish(text_string)
 ```
+
 :::
 
 <br>
 
 ::: {.fragment}
+
 ```{r, echo=F, eval=T, collapse=T}
 str_to_lower(text_string)
 str_to_upper(text_string)
@@ -488,6 +500,7 @@ str_to_sentence(text_string)
 str_trim(text_string)
 str_squish(text_string)
 ```
+
 :::
 :::
 ::::
@@ -503,9 +516,11 @@ str_squish(text_string)
 ::: {.column width="45%"}
 **Main arguments**
 
+
 ```{r, echo=T, eval=F}
 str_detect(string, pattern, negate = FALSE)
 ```
+
 
 -   `string` = A character vector
 -   `pattern` = The pattern to look for
@@ -525,6 +540,7 @@ str_detect(string, pattern, negate = FALSE)
 
 ::: {.column width="50%"}
 **Examples**
+
 ```{r, echo=T, eval=T, collapse=T}
 #| code-line-numbers: "|1-2|1-6|1-10|1-14|1-18|1-22|1-26|1-30"
 # Character vector containing animal names as elements
@@ -551,6 +567,7 @@ str_detect(string, pattern ="(?<=[aeiou])g")
 # Elements where 'g' is FOLLOWED OR PRECEDED BY a vowel 
 str_detect(string, pattern = "g(?=[aeiou])|(?<=[aeiou])g")
 ```
+
 :::
 ::::
 
@@ -566,9 +583,11 @@ str_detect(string, pattern = "g(?=[aeiou])|(?<=[aeiou])g")
 ::: {.column width="45%"}
 **Main arguments**
 
+
 ```{r, echo=T, eval=F}
 str_subset(string, pattern, negate = FALSE)
 ```
+
 
 -   `string` = A character vector
 -   `pattern` = The pattern to look for
@@ -591,6 +610,7 @@ str_subset(string, pattern, negate = FALSE)
 
 ::: {.column width="50%"}
 **Examples**
+
 ```{r, echo=T, eval=T, collapse=T}
 #| code-line-numbers: "|1-2|1-6|1-10|1-14|1-18|1-25|1-29"
 string 
@@ -615,6 +635,7 @@ str_which(string, "g(?=[aeiou])") # returns indices
 # Elements where 'g' is PRECEDED BY a vowel
 str_subset(string, "(?<=[aeiou])g")
 ```
+
 :::
 ::::
 
@@ -631,10 +652,12 @@ str_subset(string, "(?<=[aeiou])g")
 ::: {.column width="45%"}
 **Main arguments**
 
+
 ```{r, echo=T, eval=F}
 str_replace(string, pattern, replacement)
 str_replace_all(string, pattern, replacement)
 ```
+
 
 -   `string` = A character vector
 -   `pattern` = The pattern to look for
@@ -655,6 +678,7 @@ str_replace_all(string, pattern, replacement)
 
 ::: {.column width="50%"}
 **Examples**
+
 ```{r, echo=T, eval=T, collapse=T}
 #| code-line-numbers: "|1-2|1-6|1-10|1-14|1-18|1-22|1-27"
 string
@@ -678,6 +702,7 @@ str_replace_all(string, "[^aeiou]", "*")
 # o{2}: read "o matches exactly 2 times
 str_replace_all(string, "o{2}", "*")
 ```
+
 :::
 ::::
 
@@ -692,10 +717,12 @@ str_replace_all(string, "o{2}", "*")
 ::: {.column width="45%"}
 **Main arguments**
 
+
 ```{r, echo=T, eval=F}
 str_extract(string, pattern)
 str_extract_all(string, pattern, simplify = FALSE)
 ```
+
 
 -   `string` = A character vector
 -   `pattern` = The pattern to look for
@@ -716,6 +743,7 @@ str_extract_all(string, pattern, simplify = FALSE)
 
 ::: {.column width="50%"}
 **Examples**
+
 ```{r, echo=T, eval=T, collapse=T}
 #| code-line-numbers: "|1-2|1-6|1-10|1-27|1-31"
 string
@@ -732,6 +760,7 @@ str_extract_all(string, pattern = "[^aeiou]")
 # Extract character vector for the 5th list element
 str_extract_all(string, pattern = "[^aeiou]")[[5]]
 ```
+
 :::
 ::::
 
@@ -763,6 +792,7 @@ str_extract_all(string, pattern = "[^aeiou]")[[5]]
 
 ## Case study: Import the data{.smaller}
 
+
 ```{r, echo=T,  R.options = list(width = 130)}
 # Load packages
 library(kableExtra) # For formatting table output 
@@ -774,7 +804,9 @@ data <- read_csv("data/messy_data.csv", na = character())
 glimpse(data)
 ```
 
+
 ## Case study: Check distinct values {.smaller}
+
 
 ```{r, echo=T, R.options = list(width = 130)}
 #| output-location: fragment
@@ -800,8 +832,10 @@ check_distinct <- function(data) {
 check_distinct(data)
 ```
 
+
 ## Case study: Clean-up column names {.smaller}
 **One approach**
+
 
 ```{r, echo=T, tidy = 'stylr', R.options = list(width = 130)}
 # Chain together column name clean-up steps
@@ -822,8 +856,10 @@ new_data <- data %>%
 check_distinct(new_data)
 ```
 
+
 ## Case study: Clean-up column names {.smaller}
 **Another approach**
+
 
 ```{r, echo=T, R.options = list(width = 130)}
 #| output-location: column
@@ -857,7 +893,9 @@ data %>%
 ```
 
 
+
 ## Case study: Clean up values {.smaller}
+
 
 ```{r, echo=T, R.options = list(width = 130)}
 # Begin cleaning up values in the data
@@ -882,7 +920,9 @@ check_distinct(new_data)
 ```
 
 
+
 ## Case study: Clean up more values {.smaller}
+
 
 ```{r, echo=T, R.options = list(width = 130)}
 # Correct response values for GAD-7 questions 1 and 2
@@ -901,7 +941,9 @@ new_data <- new_data %>%
 check_distinct(new_data)
 ```
 
+
 ## Case study: Coerce data types/derive variables {.smaller}
+
 
 ```{r, echo=T, R.options = list(width = 130)}
 #| output-location: slide
@@ -927,6 +969,7 @@ new_data <- new_data %>%
     
 check_distinct(new_data)
 ```
+
 
 
 ## Key takeaways {.smaller}

@@ -6,6 +6,11 @@ format:
     logo: images/id529-sticker.png
     slide-number: true
     footer: "<https://id529.github.io/>"
+revealjs-plugins:
+  - pointer
+  - confetti
+execute: 
+  echo: true
 ---
 
 # Data Manipulation with dplyr {.white-title .white-code background-image="images/bg-planet-1.png" background-size="110% auto"}
@@ -18,56 +23,72 @@ ID 529: Data Management and Analytic Workflows in R
 Dean Marengi \| Wednesday, January 11<sup>th</sup>, 2023
 :::
 
-## Context {.smaller}
--   **So far, we've learned a bit about:**
-  -   [Fundamentals]{.blue-bold} of R programming using base R syntax
-  -   [Importing]{.blue-bold} data into R
-  -   [Visualizing]{.blue-bold} data using `ggplot`
-
-<br>
-
--   **Base R is very powerful for data manipulation, but can be difficult to write and read**
-    -   Complex code that's time-consuming to write can threaten reproducibility
-    -   `dplyr` and other R packages emphasize writing clean, readable, and efficient code
-    -   We can leverage these R packages to:
-        -   Write efficient R code to perform most data manipulation tasks
-        -   Chain together data manipulation operations in a logical, concise sequence
-
-## Learning objectives {.smaller}
-
--   **Understand the basic principles of dplyr**
-    -   Data structures
-    -   Core functions for data manipulation
-    <!-- -   `rename()` -->
-    <!-- -   `select()` -->
-    <!-- -   `mutate()` -->
-    <!-- -   `filter()` -->
-    <!-- -   `arrange()` -->
+## Motivation {.smaller}
 
 ::: {.small-break}
 :::
 
--   **Understand utility functions that help `dplyr` functions perform specific tasks. For example:**
-    -   Performing column- and row-wise operations
-    -   Modifying data based on conditional logic
+-   **We've now learned a bit about:**
+    -   [Fundamentals]{.blue-bold} of R programming using base R syntax
+    -   [Importing]{.blue-bold} data into R
+    -   [Visualizing]{.blue-bold} data using `ggplot`
+
+::: {.small-break}
+:::
+
+-   **Data are rarely free of issues when they are first collected or received** 
+    -   We need efficient tools to process and clean them!
+
+::: {.small-break}
+:::
+
+-   **Base R is very powerful for data manipulation, but can be difficult to write and read**
+    -   Complex code that's time-consuming to write can threaten reproducibility
+    -   `dplyr` and other R packages emphasize writing clean, readable code
+
+::: {.small-break}
+:::
+
+-   **We can leverage these R packages to:**
+    -   Write efficient code to perform most data manipulation tasks
+    -   Chain together data manipulation operations in a concise sequence
+
+## Learning objectives {.smaller}
+
+-   **Understand the basic principles of dplyr**
+    -   Core functions for data manipulation
 
 ::: {.small-break}
 :::
 
 -  **Learn how to implement `dplyr` functions to prepare data for analysis**
-    -   Identifying and correcting data quality issues
+    -   Identifying data quality issues
     -   Restructuring and organizing data
     -   Deriving new variables
 
+::: {.small-break}
+:::
+
+-   **Learn about other functions that help core `dplyr` functions perform specific tasks**
+    -   Transforming multiple columns at once
+    -   Using conditional logic to create new columns
+
+::: {.small-break}
+:::
+
 ## What is data manipulation? {.smaller}
+
+<br>
 
 -   **The common tasks**
     -   Cleaning and renaming variables 
     -   Selecting a subset of columns to work with from a larger dataset
     -   Creating new variables (e.g., based on conditionals or calculations involving other columns)
     -   Filtering data for a subset of rows (e.g., based on a specific group)
+    -   Summarizing data
   
 # `dplyr::` a grammar of data manipulation {.white-code .white-title background-image="images/bg-planet-4.png" background-size="110% auto"}
+
 
 ## `dplyr` overview {.smaller}
 
@@ -76,8 +97,9 @@ Dean Marengi \| Wednesday, January 11<sup>th</sup>, 2023
 :::: {.columns}
 ::: {.column width="60%"}
 -   Part of the core `tidyverse` package ecosystem
--   Fast and efficient functions for performing common data manipulation tasks
--   Concise syntax for chaining together data cleaning steps
+-   Functions for performing common data manipulation tasks
+-   Fast and efficient with concise syntax
+    -   Chain together data cleaning steps
     -   Improves code readability
 
 ::: {.small-break}
@@ -90,15 +112,6 @@ Dean Marengi \| Wednesday, January 11<sup>th</sup>, 2023
     -   `filter()`: Subset observations using conditionals
     -   `arrange()`: Reorder observations based on data
     -   `summarize()`: Reduce rows into a summary value
-:::
-
-::: {.small-break}
-:::
-
-::: {.column width="35%"}
-<br> <br>
-
-[This is not an exhaustive list! We will discuss `dplyr` join, summary, and other functions in subsequent lectures]{.blue-bold}
 :::
 ::::
 
@@ -118,7 +131,7 @@ Dean Marengi \| Wednesday, January 11<sup>th</sup>, 2023
 ::: {.small-break}
 :::
 
--   Uses the `%>%` ("pipe") operator
+-   **Uses the `%>%` ("pipe") operator**
     -   Imported from `magrittr` package
     -   Can "pipe" function output from one data manipulation step to the next
     -   Produces clean, readable code that reads from left to right, top to bottom
@@ -146,10 +159,12 @@ our_data <- our_data %>%
   as_tibble()
 ```
 
+**Example**
+
 ::: fragment
 ```{r}
-# Print the first 8 rows only (for slide formatting)
-print(our_data, n = 8)
+# Print first 10 rows
+print(our_data, n = 10)
 ```
 :::
 
@@ -169,7 +184,7 @@ new_data <- our_data %>%
 :::
 
 ::: fragment
-```{r}
+```{r, echo=F}
 print(new_data)
 ```
 :::
@@ -181,59 +196,85 @@ print(new_data)
 <https://dplyr.tidyverse.org/articles/dplyr.html>
 :::
 
-## `dplyr` syntax overview (cont.) {.smaller}
+<!-- ## `dplyr` syntax overview (cont.) {.smaller} -->
 
-:::: {.columns}
-::: {.column width=50%}
+<!-- :::: {.columns} -->
+<!-- ::: {.column width=50%} -->
 
-  -   **Dot notation**   
-      -   `.`: 
-      -   `.data`:
-      -   `.x`:
-      
-::: {.small-break}
-:::
+<!--   -   **Dot notation**    -->
+<!--       -   `.`:  -->
+<!--       -   `.data`: -->
+<!--       -   `.x`: -->
 
-  -   **In-place pipe operator** `%<>%`
-      -   Combines `%>%` and `<-`
-      -   Can be used in place of `<-`
-      -   Assigns result back to the data frame object on which data manipulation operations are being performed
-      -   Use of `%<>%` vs `<-` is a [matter of preference]{.blue-bold}
-:::
+<!-- ::: {.small-break} -->
+<!-- ::: -->
 
-::: {.column width=50%}
-:::
+<!--   -   **In-place pipe operator** `%<>%` -->
+<!--       -   Combines `%>%` and `<-` -->
+<!--       -   Can be used in place of `<-` -->
+<!--       -   Assigns result back to the data frame object on which data manipulation operations are being performed -->
+<!--       -   Use of `%<>%` vs `<-` is a [matter of preference]{.blue-bold} -->
+<!-- ::: -->
 
-::::
+<!-- ::: {.column width=50%} -->
+<!-- ::: -->
+<!-- :::: -->
 
 ## `dplyr` vs base R syntax {.smaller}
 
--   Update this table to include column that briefly explains what each function does
+![](images/dplyr-vs-base.png){.absolute bottom="5%" left="15%" height=80%}
 
-![](images/dplyr-rbase-comparison.png){fig-align="center" height="95%"}
+::: aside 
+`dplyr` vs base R vignette:<https://dplyr.tidyverse.org/articles/base.html>
+:::
 
 ## Example dataset {.smaller}
 
 :::: {.columns}
 ::: {.column width=50%}
--   `NHANES` dataset available on the ID529 github
+
+**Overview**
+
+-   `NHANES` dataset available on the ID529 GitHub
 -   The dataset includes individual-level:
     -   Demographic and clinical characteristics
     -   Socioeconomic parameters 
     -   Blood measures of PFAS/PFOA
     -   Dietary intake parameters
-
+  
 ::: {.small-break}
 :::
--   We will use a subset of these variables to demonstrate how to implement `dplyr` for common data manipulation tasks
+
+-   **For our examples, we will include a subset of these variables**
+    -   `id`, `age`, `race_ethnicity`
+    -   `mean_BP`, `height`, `weight`
+    -   `pfos`, `pfoa`, `pfna`, `pfhs`, `pfde`
 :::
-::::
-```{r}
+
+<br> <br> <br>
+
+
+::: {.column width=50%}
+```{r, echo=F}
+library(tidyverse)
 library(ID529data)
 data(nhanes_id529, package = 'ID529data')
 
-nhanes_id529
+data <- nhanes_id529 %>%
+  select(id, age, race_ethnicity, mean_BP, height, weight, poverty_ratio, PFOS:PFDE) %>% as_tibble()
 ```
+
+::: {.code-break}
+:::
+
+```{r, echo=T}
+glimpse(data, width = 50)
+```
+
+
+:::
+::::
+
 
 
 <!-- Although datasets can be manipulated in sophisticated ways by linking the 5 verbs of dplyr in conjunction, linking verbs together can be a bit verbose. -->
@@ -242,84 +283,656 @@ nhanes_id529
 
 ## `dplyr::rename()` {.smaller}
 
-<!-- :::: {.columns} -->
-<!-- :::{.column width="50%"} -->
--   `rename()`: Change names of specified variables in a data frame
--   **Arguments (inputs)**
-    -   A data frame
-    -   The column name(s) to update and new name(s) to assign
-        -   **Format:** `old_name = new_name`
--   `rename()` and other `dplyr` functions return a modified data frame
-    -   This means we need to assign the result to either: 
-      -   The data frame we are performing operations on (update in place)
-      -   A new data frame object
-
-:::{.small-break}
+::: {.small-break}
 :::
 
--   `rename_with()`: Change variable names using a function
--   **Arguments (inputs)**
-    -   A data frame
-    -   The column name(s) to update and new name(s) to assign
-        -   **Format:** `old_name = new_name`
-      
-<!-- ::: -->
-<!-- :::: -->
+:::: {.columns}
+::: {.column width="45%"}
+**Function(s)**
 
-<!-- ```{r, echo=T} -->
-<!-- #| output-location: column-fragment -->
+```{r, echo=T, eval=F}
+rename(.data, ...)
+rename_with(.data, .fn, .cols = everything(), ...)
+```
 
-<!-- our_data %>% -->
-<!--   filter(group == "dplyr rocks") -->
+**Main arguments**
 
-<!-- ``` -->
+-   `.data` = a data frame 
+-   `rename()`
+    -   `...` = variables to replace
+        - format: `new_name` = `old_name` 
+-   `rename_with()`
+    -   `.fn` = function to apply over multiple selected columns
+    -   `.cols` = the columns to rename
 
+**Description**
+
+-   [Rename individual variables, or multiple variables by applying a function]{.blue-bold}
+<!-- -   Returns a data frame with updated column names; other attributes are maintained -->
+:::   
+  
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+
+**Examples**
+
+::: fragment
+```{r, echo=T, eval=T, R.options=list(width=50)}
+# Explicitly rename variables in the dataset
+rename(data, 
+       sbp = mean_BP,
+       pov_ratio = poverty_ratio,
+       race_eth = race_ethnicity,
+       ) %>% 
+  glimpse()
+``` 
+::: 
+:::
+::::
+
+## `dplyr::rename()` cont. {.smaller}
+
+```{r, echo=T, eval=T, R.options=list(width=100)}
+# Convert all columns names to lower case
+rename_with(data, .fn = tolower) %>% 
+  glimpse()
+```
+
+
+```{r, echo=T, eval=T, R.options=list(width=100)}
+# Convert column names that start with PF to upper case 
+rename_with(data, .fn = toupper, starts_with("pf")) %>% 
+  glimpse()
+```
 
 ## `dplyr::filter()` {.smaller}
+
+::: {.small-break}
+:::
+
+:::: {.columns}
+::: {.column width="45%"}
+**Function(s)**
+
+```{r, echo=T, eval=F}
+filter(.data, ...)
+```
+
+**Main arguments**
+
+-   `.data` = a data frame 
+-   `...` = Expressions for filtering the data frame, which evaluate to `TRUE` or `FALSE`
+
+**Description**
+
+-   [Subsets  observations based on their values]{.blue-bold}
+-   Expressions use operators
+    -   **Comparison:** [>]{.blue-bold}, [>=]{.blue-bold}, [<]{.blue-bold}, [<=]{.blue-bold}, [!=]{.blue-bold}, [==]{.blue-bold}
+    -   **Logical:** [!]{.blue-bold}, [&]{.blue-bold}, [|]{.blue-bold}, [xor]{.blue-bold}
+    -   **Binary operator:** [%in%]{.blue-bold}
+-   Returns a data frame with a subset of rows where conditions evaluated to `TRUE`
+:::   
+  
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+
+**Examples**
+
+::: fragment
+```{r, echo=T, eval=F}
+# Filter for ages greater than or equal to 50
+filter(data, age >= 50)
+
+# Filter for ages between 18 and 60
+filter(data, age  %in% c(18:60))
+``` 
+::: 
+
+::: {.code-break}
+:::
+
+::: fragment
+```{r, echo=T, eval=F}
+# Filter for Hispanic participants only
+filter(data, race_ethnicity == "Hispanic")
+
+# Filter for Hispanic participants between 
+# 18 and 60 years old
+filter(data, 
+       race_ethnicity == "Hispanic" & age %in% c(18:60)
+       )
+```
+:::
+
+::: {.code-break}
+:::
+
+::: fragment
+```{r, echo=T, eval=F}
+# Subset data for participants whose age 
+# is not greater than 60 and mean SBP 
+# is not greater than 120
+filter(data, !(age > 60 | mean_BP > 120))
+
+# This logic achieves the same result
+filter(data, age <= 60, mean_BP <= 120)
+```
+:::
+
+::: {.code-break}
+:::
+
+::: fragment
+```{r, echo=T, eval=F}
+# Subset data for observations where poverty
+# ratio IS missing (NA)
+filter(data, is.na(poverty_ratio))
+
+# Subset data for observations where poverty
+# ratio is NOT missing (NA)
+filter(data, !is.na(poverty_ratio))
+```
+:::
+
+:::
+::::
+  
+
+## `dplyr::filter()` {.smaller}
+
+```{r, echo=T, eval=T, R.options=list(width=100)}
+# Subset data for observations where poverty
+# ratio IS missing (NA)
+filter(data, is.na(poverty_ratio))
+```
   
 ## `dplyr::arrange()` {.smaller}
 
+::: {.small-break}
+:::
+
+:::: {.columns}
+::: {.column width="45%"}
+**Function(s)**
+
+```{r, echo=T, eval=F}
+arrange(.data, ..., .by_group = FALSE)
+```
+
+**Main arguments**
+
+-   `.data` = a data frame 
+-   `...` = Variables or expressions to order rows by
+-   `.by_group` = Sort by first grouping variable (grouped data frames, only)
+
+**Description**
+
+-   [Orders data frame rows by values in specified columns]{.blue-bold}
+-   Can order by more than one column
+-   Defaults to ordering from lowest-to-highest
+    -   `desc()` = descending order
+-   Missing values are sorted last (NAs at bottom)
+
+:::   
+  
+::: {.column width="1%"}
+<br>
+:::
+
+::: {.column width="54%"}
+**Examples**
+
+::: fragment 
+```{r, echo=T, eval=T, R.options=list(width=50)}
+# Take the data frame (data)
+# Then arrange rows by age (in ascending order)
+# Then print the first 5 rows
+arrange(data, age) %>% 
+  head(n = 5)
+``` 
+:::
+
+::: fragment
+```{r, echo=T, eval=T, R.options=list(width=50)}
+# Take the data frame (data)
+# Then arrange rows by age, then mean SBP (descending)
+# Then print the first 5 rows
+arrange(data, desc(age), desc(mean_BP)) %>% 
+  head(n = 5)
+```
+::: 
+
+:::
+::::
+
 ## `dplyr::select()` {.smaller}
 
-## `dplyr::accross()` {.smaller}
+::: {.small-break}
+:::
+
+:::: {.columns}
+::: {.column width="45%"}
+**Function(s)**
+
+```{r, echo=T, eval=F}
+select(.data, ..., .by_group = FALSE)
+```
+
+**Main arguments**
+
+-   `.data` = a data frame 
+-   `...` = Variable name(s) and/or expressions to select columns
+
+**Description**
+
+-   [Selects variables in a data frame]{.blue-bold}
+    -   Variable names referenced without quotes
+    -   `select` [helper functions]{.blue-bold} can select columns using specific operations
+        -   E.g., select variables where column names contain the string "bp"
   
+:::   
+  
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+
+**Examples**
+
+::: fragment
+```{r, echo=F, R.options=list(width=60)}
+names(data)
+```
+::: 
+
+::: fragment
+```{r, echo=T, eval=T, R.options=list(width=50), collapse=F}
+# From the data frame, select columns explicitly by name 
+data %>% 
+  select(age, height, weight, mean_BP) %>% 
+  head(n=4)
+``` 
+:::
+
+::: fragment
+```{r}
+data %>%
+  select(id:race_ethnicity, PFOS:PFDE) %>% 
+  head(n=4)
+```
+::: 
+
+:::
+::::
+
+## `dplyr::select()` helpers {.smaller}
+
+-   **Select variables by matching patterns in their names**
+    -   `everything()`: Matches all variables.
+    -   `last_col()`: Select last variable, possibly with an offset.
+
+::: {.small-break}
+:::
+
+-   **Select variables by matching patterns in their names**
+    -   `starts_with()`: Starts with a prefix
+    -   `ends_with()`: Ends with a suffix
+    -   `contains()`: Contains a literal string
+    -   `matches()`: Matches a regular expression
+
+::: {.small-break}
+:::
+
+-   **Select variables from a character vector:**
+    -   `all_of()`: Matches variable names in a character vector. All names must be present, otherwise an out-of-bounds error is thrown.
+    -   `any_of()`: Same as all_of(), except that no error is thrown for names that don't exist.
+
+::: {.small-break}
+:::
+
+-   **Selects variables with a function**
+    -   `where()`: Applies a function to all variables and selects those for which the function returns TRUE.
+
+::: {.absolute .popup bottom="40%" right="-10%" width="52%"}
+<https://dplyr.tidyverse.org/reference/select.html>
+:::
+
+## `dplyr::select()` helpers {.smaller}
+
+```{r, echo=T, R.options=list(width=100)}
+# From the data frame, select id and columns that
+# are prefixed with PF
+data %>% 
+  select(id, starts_with("PF")) %>% 
+  head(n = 4)
+```
+
+::: {.code-break}
+:::
+
+```{r, echo=T, R.options=list(width=100)}
+
+# Bring ID and PFAS variables to the beginning of the dataset
+# then position all non-selected variables after them
+data %>% 
+  select(id, starts_with("PF"), everything()) %>% 
+  head(n = 4)
+```
+
+
 ## `dplyr::mutate()` {.smaller}
+  
+::: {.small-break}
+:::
 
-## `dplyr::if_else()` {.smaller}
+:::: {.columns}
+::: {.column width="45%"}
+**Function(s)**
 
-## `dplyr::case_when()` {.smaller}
+```{r, echo=T, eval=F}
+mutate(.data, ...)
+```
+
+**Main arguments**
+
+-   `.data` = a data frame 
+-   `...` = Name value pairs
+
+**Description**
+
+-   [Changes the values of columns and creates new columns.]{.blue-bold}
+    -   i.e., adds new variables   
+-   Will overwrite variables that share the same name
+-   Missing values are sorted last (NAs at bottom)
+
+:::   
+  
+::: {.column width="1%"}
+<br>
+:::
+
+::: {.column width="54%"}
+**Examples**
+
+::: fragment
+```{r, echo=T, eval=T, R.options=list(width=50)}
+# Compute 
+data %>% 
+  mutate(weight_lbs = round(weight * 2.20462, 2), 
+         height_in = round(height * 0.393701, 2)) %>% 
+  select(id, height, height_in, weight, weight_lbs) 
+```
+::: 
+
+:::
+:::: 
   
 ## `dplyr::summarize()` {.smaller}
 
-## `dplyr::group_by()` {.smaller}
+::: {.small-break}
+:::
+
+:::: {.columns}
+::: {.column width="45%"}
+**Function(s)**
+
+```{r, echo=T, eval=F}
+summarize(.data, .groups = NULL)
+```
+
+**Main arguments**
+
+-   `.data` = a data frame 
+-   `.groups` = Name value pairs of the summary function(s) to apply
+
+**Description**
+
+-   [Creates a new data frame based on one or more summary functons]{.blue-bold}
+    -   Data frame has >1 rows if the data are grouped
+-   -   Has single row if there are no groups supplied 
+:::   
   
-## Case study (only do one)
+::: {.column width="1%"}
+<br>
+:::
 
--   1st slide: read in the data and display it
-You received a new dataset from your colleague. The data are stored in a single file. You take a look at the data. (show data)
+::: {.column width="54%"}
+**Examples**
+
+::: fragment
+```{r, echo=T, eval=T, R.options=list(width=50)}
+# Compute summary statistics for age by race/ethnicity
+data %>% 
+  filter(!is.na(race_ethnicity)) %>% 
+  group_by(race_ethnicity) %>% 
+  summarise(age_mean = mean(age, na.rm = T),
+            age_sd  = sd(age, na.rm = T), 
+            age_min = min(age, na.rm = T), 
+            age_max = max(age, na.rm = T))
+```
+:::
+
+:::
+::::
 
 
-You've used R to perform data analysis for many projects, and have a consistent workflow that you implement clean and prepare data for analysis. Based on what you observe in the data, write (or think through) pseudocode to perform these steps. What `dplr` functions can we use to perform these steps?
+## Example {.smaller}
+
+**Original nhanes_ID529 dataset**
+
+```{r, eval=T, echo=F, R.options=list(width=70)}
+paste0(names(nhanes_id529), collapse = " | ")
+```
+
+```{r, R.options=list(width=150)}
+# Print the data frame does not print t 
+print(nhanes_id529)
+```
+
+::: {.small-break}
+:::
+
+[Notice that the standard data frame does not print with information about data types, dataset dimensions, etc. Additionally, constraints of the slide width prevent information about other columns in the data frame from being displayed. Standard data frames run into similar print issues in the R console, which can make them difficult to work with]{.blue-bold}
+
+## Example {.smaller}
+
+```{r, echo = T, R.options=list(width=80)}
+# Coerce the data frame to a tibble data frame, and assign it to 'data'
+data <- as_tibble(nhanes_id529)
+
+# Print the tibble data frame
+data
+```
+
+::: {.small-break}
+:::
+
+[Okay, much better! The tibble data frame provides information about the dataset dimensions, data types, and is also more accommodating of the constrained print width (it still prints details about variables that are not able to be fully displayed). ]{.blue-bold}
+
+::: {.small-break}
+:::
+
+## Example {.smaller}
+
+:::: {.columns}
+::: {.column width=55%}
+
+**Let's use `dplyr` to organize these data**
+```{r, }
+# Print variable names for reference
+names(data)
+```
+:::
+
+::: {.column width=45%}
+
+**Clean-up steps**
+
+-   Change all variable names to lower case
+-   Explicitly rename a few variables
+-   Select sequences columns of interest
+    -   `pf.*` looks for names that begin with 'pf' (with no specific text thereafter)
+    -   This is a regular expressions pattern (more to come soon)
+-   Move the `pfas_total` column to the end
+-   [Output on next slide!]{.blue-bold}
+
+```{r, echo=T, R.options=list(width=200)}
+#| output-location: slide
+
+data <- data %>% 
+  rename_with(~ tolower(.)) %>% 
+  rename(
+    race_eth = race_ethnicity,
+    mean_sbp = mean_bp, 
+    pov_ratio = poverty_ratio
+    ) %>% 
+  select(id:race_eth, 
+         mean_sbp:height, 
+         pov_ratio, 
+         matches("pf.*")
+         ) %>% 
+  relocate(pfas_total, .after = last_col())
+data
+```
+:::
+::::
+
+## Example {.smaller}
+
+:::: {.columns}
+::: {.column width=50%}
+
+**Derive a variable for hypertension status**
+
+-   Use `case_when()` apply conditional logic
+    -   Derive hypertension categories
+
+```{r, echo=T, R.options=list(width=50)}
+data <- data %>%
+  mutate(htn_cat = factor(
+      case_when(
+        mean_sbp < 120 ~ "normal",
+        mean_sbp %in% c(120:129) ~ "elevated",
+        mean_sbp %in% c(130:139) ~ "stage1",
+        mean_sbp >= 140 ~ "stage2",
+        TRUE ~ NA_character_
+        )
+      ))
+
+# Print
+glimpse(data)
+```
+:::
+
+::: {.column width=50%}
+**Compute summary statistics for PFAS variables**
+
+-   Some methods implemented in this example will be discussed more next week
+```{r, echo=T, R.options=list(width=50)}
+
+data %>%
+  # Change to a long data format (more on this soon!)
+  pivot_longer(matches("pf.*"), 
+               names_to = "pfas_parameter",
+               values_to = "concentration"  
+               ) %>%
+  # Group the data by PFAS variable name
+  group_by(pfas_parameter) %>% 
+  # Compute some grouped summary statistics
+  summarize(mean = mean(concentration, na.rm = T),
+            sd = sd(concentration, na.rm = T),
+            med = median(concentration, na.rm = T),
+            min = min(concentration, na.rm = T),
+            max = max(concentration, na.rm = T)
+            ) %>% 
+  arrange(desc(mean))
+```
+:::
+::::
 
 
 
-We have a standard workflow for cleaning our data. We just began a new 
-  -   ask: what are some things we may want to do to clean this data
-  -   take suggestions, and then show a chain of data cleaning steps using dplyr
-  -   
+## `dplyr` `learnr` tutorial {.smaller}
 
-- HODO tip: glimpse()!
+<br>
 
-## Complete list of dplyr functions
-(might require 2 slides; descriptions would be nice if possible; shirnk text)
+**`learnr` is an R package for creating interactive tutorials with R markdown.**
 
-## Summary {.smaller}
+-   Install and load the `learnr` package
+-   Select one of the following three exercises to complete
+    -   `ex-data-filter`: Filtering observations
+    -   `ex-data-mutate`: Creating new variables
+    -   `ex-data-summarise`: Summarizing data 
 
-## Key takeaways {.smaller}
+::: {.code-break}
+:::
+
+```{r, echo=T, eval=F}
+# Install the learnr package
+install.packages("learnr")
+
+# Load learnr
+library("learnr")
+
+# Filtering observations 
+run_tutorial(name = "ex-data-filter", package = "learnr")
+
+# Creating new variables
+run_tutorial(name = "ex-data-mutate", package = "learnr")
+
+# Summarizing data
+run_tutorial(name = "ex-data-summarise", package = "learnr")
+```
+
+
+<!-- ## Key takeaways {.smaller} -->
   
-## References {.smaller}
-<https://magrittr.tidyverse.org/>
-<https://dplyr.tidyverse.org/>
-<https://dplyr.tidyverse.org/articles/dplyr.html>
+
   
-  
+## Resources {.smaller}
+
+::: {.small-break}
+:::
+
+**`dplyr` function reference**<https://dplyr.tidyverse.org/reference/index.html>
+
+::: {.small-break}
+:::
+-   **`dplyr` documentation:** <https://dplyr.tidyverse.org/>
+
+::: {.small-break}
+:::
+
+-   **Intro to `dplyr` vignette:** <https://dplyr.tidyverse.org/articles/dplyr.html>
+
+::: {.small-break}
+:::
+
+-   **`dplyr` vs base R vignette:** <https://dplyr.tidyverse.org/articles/base.html>
+
+::: {.small-break}
+:::
+
+-   **Programming with `dplyr` vignette:** <https://dplyr.tidyverse.org/articles/programming.html>
+
+::: {.small-break}
+:::
+
+-   **Column-wise operations vignette:** <https://dplyr.tidyverse.org/articles/colwise.html>
+
+::: {.small-break}
+:::
+
+-   **Row-wise operations vignette:**<https://dplyr.tidyverse.org/articles/rowwise.html>
+
+::: {.small-break}
+:::
+
+-   **Window functions vignette:**<https://dplyr.tidyverse.org/articles/window-functions.html>

@@ -406,20 +406,18 @@
 
 </div>
 <ul>
-<li><strong>We have now learned a bit about <code>dplyr</code> and how it can be used to:</strong>
+<li><strong>We’ve now been introduced to <code>dplyr</code> and how it can be used to:</strong>
 <ul>
 <li>Write efficient R code to perform basic data manipulation tasks</li>
 <li>Chain together data manipulation operations in a concise, readable sequence</li>
 </ul></li>
 </ul>
-<div class="small-break">
-
-</div>
+<p><br></p>
 <ul>
-<li><strong>However, we have not discussed methods for handling and manipulating text data</strong>
+<li><strong>But we have not yet discussed methods for handling and manipulating text data</strong>
 <ul>
 <li>Text manipulation is an important component of the data cleaning process</li>
-<li>Text strings introduce many challenges in the data cleaning process:
+<li>Text strings introduce many challenges, including:
 <ul>
 <li>Data import issues (data types, data structures)</li>
 <li>Inconsistent variable names</li>
@@ -427,11 +425,9 @@
 </ul></li>
 </ul></li>
 </ul>
-<div class="small-break">
-
-</div>
+<p><br></p>
 <ul>
-<li><span class="blue-bold">We must process and clean text strings before data analysis can occur</span></li>
+<li><span class="blue-bold">Often we need to process and clean text strings before data analysis can occur</span></li>
 </ul>
 </section>
 <section id="learning-objectives" class="slide level2 smaller">
@@ -664,7 +660,7 @@
 <section id="regex-syntax" class="slide level2 smaller">
 <h2>Regex syntax</h2>
 <p><br></p>
-<p><img data-src="images/cheatsheet-stringr-regex-overview-1.png" class="absolute" style="left: 0%; bottom: 8%; height: 80%; "></p>
+<p><img data-src="images/cheatsheet-stringr-regex-overview-1.png" class="absolute" style="left: 12%; bottom: 8%; height: 80%; "></p>
 <!-- ::: {.absolute .popup bottom="60%" right="0%" width="25%"} -->
 <!-- Add text -->
 <!-- ::: -->
@@ -1217,7 +1213,7 @@
 </section>
 <section class="slide level2">
 
-<p><img data-src="images/gif-absorbing-knowledge.gif" class="absolute" style="top: 10%; left: 7%; height: 70%; "> <img data-src="images/meme-regex-memory.png" class="absolute" style="top: 10%; right: 7%; height: 70%; "></p>
+<p><img data-src="images/gif-absorbing-knowledge.gif" class="absolute" style="top: 10%; left: 28%; height: 70%; "> <!-- ![](images/meme-regex-memory.png){.absolute height="70%" top="10%" right="7%"} --></p>
 </section></section>
 <section>
 <section id="case-study" class="title-slide slide level1 white-title white-code center" data-background-image="images/bg-no-planet.png" data-background-size="110%">
@@ -1950,22 +1946,58 @@ $ Medications        &lt;chr&gt; "none", "None", "None", "Celexa for Anxiety", "
 </div>
 </div></section><section id="key-takeaways" class="slide level2 smaller">
 <h2>Key takeaways</h2>
+<div class="small-break">
+
+</div>
+<ul>
+<li><span class="blue-bold">Text strings often contain inconsistent data, and are common in research data</span>
+<ul>
+<li>Data containing such issues must be standardized before it is used in an analysis!**</li>
+</ul></li>
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
+<li>Base R and <code>stringr</code> offer a range of functions for manipulating text strings</li>
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
+<li><code>stringr</code> is designed to work with <code>dplyr</code> and other tidyverse packages
+<ul>
+<li>Text manipulation can be performed in chained sequences with other data cleaning steps!</li>
+</ul></li>
+</ul>
+<div class="small-break">
+
+</div>
 <ul>
 <li>Regular expressions (regex) are a powerful tool for cleaning and preprocessing research data
 <ul>
 <li>Understanding when and how to implement regex will take some practice!</li>
 </ul></li>
-<li>Base R and <code>stringr</code> offer a range of functions for working with text and implementing regex</li>
-<li><code>stringr</code> is designed to work with <code>dplyr</code> and other tidyverse packages</li>
-<li>Text manipulation can be performed in chained sequences with other data cleaning steps!</li>
-<li>ADD</li>
 </ul>
 </section>
 <section id="resources" class="slide level2 smaller">
 <h2>Resources</h2>
+<div class="small-break">
+
+</div>
 <ul>
 <li><strong>RegExplain:</strong> <a href="https://github.com/gadenbuie/regexplain" class="uri">https://github.com/gadenbuie/regexplain</a></li>
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
 <li><strong>R for Data Science (strings):</strong> <a href="https://r4ds.had.co.nz/strings.html" class="uri">https://r4ds.had.co.nz/strings.html</a></li>
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
 <li><strong><code>stringr</code> vs.&nbsp;<code>Base R</code> text manipulation:</strong> <a href="https://stringr.tidyverse.org/articles/from-base.html" class="uri">https://stringr.tidyverse.org/articles/from-base.html</a></li>
 </ul>
 
