@@ -9,14 +9,14 @@ format:
 ---
 
 
-# On Reading Data into R {.white-title background-image="images/bg-collatz-2.png" background-size="cover"}
+# Importing Data into R {.white-title background-image="images/bg-collatz-2.png" background-size="cover"}
 
 ::: {.white-15-pt}
 ID 529: Data Management and Analytic Workflows in R
 :::
 
 ::: {.white-12-pt}
-Dean Marengi \| Tuesday, January 10<sup>th</sup>
+Dean Marengi \| Tuesday, January 10<sup>th</sup>, 2023
 :::
 
 ## 
@@ -32,10 +32,10 @@ Dean Marengi \| Tuesday, January 10<sup>th</sup>
 </center>
 
 
-## Context {.smaller}
+## Motivation {.smaller}
 
 - **So far, we've learned a bit about:**
-  -   [Data documentation]{.blue-bold} and its importance for reproducible research
+  -   [Data dictionaries]{.blue-bold} and their importance for reproducible research
   -   [Git and GitHub]{.blue-bold} for code version control and management
   -   [R and R Studio]{.blue-bold} as tools for working with and analyzing data
 
@@ -50,24 +50,25 @@ Dean Marengi \| Tuesday, January 10<sup>th</sup>
 
 ## Learning objectives {.smaller}
 
--   **Learn about [common storage methods]{.blue-bold} you may encounter as researcher**
+-   **Learn about common [data storage methods]{.blue-bold} you may encounter as researcher**
     -   Flat data files
     -   Statistical software files
     -   Excel files
     -   Databases
-    -   JSON
+   
+    <!-- -   JSON -->
 
 ::: {.small-break}
 :::
 
--  **Learn [different approaches for reading data]{.blue-bold} into R**
+-  **Learn [different approaches]{.blue-bold} for reading data into R**
     -   Base R functions
     -   R packages with functions to accommodate more file types
 
 ::: {.small-break}
 :::
 
--   **Understand the [potential challenges]{.blue-bold} one may encounter when reading data into R**
+-   **Understand the [potential challenges]{.blue-bold} you may face when reading data into R**
     -   File types
     -   Data formatting
     -   Data types
@@ -150,7 +151,7 @@ Dean Marengi \| Tuesday, January 10<sup>th</sup>
 -   Database tables can be queried from R once a connection is established
 
 
-## JSON {.smaller}
+<!-- ## JSON {.smaller} -->
 
 ## How can we import data into R? {.smaller}
 
@@ -205,32 +206,43 @@ Dean Marengi \| Tuesday, January 10<sup>th</sup>
 :::
 ::: {.column width="40%"}
 ```{r, eval = F, echo=T}
-read.table(file, 
-           header = FALSE, 
-           sep = "", 
-           quote = "\"'",
-           dec = ".", 
-           numerals = c("no.loss"),
-           row.names, 
-           col.names, 
-           as.is = !stringsAsFactors,
-           na.strings = "NA", 
-           colClasses = NA, 
-           nrows = -1,
-           skip = 0, 
-           check.names = TRUE, 
-           fill = !blank.lines.skip,
-           strip.white = FALSE, 
-           blank.lines.skip = TRUE,
-           comment.char = "#",
-           allowEscapes = FALSE, 
-           stringsAsFactors = FALSE,
-           fileEncoding = "")
+read.table(
+  file,
+  header = FALSE,
+  sep = "",
+  quote = "\"'",
+  dec = ".",
+  numerals = c("no.loss"),
+  row.names,
+  col.names,
+  as.is = !stringsAsFactors,
+  na.strings = "NA",
+  colClasses = NA,
+  nrows = -1,
+  skip = 0,
+  check.names = TRUE,
+  fill = !blank.lines.skip,
+  strip.white = FALSE,
+  blank.lines.skip = TRUE,
+  comment.char = "#",
+  allowEscapes = FALSE,
+  stringsAsFactors = FALSE,
+  fileEncoding = ""
+  )
 ```
 :::
 ::::
 
 ![](images/logo-base-r.png){.absolute right="0" bottom="1" height="25%"}
+
+## Example: `read.csv()` {.smaller}
+
+```{r, echo=T}
+# Read in the data
+data <- read.csv("data/cvdstudy.csv")
+
+data
+```
 
 
 # R Packages for Importing Data {.white-title background-image="images/bg-collatz-2.png" background-size="cover"}
@@ -293,7 +305,7 @@ read_csv(
 ## Example: `read_csv()` {.smaller}
 
 ```{r, echo=T}
-# Load readr package (not necessary if you've installed the tidyverse)
+# Load readr package (not necessary if you've loaded the tidyverse)
 library(readr)
 
 # Read in data, which is stored in a csv file 
@@ -309,7 +321,7 @@ data
 ## Example: `read_csv()` {.smaller}
 
 ```{r, echo=T}
-# Load readr package (not necessary if you've installed the tidyverse)
+# Load readr package (not necessary if you've loaded the tidyverse)
 library(readr)
 
 # Read in data and specify data types for specific columns 
@@ -531,21 +543,14 @@ str(data)
 -   Yes! Our data do have variable labels! 
   -   [Labels can be very helpful for providing further detail about variables in the dataset]{.blue-bold}
 
-
 ::: {.absolute top="31%" left="0" width="550"}
 ::: {.one-line-box .red}
 :::
 :::
 
-
 ![](images/read-dta-labels.png){.absolute right="0" bottom="195" height="29%"}
 
-
-## Common challenges and tips {.smaller}
--   File types 
--   Data formatting
--   Data types
-
+# Case Studies {.white-title background-image="images/bg-collatz-2.png"}
 
 ## Case study 1 {.smaller}
 
@@ -559,7 +564,7 @@ read_fwf("data/newstudy.txt")
 
 <br>
 
-[What additional information do you need from your colleague before you provide support?]{.blue-bold}
+[What additional information do you need from your colleague before you can provide support?]{.blue-bold}
 
 ## Case study 1 {.smaller auto-animate="true"}
 
@@ -578,15 +583,21 @@ col_names <- c("id", "age", "edu", "smoke", "cigs", "sbp", "dbp", "chol", "gluco
 data <- read_fwf("data/newstudy.txt", fwf_widths(widths = col_widths, col_names = col_names))
 ```
 
+![](images/codebook-example.png){.absolute right="0" bottom="0" height="65%"}
+
 . . .
 
 <br>
+
+:::: {.columns}
+::: {.column width="47%"}
 
 ```{r}
 # Look at the data
 data
 ```
-
+:::
+::::
 
 ## Case study 2 {.smaller}
 
@@ -606,50 +617,53 @@ data
 ## Case study 2 (cont.) {.smaller}
 
 -   The data structure issue can be resolved fairly easily
-    -   Use the `skip` argument skip the non-rectangular data at the top of the file
+    -   Use the `skip` argument to skip the non-rectangular data at the top of the file
     -   After rows are skipped, drop the first row of data containing units using `[-1,]`
 
-```{r}
+```{r, echo=T}
 # The data formatting issue can be 
-data <- read_xlsx("data/exercise.xlsx", skip = 3, col_types = "text", )[-1,]
+library(readxl)
+data <- read_xlsx("data/exercise.xlsx", skip = 3)[-1,]
 
 # Look at the data
 data
+
 ```
 
-
-[... But there's also an issue with the time variable, which should be formatted as minutes:seconds. Fixing this might be tricky, but let's give it a shot.]{.blue-bold}
-
-
 ## Case study 2  (cont.) {.smaller}
--   Add code to correct data type issue (incorrect time variable: should be M:S, source data does not have leading 0)
 
-## A note on exporting data {.smaller}
+```{r, echo=T}
+# Coerce all but the time column to a numeric data type
+data[2:11] <- sapply(data[2:11], as.numeric)
 
-- Add table 
+# Standardize the column names (all lower case)
+colnames(data) <- tolower(colnames(data))
 
-- package1 | read_* | write_*
-  - etc.
+data
+```
 
-
-## Summary {.smaller}
+## Key takeaways {.smaller}
 
 ::: incremental
--   Reading data into R is typically the first step in a data analysis workflow.
+-   Reading data into R is typically the first step in a data analysis workflow
 -   In addition to base R functions, many R packages include functions with more robust functionality
     -   Different functions have implications for how data are handled when read into R
         -   For example, whether the data are stored as a standard data frame or tibble data frame
             - Useful packages include: `readr`, `readxl`, and `haven` (but there are many more!)
 
--   Importing data is often straightforward, but there are potential challenges:
-  -   Idiosyncrasies data storage methods warrant specific considerations. For example:
-    -   Reading xls and xlsx excel files require specific functions, which can accommodate specific formatting issues
-      -   Skipping rows before reading data
-      -   Selecting a specific range of cells or sheets to read data
+::: {.small-break}
+:::
+
+  -   Idiosyncrasies in data storage methods warrant specific considerations. For example:
+      -   Reading xls and xlsx excel files require specific functions, which can accommodate specific formatting issues
+          -   Skipping rows before reading data
+          -   Selecting a specific range of cells or sheets to read data
+      
+::: {.small-break}
+:::
+
+-   [Always be vigilant about identifying potential issues during the data import process]{.blue-bold}
 
 :::
 
-## Key takeaways {.smaller}
-
-
-## References {.smaller}
+<!-- ## References {.smaller} -->

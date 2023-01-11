@@ -8,27 +8,247 @@ format:
     footer: "<https://id529.github.io/>"
 ---
 
-# Data Documentation {.smaller .white-text background-color="#3F569E"}
+# Data Dictionaries {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
 
 ::: white-15-pt
 ID 529: Data Management and Analytic Workflows in R
 :::
 
 ::: white-12-pt
-Dean Marengi \| Tuesday, January 10<sup>th</sup>
+Dean Marengi \| Tuesday, January 10<sup>th</sup> 2023
 :::
 
-## Context {.smaller}
+## Motivation {.smaller}
+
+-   **We've learned a bit about:**
+    -   [Git and GitHub]{.blue-bold} for code version control and management
+    -   [Reproducible]{.blue-bold} data analysis workflows
+
+<br>
+
+-   **But have not discussed data dictionaries and their role in reproducible research**
+    -   [Facilitate collaboration]{.blue-bold} with other researchers
+    -   [Provide clear and detailed information]{.blue-bold} about the data being used
+        -   Data sources and considerations
+        -   Structure and format
+        -   Variable definitions and interpretation of their values
 
 ## Learning objectives {.smaller}
 
-# Background {.smaller .white-text background-color="#3F569E"}
+-   **Understand the [importance of data dictionaries]{.blue-bold} for data analysis**
+    -   Ensuring consistency of data, and how the data are used
+    -   Facilitating research collaboration
 
-## Summary {.smaller}
+::: {.small-break}
+:::
+
+-   **Learn about the [common components]{.blue-bold} of data dictionaries**
+    -   Variable names and definitions
+    -   Data types
+    -   Value labels, and other attributes
+    -   Missing data codes
+
+::: {.small-break}
+:::
+
+-   **Discuss [creating and maintaining]{.blue-bold} data dictionaries**
+    -   Well-described entries
+    -   Keeping data dictionaries up-to date
+
+
+## What are data dictionaries? {.smaller}
+
+  -   **Data dictionaries**
+      -   Provide key information and metadata about variables included in a dataset
+      -   Serve as an important reference guide for data analysts
+      -   The structure, format, and contents will vary depending on the project
+
+::: {.small-break}
+:::
+
+-   **Core elements typically include**
+    -   A description of the study or data source(s)
+    -   Variable names, definitions (and units, where applicable)
+    -   Data types
+    -   Value labels
+    -   Calculations performed (where applicable)
+    -   Other details relevant to a specific project
+
+## Dataset descriptions {.smaller}
+
+::: {.small-break}
+:::
+
+-   [Dataset descriptions help to contextualize the data they contain]{.blue-bold}
+
+::: {.small-break}
+:::
+
+-   **Descriptions should typically include**
+    -   An overview of the project or data origins
+      -   [Why]{.blue-bold} the data were collected
+      -   [What]{.blue-bold} data was collected
+      -   [Who]{.blue-bold} collected the data
+      -   [When]{.blue-bold} the data were collected
+      -   Data collection methodology and related considerations
+          -   e.g., data quality issues
+    -   Other details relevant for specific projects
+          
+## Variable entries {.smaller}
+
+::: {.small-break}
+:::
+
+-   [Variable entries provide specific information pertaining to each variable in the data]{.blue-bold}
+  
+:::: {.columns}
+::: {.column width="50%"}
+
+-   **Entries should include**
+  -   Concise but descriptive variable names
+      -   Accurately reflect the underlying data
+  -   Detailed descriptions of what the variables are
+  -   Data type
+  -   Characteristics such as:
+      -   Units
+      -   Factor levels
+      -   Range of values
+      -   Transformations
+:::
+::::
+
+::: {.small-break}
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+
+  -   **You may also want to include:**
+      -   Links to relevant documentation
+      -   Notes on data quality issues
+      -   Other relevant information helpful for use and interpretation
+      -   Data type and format of the variable, including any missing data codes
+:::
+:::: 
+
+## Examples of variable entries {.smaller}
+
+:::: {.columns}
+::: {.column width="47.5%"}
+
+::: {.incremental}
+
+[Bad Entry]{.blue-bold}   
+
+-   **Variable Name:** Age
+-   **Definition:** Age of participant
+-   **Data Type:** Number
+-   **Notes:** N/A
+:::
+
+<br>
+
+::: {.incremental}
+[Good Entry]{.blue-bold} 
+
+-   **Variable Name:** Age 
+-   **Definition:** The age of the patient at the time of the study, measured in years 
+-   **Data Type:** Integer
+-   **Notes:** Age data was collected via self-report on the baseline questionnaire and verified with a government-issued ID.
+:::
+:::
+
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="47.5%"}
+::: {.incremental}
+[Bad Entry]{.blue-bold}  
+
+-   **Variable Name:** smk
+-   **Definition:** Smokes
+-   **Data Type:** Yes/No 
+-   **Notes:** N/A
+:::
+
+<br>
+
+::: {.incremental}
+[Good Entry]{.blue-bold}
+
+-   **Variable Name:** Smoking status 
+-   **Definition:** Whether or not the patient currently smokes cigarettes 
+-   **Data Type:** Dichotomous (yes=1 | no=0)
+-   **Notes:** Smoking status was determined through self-report on the baseline questionnaire and verified at clinical study visits.
+:::
+:::
+::::
+<!-- ![](images/codebook-example-desc.png){.absolute right="0" bottom="150" height="30%"} -->
+
+---
+
+![](images/codebook-example-vars.png){.absolute right="15%" bottom="15%" height="65%"}
+
+
+## Common mistakes {.smaller}
+
+-   **Insufficient detail**
+    -   Inconsistent and poor variable naming conventions
+    -   Imprecise or vague definitions
+    -   Omission of pertinent information about data quality issues
+
+::: {.smaller}
+:::
+
+-  **Inaccuracies**
+    -   Failure to keep current with evolving research
+    -   Discrepancies with the dataset
+    
+::: {.smaller}
+:::
+
+-   **Poor standardization and formatting** 
+    -   Difficult for others to understand
+    -   Inconsistencies make it difficult to maintain
+
+## Discussion questions {.smaller}
+
+<br>
+
+-   **What do you look for in a data dictionary? What do you include?**
+
+<br>
+
+-   **Have you ever had a negative experience working with poorly documented data? **
+
+<br>
+
+-   **Do you follow a specific process when developing your own data dictionaries? **
 
 ## Key takeaways {.smaller}
-  
-## References {.smaller}
-  
-  
-  
+
+::: {.small-break}
+:::
+
+-   **Data dictionaries are important tools in research**
+    -   Provide a clear, standardized way of describing the data being used
+		-   Ensure consistency in how data should be interpreted by investigators
+		-   Overall, help to promote transparent and reproducible research!
+
+::: {.small-break}
+:::
+
+-   **Data dictionaries should be detailed, consistent, and accurate**
+    -   Include all variables relevant for data analysis and, for each, provide:
+        -   Variable names
+			  -   Detailed variable descriptions
+			  -   Data types
+			  -   Notes relevant to data collection procedures, calculations, etc.
+			  -   Any other details that will help to interpret the data
+
+## Key takeaways (cont.) {.smaller}
+
+-   **Data dictionaries should be kept up to date over the course of a project**
+    -   Include new and derived variables
+    -   Document changes in data collection and/or analysis methods

@@ -7,7 +7,7 @@
 <link href="data-documentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="data-documentation_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="data-documentation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.1.251">
+  <meta name="generator" content="quarto-1.2.280">
 
   <title>data-documentation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -324,34 +324,309 @@
 
 
 <section>
-<section id="data-documentation" class="title-slide slide level1 smaller white-text center" data-background-color="#3F569E">
-<h1>Data Documentation</h1>
+<section id="data-dictionaries" class="title-slide slide level1 white-title white-code center" data-background-image="images/bg-no-planet.png" data-background-size="110%">
+<h1>Data Dictionaries</h1>
 <div class="white-15-pt">
 <p>ID 529: Data Management and Analytic Workflows in R</p>
 </div>
 <div class="white-12-pt">
-<p>Dean Marengi | Tuesday, January 10<sup>th</sup></p>
+<p>Dean Marengi | Tuesday, January 10<sup>th</sup> 2023</p>
 </div>
 </section>
-<section id="context" class="slide level2 smaller">
-<h2>Context</h2>
+<section id="motivation" class="slide level2 smaller">
+<h2>Motivation</h2>
+<ul>
+<li><strong>We’ve learned a bit about:</strong>
+<ul>
+<li><span class="blue-bold">Git and GitHub</span> for code version control and management</li>
+<li><span class="blue-bold">Reproducible</span> data analysis workflows</li>
+</ul></li>
+</ul>
+<p><br></p>
+<ul>
+<li><strong>But have not discussed data dictionaries and their role in reproducible research</strong>
+<ul>
+<li><span class="blue-bold">Facilitate collaboration</span> with other researchers</li>
+<li><span class="blue-bold">Provide clear and detailed information</span> about the data being used
+<ul>
+<li>Data sources and considerations</li>
+<li>Structure and format</li>
+<li>Variable definitions and interpretation of their values</li>
+</ul></li>
+</ul></li>
+</ul>
 </section>
 <section id="learning-objectives" class="slide level2 smaller">
 <h2>Learning objectives</h2>
-</section></section>
-<section>
-<section id="background" class="title-slide slide level1 smaller white-text center" data-background-color="#3F569E">
-<h1>Background</h1>
+<ul>
+<li><strong>Understand the <span class="blue-bold">importance of data dictionaries</span> for data analysis</strong>
+<ul>
+<li>Ensuring consistency of data, and how the data are used</li>
+<li>Facilitating research collaboration</li>
+</ul></li>
+</ul>
+<div class="small-break">
 
+</div>
+<ul>
+<li><strong>Learn about the <span class="blue-bold">common components</span> of data dictionaries</strong>
+<ul>
+<li>Variable names and definitions</li>
+<li>Data types</li>
+<li>Value labels, and other attributes</li>
+<li>Missing data codes</li>
+</ul></li>
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
+<li><strong>Discuss <span class="blue-bold">creating and maintaining</span> data dictionaries</strong>
+<ul>
+<li>Well-described entries</li>
+<li>Keeping data dictionaries up-to date</li>
+</ul></li>
+</ul>
 </section>
-<section id="summary" class="slide level2 smaller">
-<h2>Summary</h2>
+<section id="what-are-data-dictionaries" class="slide level2 smaller">
+<h2>What are data dictionaries?</h2>
+<ul>
+<li><strong>Data dictionaries</strong>
+<ul>
+<li>Provide key information and metadata about variables included in a dataset</li>
+<li>Serve as an important reference guide for data analysts</li>
+<li>The structure, format, and contents will vary depending on the project</li>
+</ul></li>
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
+<li><strong>Core elements typically include</strong>
+<ul>
+<li>A description of the study or data source(s)</li>
+<li>Variable names, definitions (and units, where applicable)</li>
+<li>Data types</li>
+<li>Value labels</li>
+<li>Calculations performed (where applicable)</li>
+<li>Other details relevant to a specific project</li>
+</ul></li>
+</ul>
+</section>
+<section id="dataset-descriptions" class="slide level2 smaller">
+<h2>Dataset descriptions</h2>
+<div class="small-break">
+
+</div>
+<ul>
+<li><span class="blue-bold">Dataset descriptions help to contextualize the data they contain</span></li>
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
+<li><strong>Descriptions should typically include</strong>
+<ul>
+<li>An overview of the project or data origins</li>
+<li><span class="blue-bold">Why</span> the data were collected</li>
+<li><span class="blue-bold">What</span> data was collected</li>
+<li><span class="blue-bold">Who</span> collected the data</li>
+<li><span class="blue-bold">When</span> the data were collected</li>
+<li>Data collection methodology and related considerations
+<ul>
+<li>e.g., data quality issues</li>
+</ul></li>
+<li>Other details relevant for specific projects</li>
+</ul></li>
+</ul>
+</section>
+<section id="variable-entries" class="slide level2 smaller">
+<h2>Variable entries</h2>
+<div class="small-break">
+
+</div>
+<ul>
+<li><span class="blue-bold">Variable entries provide specific information pertaining to each variable in the data</span></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><strong>Entries should include</strong></li>
+<li>Concise but descriptive variable names
+<ul>
+<li>Accurately reflect the underlying data</li>
+</ul></li>
+<li>Detailed descriptions of what the variables are</li>
+<li>Data type</li>
+<li>Characteristics such as:
+<ul>
+<li>Units</li>
+<li>Factor levels</li>
+<li>Range of values</li>
+<li>Transformations</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="small-break">
+
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><strong>You may also want to include:</strong>
+<ul>
+<li>Links to relevant documentation</li>
+<li>Notes on data quality issues</li>
+<li>Other relevant information helpful for use and interpretation</li>
+<li>Data type and format of the variable, including any missing data codes</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="examples-of-variable-entries" class="slide level2 smaller">
+<h2>Examples of variable entries</h2>
+<div class="columns">
+<div class="column" style="width:47.5%;">
+<div>
+<p><span class="blue-bold">Bad Entry</span></p>
+<ul>
+<li class="fragment"><strong>Variable Name:</strong> Age</li>
+<li class="fragment"><strong>Definition:</strong> Age of participant</li>
+<li class="fragment"><strong>Data Type:</strong> Number</li>
+<li class="fragment"><strong>Notes:</strong> N/A</li>
+</ul>
+</div>
+<p><br></p>
+<div>
+<p><span class="blue-bold">Good Entry</span></p>
+<ul>
+<li class="fragment"><strong>Variable Name:</strong> Age</li>
+<li class="fragment"><strong>Definition:</strong> The age of the patient at the time of the study, measured in years</li>
+<li class="fragment"><strong>Data Type:</strong> Integer</li>
+<li class="fragment"><strong>Notes:</strong> Age data was collected via self-report on the baseline questionnaire and verified with a government-issued ID.</li>
+</ul>
+</div>
+</div><div class="column" style="width:5%;">
+<p><br></p>
+</div><div class="column" style="width:47.5%;">
+<div>
+<p><span class="blue-bold">Bad Entry</span></p>
+<ul>
+<li class="fragment"><strong>Variable Name:</strong> smk</li>
+<li class="fragment"><strong>Definition:</strong> Smokes</li>
+<li class="fragment"><strong>Data Type:</strong> Yes/No</li>
+<li class="fragment"><strong>Notes:</strong> N/A</li>
+</ul>
+</div>
+<p><br></p>
+<div>
+<p><span class="blue-bold">Good Entry</span></p>
+<ul>
+<li class="fragment"><strong>Variable Name:</strong> Smoking status</li>
+<li class="fragment"><strong>Definition:</strong> Whether or not the patient currently smokes cigarettes</li>
+<li class="fragment"><strong>Data Type:</strong> Dichotomous (yes=1 | no=0)</li>
+<li class="fragment"><strong>Notes:</strong> Smoking status was determined through self-report on the baseline questionnaire and verified at clinical study visits.</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- ![](images/codebook-example-desc.png){.absolute right="0" bottom="150" height="30%"} -->
+</section>
+<section class="slide level2">
+
+<p><img data-src="images/codebook-example-vars.png" class="absolute" style="bottom: 15%; right: 15%; height: 65%; "></p>
+</section>
+<section id="common-mistakes" class="slide level2 smaller">
+<h2>Common mistakes</h2>
+<ul>
+<li><strong>Insufficient detail</strong>
+<ul>
+<li>Inconsistent and poor variable naming conventions</li>
+<li>Imprecise or vague definitions</li>
+<li>Omission of pertinent information about data quality issues</li>
+</ul></li>
+</ul>
+<div class="smaller">
+
+</div>
+<ul>
+<li><strong>Inaccuracies</strong>
+<ul>
+<li>Failure to keep current with evolving research</li>
+<li>Discrepancies with the dataset</li>
+</ul></li>
+</ul>
+<div class="smaller">
+
+</div>
+<ul>
+<li><strong>Poor standardization and formatting</strong>
+<ul>
+<li>Difficult for others to understand</li>
+<li>Inconsistencies make it difficult to maintain</li>
+</ul></li>
+</ul>
+</section>
+<section id="discussion-questions" class="slide level2 smaller">
+<h2>Discussion questions</h2>
+<p><br></p>
+<ul>
+<li><strong>What do you look for in a data dictionary? What do you include?</strong></li>
+</ul>
+<p><br></p>
+<ul>
+<li><strong>Have you ever had a negative experience working with poorly documented data? </strong></li>
+</ul>
+<p><br></p>
+<ul>
+<li><strong>Do you follow a specific process when developing your own data dictionaries? </strong></li>
+</ul>
 </section>
 <section id="key-takeaways" class="slide level2 smaller">
 <h2>Key takeaways</h2>
+<div class="small-break">
+
+</div>
+<ul>
+<li><strong>Data dictionaries are important tools in research</strong>
+<ul>
+<li>Provide a clear, standardized way of describing the data being used
+<ul>
+<li>Ensure consistency in how data should be interpreted by investigators</li>
+<li>Overall, help to promote transparent and reproducible research!</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
+<li><strong>Data dictionaries should be detailed, consistent, and accurate</strong>
+<ul>
+<li>Include all variables relevant for data analysis and, for each, provide:
+<ul>
+<li>Variable names
+<ul>
+<li>Detailed variable descriptions</li>
+<li>Data types</li>
+<li>Notes relevant to data collection procedures, calculations, etc.</li>
+<li>Any other details that will help to interpret the data</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
 </section>
-<section id="references" class="slide level2 smaller">
-<h2>References</h2>
+<section id="key-takeaways-cont." class="slide level2 smaller">
+<h2>Key takeaways (cont.)</h2>
+<ul>
+<li><strong>Data dictionaries should be kept up to date over the course of a project</strong>
+<ul>
+<li>Include new and derived variables</li>
+<li>Document changes in data collection and/or analysis methods</li>
+</ul></li>
+</ul>
 
 <img src="images/id529-sticker.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p><a href="https://id529.github.io/" class="uri">https://id529.github.io/</a></p>
@@ -606,7 +881,24 @@
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
         button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
         setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
           button.setAttribute("title", currentTitle);
           button.classList.remove('code-copy-button-checked');
         }, 1000);
@@ -644,24 +936,42 @@
           return note.innerHTML;
         });
       }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
       var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
       for (var i=0; i<bibliorefs.length; i++) {
         const ref = bibliorefs[i];
-        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-        tippyHover(ref, function() {
-          var popup = window.document.createElement('div');
-          cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
           });
-          return popup.innerHTML;
-        });
+        }
       }
     });
     </script>
