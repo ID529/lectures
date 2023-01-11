@@ -667,9 +667,9 @@ mutate(.data, ...)
 data %>% 
   mutate(weight_lbs = round(weight * 2.20462, 2), 
          height_in = round(height * 0.393701, 2),
-         age_55 = if_else(age >= 60, 1, 0)
+         age_60 = if_else(age >= 60, 1, 0)
          ) %>% 
-  select(id, age, age_55, height, height_in, weight, weight_lbs)
+  select(id, age, age_60, height, height_in, weight, weight_lbs)
 ```
 ::: 
 
@@ -856,8 +856,6 @@ data %>%
 ```
 :::
 ::::
-
-
 
 ## `dplyr` `learnr` tutorial {.smaller}
 

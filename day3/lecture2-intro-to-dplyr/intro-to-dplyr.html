@@ -563,16 +563,16 @@
 <pre><code># A tibble: 15 × 3
       id group              num_gold_stars
    &lt;int&gt; &lt;chr&gt;                       &lt;int&gt;
- 1     2 i &lt;3 dplyr                    108
- 2    10 dplyr rocks                   103
+ 1     2 i &lt;3 dplyr                    107
+ 2    10 dplyr rocks                    96
  3     7 dplyr rocks                    92
- 4    11 i &lt;3 dplyr                    101
- 5     5 i &lt;3 dplyr                    106
- 6    12 clean code or bust             94
- 7    15 clean code or bust             99
- 8     8 i &lt;3 dplyr                     93
- 9     3 clean code or bust             91
-10     9 clean code or bust             96
+ 4    11 i &lt;3 dplyr                     97
+ 5     5 i &lt;3 dplyr                    100
+ 6    12 clean code or bust            104
+ 7    15 clean code or bust            101
+ 8     8 i &lt;3 dplyr                    100
+ 9     3 clean code or bust             97
+10     9 clean code or bust             95
 # … with 5 more rows</code></pre>
 </div>
 </div>
@@ -596,11 +596,11 @@
 <pre><code># A tibble: 5 × 3
      id group      num_gold_stars
   &lt;int&gt; &lt;chr&gt;               &lt;int&gt;
-1     2 i &lt;3 dplyr            108
-2     5 i &lt;3 dplyr            106
-3    11 i &lt;3 dplyr            101
-4     8 i &lt;3 dplyr             93
-5    14 i &lt;3 dplyr             91</code></pre>
+1     2 i &lt;3 dplyr            107
+2     5 i &lt;3 dplyr            100
+3     8 i &lt;3 dplyr            100
+4    14 i &lt;3 dplyr             98
+5    11 i &lt;3 dplyr             97</code></pre>
 </div>
 </div>
 </div>
@@ -1186,12 +1186,12 @@ $ PFDE           &lt;dbl&gt; 0.20, 0.30, 0.10, 0.20, 0.10, NA, 0.20, 1.70, NA, 0
 <span id="cb37-2"><a href="#cb37-2"></a>data <span class="sc">%&gt;%</span> </span>
 <span id="cb37-3"><a href="#cb37-3"></a>  <span class="fu">mutate</span>(<span class="at">weight_lbs =</span> <span class="fu">round</span>(weight <span class="sc">*</span> <span class="fl">2.20462</span>, <span class="dv">2</span>), </span>
 <span id="cb37-4"><a href="#cb37-4"></a>         <span class="at">height_in =</span> <span class="fu">round</span>(height <span class="sc">*</span> <span class="fl">0.393701</span>, <span class="dv">2</span>),</span>
-<span id="cb37-5"><a href="#cb37-5"></a>         <span class="at">age_55 =</span> <span class="fu">if_else</span>(age <span class="sc">&gt;=</span> <span class="dv">60</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb37-5"><a href="#cb37-5"></a>         <span class="at">age_60 =</span> <span class="fu">if_else</span>(age <span class="sc">&gt;=</span> <span class="dv">60</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
 <span id="cb37-6"><a href="#cb37-6"></a>         ) <span class="sc">%&gt;%</span> </span>
-<span id="cb37-7"><a href="#cb37-7"></a>  <span class="fu">select</span>(id, age, age_55, height, height_in, weight, weight_lbs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-7"><a href="#cb37-7"></a>  <span class="fu">select</span>(id, age, age_60, height, height_in, weight, weight_lbs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2,339 × 7
-   id      age age_55 height height_in weight weight_lbs
+   id      age age_60 height height_in weight weight_lbs
    &lt;chr&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
  1 73568    26      0   152.      60.0   47.1       104.
  2 73571    76      1   172.      67.9  102.        226.
