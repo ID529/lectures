@@ -1,0 +1,637 @@
+---
+format: 
+  revealjs:
+    theme: [simple, ../../day2/lecture3-reading-in-data/custom.scss]
+    highlight: pygments
+    logo: images/id529-sticker.png
+    slide-number: true
+    footer: "<https://id529.github.io/>"
+---
+
+# Introduction to Data Linkage {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
+
+::: {.white-15-pt}
+ID 529: Data Management and Analytic Workflows in R
+:::
+
+::: {.white-12-pt}
+Dean Marengi \| Friday, January 13<sup>th</sup>, 2023
+:::
+
+## Motivation {.smaller}
+-   **We've now learned a bit about:**
+  -   [Data manipulation] using `dplyr` 
+  -   Leveraging tidyverse and other packages for working with specific data types
+      -   Dates and times, factors
+      -   Text data
+
+<br>
+
+-   **Up until now, we've really only considered working with a single dataset**
+    -   We are often interested in combining data from multiple different files or sources
+    -   Base R, `dplyr`, and other packages have functions for combining datasets
+    <!-- -   We can leverage these R packages to: -->
+    <!--     -   Write efficient R code to perform most data manipulation tasks -->
+    <!--     -   Chain together data manipulation operations in a logical, concise sequence -->
+
+## Learning objectives {.smaller}
+
+-   **Understand the basic principles of data linkage **
+    -   
+    -
+    
+::: {.small-break}
+:::
+
+-   **Understand utility functions that help `dplyr` functions perform specific tasks. For example:**
+    -   Performing column- and row-wise operations
+    -   Modifying data based on conditional logic
+
+::: {.small-break}
+:::
+
+-  **Learn how to implement `dplyr` functions to prepare data for analysis**
+    -   Identifying and correcting data quality issues
+    -   Restructuring and organizing data
+    -   Deriving new variables
+
+# Background {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
+
+## Why do we need data linkage? {.smaller}
+
+-   **The common tasks**
+
+
+![](images/dplyr-join-venn.png){.absolute height="40%" left="0%" bottom="8%"}
+
+## Data linkage in R {.smaller}
+
+-   The `merge()` base R function can be used to combine datasets based on a 
+    - `cbind`
+    -  `rbind`
+    
+-   `dplyr` has more robust functionality 
+
+dplyr does not provide any functions for working with three or more tables. Instead use purrr::reduce() or Reduce(), as described in Advanced R, to iteratively combine the two-table verbs to handle as many tables as you need.
+
+## `dplyr` two table verbs 
+
+
+**Three families of verbs that work with two tables at a time**
+-   Mutating joins, which add new variables to one table from matching rows in another.
+    -   allow you to combine variables from multiple tables
+-   Filtering joins, which filter observations from one table based on whether or not they match an observation in the other table.
+    -   Filtering joins match observations in the same way as mutating joins, but affect the observations, not the variables.
+    -   Useful for diagnosing join mismatches
+
+-   Set operations, which combine the observations in the data sets as if they were set elements.
+    -   Thesese expect the x and y inputs to have the same variables, and treat the observations like sets:   
+
+All two-table verbs work similarly. The first two arguments are x and y, and provide the tables to combine. The output is always a new table with the same type as x.
+
+::: aside
+<https://dplyr.tidyverse.org/articles/two-table.html#set-operations>
+<https://r4ds.had.co.nz/relational-data.html>
+:::
+
+## Example dataset {.smaller}
+
+:::: {.columns}
+::: {.column width=50%}
+**Overview**
+
+-   `NHANES` dataset available on the ID529 GitHub
+-   The dataset includes individual-level:
+    -   Demographic and clinical characteristics
+    -   Socioeconomic parameters 
+    -   Blood measures of PFAS/PFOA
+    -   Dietary intake parameters
+  
+::: {.small-break}
+:::
+
+
+-   **For our examples, we will split these data into smaller datasets that each contain different variables,  identifiers, and number of observations.**
+    -   **clinical:** `id1`, `age`, `race_eth`, `sbp`, `ht`, `wt`
+    -   **pfas:** `id1`, `pfos`, `pfoa`, `pfna`, `pfhs`, `pfde`
+    -   **poverty:** `id2`, `pov_ratio`
+    -   **crosswalk:** `id1`, `id2`
+
+:::
+
+::: {.column width=50%}
+```{r, echo=T}
+# Load libraries
+library(tidyverse)
+library(ID529data)
+
+# Load ID 529 NHANES data 
+data(nhanes_id529, package = 'ID529data')
+
+# Create new ID  variables for examples
+nhanes <- nhanes_id529 %>% 
+  arrange(id) %>% 
+  mutate(id1 = as.integer(id),
+         id2 = paste0("NH", seq(1:nrow(.)) + 2 * 10^4)) %>% 
+  select(matches("id"), everything()) %>% 
+  as_tibble()
+
+```
+
+```{r, echo=T}
+# Create demog/clincal characteristics table (id1)
+clinical <- nhanes %>%
+  rename(race_eth = race_ethnicity,
+         sbp = mean_BP, 
+         ht = height,
+         wt = weight) %>%
+  select(id1, age, race_eth, sbp:ht)
+  
+# Create pfas data table (id1)
+pfas <- nhanes %>% 
+  select(id1, PFOS:PFDE) %>% 
+  rename_with(~ str_to_lower(.)) %>%
+  filter(rowSums(is.na(.)) < 5)
+
+# Create poverty index table (id2)
+poverty <- nhanes %>% 
+  rename(pov_ratio = poverty_ratio) %>% 
+  filter(!is.na(pov_ratio)) %>%
+  select(id2, pov_ratio)
+  
+# Create ID crosswalk table (id1 and id2)
+crosswalk <- select(nhanes, id1, id2)
+```
+
+
+:::
+::::
+
+## Example dataset {.smaller}
+
+:::: {.columns}
+
+::: {.column width=50%}
+```{r, echo=T}
+# Demographic and clinical characteristics
+clinical
+
+# PFAS data filtered for obs with data
+pfas
+```
+:::
+
+::: {.column width=50%}
+```{r, echo=T}
+# Poverty data filtered for obs with data
+poverty
+
+# Table with both ID variables
+crosswalk
+```
+:::
+::::
+
+# `dplyr` mutating joins {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
+
+## `dplyr::inner_join()` {.smaller}
+
+:::: {.columns}
+::: {.column width="45%"}
+**Main arguments**
+
+```{r, echo=T, eval=F}
+inner_join(
+  x,
+  y,
+  by = NULL,
+  copy = FALSE,
+  suffix = c(".x", ".y"),
+  ...,
+  keep = FALSE
+)
+```
+
+-   `x` = Data frame `x`
+-   `y` = Data frame `y`
+-   `by`= Column name(s) to join `x` and `y` by
+-   `suffix`= Suffix to append to duplicate vars
+-   `keep`= Keep the join key from both `x` and `y`
+::: 
+
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+**Description**
+
+-   
+-   Returns rows that match in **both** `x` and `y`
+    -   Unmatched rows are dropped
+-   
+
+:::
+::::
+
+![](images/inner-join.gif){.absolute right="7%" bottom="0%" height="45%"}
+
+::: aside
+Gif Source: <https://github.com/gadenbuie/tidyexplain>
+:::
+
+## `dplyr::inner_join()` example 1 {.smaller}
+
+
+
+
+<!-- # ```{r, echo=T} -->
+
+<!-- # print(df_x, n = 5) -->
+
+
+<!-- # glimpse50(df_x) -->
+<!-- # glimpse50(df_y) -->
+<!-- #  -->
+<!-- # # Join the two data frames back together by the ID variable -->
+<!-- # inner_join(df_x, df_y, by = "id") %>%  -->
+<!-- #   glimpse50() -->
+<!-- #| output-location: column -->
+
+<!-- # Split original data into two data frames with  -->
+<!-- # different variables and preserve all -->
+<!-- # observations in the original dataset -->
+<!-- # df_x <- select(nhanes_id529, id, age, mean_BP:height) -->
+<!-- #  -->
+<!-- # df_y <- select(nhanes_id529, id, PFAS_total) -->
+<!-- #  -->
+<!-- # # Join the two data frames back together by the ID variable -->
+<!-- # inner_join(df_x, df_y, by = "id") %>%  -->
+<!-- #   glimpse50() -->
+<!-- ``` -->
+
+
+## `dplyr::left_join()` {.smaller}
+
+
+
+:::: {.columns}
+::: {.column width="45%"}
+**Main arguments**
+
+```{r, echo=T, eval=F}
+left_join(
+  x,
+  y,
+  by = NULL,
+  copy = FALSE,
+  suffix = c(".x", ".y"),
+  ...,
+  keep = FALSE
+)
+```
+
+-   `x` = text
+-   `y` = text
+-   `by`= text
+-   `copy`= text
+-   `suffix`= text
+-   `...`= text
+-   `keep`= text
+::: 
+
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+**Description**
+
+-   Replaces a matched pattern
+-   Returns input vector (with replacements)
+  -   `str_replace()`: Replace first match
+-   Returns input vector (with replacements)
+-   Returns input vector (with replacements)
+:::
+::::
+
+
+![](images/left-join.gif){.absolute right="7%" bottom="0%" height="45%"}
+
+::: aside
+Gif Source: <https://github.com/gadenbuie/tidyexplain>
+:::
+
+
+## `dplyr::right_join()` {.smaller}
+
+:::: {.columns}
+::: {.column width="45%"}
+**Main arguments**
+
+```{r, echo=T, eval=F}
+right_join(
+  x,
+  y,
+  by = NULL,
+  copy = FALSE,
+  suffix = c(".x", ".y"),
+  ...,
+  keep = FALSE
+)
+
+```
+
+-   `x` = text
+-   `y` = text
+-   `by`= text
+-   `copy`= text
+-   `suffix`= text
+-   `...`= text
+-   `keep`= text
+::: 
+
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+**Description**
+
+-   Replaces a matched pattern
+-   Returns input vector (with replacements)
+  -   `str_replace()`: Replace first match
+-   Returns input vector (with replacements)
+-   Returns input vector (with replacements)
+:::
+::::
+
+![](images/right-join.gif){.absolute right="7%" bottom="0%" height="45%"}
+
+::: aside
+Gif Source: <https://github.com/gadenbuie/tidyexplain>
+:::
+
+
+## `dplyr::full_join()` {.smaller}
+
+:::: {.columns}
+::: {.column width="45%"}
+**Main arguments**
+
+```{r, echo=T, eval=F}
+full_join(
+  x,
+  y,
+  by = NULL,
+  copy = FALSE,
+  suffix = c(".x", ".y"),
+  ...,
+  keep = FALSE
+)
+```
+
+-   `x` = text
+-   `y` = text
+-   `by`= text
+-   `copy`= text
+-   `suffix`= text
+-   `...`= text
+-   `keep`= text
+::: 
+
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+**Description**
+
+-   Replaces a matched pattern
+-   Returns input vector (with replacements)
+  -   `str_replace()`: Replace first match
+-   Returns input vector (with replacements)
+-   Returns input vector (with replacements)
+:::
+::::
+
+![](images/full-join.gif){.absolute right="7%" bottom="0%" height="45%"}
+
+::: aside
+Gif Source: <https://github.com/gadenbuie/tidyexplain>
+:::
+
+# `dplyr` filtering joins {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
+
+## `dplyr::semi_join()` {.smaller}
+
+:::: {.columns}
+::: {.column width="45%"}
+
+**Main arguments**
+
+```{r, echo=T, eval=F}
+semi_join(x, 
+          y, 
+          by = NULL, 
+          copy = FALSE, 
+          ...)
+```
+
+-   `x` = text
+-   `y` = text
+-   `by`= text
+-   `copy`= text
+-   `...`= text
+::: 
+
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+**Description**
+
+-   Replaces a matched pattern
+-   Returns input vector (with replacements)
+  -   `str_replace()`: Replace first match
+-   Returns input vector (with replacements)
+-   Returns input vector (with replacements)
+:::
+::::
+
+![](images/semi-join.gif){.absolute right="7%" bottom="0%" height="45%"}
+
+::: aside
+Gif Source: <https://github.com/gadenbuie/tidyexplain>
+:::
+
+
+## `dplyr::anti_join()` {.smaller}
+
+:::: {.columns}
+::: {.column width="45%"}
+
+**Main arguments**
+
+```{r, echo=T, eval=F}
+anti_join(x, 
+          y, 
+          by = NULL, 
+          copy = FALSE, 
+          ...)
+```
+
+-   `x` = text
+-   `y` = text
+-   `by`= text
+-   `copy`= text
+-   `...`= text
+::: 
+
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+**Description**
+
+-   Replaces a matched pattern
+-   Returns input vector (with replacements)
+  -   `str_replace()`: Replace first match
+-   Returns input vector (with replacements)
+-   Returns input vector (with replacements)
+:::
+::::
+
+![](images/anti-join.gif){.absolute right="7%" bottom="0%" height="45%"}
+
+::: aside
+Gif Source: <https://github.com/gadenbuie/tidyexplain>
+:::
+
+# `dplyr` set operations {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
+
+## `dplyr::intersect()` {.smaller}
+
+:::: {.columns}
+::: {.column width="45%"}
+
+**Main arguments**
+
+```{r, echo=T, eval=F}
+intersect(x, y, ...)
+```
+
+-   `x` = text
+-   `y` = text
+-   `...`= text
+::: 
+
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+**Description**
+
+-   Replaces a matched pattern
+-   Returns input vector (with replacements)
+  -   `str_replace()`: Replace first match
+-   Returns input vector (with replacements)
+-   Returns input vector (with replacements)
+:::
+::::
+
+![](images/intersect.gif){.absolute right="7%" bottom="0%" height="45%"}
+
+::: aside
+Gif Source: <https://github.com/gadenbuie/tidyexplain>
+:::
+
+
+## `dplyr::union()` {.smaller}
+
+:::: {.columns}
+::: {.column width="45%"}
+
+**Main arguments**
+
+```{r, echo=T, eval=F}
+union(x, y, ...)
+```
+
+-   `x` = text
+-   `y` = text
+-   `...`= text
+::: 
+
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+**Description**
+
+-   Replaces a matched pattern
+-   Returns input vector (with replacements)
+  -   `str_replace()`: Replace first match
+-   Returns input vector (with replacements)
+-   Returns input vector (with replacements)
+:::
+::::
+
+![](images/union.gif){.absolute right="7%" bottom="0%" height="45%"}
+
+::: aside
+Gif Source: <https://github.com/gadenbuie/tidyexplain>
+:::
+
+## `dplyr::setdiff()` {.smaller}
+
+:::: {.columns}
+::: {.column width="45%"}
+
+**Main arguments**
+
+```{r, echo=T, eval=F}
+setdiff(x, y, ...)
+```
+
+-   `x` = text
+-   `y` = text
+-   `...`= text
+::: 
+
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+**Description**
+
+-   Replaces a matched pattern
+-   Returns input vector (with replacements)
+  -   `str_replace()`: Replace first match
+-   Returns input vector (with replacements)
+-   Returns input vector (with replacements)
+:::
+::::
+
+![](images/set-diff-rev.gif){.absolute right="7%" bottom="0%" height="45%"}
+
+::: aside
+Gif Source: <https://github.com/gadenbuie/tidyexplain>
+:::
+
+# Case Study {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
+
+## Case study
+
+## Key takeaways {.smaller}
+  
+## Resources {.smaller}
+`dplyr` Vignette: <https://dplyr.tidyverse.org/articles/two-table.html>
+R for Data Science: <https://r4ds.had.co.nz/relational-data.html>
+  
+  

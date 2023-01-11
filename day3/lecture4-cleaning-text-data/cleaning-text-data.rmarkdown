@@ -1,0 +1,1016 @@
+---
+format: 
+  revealjs:
+    theme: [simple, ../../day2/lecture3-reading-in-data/custom.scss]
+    highlight: pygments
+    logo: images/id529-sticker.png
+    slide-number: true
+    footer: "<https://id529.github.io/>"
+---
+
+
+# Text Manipulation with R {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
+
+::: {.white-15-pt}
+ID 529: Data Management and Analytic Workflows in R
+:::
+
+::: {.white-12-pt}
+Dean Marengi \| Wednesday, January 11<sup>th</sup>, 2023
+:::
+
+## Motivation {.smaller}
+
+:::{.small-break}
+:::
+
+-   **We've now been introduced to `dplyr` and how it can be used to:**
+      -   Write efficient R code to perform basic data manipulation tasks
+      -   Chain together data manipulation operations in a concise, readable sequence
+  
+<br>
+
+-   **But we have not yet discussed methods for handling and manipulating text data**
+    -   Text manipulation is an important component of the data cleaning process
+    -   Text strings introduce many challenges, including:
+        -   Data import issues (data types, data structures)
+        -   Inconsistent variable names
+        -   Poor standardization of data
+
+<br>
+
+- [Often we need to process and clean text strings before data analysis can occur]{.blue-bold}
+     
+## Learning objectives {.smaller}
+
+:::{.small-break}
+:::
+
+-   **Understand the basic principles of text manipulation**
+    -   The ways that text can be handled and manipulated
+    -   How regular expressions (regexps) can be used to match complex patterns
+
+:::{.small-break}
+:::
+
+-  **Learn about [different approaches]{.blue-bold} for text manipulation in R**
+    -   Base R functions for text manipulation
+    -   The `stringr` package, which can help to simplify text manipulation
+
+:::{.small-break}
+:::
+
+-  **Learn how to implement `stringr` functions to process text, and prepare data for analysis**
+    -   We will discuss simple examples for some key functions for text manipulation
+    -   Then work through an applied example to implement these functions
+        -   To address common text manipulation challenges 
+        -   To demonstrate `stringr` functions work together with `dplyr`
+
+# Background {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
+
+## How is text different from other data types? {.smaller}
+
+-   **Text strings can contain inconsistent data**
+    -   Unstructured
+    -   Upper and lower case letters
+    -   Special characters
+    -   Punctuation
+    -   White-space
+    -   Misspellings
+    -   Abbreviations
+
+::: {.small-break}
+:::
+
+-   **Data containing such issues must first be standardized before it is used in an analysis**
+    -   Inconsistent text strings are a [common data cleaning challenge in research! ]{.blue-bold}
+
+![](images/meme-yoda-messy-data.png){.absolute right="15%" bottom="40%" height="45%"}
+
+## Text Manipulation in Research {.smaller}
+
+-   **Standardizing variable names to a common format**
+    -   Convert to all lower-case or simplifying names
+    -   Remove punctuation or leading/trailing white-space
+    -   Replace spaces with "_"
+
+::: {.small-break}
+:::
+
+-   **Pre-processing and cleaning data**
+    -   Standardize data contained in each column
+      -   Remove text or punctuation in otherwise numeric columns
+      -   Make consistent 'levels' for a factor variable
+
+::: {.small-break}
+:::
+
+-   **Extracting specific information from the dataset**
+    -   Use text data in one column to generate new, or manipulate existing, columns
+
+::: {.small-break}
+:::
+
+-   **Identifying files to read into R based on file naming conventions**
+    -   E.g., a subset of csv files, each with results for an individual study participant
+
+## Text Manipulation in Research (cont.) {.smaller}
+
+-   **We won't always received clean, curated datasets**
+    -   Manually cleaning data files is poor practice (errors likely and not reproducible)
+    -   Must understand how to programatically manipulate text to address common challenges
+  
+::: {.small-break}
+:::
+
+-   **Goal: Systematically implement a series of cleaning steps to prepare data for analysis**
+    -   Often [more than one solution]{.blue-bold} for the same problem
+    -   Implementation of [specific cleaning steps]{.blue-bold} may vary from person-to-person
+      -   Overall [sequence of cleaning steps]{.blue-bold} should be similar, and follow an efficient order
+
+::: {.fragment}
+![](images/example-messy-data.png){.absolute height="35%" width="100%" bottom="25"}
+:::
+
+<!-- Emphasis box: columns -->
+::: {.fragment .fade-in-then-out}
+::: {.absolute bottom=261 left="-7" width="1010"}
+::: {.mini-box .red}
+:::
+:::
+:::
+
+<!-- Emphasis box: gad7 vars -->
+::: {.fragment .fade-in-then-out}
+::: {.absolute bottom=30 left="256" width="250"}
+::: {.large-box .red}
+:::
+:::
+:::
+
+<!-- Emphasis box: race/eth, meds  vars -->
+::: {.fragment .fade-in}
+::: {.absolute bottom=30 right="49" width="110"}
+::: {.large-box .red}
+:::
+:::
+
+::: {.absolute bottom=30 left="139" width="129"}
+::: {.large-box .red}
+:::
+:::
+:::
+
+## Regular Expressions {.smaller}
+
+:::: {.columns}
+::: {.column column-width="60%"}
+-   **Regular expression (regex) patterns**
+    -   Sequence of text characters that have a specific meaning
+    -   Can match specific patterns in text strings
+        -   Use matches to extract, subset, replace, or perform other operations in a string
+
+::: {.small-break}
+:::
+
+-   **Learning regex takes time**
+    -   Highly-specific syntax
+    -   Difficult to read and understand at first
+    -   Patterns vary widely in their complexity
+    -   Powerful data processing tool for your toolkit once you become more comfortable
+:::
+
+::: {.column column-width="40%"}
+
+```{r, echo=T}
+# Load tidyverse
+library(tidyverse)
+
+# Create a simple text string
+string <- "Regex patterns are a useful tool!"
+
+# Match the word 'useful'
+str_view_all(string, pattern = "useful")
+
+# Match 'useful', and anything that comes after
+str_view_all(string, pattern = "useful.*[^\\!]")
+
+# Match letter 'e' when not followed by x or space a
+str_view_all(string, pattern = "e(?!x|\\sa)")
+
+# Match exclamation point or spaces
+str_view_all(string, pattern = "\\!|\\s")
+```
+
+:::
+::::
+
+---
+
+<br> <br> <br>
+
+> "Some people, when confronted with a problem, think 'I know, I'll use regular expressions.' Now they have two problems."
+>
+>
+> -- <cite>*Jamie Zawinski* (1997)</cite>
+
+<br>
+
+## Regex syntax {.smaller}
+
+<br>
+
+![](images/cheatsheet-stringr-regex-overview-1.png){.absolute height="80%" left="12%" bottom="8%"}
+
+<!-- ::: {.absolute .popup bottom="60%" right="0%" width="25%"} -->
+<!-- Add text -->
+<!-- ::: -->
+
+::: aside
+Source: <https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf>
+:::
+
+## Regex syntax (cont.) {.smaller}
+
+![](images/cheatsheet-stringr-regex-overview-2.png){.absolute top="15%"}
+
+<!-- Regex syntax: Alternates box -->
+::: {.fragment .fade-in-then-out}
+::: {.absolute top="16%" left="0%" width="50%"}
+::: {.custom-box .red}
+<br> <br> <br>
+:::
+:::
+:::
+
+<!-- Regex syntax: Anchors box -->
+::: {.fragment .fade-in-then-out}
+::: {.absolute top="35.5%" left="0%" width="50%"}
+::: {.custom-box .red}
+<br> <br>
+:::
+:::
+:::
+
+<!-- Regex syntax: Look Arounds box -->
+::: {.fragment .fade-in-then-out}
+::: {.absolute top="50.5%" left="0%" width="50%"}
+::: {.custom-box .red}
+<br> <br> <br> 
+:::
+:::
+:::
+
+
+<!-- Regex syntax: Quantifiers box -->
+::: {.fragment .fade-in-then-out}
+::: {.absolute top="16%" right="4.5%" width="46%"}
+::: {.custom-box .red}
+<br> <br> <br> <br>
+:::
+:::
+:::
+
+<!-- Regex syntax: Groups box -->
+::: {.fragment .fade-in-then-out}
+::: {.absolute top="41%" right="4.5%" width="46%"}
+::: {.custom-box .red}
+<br> <br> <br> <br> <br>
+:::
+:::
+:::
+
+::: aside
+Source: <https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf>
+:::
+
+## How do we manipulate text using R? {.smaller}
+
+::: {.small-break}
+:::
+
+-   `Base R` includes several powerful string manipulation functions
+-   `stringr` package also provides functions to perform text manipulation
+      -   Easy-to-remember function names and syntax
+          -   All functions prefixed with `str_*`
+      -   Fewer arguments and often more intuitive to implement
+
+::: {.small-break}
+:::
+
+-   **`Base R` and `stringr` can both:**
+    -   [Standardize]{.blue-bold} letter case and white space
+    -   [Concatenate]{.blue-bold} strings
+    -   [Split]{.blue-bold} strings
+    -   [Locate]{.blue-bold} patterns in strings
+    -   [Extract]{.blue-bold} patterns from strings
+    -   [Replace]{.blue-bold} sub-strings
+    -   [Quantify]{.blue-bold} the occurrence of patterns
+
+ 
+::: {.absolute .popup bottom="17%" right=0 width="35%"}
+ The functions you choose to implement will generally depend on the specific task at hand.
+ 
+ For example, I often implement `base R` functions in my custom functions to limit dependencies!
+:::
+ 
+# Base R text manipulation {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
+
+## Base R text manipulation overview {.smaller}
+
+-   **Base R includes a number of useful functions for text manipulation**
+    -   Converting letter case and trimming white space
+    -   Concatenating and splitting strings
+    -   Detecting, substituting, and extracting patterns
+
+:::{.small-break}
+:::
+
+::: {.columns}
+::: {.column width="55%"}
+-   **Pattern matching functions**
+    -   `grepl()`: Detect patterns in a string
+    -   `grep()`: Keep strings where pattern matched
+    -   `sub()`: Replace first matches
+    -   `gsub()`: Replace all matches
+    -   `regmatches()`: Extract first or all matches
+    -   `strsplit()`: Split string using matched pattern
+:::
+
+::: {.column width="45%"}
+-   **Combine strings**
+    -   `paste()`: Concatenate with space
+    -   `paste0()`: Concatenate with no space
+
+-   **Change letter case of strings**
+    -   `tolower()`: To lower case
+    -   `toupper()`: To upper case
+
+-   **Remove white space from strings**
+    -   `trimws()`: Trim leading/trailing WS
+:::
+::::
+
+::: aside
+Cheat-sheet: <https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf>
+:::
+
+
+```{r}
+text <- "It was the best of times, it was the worst of times, it was an ID 529 lecture on text manipulation with R!!"
+files <- c("22419_neuropsych.csv", "22491_neuropsych.csv", "22248_neuropsych.csv", "NEW YEAR NEW ME version 22419.csv", "Summer Travel Plans.xlsx", "A Tale of Two Cites.pdf", "hodo_christmas_1.png", "hodo_christmas_2.png", "Frog and Toad - tomorrow.pdf")
+```
+
+  
+# `stringr` {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
+
+## `stringr` overview {.smaller}
+
+:::: {.columns}
+::: {.column width="60%"}
+-   Part of the core `tidyverse` package ecosystem
+-   Consistent functions for performing string manipulation
+-   Functions designed to work with `dplyr` verbs
+    -   Text manipulation can be performed in chained sequences with other data cleaning steps!
+
+::: {.small-break}
+:::
+
+-   **Core functions we will discuss:**
+    <!-- -   `str_c()`: Concatenate strings -->
+    -   `str_detect()`: Detect patterns in a string
+    -   `str_subset()`: Keep strings where pattern matched
+    -   `str_replace()`: Replace first matched pattern
+    -   `str_replace_all()`: Replace all matched patterns
+    -   `str_extract()`: Extract first matched pattern
+    -   `str_extract_all()`: Extract all matched patterns
+:::
+::::
+
+::: {.absolute .popup bottom="39%" right=0 width="32%"}
+We will also discuss `stringr` functions for changing letter case, and trimming leading, trailing, or extra white space!
+
+**Note:** There are many more `stringr` functions than we cover in this lecture! Explore the linked documentation and cheat-sheet for more information.
+:::
+ 
+::: aside
+Documentation: <http://stringr.tidyverse.org> <br>
+Cheat-sheet: <https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf>
+:::
+
+![](images/hex-stringr.png){.absolute right="0" bottom="1" height="30%"}
+
+<!-- --- -->
+
+<!-- ![](images/horst-stringr.png){.absolute height="90%" left="15%"} -->
+
+<!-- ::: aside -->
+<!-- <span style= "font-size:12pt"> -->
+<!-- Credit: Allison Horst (<https://allisonhorst.com/r-packages-functions>) -->
+<!-- </span> -->
+<!-- ::: -->
+
+## Thinking about vectors {.smaller}
+
+-   We talk a lot about [vectors]{.blue-bold} on the subsequent slides (terminology can be confusing!!)
+-   A vector can contain a lot of different things (files names, numbers, words, etc.)
+-   [A simple way to conceptualize a vector is by thinking of it as a column in a table of  data]{.blue-bold}
+
+
+```{r, echo=T, collapse=T}
+vector <- c("element 1", "element 2", "...", "element n")
+data.frame(column = vector)
+```
+
+
+
+![](images/gif-vector-to-column.gif){.absolute height="35%" left="260" bottom="75"}
+![](images/gif-cat-confusion.gif){.absolute height="35%" left=0 bottom="75"}
+
+## `stringr` case coversion and whitespace {.smaller}
+
+<br>
+
+:::: {.columns}
+::: {.column width="55%"}
+
+-   **Change letter case of string**
+    -   `str_to_lower()`: To lower-case
+    -   `str_to_upper()`: To upper-case
+    -   `str_to_title()`: To title-case
+    -   `str_to_sentence()`: To sentence-case
+    -   *Default locale is English*
+
+::: {.small-break}
+:::
+
+-   **Remove leading/training spaces from a string**
+    -   `str_trim()`: Trim white space
+    -   `str_squish()`: Trim white space/extra space
+
+::: {.small-break}
+:::
+
+
+```{r, echo=T}
+# Load stringr library
+library(stringr)
+
+# Create a simple text string and print
+text_string <- "  Text manipulation with R is    FUN!!!   "
+```
+
+:::
+
+::: {.column width="45%"}
+::: {.fragment}
+**Examples**
+
+```{r, echo=T, eval=F}
+# To lower case
+str_to_lower(text_string)
+
+# To upper case
+str_to_upper(text_string)
+
+# To title case
+str_to_title(text_string)
+
+# To sentence case
+str_to_sentence(text_string)
+
+# Remove white space
+str_trim(text_string, side = "both")
+
+# Remove white space, and extra internal spaces
+str_squish(text_string)
+```
+
+:::
+
+<br>
+
+::: {.fragment}
+
+```{r, echo=F, eval=T, collapse=T}
+str_to_lower(text_string)
+str_to_upper(text_string)
+str_to_title(text_string)
+str_to_sentence(text_string)
+str_trim(text_string)
+str_squish(text_string)
+```
+
+:::
+:::
+::::
+
+## `stringr::str_detect()` {.smaller}
+
+::: {.small-break}
+:::
+
+**Function(s):** `str_detect()`
+
+:::: {.columns}
+::: {.column width="45%"}
+**Main arguments**
+
+
+```{r, echo=T, eval=F}
+str_detect(string, pattern, negate = FALSE)
+```
+
+
+-   `string` = A character vector
+-   `pattern` = The pattern to look for
+-   `negate` = If TRUE, return non-matches
+
+**Description**
+
+-   Searches for the occurrence of a `pattern` in a `string`
+-   Returns a [logical vector]{.blue-bold} (TRUE or FALSE)
+    -   Indicates whether the `pattern` was found in each element of the string
+-   Equivalent to `grepl()`
+:::
+
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+**Examples**
+
+```{r, echo=T, eval=T, collapse=T}
+#| code-line-numbers: "|1-2|1-6|1-10|1-14|1-18|1-22|1-26|1-30"
+# Character vector containing animal names as elements
+string <- c("cat", "dog", "penguin", "kangaroo", "lion")
+
+# Elements that match 'dog'
+str_detect(string, pattern = "dog")
+
+# Elements that do not match 'dog'
+str_detect(string, pattern = "dog", negate = TRUE)
+
+# Elements that match 'dog' or 'cat'
+str_detect(string, pattern = "dog|cat")
+
+# Elements that end with 'n'
+str_detect(string, pattern = "n$")
+
+# Elements where 'g' is FOLLOWED BY a vowel
+str_detect(string, pattern = "g(?=[aeiou])")
+
+# Elements where 'g' is PRECEDED BY a vowel
+str_detect(string, pattern ="(?<=[aeiou])g")
+
+# Elements where 'g' is FOLLOWED OR PRECEDED BY a vowel 
+str_detect(string, pattern = "g(?=[aeiou])|(?<=[aeiou])g")
+```
+
+:::
+::::
+
+
+## `stringr::str_subset()` {.smaller}
+
+::: {.small-break}
+:::
+
+**Function(s):** `str_subset()`, `str_which()`
+
+:::: {.columns}
+::: {.column width="45%"}
+**Main arguments**
+
+
+```{r, echo=T, eval=F}
+str_subset(string, pattern, negate = FALSE)
+```
+
+
+-   `string` = A character vector
+-   `pattern` = The pattern to look for
+-   `negate` = If TRUE, returns non-matches
+
+**Description**
+
+-   Both search for the occurrence of a `pattern` in a `string`
+-   Both functions [return a vector]{.blue-bold}
+-   `str_subset()` returns matched [values]{.blue-bold}
+-   `str_which()` returns matched [indices]{.blue-bold}
+    -   Position where matches were found
+-   Equivalent to `grep()`
+
+:::
+
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+**Examples**
+
+```{r, echo=T, eval=T, collapse=T}
+#| code-line-numbers: "|1-2|1-6|1-10|1-14|1-18|1-25|1-29"
+string 
+
+# Elements that match 'dog'
+str_subset(string, "dog")
+
+# Elements that do not match 'dog'
+str_subset(string, "dog", negate = TRUE)
+
+# Elements that match 'dog' or 'cat'
+str_subset(string, "dog|cat")
+
+# Elements that end with 'n'
+str_subset(string, "n$")
+
+# Elements where 'g' is FOLLOWED BY a vowel
+str_subset(string, "g(?=[aeiou])")
+
+str_which(string, "g(?=[aeiou])") # returns indices
+
+# Elements where 'g' is PRECEDED BY a vowel
+str_subset(string, "(?<=[aeiou])g")
+```
+
+:::
+::::
+
+<!-- grep, returning value -->
+
+## `stringr::str_replace()` {.smaller}
+
+::: {.small-break}
+:::
+
+**Function(s):** `str_replace()`, `str_replace_all()`
+
+:::: {.columns}
+::: {.column width="45%"}
+**Main arguments**
+
+
+```{r, echo=T, eval=F}
+str_replace(string, pattern, replacement)
+str_replace_all(string, pattern, replacement)
+```
+
+
+-   `string` = A character vector
+-   `pattern` = The pattern to look for
+-   `replacement`= Character vector of replacements to supplant matches
+
+**Description**
+
+-   Replaces a matched pattern
+-   Returns input vector (with replacements)
+  -   `str_replace()`: Replace first match
+  -   `str_replace_all()`: Replace all matches
+-   Equivalent to `sub()`, `gsub()`
+:::
+
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+**Examples**
+
+```{r, echo=T, eval=T, collapse=T}
+#| code-line-numbers: "|1-2|1-6|1-10|1-14|1-18|1-22|1-27"
+string
+
+# Replace letter 'o' for the FIRST match in an element
+str_replace(string, pattern = "o", replacement = "*")
+
+# Replace letter 'o' for ALL matches in an element
+str_replace_all(string, "o", "*")
+
+# Replace FIRST vowel matched in an element
+str_replace(string, "[aeiou]", "*")
+
+# Replace ALL vowels matched in an element
+str_replace_all(string, "[aeiou]", "*")
+
+# Replace ALL non-vowels matched in an element
+str_replace_all(string, "[^aeiou]", "*")
+
+# Replace o's that occur sequentially in an element ('oo')
+# o{2}: read "o matches exactly 2 times
+str_replace_all(string, "o{2}", "*")
+```
+
+:::
+::::
+
+## `stringr::str_extract()` {.smaller}
+
+::: {.small-break}
+:::
+
+**Function(s):** `str_extract()`, `str_extract_all()`
+
+:::: {.columns}
+::: {.column width="45%"}
+**Main arguments**
+
+
+```{r, echo=T, eval=F}
+str_extract(string, pattern)
+str_extract_all(string, pattern, simplify = FALSE)
+```
+
+
+-   `string` = A character vector
+-   `pattern` = The pattern to look for
+-   `simplify`= If TRUE, returns a character matrix. FALSE returns a character vector.
+
+**Description**
+
+-   Extract matching patterns from a string
+-   `str_extract()`: Extract first match
+    -   Returns character vector
+-   `str_extract_all()`: Extract all matches
+    -   Returns list of character vectors or a character matrix
+:::
+
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+**Examples**
+
+```{r, echo=T, eval=T, collapse=T}
+#| code-line-numbers: "|1-2|1-6|1-10|1-27|1-31"
+string
+
+# Extract first letter 'o' of each vector element
+str_extract(string, pattern = "o")
+
+# Extract first non-vowel from each element
+str_extract(string, pattern = "[^aeiou]")
+
+# Extract all non-vowels from each element
+str_extract_all(string, pattern = "[^aeiou]")
+
+# Extract character vector for the 5th list element
+str_extract_all(string, pattern = "[^aeiou]")[[5]]
+```
+
+:::
+::::
+
+---
+
+![](images/gif-absorbing-knowledge.gif){.absolute height="70%" top="10%" left="28%"}
+<!-- ![](images/meme-regex-memory.png){.absolute height="70%" top="10%" right="7%"} -->
+
+# Case study {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
+
+## Case study: Overview {.smaller}
+
+<br>
+
+**Coming back to the messy dataset we discussed at the start of the lecture**
+
+-   [What steps are necessary]{.blue-bold} to prepare these data for analysis?
+    -   Why are the data problematic as shown?
+
+::: {.small-break}
+:::
+
+-   [Pseudocode the steps]{.blue-bold} necessary to address the problems you've identified. 
+    -   Think about the [order in which steps should occur]{.blue-bold}, and why. 
+
+
+![](images/example-messy-data.png){.absolute height="35%" width="100%" bottom="75"}
+
+
+## Case study: Import the data{.smaller}
+
+
+```{r, echo=T,  R.options = list(width = 130)}
+# Load packages
+library(kableExtra) # For formatting table output 
+
+# Read in the data
+data <- read_csv("data/messy_data.csv", na = character())
+
+# Take a quick look
+glimpse(data)
+```
+
+
+## Case study: Check distinct values {.smaller}
+
+
+```{r, echo=T, R.options = list(width = 130)}
+#| output-location: fragment
+
+# Function to get a simple look at all the distinct values that appear in the data
+check_distinct <- function(data) {
+  # Extract existing data types for each column and store as character vector
+  col_types <- map_chr(data, class)
+  
+  # Helper function to replace NA values and sort the distinct values
+  str_clean <- function(x) str_sort(str_replace_na(unique(x), replacement = "."))
+  
+  # Create data frame view to summarize the messy data
+  map(data, ~ str_c(str_clean(as.character(.x)), collapse = " | ")) %>% 
+    bind_rows() %>% 
+    pivot_longer(everything(), names_to = "col_name", values_to = "distinct_levels") %>% 
+    mutate(distinct_count = str_count(distinct_levels, pattern = "(?<!\\.\\s)\\|") + 1) %>%
+    add_column(.after = "col_name", type = col_types) %>% 
+    kbl() %>%
+    kable_styling(font_size = 13)
+}
+
+check_distinct(data)
+```
+
+
+## Case study: Clean-up column names {.smaller}
+**One approach**
+
+
+```{r, echo=T, tidy = 'stylr', R.options = list(width = 130)}
+# Chain together column name clean-up steps
+new_data <- data %>% 
+  # Remove leading and trailing spaces in the column names
+  rename_with(~ str_trim(str_to_lower(.))) %>% 
+  # Remove spaces (\\s) or periods (\\.) between 'gad' and '7' (i.e., make var prefix gad7)   
+  rename_with(~ str_replace_all(., "d\\s7|d\\.7", "d7")) %>% 
+  # Remove parentheses, and replace spaces, periods, or forward slashes with "_"
+  rename_with(~ str_replace_all(., c("\\(|\\)" = "", "\\s|\\.|\\/" = "_"))) %>% 
+  # Name clean-up for specific columns
+  rename_with(~ str_replace_all(., c("question_|q_" = "q", 
+                                     "ethn.*" = "ethn", 
+                                     "med.*" = "psych_meds", 
+                                     "ye.*" = "yrs",
+                                     ".*id" = "id"))) 
+
+check_distinct(new_data)
+```
+
+
+## Case study: Clean-up column names {.smaller}
+**Another approach**
+
+
+```{r, echo=T, R.options = list(width = 130)}
+#| output-location: column
+
+# Write a function for name column clean-up 
+name_cleanup <- function(data, patterns) {
+  data <- data %>%
+    # Convert to lower-case and replace
+    rename_with(~ str_trim(str_to_lower(.))) %>%
+    rename_with(~ str_replace_all(., patterns))
+  return(data)
+}
+
+# Patterns in a "named vector"
+# format: pattern = replacement
+patterns <- c("d\\s7|d\\.7" = "d7",   # gad7 prefix
+              "\\(|\\)" = "",         # parentheses
+              "\\s|\\.|\\/" = "_",    # spaces/periods
+              "question_|q_" = "q",   # gad7 suffix
+              "ethn.*" = "ethn",      # race/ethnicity
+              "med.*" = "psych_meds", # medications
+              "ye.*" = "yrs",         # age, years suffix
+              ".*id" = "id")          # participant id
+
+# Take our original data
+data %>% 
+  # Then clean-up the variable names
+  name_cleanup(., patterns) %>% 
+  # Then check-out the result
+  check_distinct()
+```
+
+
+
+## Case study: Clean up values {.smaller}
+
+
+```{r, echo=T, R.options = list(width = 130)}
+# Begin cleaning up values in the data
+new_data <- new_data %>% 
+  mutate(
+    # Convert strings in character columns to lower case
+    # Remove leading and trailing white space
+    across(where(is.character), ~ str_trim(str_to_lower(.))),
+    # Correct discrepant values in gad7_q1 and _q2 columns
+    across(matches("gad.*[1-2]"), ~ str_replace_all(., "1/2", "half")), 
+    # Make specific string replacements across columns
+    across(everything(), ~ str_replace_all(., c("n/a" = "na", 
+                                                     ".*none.*" = "none", 
+                                                     "\\s-\\s|\\s\\(" = "_", 
+                                                     "\\)" = "", 
+                                                     "\\sfor\\s" = "_"))),
+    # Replace text string 'na' values with true NA's
+    across(everything(), ~ na_if(., "na"))
+    ) 
+
+check_distinct(new_data)
+```
+
+
+
+## Case study: Clean up more values {.smaller}
+
+
+```{r, echo=T, R.options = list(width = 130)}
+# Correct response values for GAD-7 questions 1 and 2
+new_data <- new_data %>% 
+  mutate(
+    across(matches("gad.*[1-2]"), 
+           ~ case_when(
+           . == "not at all" ~ "0",
+           . == "several days" ~ "1",
+           . == "more than half the days" ~ "2",
+           . == "nearly every day" ~ "3", 
+           TRUE ~ .)
+           )
+    )
+
+check_distinct(new_data)
+```
+
+
+## Case study: Coerce data types/derive variables {.smaller}
+
+
+```{r, echo=T, R.options = list(width = 130)}
+#| output-location: slide
+
+# Coerce data types and generate new variables based on existing columns
+new_data <- new_data %>%   
+  mutate(
+    across(matches("id|age|gad"), as.numeric), 
+    indication = str_extract(psych_meds, "(?<=_).*"),
+    psych_meds = str_replace_all(psych_meds, "_.*", ""),
+    depression = if_else(indication == "depression", 1, 0, missing = NA_real_),
+    anxiety = if_else(indication == "anxiety", 1, 0, missing = NA_real_),
+    gad7_raw = rowSums(across(matches("gad"))), 
+    gad7_cat = 
+      case_when(
+        gad7_raw <= 4 ~ "minimal",
+        gad7_raw %in% c(5:9) ~ "mild",
+        gad7_raw %in% c(10:14) ~ "moderate",
+        gad7_raw >= 15 ~ "severe"
+        ),
+    across(matches("race|_cat"), as.factor)
+  )
+    
+check_distinct(new_data)
+```
+
+
+
+## Key takeaways {.smaller}
+
+:::{.small-break}
+:::
+
+-   [Text strings often contain inconsistent data, and are common in research data]{.blue-bold}
+    -   Data containing such issues must be standardized before it is used in an analysis!**
+
+:::{.small-break}
+:::
+
+-   Base R and `stringr` offer a range of functions for manipulating text strings
+
+:::{.small-break}
+:::
+
+-   `stringr` is designed to work with `dplyr` and other tidyverse packages
+    -   Text manipulation can be performed in chained sequences with other data cleaning steps!
+    
+:::{.small-break}
+:::
+
+-   Regular expressions (regex) are a powerful tool for cleaning and preprocessing research data
+    -   Understanding when and how to implement regex will take some practice!
+  
+## Resources {.smaller}
+
+:::{.small-break}
+:::
+
+-   **RegExplain:** <https://github.com/gadenbuie/regexplain>
+
+:::{.small-break}
+:::
+
+-   **R for Data Science (strings):** <https://r4ds.had.co.nz/strings.html>
+
+:::{.small-break}
+:::
+
+-   **`stringr` vs. `Base R` text manipulation:** <https://stringr.tidyverse.org/articles/from-base.html>
+  
