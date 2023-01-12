@@ -402,10 +402,17 @@
 <p>2023-01-12</p>
 <p>as_date(43476, origin = “1904-01-01”)</p>
 </section>
+<section id="follow-along" class="slide level2">
+<h2>Follow along</h2>
+<br> <br>
+<center>
+<p>https://bit.ly/fct_datetimeR</p>
+</center></section>
 <section id="learning-objectives" class="slide level2 smaller">
 <h2>Learning objectives</h2>
-<p><br> - Understand the importance of properly handling factors and date-times in data analysis</p>
+<p><br></p>
 <ul>
+<li><p>Understand the importance of properly handling factors and date-times in data analysis</p></li>
 <li><p>Learn about challenges and common mistakes when working with factors and date-times in R</p></li>
 <li><p>Be familiar with packages for working with factors and date-times</p>
 <ul>
@@ -867,14 +874,14 @@ Adelie
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>nhanes <span class="ot">&lt;-</span> nhanes <span class="sc">%&gt;%</span> </span>
 <span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">group_by</span>(age_quartiles) <span class="sc">%&gt;%</span> </span>
 <span id="cb31-3"><a href="#cb31-3"></a>  <span class="fu">mutate</span>(<span class="at">age_quartiles =</span> <span class="fu">factor</span>(age_quartiles, </span>
-<span id="cb31-4"><a href="#cb31-4"></a>                                <span class="at">labels =</span> <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"["</span>, <span class="fu">min</span>(age), <span class="st">"-"</span>, <span class="fu">max</span>(age), <span class="st">"]"</span>))))</span>
+<span id="cb31-4"><a href="#cb31-4"></a>                                <span class="at">labels =</span> <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">min</span>(age), <span class="st">"-"</span>, <span class="fu">max</span>(age), <span class="st">")"</span>))))</span>
 <span id="cb31-5"><a href="#cb31-5"></a></span>
 <span id="cb31-6"><a href="#cb31-6"></a><span class="fu">unique</span>(nhanes<span class="sc">$</span>age_quartiles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] [23-42] [60-80] [12-23] [42-60]
-Levels: [12-23] [23-42] [42-60] [60-80]</code></pre>
+<pre><code>[1] (23-42) (60-80) (12-23) (42-60)
+Levels: (12-23) (23-42) (42-60) (60-80)</code></pre>
 </div>
 </div>
 </section>
@@ -1171,7 +1178,7 @@ average penguins     big penguins   small penguins
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2023-01-12 00:00:21 EST"</code></pre>
+<pre><code>[1] "2023-01-12 11:10:03 EST"</code></pre>
 </div>
 </div>
 </div>
@@ -1304,7 +1311,7 @@ Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</code></pre>
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="fu">hour</span>(<span class="fu">now</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0</code></pre>
+<pre><code>[1] 11</code></pre>
 </div>
 </div>
 </div>
@@ -1315,7 +1322,7 @@ Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</code></pre>
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="fu">minute</span>(<span class="fu">now</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0</code></pre>
+<pre><code>[1] 10</code></pre>
 </div>
 </div>
 </div>
@@ -1326,7 +1333,7 @@ Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</code></pre>
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a><span class="fu">second</span>(<span class="fu">now</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 21.59636</code></pre>
+<pre><code>[1] 3.194939</code></pre>
 </div>
 </div>
 </div>
@@ -1359,7 +1366,7 @@ Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a><span class="fu">now</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2023-01-12 00:00:21 EST"</code></pre>
+<pre><code>[1] "2023-01-12 11:10:03 EST"</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -1654,7 +1661,7 @@ attr(,"package")
 <span id="cb124-3"><a href="#cb124-3"></a>                       <span class="at">tz =</span> <span class="st">"EST"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column fragment">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2023-01-12 00:00:21 EST--2023-01-12 17:30:00 EST</code></pre>
+<pre><code>[1] 2023-01-12 11:10:03 EST--2023-01-12 17:30:00 EST</code></pre>
 </div>
 </div>
 </div>
@@ -1667,7 +1674,7 @@ attr(,"package")
 <span id="cb126-3"><a href="#cb126-3"></a>                       <span class="at">tz =</span> <span class="st">"EST"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column fragment">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2023-01-12 00:00:21 EST--2023-01-12 17:30:00 EST</code></pre>
+<pre><code>[1] 2023-01-12 11:10:03 EST--2023-01-12 17:30:00 EST</code></pre>
 </div>
 </div>
 </div>
@@ -1945,8 +1952,6 @@ FALSE  TRUE
 </section>
 <section id="example-covid-data-1" class="slide level2 smaller">
 <h2>Example: COVID data</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb155"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb155-1"><a href="#cb155-1"></a><span class="fu">ggplot</span>(</span>
 <span id="cb155-2"><a href="#cb155-2"></a>  covid_by_poverty_level <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span> <span class="fu">is.na</span>(poverty_cut)),</span>
@@ -1960,31 +1965,6 @@ FALSE  TRUE
 <span id="cb155-10"><a href="#cb155-10"></a>  <span class="fu">ylab</span>(<span class="st">"COVID-19 Mortality per 100k (monthly observations)"</span>) <span class="sc">+</span> </span>
 <span id="cb155-11"><a href="#cb155-11"></a>  <span class="fu">ggtitle</span>(<span class="st">"Monthly County COVID-19 Mortality Estimates by Poverty Level in the US"</span>) <span class="sc">+</span> </span>
 <span id="cb155-12"><a href="#cb155-12"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">75</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/covid19_rates_and_poverty_levels.png" alt="Plot showing monthly county COVID-19 mortality estimates by poverty level in the US"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="example-covid-data-2" class="slide level2 smaller">
-<h2>Example: COVID data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb156"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb156-1"><a href="#cb156-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb156-2"><a href="#cb156-2"></a>  covid_by_poverty_level <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span> <span class="fu">is.na</span>(poverty_cut)),</span>
-<span id="cb156-3"><a href="#cb156-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> year_month, </span>
-<span id="cb156-4"><a href="#cb156-4"></a>      <span class="at">y =</span> deaths_avg_per_100k, </span>
-<span id="cb156-5"><a href="#cb156-5"></a>      <span class="at">color =</span> poverty_cut,</span>
-<span id="cb156-6"><a href="#cb156-6"></a>      <span class="at">group =</span> poverty_cut)) <span class="sc">+</span> </span>
-<span id="cb156-7"><a href="#cb156-7"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb156-8"><a href="#cb156-8"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">'RdBu'</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb156-9"><a href="#cb156-9"></a>  <span class="fu">xlab</span>(<span class="st">"Date"</span>) <span class="sc">+</span> </span>
-<span id="cb156-10"><a href="#cb156-10"></a>  <span class="fu">ylab</span>(<span class="st">"COVID-19 Mortality per 100k (monthly observations)"</span>) <span class="sc">+</span> </span>
-<span id="cb156-11"><a href="#cb156-11"></a>  <span class="fu">ggtitle</span>(<span class="st">"Monthly County COVID-19 Mortality Estimates by Poverty Level in the US"</span>) <span class="sc">+</span> </span>
-<span id="cb156-12"><a href="#cb156-12"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">75</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <img data-src="images/covid19_rates_and_poverty_levels.png" alt="Plot showing monthly county COVID-19 mortality estimates by poverty level in the US" class="r-stretch quarto-figure-center"></section>
