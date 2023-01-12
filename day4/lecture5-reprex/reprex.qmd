@@ -21,6 +21,19 @@ p_load(ID529data)
 ```
 
 # Reproducible examples for getting help in R {.smaller}
+<br>
+
+ID 529: Data Management and Analytic Workflows in R
+
+Amanda Hernandez
+
+<br>
+
+<hr>
+
+<br>
+
+Thursday, January 12<sup>th</sup>, 2023
 
 ## Best practices for getting help in R {.smaller}
 

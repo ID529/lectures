@@ -184,7 +184,9 @@ unique(penguins$species)
 
 ## Factor rules {.smaller}
 
-<br> - R by default returns your data in the order it occurs
+<br> 
+
+-   R by default returns your data in the order it occurs
 
 -   Factors create an order and retain that order for all future uses of
     the variable
@@ -201,7 +203,8 @@ ggplot(penguins, aes(x = species)) +
 
 ## Changing the factor order: `fct_infreq()` {.smaller}
 
-<br> We may want to change the default factor order (alphabetical) and
+<br> 
+We may want to change the default factor order (alphabetical) and
 rearrange the order on the x axis. `forcats::` gives us lots of options
 for rearranging our factors without having to manually list out all of
 the levels. <br> <br> `fct_infreq()` allows us to sort by occurrence:
@@ -219,7 +222,8 @@ ggplot(penguins, aes(x = fct_infreq(species))) +
 
 ## Changing the factor order: `fct_rev()` {.smaller}
 
-<br> `fct_rev()` flips the order in reverse
+<br> 
+`fct_rev()` flips the order in reverse
 
 ```{r}
 #| output-location: fragment
@@ -232,7 +236,8 @@ ggplot(penguins, aes(x = fct_rev(species))) +
 
 ## 
 
-<br> <br>
+<br> 
+<br>
 
 ::: columns
 ::: column
