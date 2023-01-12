@@ -6,6 +6,11 @@ format:
     logo: images/id529-sticker.png
     slide-number: true
     footer: "<https://id529.github.io/>"
+revealjs-plugins:
+  - pointer
+  - confetti
+execute: 
+  echo: true
 ---
 
 # Introduction to Data Linkage {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
@@ -19,50 +24,48 @@ Dean Marengi \| Friday, January 13<sup>th</sup>, 2023
 :::
 
 ## Motivation {.smaller}
--   **We've now learned a bit about:**
-  -   [Data manipulation] using `dplyr` 
-  -   Leveraging tidyverse and other packages for working with specific data types
-      -   Dates and times, factors
-      -   Text data
+<!-- -   **We've now learned a bit about:** -->
+<!--   -   [Data manipulation] using `dplyr`  -->
+<!--   -   Leveraging tidyverse and other packages for working with specific data types -->
+<!--       -   Dates and times, factors -->
+<!--       -   Text data -->
 
 <br>
 
--   **Up until now, we've really only considered working with a single dataset**
-    -   We are often interested in combining data from multiple different files or sources
-    -   Base R, `dplyr`, and other packages have functions for combining datasets
-    <!-- -   We can leverage these R packages to: -->
-    <!--     -   Write efficient R code to perform most data manipulation tasks -->
-    <!--     -   Chain together data manipulation operations in a logical, concise sequence -->
+<!-- -   **Up until now, we've really only considered working with a single dataset** -->
+<!--     -   We are often interested in combining data from multiple different files or sources -->
+<!--     -   Base R, `dplyr`, and other packages have functions for combining datasets -->
+<!--     <!-- -   We can leverage these R packages to: --> -->
+<!--     <!--     -   Write efficient R code to perform most data manipulation tasks --> -->
+<!--     <!--     -   Chain together data manipulation operations in a logical, concise sequence --> -->
 
 ## Learning objectives {.smaller}
 
 -   **Understand the basic principles of data linkage **
-    -   
-    -
+    <!-- -    -->
+    <!-- - -->
     
 ::: {.small-break}
 :::
 
 -   **Understand utility functions that help `dplyr` functions perform specific tasks. For example:**
-    -   Performing column- and row-wise operations
-    -   Modifying data based on conditional logic
+    <!-- -   Performing column- and row-wise operations -->
+    <!-- -   Modifying data based on conditional logic -->
 
 ::: {.small-break}
 :::
 
--  **Learn how to implement `dplyr` functions to prepare data for analysis**
-    -   Identifying and correcting data quality issues
-    -   Restructuring and organizing data
-    -   Deriving new variables
+<!-- -  **Learn how to implement `dplyr` functions to prepare data for analysis** -->
+<!--     -   Identifying and correcting data quality issues -->
+<!--     -   Restructuring and organizing data -->
+<!--     -   Deriving new variables -->
 
 # Background {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
 
 ## Why do we need data linkage? {.smaller}
 
--   **The common tasks**
 
-
-![](images/dplyr-join-venn.png){.absolute height="40%" left="0%" bottom="8%"}
+<!-- ![](images/dplyr-join-venn.png){.absolute height="40%" left="0%" bottom="8%"} -->
 
 ## Data linkage in R {.smaller}
 
@@ -110,13 +113,11 @@ All two-table verbs work similarly. The first two arguments are x and y, and pro
 ::: {.small-break}
 :::
 
-
 -   **For our examples, we will split these data into smaller datasets that each contain different variables,  identifiers, and number of observations.**
     -   **clinical:** `id1`, `age`, `race_eth`, `sbp`, `ht`, `wt`
     -   **pfas:** `id1`, `pfos`, `pfoa`, `pfna`, `pfhs`, `pfde`
     -   **poverty:** `id2`, `pov_ratio`
     -   **crosswalk:** `id1`, `id2`
-
 :::
 
 ::: {.column width=50%}

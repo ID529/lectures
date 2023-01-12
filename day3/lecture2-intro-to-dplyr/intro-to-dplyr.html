@@ -564,16 +564,16 @@
 <pre><code># A tibble: 15 × 3
       id group              num_gold_stars
    &lt;int&gt; &lt;chr&gt;                       &lt;int&gt;
- 1     2 i &lt;3 dplyr                    104
- 2    10 dplyr rocks                    93
- 3     7 dplyr rocks                    97
- 4    11 i &lt;3 dplyr                    102
- 5     5 i &lt;3 dplyr                     95
- 6    12 clean code or bust            107
- 7    15 clean code or bust             94
- 8     8 i &lt;3 dplyr                    101
- 9     3 clean code or bust             97
-10     9 clean code or bust            102
+ 1     2 i &lt;3 dplyr                     97
+ 2    10 dplyr rocks                   110
+ 3     7 dplyr rocks                    93
+ 4    11 i &lt;3 dplyr                    101
+ 5     5 i &lt;3 dplyr                     90
+ 6    12 clean code or bust             96
+ 7    15 clean code or bust            110
+ 8     8 i &lt;3 dplyr                     90
+ 9     3 clean code or bust            101
+10     9 clean code or bust             98
 # … with 5 more rows</code></pre>
 </div>
 </div>
@@ -597,11 +597,11 @@
 <pre><code># A tibble: 5 × 3
      id group      num_gold_stars
   &lt;int&gt; &lt;chr&gt;               &lt;int&gt;
-1    14 i &lt;3 dplyr            105
-2     2 i &lt;3 dplyr            104
-3    11 i &lt;3 dplyr            102
-4     8 i &lt;3 dplyr            101
-5     5 i &lt;3 dplyr             95</code></pre>
+1    14 i &lt;3 dplyr            109
+2    11 i &lt;3 dplyr            101
+3     2 i &lt;3 dplyr             97
+4     5 i &lt;3 dplyr             90
+5     8 i &lt;3 dplyr             90</code></pre>
 </div>
 </div>
 </div>
@@ -690,8 +690,6 @@ $ PFDE           &lt;dbl&gt; 0.2, 0.3, 0.1, 0.2, 0.1, …</code></pre>
 </div>
 </div>
 </div>
-<!-- Although datasets can be manipulated in sophisticated ways by linking the 5 verbs of dplyr in conjunction, linking verbs together can be a bit verbose. -->
-<!-- Creating multiple objects, especially when working on a large dataset can slow you down in your analysis. Chaining functions directly together into one line of code is difficult to read. This is sometimes called the Dagwood sandwich problem: you have too much filling (too many long arguments) between your slices of bread (parentheses). Functions and arguments get further and further apart. -->
 </section>
 <section id="dplyrrename" class="slide level2 smaller">
 <h2><code>dplyr::rename()</code></h2>
@@ -1459,7 +1457,7 @@ $ PFDE           &lt;dbl&gt; 0.20, 0.30, 0.10, 0.20, 0.10, NA, 0.20, 1.70, NA, 0
 <div class="column" style="width:50%;">
 <p><strong>Derive a variable for hypertension status</strong></p>
 <ul>
-<li>Use <code>case_when()</code> apply conditional logic
+<li>Use <code>case_when()</code> to apply conditional logic
 <ul>
 <li>Derive hypertension categories</li>
 </ul></li>

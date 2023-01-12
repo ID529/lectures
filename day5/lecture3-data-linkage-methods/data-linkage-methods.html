@@ -96,6 +96,7 @@
   <link href="data-linkage-methods_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="data-linkage-methods_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="data-linkage-methods_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="data-linkage-methods_files/libs/revealjs/plugin/reveal-pointer/pointer.css" rel="stylesheet">
   <link href="data-linkage-methods_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -399,53 +400,36 @@
 </section>
 <section id="motivation" class="slide level2 smaller">
 <h2>Motivation</h2>
-<ul>
-<li><strong>We’ve now learned a bit about:</strong></li>
-<li>[Data manipulation] using <code>dplyr</code></li>
-<li>Leveraging tidyverse and other packages for working with specific data types
-<ul>
-<li>Dates and times, factors</li>
-<li>Text data</li>
-</ul></li>
-</ul>
+<!-- -   **We've now learned a bit about:** -->
+<!--   -   [Data manipulation] using `dplyr`  -->
+<!--   -   Leveraging tidyverse and other packages for working with specific data types -->
+<!--       -   Dates and times, factors -->
+<!--       -   Text data -->
 <p><br></p>
-<ul>
-<li><strong>Up until now, we’ve really only considered working with a single dataset</strong>
-<ul>
-<li>We are often interested in combining data from multiple different files or sources</li>
-<li>Base R, <code>dplyr</code>, and other packages have functions for combining datasets <!-- -   We can leverage these R packages to: --> <!--     -   Write efficient R code to perform most data manipulation tasks --> <!--     -   Chain together data manipulation operations in a logical, concise sequence --></li>
-</ul></li>
-</ul>
+<!-- -   **Up until now, we've really only considered working with a single dataset** -->
+<!--     -   We are often interested in combining data from multiple different files or sources -->
+<!--     -   Base R, `dplyr`, and other packages have functions for combining datasets -->
+<!--     <!-- -   We can leverage these R packages to: -->
+<p>–&gt; <!--     <!--     -   Write efficient R code to perform most data manipulation tasks --> –&gt; <!--     <!--     -   Chain together data manipulation operations in a logical, concise sequence --> –&gt;</p>
 </section>
 <section id="learning-objectives" class="slide level2 smaller">
 <h2>Learning objectives</h2>
 <ul>
-<li><h2 id="understand-the-basic-principles-of-data-linkage"><strong>Understand the basic principles of data linkage </strong></h2>
-<ul>
-<li></li>
-</ul></li>
+<li><strong>Understand the basic principles of data linkage </strong> <!-- -    --> <!-- - --></li>
 </ul>
 <div class="small-break">
 
 </div>
 <ul>
-<li><strong>Understand utility functions that help <code>dplyr</code> functions perform specific tasks. For example:</strong>
-<ul>
-<li>Performing column- and row-wise operations</li>
-<li>Modifying data based on conditional logic</li>
-</ul></li>
+<li><strong>Understand utility functions that help <code>dplyr</code> functions perform specific tasks. For example:</strong> <!-- -   Performing column- and row-wise operations --> <!-- -   Modifying data based on conditional logic --></li>
 </ul>
 <div class="small-break">
 
 </div>
-<ul>
-<li><strong>Learn how to implement <code>dplyr</code> functions to prepare data for analysis</strong>
-<ul>
-<li>Identifying and correcting data quality issues</li>
-<li>Restructuring and organizing data</li>
-<li>Deriving new variables</li>
-</ul></li>
-</ul>
+<!-- -  **Learn how to implement `dplyr` functions to prepare data for analysis** -->
+<!--     -   Identifying and correcting data quality issues -->
+<!--     -   Restructuring and organizing data -->
+<!--     -   Deriving new variables -->
 </section></section>
 <section>
 <section id="background" class="title-slide slide level1 white-title white-code center" data-background-image="images/bg-no-planet.png" data-background-size="110%">
@@ -454,10 +438,7 @@
 </section>
 <section id="why-do-we-need-data-linkage" class="slide level2 smaller">
 <h2>Why do we need data linkage?</h2>
-<ul>
-<li><strong>The common tasks</strong></li>
-</ul>
-<p><img data-src="images/dplyr-join-venn.png" class="absolute" style="left: 0%; bottom: 8%; height: 40%; "></p>
+<!-- ![](images/dplyr-join-venn.png){.absolute height="40%" left="0%" bottom="8%"} -->
 </section>
 <section id="data-linkage-in-r" class="slide level2 smaller">
 <h2>Data linkage in R</h2>
@@ -1045,6 +1026,8 @@
   <script src="data-linkage-methods_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="data-linkage-methods_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="data-linkage-methods_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="data-linkage-methods_files/libs/revealjs/plugin/reveal-pointer/pointer.js"></script>
+  <script src="data-linkage-methods_files/libs/revealjs/plugin/reveal-confetti/confetti.js"></script>
   <script src="data-linkage-methods_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -1067,6 +1050,8 @@
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'pointer': {"key":"q","color":"red","pointerSize":16,"alwaysVisible":false},
+'confetti': {"particleCount":50,"angle":90,"spread":45,"startVelocity":45,"decay":0.9,"gravity":1,"drift":0,"ticks":200,"colors":null,"shapes":null,"scalar":1,"zIndex":100,"disableForReducedMotion":false},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1237,7 +1222,7 @@
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealPointer, RevealConfetti, QuartoSupport,
 
           RevealMath,
           RevealNotes,

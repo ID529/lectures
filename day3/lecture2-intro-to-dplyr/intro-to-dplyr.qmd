@@ -272,15 +272,8 @@ data <- nhanes_id529 %>%
 glimpse(data, width = 50)
 ```
 
-
 :::
 ::::
-
-
-
-<!-- Although datasets can be manipulated in sophisticated ways by linking the 5 verbs of dplyr in conjunction, linking verbs together can be a bit verbose. -->
-
-<!-- Creating multiple objects, especially when working on a large dataset can slow you down in your analysis. Chaining functions directly together into one line of code is difficult to read. This is sometimes called the Dagwood sandwich problem: you have too much filling (too many long arguments) between your slices of bread (parentheses). Functions and arguments get further and further apart. -->
 
 ## `dplyr::rename()` {.smaller}
 
@@ -812,7 +805,7 @@ data
 
 **Derive a variable for hypertension status**
 
--   Use `case_when()` apply conditional logic
+-   Use `case_when()` to apply conditional logic
     -   Derive hypertension categories
 
 ```{r, echo=T, R.options=list(width=50)}
