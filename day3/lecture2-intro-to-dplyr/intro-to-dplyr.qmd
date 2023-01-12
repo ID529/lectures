@@ -71,6 +71,7 @@ Dean Marengi \| Wednesday, January 11<sup>th</sup>, 2023
 
 -   **Learn about other functions that help core `dplyr` functions perform specific tasks**
     -   Transforming multiple columns at once
+    -   Selecting multiple columns at once
     -   Using conditional logic to create new columns
 
 ::: {.small-break}
@@ -372,7 +373,7 @@ filter(.data, ...)
 -   Expressions use operators
     -   **Comparison:** [>]{.blue-bold}, [>=]{.blue-bold}, [<]{.blue-bold}, [<=]{.blue-bold}, [!=]{.blue-bold}, [==]{.blue-bold}
     -   **Logical:** [!]{.blue-bold}, [&]{.blue-bold}, [|]{.blue-bold}, [xor]{.blue-bold}
-    -   **Binary operator:** [%in%]{.blue-bold}
+    -   **Binary:** [%in%]{.blue-bold}
 -   Returns a data frame with a subset of rows where conditions evaluated to `TRUE`
 :::   
   
@@ -557,15 +558,16 @@ names(data)
 # From the data frame, select columns explicitly by name 
 data %>% 
   select(age, height, weight, mean_BP) %>% 
-  head(n=4)
+  head(n = 4)
 ``` 
 :::
 
 ::: fragment
 ```{r}
+# From the data frame, select sequences of consecutive columns
 data %>%
   select(id:race_ethnicity, PFOS:PFDE) %>% 
-  head(n=4)
+  head(n = 4)
 ```
 ::: 
 
@@ -650,7 +652,6 @@ mutate(.data, ...)
 -   [Changes the values of columns and creates new columns.]{.blue-bold}
     -   i.e., adds new variables   
 -   Will overwrite variables that share the same name
--   Missing values are sorted last (NAs at bottom)
 
 :::   
   
@@ -663,7 +664,7 @@ mutate(.data, ...)
 
 ::: fragment
 ```{r, echo=T, eval=T, R.options=list(width=80)}
-# Derive new variabes 
+# Derive new variables
 data %>% 
   mutate(weight_lbs = round(weight * 2.20462, 2), 
          height_in = round(height * 0.393701, 2),
@@ -714,7 +715,7 @@ summarize(.data, .groups = NULL)
 data %>% 
   filter(!is.na(race_ethnicity)) %>% 
   group_by(race_ethnicity) %>% 
-  summarise(age_mean = mean(age, na.rm = T),
+  summarize(age_mean = mean(age, na.rm = T),
             age_sd  = sd(age, na.rm = T), 
             age_min = min(age, na.rm = T), 
             age_max = max(age, na.rm = T))
@@ -733,8 +734,8 @@ paste0(names(nhanes_id529), collapse = " | ")
 ```
 
 ```{r, R.options=list(width=150)}
-# Print the data frame does not print t 
-print(nhanes_id529)
+# Print the data frame
+head(nhanes_id529, n = 15)
 ```
 
 ::: {.small-break}
@@ -778,7 +779,7 @@ names(data)
 
 -   Change all variable names to lower case
 -   Explicitly rename a few variables
--   Select sequences columns of interest
+-   Select sequences of columns of interest
     -   `pf.*` looks for names that begin with 'pf' (with no specific text thereafter)
 -   Move the `pfas_total` column to the end
 -   [Output on next slide!]{.blue-bold}
@@ -899,7 +900,7 @@ run_tutorial(name = "ex-data-summarise", package = "learnr")
 ::: {.small-break}
 :::
 
-**`dplyr` function reference**<https://dplyr.tidyverse.org/reference/index.html>
+-   **`dplyr` function reference**<https://dplyr.tidyverse.org/reference/index.html>
 
 ::: {.small-break}
 :::
