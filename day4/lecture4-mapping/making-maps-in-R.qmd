@@ -116,7 +116,7 @@ counties <- read_sf(here("data/shapefile_unzipped"))
 the payoff is that then you can use `geom_sf()` with
 `ggplot2`
 
-```{r, echo=F, message=F}
+```{r, echo=F, message=F, results = "hide"}
 library(sf)
 library(tigris)
 library(tidyverse)
@@ -153,7 +153,7 @@ ggplot(counties) +
 
 ##  {.small}
 
-```{r}
+```{r, results='hide'}
 # let's get a more interesting dataset
 library(tidycensus)
 
@@ -218,7 +218,7 @@ plot(topography_raster)
 
   * working with spatial data is something you can do in R
   * more complicated geospatial operations are possible, but more advanced and outside the scope of this course 
-  * creating maps with `mapview` or `geom_sf` is relatively straightforward
+  * creating maps with mapview or geom_sf is relatively straightforward
 
 ## references {.small}
 
