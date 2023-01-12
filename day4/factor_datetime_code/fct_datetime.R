@@ -321,6 +321,10 @@ dst("2023-03-12 13:30:00")
 ymd_hms("2023-03-11 13:30:00") + ddays(1)
 ymd_hms("2023-03-11 13:30:00") + days(1)
 
+## hodu tip
+parsedate::parse_date(c("12 January 2023",
+                        "01/12/2023",
+                        "01/12/23"))
 
 
 ## Example: Classroom CO2
@@ -401,3 +405,5 @@ ggplot(hobo_g2_dt)  +
             alpha = 0.2, fill = "lightpink") +
   facet_wrap(~metric, scales = "free_y", ncol = 1) + 
   theme_bw()
+
+
