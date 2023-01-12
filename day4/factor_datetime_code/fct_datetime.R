@@ -8,12 +8,11 @@
 # 0. SET UP #########################################
 ###############################################################################
 
-
 library(tidyverse)
 library(palmerpenguins)
 library(lubridate)
 library(parsedate)
-library(viridis)
+library(ID529data)
 
 ###############################################################################
 ### 1. FACTORS #############
@@ -114,7 +113,7 @@ ggplot(nhanes, aes(x = age_quartiles, y = mean_BP)) +
 nhanes <- nhanes %>% 
   group_by(age_quartiles) %>% 
   mutate(age_quartiles = factor(age_quartiles, 
-                                labels = c(paste0("[", min(age), "-", max(age), "]"))))
+                                labels = c(paste0("(", min(age), "-", max(age), ")"))))
 
 unique(nhanes$age_quartiles)
 
@@ -326,10 +325,10 @@ ymd_hms("2023-03-11 13:30:00") + days(1)
 
 ## Example: Classroom CO2
 
-
-hobo_g2 <- read_csv("data/hobo_g2.csv", 
+hobo_g2 <- read_csv("https://raw.githubusercontent.com/ID529/lectures/main/day4/factor_datetime_code/data/hobo_g2.csv", 
                     col_types = cols(
                       date_time = col_character()))
+
 
 glimpse(hobo_g2)
 
@@ -357,13 +356,13 @@ ggplot(hobo_g2_dt, aes(x = date_time, y = result))  +
 hobo_g2_1min <- hobo_g2_dt %>% 
   group_by(metric, date, hour, minute) %>% 
   summarize(avg_1min = mean(result)) %>% 
-  mutate(date_time = ymd_hm(paste0(date, " ", hour, ":", minute)))
+  mutate(date_time = ymd_hm(paste0(date, " ", hour, ":", minute), tz = "EST"))
 
 #aggregate to hourly averages
 hobo_g2_1hr <- hobo_g2_dt %>% 
   group_by(metric, date, hour) %>% 
   summarize(avg_1hr = mean(result)) %>% 
-  mutate(date_time = ymd_h(paste0(date, hour)))
+  mutate(date_time = ymd_h(paste0(date, hour), tz = "EST"))
 
 
 ggplot(hobo_g2_dt, aes(x = date_time, y = result))  + 
@@ -389,7 +388,7 @@ ggplot(hobo_g2_dt, aes(x = date_time, y = result))  +
 
 table(hobo_g2_dt$date_time %within% class_meeting_times$class_time_int)
 
-
+#add class time windows
 ggplot(hobo_g2_dt)  + 
   geom_line(aes(x = date_time, y = result), color = "lightgrey", size = 1) + 
   geom_line(hobo_g2_1min, mapping = aes(x = date_time, y = avg_1min), color = "slateblue3") + 
