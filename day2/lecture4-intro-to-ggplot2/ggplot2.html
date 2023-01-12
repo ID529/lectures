@@ -1217,7 +1217,7 @@
 <h2></h2>
 <div class="columns">
 <div class="column">
-<p><img src="graphics/HoduTip.png" alt="Hodu tip!"></p>
+<p><img src="graphics/HoduGreen.png" alt="Hodu tip!"></p>
 </div><div class="column">
 <p>the easiest way for me to remember which variable corresponds to the columns vs. rows in the <code>facet_grid</code> formula is to remember how formulas usually look, as in <code>y ~ x</code> or <code>y = m*x + b</code>. <br><br></p>
 <p><code>y</code> is the variable that corresponds to the vertical dimension and is on the left-hand-side – so <code>y</code> or the left-hand-side corresponds to the rows, while <code>x</code> informs us about the horizontal dimension, so <code>x</code> or the right-hand-side corresponds to the columns.</p>
@@ -1517,7 +1517,7 @@ Having trouble picking a color palette for your <a href="https://twitter.com/has
 
 </div>
 <img data-src="ggplot2_files/figure-revealjs/unnamed-chunk-59-1.png" width="960" class="r-stretch"></section>
-<section id="legend-position" class="slide level2">
+<section id="legend-position" class="slide level2 xsmall">
 <h2>legend position</h2>
 <p>the legend position can be moved using the <code>legend.position</code> argument to <code>theme()</code></p>
 <div class="cell">
@@ -1534,6 +1534,7 @@ Having trouble picking a color palette for your <a href="https://twitter.com/has
 
 </div>
 <img data-src="ggplot2_files/figure-revealjs/unnamed-chunk-60-1.png" width="960" class="r-stretch"></section></section>
+<section>
 <section id="saving-plots" class="title-slide slide level1 xsmall center">
 <h1>saving plots</h1>
 <p>use <code>ggsave()</code> to save your plots. keep in mind that the filename saved will be relative to your working directly unless you use an absolute path.</p>
@@ -1552,7 +1553,17 @@ Having trouble picking a color palette for your <a href="https://twitter.com/has
 <span id="cb60-13"><a href="#cb60-13"></a>  <span class="at">width =</span> <span class="dv">5</span>, </span>
 <span id="cb60-14"><a href="#cb60-14"></a>  <span class="at">height =</span> <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-
+<section id="section-5" class="slide level2 small">
+<h2></h2>
+<div class="columns">
+<div class="column">
+<p><img src="graphics/HoduPink.png" alt="Hodu tip!"></p>
+</div><div class="column">
+<p>saving plots with <code>ggsave()</code> is one of the most important skills in using <code>ggplot2</code>. <br><br></p>
+<p>it’s great if you can make your graphics in R, but you need to render your graphics to image files in order to be able to integrate them into manuscripts, websites, etc. and <code>ggsave()</code> gives you lots of great options for the filetype, dimensions, resolution, etc.</p>
+</div>
+</div>
+</section></section>
 <section>
 <section id="extensions" class="title-slide slide level1 center">
 <h1>extensions</h1>

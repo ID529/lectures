@@ -617,7 +617,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 
 :::{.columns}
 :::{.column}
-<img src="graphics/HoduTip.png" alt='Hodu tip!'>
+<img src="graphics/HoduGreen.png" alt='Hodu tip!'>
 :::
 
 :::{.column}
@@ -907,7 +907,7 @@ ggplot(penguins,
   )
 ```
 
-## legend position 
+## legend position {.xsmall}
 
 the legend position can be moved using the `legend.position` 
 argument to `theme()`
@@ -947,6 +947,25 @@ ggsave(filename = "your_filename.png",
   width = 5, 
   height = 7)
 ```
+
+## {.small}
+
+:::{.columns}
+:::{.column}
+<img src="graphics/HoduPink.png" alt='Hodu tip!'>
+:::
+
+:::{.column}
+saving plots with `ggsave()` is one of the most important skills 
+in using `ggplot2`. <br><br>
+
+it's great if you can make your graphics in R, but you need to render your
+graphics to image files in order to be able to integrate them into manuscripts,
+websites, etc. and `ggsave()` gives you lots of great options for the filetype,
+dimensions, resolution, etc.
+:::
+:::
+
 
 # extensions 
 

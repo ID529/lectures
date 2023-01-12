@@ -814,9 +814,13 @@ summary(iterations_needed)
 install.packages("devtools") 
 
 # install our ID529tutorials package
-devtools::install_git("ID529/ID529tutorials")
+devtools::install_github("ID529/ID529tutorials")
 
 library(ID529tutorials)
 run_tutorial('logic', 'ID529tutorials')
 ```
+:::
+
+:::{.small}
+plus here's a google doc for questions: <https://bit.ly/day2-doc>
 :::
