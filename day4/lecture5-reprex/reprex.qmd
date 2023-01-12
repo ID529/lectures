@@ -1,0 +1,326 @@
+---
+format: 
+  revealjs:
+    theme: [simple, custom.scss]
+    logo: images/id529-sticker.png
+    echo: true
+    slide-number: true
+    revealjs-plugins:
+      - confetti
+      - pointer
+---
+
+```{r}
+#| label: load-packages
+#| include: false
+
+library(pacman)
+p_load(tidyverse)
+p_load(ID529data)
+
+```
+
+# Reproducible examples for getting help in R {.smaller}
+
+## Best practices for getting help in R {.smaller}
+
+::: columns
+::: {.column width="60%"}
+
+::: incremental
+-   Don't ask for someone else to put in more work helping you than you're willing to put in
+
+    -   Before you ask for help did you:
+
+        -   Google your error message?
+
+        -   Check your spelling? Check your commas?
+
+    -   Ask your question in a way that minimizes the amount of time someone has to spend to answer it
+
+-   Don't be a meanie
+
+-   Pass it on! We've all benefited from the time/wisdom of a colleague/stranger -- be that for someone else when you can!
+
+    -   Sometimes it's helpful just to have someone to talk things through with!
+:::
+:::
+
+::: {.column width="40%"}
+
+![](images/warningsmeme.jpeg){fig-align="center" height="40%" fig-alt="a meme of a woman yelling and pointing aggressively captioned 'There were 50 or more warnings(use warnings() to see the first 50)'. on the right is a cat in front of a salad looking confused captioned 'me'"}
+:::
+:::
+
+## Reproducible Examples {.smaller} 
+
+Help us help you! Please continue to ask questions in the #student-questions channel on Slack! 
+
+[![Artwork by \@allison_horst](images/error_allisonhorst.png)](https://twitter.com/allison_horst){fig-align="center"}
+
+## What is a reproducible example? {.smaller}
+<br>
+Reproducible examples:
+
+-   Use a minimal/basic/small dataset (it doesn't have to be interesting, it just has to work!)
+
+-   Are able to be run on any computer (does not depend on data you have on your computer)
+
+<br>
+
+::: {.fragment .highlight-red}
+
+Think: what is the simplest version of the data that I need in order to reproduce the error 
+
+:::
+
+## Advantages of reproducible examples: {.smaller}
+
+::: columns
+::: {.column width="60%"}
+
+::: incremental
+-   Anyone, anywhere in the world can help you!
+
+    -   They can run your code on their computer to recreate the issue
+
+    -   They can help, even if they're not subject matter experts
+
+-   You are less likely to get yelled at by a collaborator or on stack overflow
+
+-   You might even solve your own problem along the way!
+:::
+:::
+
+::: {.column width="40%"}
+
+
+![](images/itsmehi.png){fig-align="center" height="40%" fig-alt="a meme from the taylor swift anti-hero music video but instead of taylor being the problem, it is an error message that says 'object of type closure is not subsettable'"}
+:::
+:::
+
+
+# Making a reproducible example {.smaller} 
+<br>
+<br>
+
+::: aside
+ this is sometimes called a "reprex" 😎
+:::
+
+## Option #1: Recreate your issue with simple dummy data 
+
+```{r}
+
+dat <- data.frame(x = c(rep(1:2, 3)),
+                  y = c(rep(c("a", "b", "c"), 2)))
+
+```
+
+## Option #2: Recreate your issue with built-in datasets {.smaller}
+
+-   Try `mtcars` or `iris`
+    
+      -   Be familiar with what is in these datasets! They're commonly used for examples in R4DS and online.
+
+```{r}
+
+glimpse(mtcars)
+
+glimpse(iris)
+
+```
+
+## Option #2b: Recreate your issue with other common datasets {.smaller}
+
+-   mtcars and iris are built in data sets, but other good ones are `starwars` (in the `dplyr::` package),  `penguins` (in the `palmerpenguins::` package), and `flights` (in the `nycflights13::` package)
+
+-   These might provide you with a little more complexity (some missingness, more data, different classes), while still being relatively simple/intuitive
+
+```{r}
+
+glimpse(dplyr::starwars)
+
+```
+
+## Option #2b: Recreate your issue with other common datasets {.smaller}
+
+
+-   mtcars and iris are built in data sets, but other good ones are `starwars` (in the `dplyr::` package),  `penguins` (in the `palmerpenguins::` package), and `flights` (in the `nycflights13::` package)
+
+-   These might provide you with a little more complexity (some missingness, more data, different classes), while still being relatively simple/intuitive
+
+```{r}
+
+glimpse(palmerpenguins::penguins)
+
+```
+
+## Option #2b: Recreate your issue with other common datasets {.smaller}
+
+
+-   mtcars and iris are built in data sets, but other good ones are `starwars` (in the `dplyr::` package),  `penguins` (in the `palmerpenguins::` package), and `flights` (in the `nycflights13::` package)
+
+-   These might provide you with a little more complexity (some missingness, more data, different classes), while still being relatively simple/intuitive
+
+```{r}
+
+glimpse(nycflights13::flights)
+
+```
+
+
+
+
+## Option #3: Modify your own data {.smaller}
+<br>
+
+There may be something specific to your data that is hard to recreate with another dataset.
+<br>
+<br>
+If that is the case, you can consider sharing a small and stripped down version of your data so that someone else can reproduce it. 
+
+## When asking for help: Writing a good request {.smaller}
+<br>
+Provide context:
+
+-   Go back to your pseudocode and use that as an outline for describing where something is going wrong: 
+
+      -   What do you have? (describe the type of data or analysis)
+
+      -   What are you trying to accomplish?
+
+      -   What have you tried already?
+
+      -   What is the issue with what you've tried?
+
+## When asking for help: Providing useful code {.smaller}
+<br>
+
+-   Cut anything unrelated to the issue
+
+-   Keep anything that is required, including loading specific packages
+
+    -   If a package is particularly obscure, consider using `packagename::function()`
+
+<br>
+
+-   If you're including your own dataset, use intuitive variable names and good coding practices
+
+    -   Write in lower case and use `_` instead of `.`
+
+    -   Provide concise and meaningful variable names
+
+## Example: Creating blood pressure categories {.smaller}
+<br>
+Let's imagine that we want to create a new variable that categorizes participants by blood pressure. We want to create column called `bp_cat` that groups them into the following bins:
+
+-   high BP (\>140 mm Hg)
+
+-   low BP (\< 90 mm Hg)
+
+-   normal BP (90-140 mm Hg)
+
+```{r}
+# nhanes1314 <- data.frame(id = c(1:5),
+#            mean_BP = c(88, 125, 130, 155, 75))
+
+summary(nhanes$mean_BP)
+
+```
+
+```{r}
+#| output-location: fragment
+nhanes$bp_cat <- case_when(nhanes$mean_BP > 140 ~ "high BP",
+                           nhanes$mean_BP >= 90 | nhanes$mean_BP <= 140 ~ "normal BP",
+                           nhanes$mean_BP <= 90 ~ "low BP"
+)
+
+table(nhanes$bp_cat, useNA = "ifany")
+
+```
+
+## Drafting a message {.smaller}
+<br>
+Describe the type of data or analysis:
+
+-   I'm working with the 2013-2014 cycle of NHANES data provided by the ID529 teaching team.
+
+What are you trying to accomplish?
+
+-   I have a numeric mean blood pressure measurements for all participants and I'd like to categorize them into clinically relevant groups (high, low, normal).
+
+```{r}
+nhanes1314 <- data.frame(id = c(1:5),
+           mean_BP = c(88, 125, 130, 155, 75))
+```
+
+## Drafting a message {.smaller}
+
+What have you tried already?
+
+-   I'm using a `case_when()` approach to group them based on a relational operator evaluating the mean_BP column.
+
+```{r}
+nhanes1314$bp_cat <- case_when(nhanes1314$mean_BP > 140 ~ "high BP",
+                           nhanes1314$mean_BP >= 90 |
+                             nhanes1314$mean_BP <= 140 ~ "normal BP",
+                           nhanes1314$mean_BP <= 90 ~ "low BP"
+)
+```
+
+What is the issue with what you've tried?
+
+-   Measurements less than 90 should be flagged as "low BP" but are being categorized as "normal BP"
+
+```{r}
+nhanes1314
+
+```
+
+
+## Putting it all together {.smaller}
+
+![](images/examplemessage.png){fig-align="center" width=30% fig-alt="a slack message from amanda reads: Hi everyone! I'm working with the 2013-2014 cycle of NHANES data provided by the ID529 teaching team. I have a numeric mean blood pressure measurements for all participants and I'd like to categorize them into clinically relevant groups: high (\>140 mmHg), normal (90-120 mmHg), and low (\<90). I'm using a case_when() approach to group them based on a relational operator evaluating the mean_BP column. However, when the function evaluates the category, some of the measurements less than 90 that should be flagged as 'low BP' are being categorized as 'normal BP' -- can anyone help me figure out why the low BP group is not working as expected? Thanks!"}
+
+## More best practices for posting code on Slack: {.smaller}
+
+-   What we don't want to see:
+
+    -   Everything is named "dat" and "dat1" when intuitive names are more appropriate
+
+    -   Really long lines of code on one line
+
+        -   Try to limit to \~80 characters
+        
+        -   Use new lines after a `%>%` or `+`
+
+-   what we do want to see:
+
+    -   Apply some of these best practices
+
+    -   Use Slack's code and code block in your messages to help organize your message
+
+    -   updates: if you resolve your own question, post the solution as a thread on the original post. That way others can learn from what you did. 
+
+    -   Make sure your question is clear -- run it by a friend first, if needed!
+
+    -   Make sure your question isn't redundant -- people will just redirect you to the answer
+
+
+## How do I find a good reprex? {.smaller}
+
+<br>
+Check out the datasets that are built into R here: https://stat.ethz.ch/R-manual/R-patched/library/datasets/html/00Index.html
+
+## Key takeaways: How do I not get yelled (at on the internet or by collaborators)? {.smaller}
+
+-   Use the most minimally reproducible dataset
+
+    -   If relevant, you may want to include the session info, R version
+
+-   Don't post screenshots of the code! (check out `reprex::` for best practices)
+
+-   Don't ask others to do more work than you're willing to put in + help others the way you want to be helped! 
+
+-   Read more: https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example/16532098
