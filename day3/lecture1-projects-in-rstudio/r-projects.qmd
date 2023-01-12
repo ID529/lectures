@@ -233,6 +233,22 @@ functionality between versions of the same R package.
 
 learn more about renv: <https://rstudio.github.io/renv/>
 
+## 
+
+:::{.columns}
+:::{.column}
+<img src="graphics/HoduBubble.png" alt="Hodu with a Bubble">
+:::
+:::{.column}
+`renv` helps you to implement a principle called <span class='carrot'>**encapsulation**</span>:  <br><br>
+
+meaning that your
+code is bundled together with its dependencies in order to 
+ensure a consistent, usable interface. 
+:::
+:::
+
+
 ## targets {.xxsmall}
 
 <img src="images/targets-hex.png" alt='hex sticker for targets' align='right' height='150px'>

@@ -1,0 +1,226 @@
+---
+title: "Mapping in R"
+format:
+  revealjs:
+    theme: [default, mapping.scss]
+slide-number: true
+title-slide-attributes:
+  data-background-image: "graphics/transition_slides/annie-spratt-2.jpg"
+  data-background-opacity: "60%"
+  data-background-color: "black"
+revealjs-plugins:
+  - pointer
+execute: 
+  echo: true
+---
+
+## morals {data-background-image="graphics/transition_slides/annie-spratt-2.jpg" data-background-opacity="60%" data-background-color="black"}
+
+:::{.fragment}
+<span style="color: white;">Map making — the art of cartography — is an ancient skill that involves communication, intuition, and an element of creativity. —Robin Lovelace, Jakub Nowosad, Jannes Muenchow, <u>[*Geocomputation with R*](https://geocompr.robinlovelace.net/adv-map.html)</u></span><br><br>
+:::
+
+:::{.fragment}
+<span style="color: white;">Without Geography, You're Nowhere</span>
+:::
+
+# getting data {data-background-image="graphics/transition_slides/annie-spratt-2.jpg" data-background-opacity="60%" data-background-color="black"}
+
+## getting your data {.xsmall}
+
+To create maps in R, you'll need to have geographic data to plot. 
+
+Those could come from <span class='carrot'>**shapefiles**</span>. 
+
+A <span class='carrot'>**shapefile**</span> will typically come to you as a 
+zip file with a few files contained inside including at least 
+some files with the `.shp`, `.shx`, `.dbf` extensions. 
+
+Another format that geographic data could come to you in is `geojson`, 
+which will look something like this: 
+
+```json
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [125.6, 10.1]
+  },
+  "properties": {
+    "name": "Dinagat Islands"
+  }
+}
+```
+
+## shapefiles from administrative websites {.small}
+
+Often you can find shapefiles on administrative websites.  For example,
+the Massachusetts government has MassGIS: <https://www.mass.gov/info-details/massgis-data-layers>
+
+Other sources could include: 
+
+  * the EPA
+  * the Census
+  * USGS
+  * NASA
+  * ad-hoc sources
+
+## tigris  {.small}
+
+<img src="https://github.com/walkerke/tigris/raw/master/tools/readme/tigris_sticker.png" align='right' height='150px'>
+
+tigris is an R package that allows users to directly download and use TIGER/Line shapefiles
+
+:::{.columns}
+:::{.column}
+```r
+install.packages('tigris')
+
+library(tigris)
+library(ggplot2)
+
+manhattan_roads <- roads("NY", "New York")
+
+ggplot(manhattan_roads) + 
+  geom_sf() + 
+  theme_void()
+```
+:::
+
+:::{.column}
+<img src="https://github.com/walkerke/tigris/raw/master/tools/readme/ny_roads.png" alt="manhattan roads">
+:::
+:::
+
+## sf  {.small}
+
+```{r, echo=TRUE, eval=FALSE}
+library(tidyverse)
+library(sf)
+
+# you might have some data in a shapefile -- 
+# data/shapefile_unzipped/
+#  -- cb_2013_us_county_20m.dbf
+#  -- cb_2013_us_county_20m.prj
+#  -- cb_2013_us_county_20m.shp
+#  -- cb_2013_us_county_20m.shp.iso.xml
+#  -- cb_2013_us_county_20m.shp.xml
+#  -- cb_2013_us_county_20m.shx
+#  -- county_20m.ea.iso.xml
+
+counties <- read_sf(here("data/shapefile_unzipped"))
+```
+
+## sf {.small}
+
+the payoff is that then you can use `geom_sf()` with
+`ggplot2`
+
+```{r, echo=F, message=F}
+library(sf)
+library(tigris)
+library(tidyverse)
+
+counties <- tigris::counties(cb=TRUE, resolution = '20m')
+counties <- counties %>% filter(STUSPS %in% c(state.abb, 'DC'))
+```
+
+```{r}
+ggplot(counties) + 
+  geom_sf()
+```
+
+## fixing a problem  {.small}
+
+```{r}
+counties <- st_transform(counties, crs = "EPSG:5070")
+
+ggplot(counties) + 
+  geom_sf()
+```
+
+## or even better {.small}
+
+```{r}
+library(tigris)
+
+# the default is to move Alaska, Hawaii
+counties <- tigris::shift_geometry(counties) 
+
+ggplot(counties) + 
+  geom_sf()
+```
+
+##  {.small}
+
+```{r}
+# let's get a more interesting dataset
+library(tidycensus)
+
+popsize_by_counties <- tidycensus::get_acs(
+  year = 2020,
+  geography = 'county',
+  variables = "B01001_001", # total population size
+  geometry = TRUE
+)
+
+popsize_by_counties <- tigris::shift_geometry(popsize_by_counties)
+popsize_by_counties <- st_simplify(popsize_by_counties, dTolerance = 500)
+
+ggplot(popsize_by_counties, aes(fill = estimate)) + 
+  geom_sf()
+```
+
+## keep improving {.small}
+
+```{r}
+ggplot(popsize_by_counties, aes(fill = estimate)) + 
+  geom_sf() + 
+  scale_fill_continuous(trans = scales::log10_trans(),
+                        labels = scales::comma_format()) + 
+  ggtitle("Population Size by County")
+```
+
+## keep improving {.small}
+
+```{r}
+ggplot(popsize_by_counties, aes(fill = estimate)) + 
+  geom_sf(color = 'white', linewidth = 0.01) + 
+  scale_fill_distiller(trans = scales::log10_trans(),
+                    labels = scales::comma_format(),
+                    direction = 1) + 
+  ggtitle("Population Size by County")
+```
+
+## mapview  {.small}
+
+```{r}
+library(mapview)
+mapview(popsize_by_counties, zcol = 'estimate')
+```
+
+## terra  {.small}
+
+using the `terra` package, you can work with 
+raster data. 
+
+```{r}
+library(terra)
+# install.packages('spDataLarge', repos='https://nowosad.github.io/drat/', type='source')
+library(spDataLarge)
+
+topography_raster <- rast(system.file("raster/srtm.tif", package = "spDataLarge"))
+
+plot(topography_raster)
+```
+
+## takeaways {.small data-background-image="graphics/transition_slides/annie-spratt-2.jpg" data-background-opacity="60%" data-background-color="black"}
+
+  * working with spatial data is something you can do in R
+  * more complicated geospatial operations are possible, but more advanced and outside the scope of this course 
+  * creating maps with `mapview` or `geom_sf` is relatively straightforward
+
+## references {.small}
+
+  - <a href="https://geocompr.robinlovelace.net/">Geocomputation with R by Robin Lovelace and Jakub Nowosad</a>
+  - <a href="https://r-spatial.org/book/">Spatial Data Science by Edzer Pebesma, Roger Bivand</a>
