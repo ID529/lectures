@@ -2,15 +2,16 @@
 title: "Reproducibility and Robustness"
 format:
   revealjs:
-    theme: [default]
+    theme: [default, reproducibility.scss]
 slide-number: true
-# title-slide-attributes: 
-#   data-background-image: ""
-#   data-background-opacity: "60%"
-#   data-background-color: "black"
+title-slide-attributes:
+  data-background-image: "graphics/transition_slides/annie-spratt.jpg"
+  data-background-opacity: "100%"
+  data-background-color: "pink"
 revealjs-plugins:
   - pointer
   - confetti
+background-image: "graphics/transition_slides/annie-spratt.jpg"
 execute: 
   echo: true
 ---
@@ -53,7 +54,7 @@ a result generalizes from a sub-population to a super-population.
 
 these are important concepts insofar as science is about uncovering the
 underlying
-**truth** behind what we observe and not just indiosyncracies of our data or our
+<span class='carrot'>**truth**</span> behind what we observe and not just idiosyncrasies of our data or our
 analytic methods.
 
 # 
@@ -88,11 +89,7 @@ what are some practices that encourage reproducibility and robustness?
   * organized workflows (R projects, R packages)
   * asking collaborators to run your code 
   
-# 
-
-how to deal with your collaborators / supervisors?
-
-my suggestions: 
+# working with your collaborators / supervisors {.xsmall}
 
   * acknowledge how much time it takes for you to do things right
   * under-promise (esp. in the short-term) and over-deliver (esp. in the long-term):
@@ -101,11 +98,14 @@ my suggestions:
     data cleaning pipeline
     * this goes not just for data cleaning, but also exploratory data analysis, 
     modeling, and manuscript writing.
-  * be explicit about educating your supervisor about the steps that need to get
+  * be explicit with your team or supervisor about the steps that need to get
     done
+    
+# working with your collaborators / supervisors {.xsmall}
+
   * if you can, be candid about making them aware of why things may take a long
     time
-  * Try binning a new task:
+  * try binning a new task:
     * I could turn this around in 2-hours.
     * I know how to do it, but it'll take me some time to do it;  I can describe 
     what needs to be done.
@@ -116,13 +116,15 @@ my suggestions:
     understand what the time-sinks might be. 
       * gently let them know that the complexity may be greater than 
       they're imagining
+
+# working with your collaborators / supervisors {.xsmall}
+
   * sometimes the timeline issues are
     * coding/programming;
     * statistical;
     * political; 
     * lack of clarity about expectations; and/or 
     * conceptual
-  
     
 :::{.notes}
 self-imposed short timelines ... 
@@ -146,11 +148,9 @@ often working on a side-passion-project can give you insights that pay
 off on important projects
 
 some of what should motivate you to learn programming _is_ laziness
-
-
 :::
     
-# 
+# making reproducibility & robustness
 
   * you can often ensure reproducibility; 
     * if your code is organized, specifies R and package versions, and has a clear
@@ -166,11 +166,9 @@ to let these go into supplementary materials
 
 :::
 
-# 
+# "just do it the old way"? 
 
-what about when your advisors put up a fight? 
-
-sometimes they might say "look just do it this way" and point you towards a pile
+sometimes they might say "look, just do it this way" and point you towards a pile
 of code that takes forever for you to even get running and is barely (if at all)
 reproducible.
 
@@ -179,20 +177,24 @@ you should:
   * express appreciation for the work that they're sharing with you
   * establish mutually agreed-upon expected behavior
   * use version control so you keep a copy of their original work
-  * try to adapt their code into an R project or package that makes sense to you
+
+# 
+
+depending on how much agency you have:
+
+  * try to adapt their code into an R project, package, or workflow that makes sense to you
   * emphasize the payoffs:
     * when submitting to a journal, any analysis revisions or supplemental analyses requested
     will be able to be done while preserving the original code and 
-    
 
 #  some examples
 
   - the mass of the electron 
+    * <https://hsm.stackexchange.com/questions/264/timeline-of-measurements-of-the-electrons-charge>
   - the MMR vaccine controversy 
-  - power posing
-  - 
+    * <https://www.bmj.com/content/342/bmj.c7452>
 
-# forces working against R&R 
+# forces working against R&R {.xsmall}
 
   - conflicts of interest
     - rushed deadlines 
@@ -201,33 +203,40 @@ you should:
   - un-shared data 
   - contaminated (messed up) data
   
-https://www.nature.com/articles/d42473-019-00004-y
+<https://www.nature.com/articles/d42473-019-00004-y>
 
-# 
+# {.xsmall}
 
-> Science always was and always will be a struggle to produce knowledge for the benefit of all of humanity against the cognitive and moral limitations of individual human beings, including the limitations of scientists themselves.
+Science always was and always will be a struggle to produce knowledge for the benefit of all of humanity against the cognitive and moral limitations of individual human beings, including the limitations of scientists themselves.
 
-> The new “science is in crisis” narrative is not only empirically unsupported, but also quite obviously counterproductive. Instead of inspiring younger generations to do more and better science, it might foster in them cynicism and indifference. Instead of inviting greater respect for and investment in research, it risks discrediting the value of evidence and feeding antiscientific agendas.
+The new “science is in crisis” narrative is not only empirically unsupported, but also quite obviously counterproductive. Instead of inspiring younger generations to do more and better science, it might foster in them cynicism and indifference. Instead of inviting greater respect for and investment in research, it risks discrediting the value of evidence and feeding antiscientific agendas.
 
-> contemporary science could be more accurately portrayed as facing “new opportunities and challenges” or even a “revolution”
+contemporary science could be more accurately portrayed as facing “new opportunities and challenges” or even a “revolution”
 
-
-https://www.pnas.org/doi/10.1073/pnas.1708272114 
+<https://www.pnas.org/doi/10.1073/pnas.1708272114>
 
 # 
 
 individual vs. systemic solutions
 
-https://frontlinegenomics.com/reproducibility-the-science-communities-ticking-timebomb-can-we-still-trust-published-research/ 
+[Reproducibility: The science communities’ ticking timebomb. Can we still trust published research?](https://frontlinegenomics.com/reproducibility-the-science-communities-ticking-timebomb-can-we-still-trust-published-research/)
 
-FAIR 
+FAIR: Findable, Accessible, Interoperable, and Reusable <https://en.wikipedia.org/wiki/FAIR_data>
 
+# {.small}
 
-# 
+:::{.columns}
 
-as a final word of wisdom, i think it's useful to think of what practices 
-we can adopt towards reproducibility and robustness as "preventative medicine"
+:::{.column}
+<img src="graphics/HoduPink.png" alt="hodu tip">
+:::
+:::{.column}
+<div style='padding-top: 12.5%'></div>
+as a final word of wisdom, i think it's useful to frame the practices 
+we can adopt to advance reproducibility and robustness as "preventative medicine"
 for science itself
 
-https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5989067/ 
+<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5989067/>
+:::
+:::
 
