@@ -400,36 +400,53 @@
 </section>
 <section id="motivation" class="slide level2 smaller">
 <h2>Motivation</h2>
-<!-- -   **We've now learned a bit about:** -->
-<!--   -   [Data manipulation] using `dplyr`  -->
-<!--   -   Leveraging tidyverse and other packages for working with specific data types -->
-<!--       -   Dates and times, factors -->
-<!--       -   Text data -->
 <p><br></p>
-<!-- -   **Up until now, we've really only considered working with a single dataset** -->
-<!--     -   We are often interested in combining data from multiple different files or sources -->
-<!--     -   Base R, `dplyr`, and other packages have functions for combining datasets -->
-<!--     <!-- -   We can leverage these R packages to: -->
-<p>–&gt; <!--     <!--     -   Write efficient R code to perform most data manipulation tasks --> –&gt; <!--     <!--     -   Chain together data manipulation operations in a logical, concise sequence --> –&gt;</p>
+<ul>
+<li><strong>We’ve now discussed:</strong>
+<ul>
+<li><span class="blue-bold">Data manipulation</span> using <code>dplyr</code></li>
+<li><span class="blue-bold">Leveraging <code>tidyverse</code> packages</span> to work with specific types of data
+<ul>
+<li>Dates, date/times, and factors</li>
+<li>Text strings</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><br></p>
+<ul>
+<li><strong>However, we’ve only considered data manipulation in the context of individual datasets</strong>
+<ul>
+<li>We are often interested in combining data from multiple different files or sources</li>
+<li>Need tools that help us work with and combine multiple datasets</li>
+</ul></li>
+</ul>
 </section>
 <section id="learning-objectives" class="slide level2 smaller">
 <h2>Learning objectives</h2>
+<p><br></p>
 <ul>
-<li><strong>Understand the basic principles of data linkage </strong> <!-- -    --> <!-- - --></li>
-</ul>
-<div class="small-break">
-
-</div>
+<li><strong>Understand the basic principles of data linkage</strong>
 <ul>
-<li><strong>Understand utility functions that help <code>dplyr</code> functions perform specific tasks. For example:</strong> <!-- -   Performing column- and row-wise operations --> <!-- -   Modifying data based on conditional logic --></li>
+<li>The common methods implemented for joining datasets</li>
+<li>How the methods differ, and why these differences should inform which method you implement</li>
+</ul></li>
 </ul>
-<div class="small-break">
-
-</div>
-<!-- -  **Learn how to implement `dplyr` functions to prepare data for analysis** -->
-<!--     -   Identifying and correcting data quality issues -->
-<!--     -   Restructuring and organizing data -->
-<!--     -   Deriving new variables -->
+<p><br></p>
+<ul>
+<li><strong>Learn about different R functions available for data linkage</strong>
+<ul>
+<li><code>dplyr</code> two-table verbs</li>
+</ul></li>
+</ul>
+<p><br></p>
+<ul>
+<li><strong>Learn how to implement <code>dplyr</code> two-table verbs to link datasets</strong>
+<ul>
+<li>Mutating joins</li>
+<li>Filtering joins</li>
+<li>Set operations</li>
+</ul></li>
+</ul>
 </section></section>
 <section>
 <section id="background" class="title-slide slide level1 white-title white-code center" data-background-image="images/bg-no-planet.png" data-background-size="110%">
@@ -438,34 +455,145 @@
 </section>
 <section id="why-do-we-need-data-linkage" class="slide level2 smaller">
 <h2>Why do we need data linkage?</h2>
-<!-- ![](images/dplyr-join-venn.png){.absolute height="40%" left="0%" bottom="8%"} -->
-</section>
-<section id="data-linkage-in-r" class="slide level2 smaller">
-<h2>Data linkage in R</h2>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div class="small-break">
+
+</div>
 <ul>
-<li>The <code>merge()</code> base R function can be used to combine datasets based on a
-<ul>
-<li><code>cbind</code></li>
-<li><code>rbind</code></li>
-</ul></li>
-<li><code>dplyr</code> has more robust functionality</li>
+<li>It’s rare that all the data we need for an analysis are contained within a single file</li>
 </ul>
-<p>dplyr does not provide any functions for working with three or more tables. Instead use purrr::reduce() or Reduce(), as described in Advanced R, to iteratively combine the two-table verbs to handle as many tables as you need.</p>
+<div class="small-break">
+
+</div>
+<ul>
+<li>Often interested in combining data across two or more files or sources</li>
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
+<li>For example, NHANES generates a number of datasets for each survey cycle
+<ul>
+<li>Separate files for demographics, clinical exams, laboratory tests, questionnaires, etc.</li>
+<li>Participant data from a given survey cycle must be linked across multiple datasets with a unique identifier</li>
+<li><span class="blue-bold">This is how the <code>ID529data::nhanes_id529</code> dataset was created!</span></li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:45%;">
+<div class="cell" data-r.options="{&quot;width&quot;:50}">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 2
+   Data.File.Name Data.File.Description           
+   &lt;chr&gt;          &lt;chr&gt;                           
+ 1 BPX_J          Blood Pressure                  
+ 2 BMX_J          Body Measures                   
+ 3 OHXDEN_J       Oral Health - Dentition         
+ 4 OHXREF_J       Oral Health - Recommendation of…
+ 5 DXXFEM_J       Dual-Energy X-ray Absorptiometr…
+ 6 DXX_J          Dual-Energy X-ray Absorptiometr…
+ 7 DXXSPN_J       Dual-Energy X-ray Absorptiometr…
+ 8 LUX_J          Liver Ultrasound Transient Elas…
+ 9 DXXAG_J        Dual-Energy X-ray Absorptiometr…
+10 BPXO_J         Blood Pressure - Oscillometric …
+11 AUX_J          Audiometry                      
+12 AUXAR_J        Audiometry - Acoustic Reflex    
+13 AUXTYM_J       Audiometry - Tympanometry       
+14 AUXWBR_J       Audiometry - Wideband Reflectan…</code></pre>
+</div>
+</div>
+<div class="code-break">
+
+</div>
+<div class="cell" data-r.options="{&quot;width&quot;:50}">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   Data.File.Name Data.File.Description           
+   &lt;chr&gt;          &lt;chr&gt;                           
+ 1 DR1TOT_J       Dietary Interview - Total Nutri…
+ 2 DR2TOT_J       Dietary Interview - Total Nutri…
+ 3 DR1IFF_J       Dietary Interview - Individual …
+ 4 DR2IFF_J       Dietary Interview - Individual …
+ 5 DS1IDS_J       Dietary Supplement Use 24-Hour …
+ 6 DSQTOT_J       Dietary Supplement Use 30-Day -…
+ 7 DS2IDS_J       Dietary Supplement Use 24-Hour …
+ 8 DS1TOT_J       Dietary Supplement Use 24-Hour …
+ 9 DS2TOT_J       Dietary Supplement Use 24-Hour …
+10 DSQIDS_J       Dietary Supplement Use 30-Day -…</code></pre>
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="dplyr-two-table-verbs" class="slide level2">
+<section id="how-do-we-link-datasets-together-in-r" class="slide level2 smaller">
+<h2>How do we link datasets together in R?</h2>
+<ul>
+<li><strong>There are many R functions that allow us to link data</strong>
+<ul>
+<li><code>base R</code> includes the <code>merge()</code> function</li>
+<li><code>dplyr</code> has many functions (verbs) for performing two-table operations</li>
+</ul></li>
+</ul>
+<p><br></p>
+<ul>
+<li><strong>We will focus on <code>dplyr</code></strong>
+<ul>
+<li><code>dplyr</code> functions tend to be more consistent, and intuitive to implement</li>
+<li>Can be combined into chained data manipulation sequences (<code>%&gt;%</code>)</li>
+<li>Also offers additional types of joins such as semi-joins and anti-joins</li>
+</ul></li>
+</ul>
+</section>
+<section id="dplyr-two-table-verbs" class="slide level2 smaller">
 <h2><code>dplyr</code> two table verbs</h2>
-<p><strong>Three families of verbs that work with two tables at a time</strong> - Mutating joins, which add new variables to one table from matching rows in another. - allow you to combine variables from multiple tables - Filtering joins, which filter observations from one table based on whether or not they match an observation in the other table. - Filtering joins match observations in the same way as mutating joins, but affect the observations, not the variables. - Useful for diagnosing join mismatches</p>
+<p><br></p>
+<p><strong><span class="blue-bold">Three classes</span> of <code>dplyr</code> verbs that work with two tables at a time</strong></p>
 <ul>
-<li>Set operations, which combine the observations in the data sets as if they were set elements.
+<li><strong>Mutating joins</strong>
 <ul>
-<li>Thesese expect the x and y inputs to have the same variables, and treat the observations like sets:</li>
+<li><strong>Combine variables</strong> from multiple tables</li>
+<li>Adds new columns to one table with matched rows from another table</li>
+<li><strong>Two types:</strong>
+<ul>
+<li><strong>Inner join:</strong> <code>inner_join()</code></li>
+<li><strong>Outer joins:</strong> <code>left_join()</code>, <code>right_join()</code>, <code>full_join()</code></li>
+</ul></li>
 </ul></li>
 </ul>
-<p>All two-table verbs work similarly. The first two arguments are x and y, and provide the tables to combine. The output is always a new table with the same type as x.</p>
+<div class="small-break">
+
+</div>
+<ul>
+<li><strong>Filtering joins</strong>
+<ul>
+<li><strong>Filter rows</strong> from one table if they match a row in a second table
+<ul>
+<li>Unmatched rows are discarded if join condition is not met</li>
+</ul></li>
+<li>Great tools for identifying row mismatches between tables</li>
+<li><code>semi_join()</code>, <code>anti_join</code></li>
+</ul></li>
+</ul>
+<p><img data-src="images/hex-dplyr.png" class="absolute" style="bottom: 1px; right: 0px; height: 30%; "></p>
 
 <aside><div>
-<p><a href="https://dplyr.tidyverse.org/articles/two-table.html#set-operations" class="uri">https://dplyr.tidyverse.org/articles/two-table.html#set-operations</a> <a href="https://r4ds.had.co.nz/relational-data.html" class="uri">https://r4ds.had.co.nz/relational-data.html</a></p>
+<p><a href="https://dplyr.tidyverse.org/articles/two-table.html" class="uri">https://dplyr.tidyverse.org/articles/two-table.html</a> <br></p>
 </div></aside></section>
+<section id="dplyr-two-table-verbs-cont." class="slide level2 smaller">
+<h2><code>dplyr</code> two table verbs (cont.)</h2>
+<div class="small-break">
+
+</div>
+<ul>
+<li><span class="blue-bold">Set operations</span>
+<ul>
+<li>Combine observations from two datasets, but treats observations as set elements</li>
+<li><code>intersect()</code>, <code>union()</code>, <code>setdiff()</code></li>
+</ul></li>
+</ul>
+<p><img data-src="images/hex-dplyr.png" class="absolute" style="bottom: 1px; right: 0px; height: 30%; "></p>
+</section>
 <section id="example-dataset" class="slide level2 smaller">
 <h2>Example dataset</h2>
 <div class="columns">
@@ -488,66 +616,56 @@
 <li><strong>For our examples, we will split these data into smaller datasets that each contain different variables, identifiers, and number of observations.</strong>
 <ul>
 <li><strong>clinical:</strong> <code>id1</code>, <code>age</code>, <code>race_eth</code>, <code>sbp</code>, <code>ht</code>, <code>wt</code></li>
-<li><strong>pfas:</strong> <code>id1</code>, <code>pfos</code>, <code>pfoa</code>, <code>pfna</code>, <code>pfhs</code>, <code>pfde</code></li>
-<li><strong>poverty:</strong> <code>id2</code>, <code>pov_ratio</code></li>
-<li><strong>crosswalk:</strong> <code>id1</code>, <code>id2</code></li>
+<li><strong>pfas:</strong> <code>id1</code>, <code>pfos</code>, <code>pfoa</code>, <code>pfna</code>, <code>pfhs</code>, <code>pfde</code> <!-- -   **poverty:** `id2`, `pov_ratio` --> <!-- -   **crosswalk:** `id1`, `id2` --></li>
 </ul></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Load libraries</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ID529data)</span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># Load ID 529 NHANES data </span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">data</span>(nhanes_id529, <span class="at">package =</span> <span class="st">'ID529data'</span>)</span>
-<span id="cb1-7"><a href="#cb1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># Create new ID  variables for examples</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>nhanes <span class="ot">&lt;-</span> nhanes_id529 <span class="sc">%&gt;%</span> </span>
-<span id="cb1-10"><a href="#cb1-10"></a>  <span class="fu">arrange</span>(id) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-11"><a href="#cb1-11"></a>  <span class="fu">mutate</span>(<span class="at">id1 =</span> <span class="fu">as.integer</span>(id),</span>
-<span id="cb1-12"><a href="#cb1-12"></a>         <span class="at">id2 =</span> <span class="fu">paste0</span>(<span class="st">"NH"</span>, <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.)) <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">4</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-13"><a href="#cb1-13"></a>  <span class="fu">select</span>(<span class="fu">matches</span>(<span class="st">"id"</span>), <span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-14"><a href="#cb1-14"></a>  <span class="fu">as_tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Create demog/clincal characteristics table (id1)</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>clinical <span class="ot">&lt;-</span> nhanes <span class="sc">%&gt;%</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">rename</span>(<span class="at">race_eth =</span> race_ethnicity,</span>
-<span id="cb2-4"><a href="#cb2-4"></a>         <span class="at">sbp =</span> mean_BP, </span>
-<span id="cb2-5"><a href="#cb2-5"></a>         <span class="at">ht =</span> height,</span>
-<span id="cb2-6"><a href="#cb2-6"></a>         <span class="at">wt =</span> weight) <span class="sc">%&gt;%</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">select</span>(id1, age, race_eth, sbp<span class="sc">:</span>ht)</span>
-<span id="cb2-8"><a href="#cb2-8"></a>  </span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co"># Create pfas data table (id1)</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>pfas <span class="ot">&lt;-</span> nhanes <span class="sc">%&gt;%</span> </span>
-<span id="cb2-11"><a href="#cb2-11"></a>  <span class="fu">select</span>(id1, PFOS<span class="sc">:</span>PFDE) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-12"><a href="#cb2-12"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> <span class="fu">str_to_lower</span>(.)) <span class="sc">%&gt;%</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>  <span class="fu">filter</span>(<span class="fu">rowSums</span>(<span class="fu">is.na</span>(.)) <span class="sc">&lt;</span> <span class="dv">5</span>)</span>
-<span id="cb2-14"><a href="#cb2-14"></a></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co"># Create poverty index table (id2)</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>poverty <span class="ot">&lt;-</span> nhanes <span class="sc">%&gt;%</span> </span>
-<span id="cb2-17"><a href="#cb2-17"></a>  <span class="fu">rename</span>(<span class="at">pov_ratio =</span> poverty_ratio) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-18"><a href="#cb2-18"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pov_ratio)) <span class="sc">%&gt;%</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a>  <span class="fu">select</span>(id2, pov_ratio)</span>
-<span id="cb2-20"><a href="#cb2-20"></a>  </span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="co"># Create ID crosswalk table (id1 and id2)</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a>crosswalk <span class="ot">&lt;-</span> <span class="fu">select</span>(nhanes, id1, id2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Create demog/clincal characteristics table (id1)</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>clinical <span class="ot">&lt;-</span> nhanes <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">rename</span>(<span class="at">race_eth =</span> race_ethnicity,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>         <span class="at">sbp =</span> mean_BP, </span>
+<span id="cb3-5"><a href="#cb3-5"></a>         <span class="at">ht =</span> height,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>         <span class="at">wt =</span> weight) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="fu">select</span>(id1, age, race_eth, sbp<span class="sc">:</span>ht)</span>
+<span id="cb3-8"><a href="#cb3-8"></a>  </span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co"># Create pfas data table (id1)</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>pfas <span class="ot">&lt;-</span> nhanes <span class="sc">%&gt;%</span> </span>
+<span id="cb3-11"><a href="#cb3-11"></a>  <span class="fu">select</span>(id1, PFOS<span class="sc">:</span>PFDE) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-12"><a href="#cb3-12"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> <span class="fu">str_to_lower</span>(.)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>  <span class="fu">filter</span>(<span class="fu">rowSums</span>(<span class="fu">is.na</span>(.)) <span class="sc">&lt;</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- # ```{r} -->
+<!-- #  -->
+
+<!-- # # Create poverty index table (id2) -->
+<!-- # poverty <- nhanes %>%  -->
+<!-- #   rename(pov_ratio = poverty_ratio) %>%  -->
+<!-- #   filter(!is.na(pov_ratio)) %>% -->
+<!-- #   select(id2, pov_ratio) -->
+<!-- #    -->
+
+<!-- # # Create ID crosswalk table (id1 and id2) -->
+<!-- # crosswalk <- select(nhanes, id1, id2) -->
+<!-- # ``` -->
+
 </div>
 </div>
-</div>
-</section>
+<aside><div>
+<p><a href="https://github.com/ID529/ID529data" class="uri">https://github.com/ID529/ID529data</a></p>
+</div></aside></section>
 <section id="example-dataset-1" class="slide level2 smaller">
 <h2>Example dataset</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Demographic and clinical characteristics</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>clinical</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Demographic and clinical characteristics</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>clinical</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2,339 × 6
-     id1   age race_eth             sbp    wt    ht
-   &lt;int&gt; &lt;int&gt; &lt;fct&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+   id1     age race_eth             sbp    wt    ht
+   &lt;chr&gt; &lt;int&gt; &lt;fct&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
  1 73568    26 Non-Hispanic White  105.  47.1  152.
  2 73571    76 Non-Hispanic White  126  102.   172.
  3 73574    33 &lt;NA&gt;                121.  56.8  158 
@@ -560,12 +678,12 @@
 10 73598    20 Hispanic            112   86.7  165 
 # … with 2,329 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># PFAS data filtered for obs with data</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>pfas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># PFAS data filtered for obs with data</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>pfas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2,168 × 6
-     id1  pfos  pfoa  pfna  pfhs  pfde
-   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+   id1    pfos  pfoa  pfna  pfhs  pfde
+   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
  1 73568   2.2  3      0.5   3     0.2
  2 73571  10.2  4.77   1.3   2     0.3
  3 73574  NA   NA      0.7   0.2   0.1
@@ -579,52 +697,251 @@
 # … with 2,158 more rows</code></pre>
 </div>
 </div>
-</div><div class="column" style="width:50%;">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Poverty data filtered for obs with data</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>poverty</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,136 × 2
-   id2     pov_ratio
-   &lt;chr&gt;       &lt;dbl&gt;
- 1 NH20001      5   
- 2 NH20002      5   
- 3 NH20003      2.1 
- 4 NH20004      1.58
- 5 NH20005      0.29
- 6 NH20006      0.58
- 7 NH20007      3.07
- 8 NH20008      3.33
- 9 NH20009      2.18
-10 NH20011      1.52
-# … with 2,126 more rows</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Table with both ID variables</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>crosswalk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,339 × 2
-     id1 id2    
-   &lt;int&gt; &lt;chr&gt;  
- 1 73568 NH20001
- 2 73571 NH20002
- 3 73574 NH20003
- 4 73576 NH20004
- 5 73577 NH20005
- 6 73578 NH20006
- 7 73584 NH20007
- 8 73587 NH20008
- 9 73597 NH20009
-10 73598 NH20010
-# … with 2,329 more rows</code></pre>
-</div>
-</div>
-</div>
-</div>
+<!-- ```{r, echo=F, eval=F} -->
+<!-- # Poverty data filtered for obs with data -->
+<!-- poverty -->
+
+<!-- # Table with both ID variables -->
+<!-- crosswalk -->
+<!-- ``` -->
 </section></section>
 <section>
 <section id="dplyr-mutating-joins" class="title-slide slide level1 white-title white-code center" data-background-image="images/bg-no-planet.png" data-background-size="110%">
 <h1><code>dplyr</code> mutating joins</h1>
 
+</section>
+<section id="dplyrleft_join" class="slide level2 smaller">
+<h2><code>dplyr::left_join()</code></h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p><strong>Main arguments</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">left_join</span>(</span>
+<span id="cb8-2"><a href="#cb8-2"></a>  x,</span>
+<span id="cb8-3"><a href="#cb8-3"></a>  y,</span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="at">by =</span> <span class="cn">NULL</span>,</span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">".x"</span>, <span class="st">".y"</span>),</span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="at">keep =</span> <span class="cn">FALSE</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>x</code> = Data frame 1 (left table)</li>
+<li><code>y</code> = Data frame 2 (right table)</li>
+<li><code>by</code> = Column names(s) of variables to match rows by (key)</li>
+<li><code>suffix</code> = Character string appended to column names that appear in both <code>x</code> and <code>y</code></li>
+<li><code>keep</code>= If <code>TRUE</code>, preserve the join keys from both <code>x</code> and <code>y</code></li>
+</ul>
+</div><div class="column" style="width:5%;">
+<p><br></p>
+</div><div class="column" style="width:50%;">
+<p><strong>Description</strong></p>
+<ul>
+<li>Adds columns from <code>y</code> (right table) to <code>x</code> (left table)</li>
+<li>All rows from <code>x</code> are preserved in the join
+<ul>
+<li>i.e., keeps all rows from <code>x</code> regardless of whether there’s a match in <code>y</code></li>
+</ul></li>
+<li>Of the joins, used most frequently
+<ul>
+<li>Allow you to add new variables from other tables without dropping observations</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<p><img data-src="images/left-join.gif" class="absolute" style="bottom: 0%; right: 7%; height: 45%; "></p>
+
+<aside><div>
+<p>Gif Source: <a href="https://github.com/gadenbuie/tidyexplain" class="uri">https://github.com/gadenbuie/tidyexplain</a></p>
+</div></aside></section>
+<section id="dplyrleft_join-example" class="slide level2 smaller">
+<h2><code>dplyr::left_join()</code> example</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Print clinical dataset</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>clinical</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,339 × 6
+   id1     age race_eth             sbp    wt    ht
+   &lt;chr&gt; &lt;int&gt; &lt;fct&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 73568    26 Non-Hispanic White  105.  47.1  152.
+ 2 73571    76 Non-Hispanic White  126  102.   172.
+ 3 73574    33 &lt;NA&gt;                121.  56.8  158 
+ 4 73576    16 Non-Hispanic Black  109.  67.3  170.
+ 5 73577    32 Hispanic            119.  79.7  166.
+ 6 73578    18 Hispanic            123. 109.   175.
+ 7 73584    13 Non-Hispanic White  109.  53.1  145.
+ 8 73587    14 &lt;NA&gt;                112  110.   169.
+ 9 73597    50 Non-Hispanic Black  NaN  104.   180.
+10 73598    20 Hispanic            112   86.7  165 
+# … with 2,329 more rows</code></pre>
+</div>
+</div>
+<div class="code-break">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Print PFAS dataset</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>pfas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,168 × 6
+   id1    pfos  pfoa  pfna  pfhs  pfde
+   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 73568   2.2  3      0.5   3     0.2
+ 2 73571  10.2  4.77   1.3   2     0.3
+ 3 73574  NA   NA      0.7   0.2   0.1
+ 4 73576   4.7  2.37   0.6   7.6   0.2
+ 5 73577   3    1.47   0.4   1.2   0.1
+ 6 73584   7    2.37   0.8   0.8   0.2
+ 7 73587  35.5  6.17   3.3   6.3   1.7
+ 8 73598   4.7  1.8    0.5   1.6   0.2
+ 9 73599   4.5  1.87   1.7   0.8   0.2
+10 73600   6.3  1.67   0.5   1.6   0.2
+# … with 2,158 more rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-r.options="{&quot;width&quot;:50}">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Perform a left join</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">left_join</span>(<span class="at">x =</span> clinical, <span class="at">y =</span> pfas, <span class="at">by =</span> <span class="st">"id1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,339 × 11
+   id1     age race_eth      sbp    wt    ht  pfos
+   &lt;chr&gt; &lt;int&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 73568    26 Non-Hispan…  105.  47.1  152.   2.2
+ 2 73571    76 Non-Hispan…  126  102.   172.  10.2
+ 3 73574    33 &lt;NA&gt;         121.  56.8  158   NA  
+ 4 73576    16 Non-Hispan…  109.  67.3  170.   4.7
+ 5 73577    32 Hispanic     119.  79.7  166.   3  
+ 6 73578    18 Hispanic     123. 109.   175.  NA  
+ 7 73584    13 Non-Hispan…  109.  53.1  145.   7  
+ 8 73587    14 &lt;NA&gt;         112  110.   169.  35.5
+ 9 73597    50 Non-Hispan…  NaN  104.   180.  NA  
+10 73598    20 Hispanic     112   86.7  165    4.7
+# … with 2,329 more rows, and 4 more variables:
+#   pfoa &lt;dbl&gt;, pfna &lt;dbl&gt;, pfhs &lt;dbl&gt;,
+#   pfde &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="dplyrright_join" class="slide level2 smaller">
+<h2><code>dplyr::right_join()</code></h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p><strong>Main arguments</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">right_join</span>(</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  x,</span>
+<span id="cb15-3"><a href="#cb15-3"></a>  y,</span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="at">by =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">".x"</span>, <span class="st">".y"</span>),</span>
+<span id="cb15-6"><a href="#cb15-6"></a>  <span class="at">keep =</span> <span class="cn">FALSE</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>x</code> = Data frame 1 (left table)</li>
+<li><code>y</code> = Data frame 2 (right table)</li>
+<li><code>by</code> = Column names(s) of variables to match rows by (key)</li>
+<li><code>suffix</code> = Character string appended to column names that appear in both <code>x</code> and <code>y</code></li>
+<li><code>keep</code>= If <code>TRUE</code>, preserve the join keys from both <code>x</code> and <code>y</code></li>
+</ul>
+</div><div class="column" style="width:5%;">
+<p><br></p>
+</div><div class="column" style="width:50%;">
+<p><strong>Description</strong></p>
+<ul>
+<li>Adds columns from <code>x</code> (left table) to <code>y</code> (right table)</li>
+<li>All rows from <code>y</code> are preserved in the join
+<ul>
+<li>i.e., keeps all rows from <code>y</code> regardless of whether there’s a match in <code>x</code></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<p><img data-src="images/right-join.gif" class="absolute" style="bottom: 0%; right: 7%; height: 45%; "></p>
+
+<aside><div>
+<p>Gif Source: <a href="https://github.com/gadenbuie/tidyexplain" class="uri">https://github.com/gadenbuie/tidyexplain</a></p>
+</div></aside></section>
+<section id="dplyrright_join-example" class="slide level2 smaller">
+<h2><code>dplyr::right_join()</code> example</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Print clincal dataset</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>clinical</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,339 × 6
+   id1     age race_eth             sbp    wt    ht
+   &lt;chr&gt; &lt;int&gt; &lt;fct&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 73568    26 Non-Hispanic White  105.  47.1  152.
+ 2 73571    76 Non-Hispanic White  126  102.   172.
+ 3 73574    33 &lt;NA&gt;                121.  56.8  158 
+ 4 73576    16 Non-Hispanic Black  109.  67.3  170.
+ 5 73577    32 Hispanic            119.  79.7  166.
+ 6 73578    18 Hispanic            123. 109.   175.
+ 7 73584    13 Non-Hispanic White  109.  53.1  145.
+ 8 73587    14 &lt;NA&gt;                112  110.   169.
+ 9 73597    50 Non-Hispanic Black  NaN  104.   180.
+10 73598    20 Hispanic            112   86.7  165 
+# … with 2,329 more rows</code></pre>
+</div>
+</div>
+<div class="code-break">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Print PFAS dataset</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>pfas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,168 × 6
+   id1    pfos  pfoa  pfna  pfhs  pfde
+   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 73568   2.2  3      0.5   3     0.2
+ 2 73571  10.2  4.77   1.3   2     0.3
+ 3 73574  NA   NA      0.7   0.2   0.1
+ 4 73576   4.7  2.37   0.6   7.6   0.2
+ 5 73577   3    1.47   0.4   1.2   0.1
+ 6 73584   7    2.37   0.8   0.8   0.2
+ 7 73587  35.5  6.17   3.3   6.3   1.7
+ 8 73598   4.7  1.8    0.5   1.6   0.2
+ 9 73599   4.5  1.87   1.7   0.8   0.2
+10 73600   6.3  1.67   0.5   1.6   0.2
+# … with 2,158 more rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-r.options="{&quot;width&quot;:50}">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">right_join</span>(<span class="at">x =</span> clinical, <span class="at">y =</span> pfas, <span class="at">by =</span> <span class="st">"id1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,168 × 11
+   id1     age race_eth      sbp    wt    ht  pfos
+   &lt;chr&gt; &lt;int&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 73568    26 Non-Hispan…  105.  47.1  152.   2.2
+ 2 73571    76 Non-Hispan…  126  102.   172.  10.2
+ 3 73574    33 &lt;NA&gt;         121.  56.8  158   NA  
+ 4 73576    16 Non-Hispan…  109.  67.3  170.   4.7
+ 5 73577    32 Hispanic     119.  79.7  166.   3  
+ 6 73584    13 Non-Hispan…  109.  53.1  145.   7  
+ 7 73587    14 &lt;NA&gt;         112  110.   169.  35.5
+ 8 73598    20 Hispanic     112   86.7  165    4.7
+ 9 73599    13 Non-Hispan…  118   44.9  159.   4.5
+10 73600    37 Non-Hispan…  149. 126.   185.   6.3
+# … with 2,158 more rows, and 4 more variables:
+#   pfoa &lt;dbl&gt;, pfna &lt;dbl&gt;, pfhs &lt;dbl&gt;,
+#   pfde &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="dplyrinner_join" class="slide level2 smaller">
 <h2><code>dplyr::inner_join()</code></h2>
@@ -632,15 +949,15 @@
 <div class="column" style="width:45%;">
 <p><strong>Main arguments</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">inner_join</span>(</span>
-<span id="cb11-2"><a href="#cb11-2"></a>  x,</span>
-<span id="cb11-3"><a href="#cb11-3"></a>  y,</span>
-<span id="cb11-4"><a href="#cb11-4"></a>  <span class="at">by =</span> <span class="cn">NULL</span>,</span>
-<span id="cb11-5"><a href="#cb11-5"></a>  <span class="at">copy =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb11-6"><a href="#cb11-6"></a>  <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">".x"</span>, <span class="st">".y"</span>),</span>
-<span id="cb11-7"><a href="#cb11-7"></a>  ...,</span>
-<span id="cb11-8"><a href="#cb11-8"></a>  <span class="at">keep =</span> <span class="cn">FALSE</span></span>
-<span id="cb11-9"><a href="#cb11-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">inner_join</span>(</span>
+<span id="cb22-2"><a href="#cb22-2"></a>  x,</span>
+<span id="cb22-3"><a href="#cb22-3"></a>  y,</span>
+<span id="cb22-4"><a href="#cb22-4"></a>  <span class="at">by =</span> <span class="cn">NULL</span>,</span>
+<span id="cb22-5"><a href="#cb22-5"></a>  <span class="at">copy =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb22-6"><a href="#cb22-6"></a>  <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">".x"</span>, <span class="st">".y"</span>),</span>
+<span id="cb22-7"><a href="#cb22-7"></a>  ...,</span>
+<span id="cb22-8"><a href="#cb22-8"></a>  <span class="at">keep =</span> <span class="cn">FALSE</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>x</code> = Data frame <code>x</code></li>
@@ -654,12 +971,11 @@
 </div><div class="column" style="width:50%;">
 <p><strong>Description</strong></p>
 <ul>
-<li></li>
 <li>Returns rows that match in <strong>both</strong> <code>x</code> and <code>y</code>
 <ul>
 <li>Unmatched rows are dropped</li>
 </ul></li>
-<li></li>
+<li>Most restrictive of the mutating joins</li>
 </ul>
 </div>
 </div>
@@ -668,150 +984,113 @@
 <aside><div>
 <p>Gif Source: <a href="https://github.com/gadenbuie/tidyexplain" class="uri">https://github.com/gadenbuie/tidyexplain</a></p>
 </div></aside></section>
-<section id="dplyrinner_join-example-1" class="slide level2 smaller">
-<h2><code>dplyr::inner_join()</code> example 1</h2>
-<!-- # ```{r, echo=T} -->
-<!-- # print(df_x, n = 5) -->
-<!-- # glimpse50(df_x) -->
-<!-- # glimpse50(df_y) -->
-<!-- #  -->
-<!-- # # Join the two data frames back together by the ID variable -->
-<!-- # inner_join(df_x, df_y, by = "id") %>%  -->
-<!-- #   glimpse50() -->
-<!-- #| output-location: column -->
-<!-- # Split original data into two data frames with  -->
-<!-- # different variables and preserve all -->
-<!-- # observations in the original dataset -->
-<!-- # df_x <- select(nhanes_id529, id, age, mean_BP:height) -->
-<!-- #  -->
-<!-- # df_y <- select(nhanes_id529, id, PFAS_total) -->
-<!-- #  -->
-<!-- # # Join the two data frames back together by the ID variable -->
-<!-- # inner_join(df_x, df_y, by = "id") %>%  -->
-<!-- #   glimpse50() -->
-<!-- ``` -->
+<section id="dplyrinner_join-example" class="slide level2 smaller">
+<h2><code>dplyr::inner_join()</code> example</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Print clinical dataset</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>clinical</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,339 × 6
+   id1     age race_eth             sbp    wt    ht
+   &lt;chr&gt; &lt;int&gt; &lt;fct&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 73568    26 Non-Hispanic White  105.  47.1  152.
+ 2 73571    76 Non-Hispanic White  126  102.   172.
+ 3 73574    33 &lt;NA&gt;                121.  56.8  158 
+ 4 73576    16 Non-Hispanic Black  109.  67.3  170.
+ 5 73577    32 Hispanic            119.  79.7  166.
+ 6 73578    18 Hispanic            123. 109.   175.
+ 7 73584    13 Non-Hispanic White  109.  53.1  145.
+ 8 73587    14 &lt;NA&gt;                112  110.   169.
+ 9 73597    50 Non-Hispanic Black  NaN  104.   180.
+10 73598    20 Hispanic            112   86.7  165 
+# … with 2,329 more rows</code></pre>
+</div>
+</div>
+<div class="code-break">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># Print PFAS dataset</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>pfas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,168 × 6
+   id1    pfos  pfoa  pfna  pfhs  pfde
+   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 73568   2.2  3      0.5   3     0.2
+ 2 73571  10.2  4.77   1.3   2     0.3
+ 3 73574  NA   NA      0.7   0.2   0.1
+ 4 73576   4.7  2.37   0.6   7.6   0.2
+ 5 73577   3    1.47   0.4   1.2   0.1
+ 6 73584   7    2.37   0.8   0.8   0.2
+ 7 73587  35.5  6.17   3.3   6.3   1.7
+ 8 73598   4.7  1.8    0.5   1.6   0.2
+ 9 73599   4.5  1.87   1.7   0.8   0.2
+10 73600   6.3  1.67   0.5   1.6   0.2
+# … with 2,158 more rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-r.options="{&quot;width&quot;:50}">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># Perform an inner join</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">inner_join</span>(<span class="at">x =</span> clinical, <span class="at">y =</span> pfas, <span class="at">by =</span> <span class="st">"id1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,168 × 11
+   id1     age race_eth      sbp    wt    ht  pfos
+   &lt;chr&gt; &lt;int&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 73568    26 Non-Hispan…  105.  47.1  152.   2.2
+ 2 73571    76 Non-Hispan…  126  102.   172.  10.2
+ 3 73574    33 &lt;NA&gt;         121.  56.8  158   NA  
+ 4 73576    16 Non-Hispan…  109.  67.3  170.   4.7
+ 5 73577    32 Hispanic     119.  79.7  166.   3  
+ 6 73584    13 Non-Hispan…  109.  53.1  145.   7  
+ 7 73587    14 &lt;NA&gt;         112  110.   169.  35.5
+ 8 73598    20 Hispanic     112   86.7  165    4.7
+ 9 73599    13 Non-Hispan…  118   44.9  159.   4.5
+10 73600    37 Non-Hispan…  149. 126.   185.   6.3
+# … with 2,158 more rows, and 4 more variables:
+#   pfoa &lt;dbl&gt;, pfna &lt;dbl&gt;, pfhs &lt;dbl&gt;,
+#   pfde &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="dplyrleft_join" class="slide level2 smaller">
-<h2><code>dplyr::left_join()</code></h2>
-<div class="columns">
-<div class="column" style="width:45%;">
-<p><strong>Main arguments</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">left_join</span>(</span>
-<span id="cb12-2"><a href="#cb12-2"></a>  x,</span>
-<span id="cb12-3"><a href="#cb12-3"></a>  y,</span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="at">by =</span> <span class="cn">NULL</span>,</span>
-<span id="cb12-5"><a href="#cb12-5"></a>  <span class="at">copy =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb12-6"><a href="#cb12-6"></a>  <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">".x"</span>, <span class="st">".y"</span>),</span>
-<span id="cb12-7"><a href="#cb12-7"></a>  ...,</span>
-<span id="cb12-8"><a href="#cb12-8"></a>  <span class="at">keep =</span> <span class="cn">FALSE</span></span>
-<span id="cb12-9"><a href="#cb12-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><code>x</code> = text</li>
-<li><code>y</code> = text</li>
-<li><code>by</code>= text</li>
-<li><code>copy</code>= text</li>
-<li><code>suffix</code>= text</li>
-<li><code>...</code>= text</li>
-<li><code>keep</code>= text</li>
-</ul>
-</div><div class="column" style="width:5%;">
-<p><br></p>
-</div><div class="column" style="width:50%;">
-<p><strong>Description</strong></p>
-<ul>
-<li>Replaces a matched pattern</li>
-<li>Returns input vector (with replacements)</li>
-<li><code>str_replace()</code>: Replace first match</li>
-<li>Returns input vector (with replacements)</li>
-<li>Returns input vector (with replacements)</li>
-</ul>
-</div>
-</div>
-<p><img data-src="images/left-join.gif" class="absolute" style="bottom: 0%; right: 7%; height: 45%; "></p>
-
-<aside><div>
-<p>Gif Source: <a href="https://github.com/gadenbuie/tidyexplain" class="uri">https://github.com/gadenbuie/tidyexplain</a></p>
-</div></aside></section>
-<section id="dplyrright_join" class="slide level2 smaller">
-<h2><code>dplyr::right_join()</code></h2>
-<div class="columns">
-<div class="column" style="width:45%;">
-<p><strong>Main arguments</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">right_join</span>(</span>
-<span id="cb13-2"><a href="#cb13-2"></a>  x,</span>
-<span id="cb13-3"><a href="#cb13-3"></a>  y,</span>
-<span id="cb13-4"><a href="#cb13-4"></a>  <span class="at">by =</span> <span class="cn">NULL</span>,</span>
-<span id="cb13-5"><a href="#cb13-5"></a>  <span class="at">copy =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb13-6"><a href="#cb13-6"></a>  <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">".x"</span>, <span class="st">".y"</span>),</span>
-<span id="cb13-7"><a href="#cb13-7"></a>  ...,</span>
-<span id="cb13-8"><a href="#cb13-8"></a>  <span class="at">keep =</span> <span class="cn">FALSE</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><code>x</code> = text</li>
-<li><code>y</code> = text</li>
-<li><code>by</code>= text</li>
-<li><code>copy</code>= text</li>
-<li><code>suffix</code>= text</li>
-<li><code>...</code>= text</li>
-<li><code>keep</code>= text</li>
-</ul>
-</div><div class="column" style="width:5%;">
-<p><br></p>
-</div><div class="column" style="width:50%;">
-<p><strong>Description</strong></p>
-<ul>
-<li>Replaces a matched pattern</li>
-<li>Returns input vector (with replacements)</li>
-<li><code>str_replace()</code>: Replace first match</li>
-<li>Returns input vector (with replacements)</li>
-<li>Returns input vector (with replacements)</li>
-</ul>
-</div>
-</div>
-<p><img data-src="images/right-join.gif" class="absolute" style="bottom: 0%; right: 7%; height: 45%; "></p>
-
-<aside><div>
-<p>Gif Source: <a href="https://github.com/gadenbuie/tidyexplain" class="uri">https://github.com/gadenbuie/tidyexplain</a></p>
-</div></aside></section>
 <section id="dplyrfull_join" class="slide level2 smaller">
 <h2><code>dplyr::full_join()</code></h2>
 <div class="columns">
 <div class="column" style="width:45%;">
 <p><strong>Main arguments</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">full_join</span>(</span>
-<span id="cb14-2"><a href="#cb14-2"></a>  x,</span>
-<span id="cb14-3"><a href="#cb14-3"></a>  y,</span>
-<span id="cb14-4"><a href="#cb14-4"></a>  <span class="at">by =</span> <span class="cn">NULL</span>,</span>
-<span id="cb14-5"><a href="#cb14-5"></a>  <span class="at">copy =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb14-6"><a href="#cb14-6"></a>  <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">".x"</span>, <span class="st">".y"</span>),</span>
-<span id="cb14-7"><a href="#cb14-7"></a>  ...,</span>
-<span id="cb14-8"><a href="#cb14-8"></a>  <span class="at">keep =</span> <span class="cn">FALSE</span></span>
-<span id="cb14-9"><a href="#cb14-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">full_join</span>(</span>
+<span id="cb29-2"><a href="#cb29-2"></a>  x,</span>
+<span id="cb29-3"><a href="#cb29-3"></a>  y,</span>
+<span id="cb29-4"><a href="#cb29-4"></a>  <span class="at">by =</span> <span class="cn">NULL</span>,</span>
+<span id="cb29-5"><a href="#cb29-5"></a>  <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">".x"</span>, <span class="st">".y"</span>),</span>
+<span id="cb29-6"><a href="#cb29-6"></a>  <span class="at">keep =</span> <span class="cn">FALSE</span></span>
+<span id="cb29-7"><a href="#cb29-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li><code>x</code> = text</li>
-<li><code>y</code> = text</li>
-<li><code>by</code>= text</li>
-<li><code>copy</code>= text</li>
-<li><code>suffix</code>= text</li>
-<li><code>...</code>= text</li>
-<li><code>keep</code>= text</li>
+<li><code>x</code> = Data frame <code>x</code></li>
+<li><code>y</code> = Data frame <code>y</code></li>
+<li><code>by</code>= Column name(s) to join <code>x</code> and <code>y</code> by</li>
+<li><code>suffix</code>= Suffix to append to duplicate vars</li>
+<li><code>keep</code>= Keep the join key from both <code>x</code> and <code>y</code></li>
 </ul>
 </div><div class="column" style="width:5%;">
 <p><br></p>
 </div><div class="column" style="width:50%;">
 <p><strong>Description</strong></p>
 <ul>
-<li>Replaces a matched pattern</li>
-<li>Returns input vector (with replacements)</li>
-<li><code>str_replace()</code>: Replace first match</li>
-<li>Returns input vector (with replacements)</li>
-<li>Returns input vector (with replacements)</li>
+<li>Returns all rows in x or y</li>
+<li>Least restrictive
+<ul>
+<li>No observations are removed</li>
+</ul></li>
 </ul>
 </div>
 </div>
@@ -819,7 +1098,83 @@
 
 <aside><div>
 <p>Gif Source: <a href="https://github.com/gadenbuie/tidyexplain" class="uri">https://github.com/gadenbuie/tidyexplain</a></p>
-</div></aside></section></section>
+</div></aside></section>
+<section id="dplyrfull_join-example" class="slide level2 smaller">
+<h2><code>dplyr::full_join()</code> example</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># Print clinical datast</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>clinical</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,339 × 6
+   id1     age race_eth             sbp    wt    ht
+   &lt;chr&gt; &lt;int&gt; &lt;fct&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 73568    26 Non-Hispanic White  105.  47.1  152.
+ 2 73571    76 Non-Hispanic White  126  102.   172.
+ 3 73574    33 &lt;NA&gt;                121.  56.8  158 
+ 4 73576    16 Non-Hispanic Black  109.  67.3  170.
+ 5 73577    32 Hispanic            119.  79.7  166.
+ 6 73578    18 Hispanic            123. 109.   175.
+ 7 73584    13 Non-Hispanic White  109.  53.1  145.
+ 8 73587    14 &lt;NA&gt;                112  110.   169.
+ 9 73597    50 Non-Hispanic Black  NaN  104.   180.
+10 73598    20 Hispanic            112   86.7  165 
+# … with 2,329 more rows</code></pre>
+</div>
+</div>
+<div class="code-break">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># Print PFAS dataset</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>pfas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,168 × 6
+   id1    pfos  pfoa  pfna  pfhs  pfde
+   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 73568   2.2  3      0.5   3     0.2
+ 2 73571  10.2  4.77   1.3   2     0.3
+ 3 73574  NA   NA      0.7   0.2   0.1
+ 4 73576   4.7  2.37   0.6   7.6   0.2
+ 5 73577   3    1.47   0.4   1.2   0.1
+ 6 73584   7    2.37   0.8   0.8   0.2
+ 7 73587  35.5  6.17   3.3   6.3   1.7
+ 8 73598   4.7  1.8    0.5   1.6   0.2
+ 9 73599   4.5  1.87   1.7   0.8   0.2
+10 73600   6.3  1.67   0.5   1.6   0.2
+# … with 2,158 more rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-r.options="{&quot;width&quot;:50}">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># Perform full join</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="fu">full_join</span>(<span class="at">x =</span> clinical, <span class="at">y =</span> pfas, <span class="at">by =</span> <span class="st">"id1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,339 × 11
+   id1     age race_eth      sbp    wt    ht  pfos
+   &lt;chr&gt; &lt;int&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 73568    26 Non-Hispan…  105.  47.1  152.   2.2
+ 2 73571    76 Non-Hispan…  126  102.   172.  10.2
+ 3 73574    33 &lt;NA&gt;         121.  56.8  158   NA  
+ 4 73576    16 Non-Hispan…  109.  67.3  170.   4.7
+ 5 73577    32 Hispanic     119.  79.7  166.   3  
+ 6 73578    18 Hispanic     123. 109.   175.  NA  
+ 7 73584    13 Non-Hispan…  109.  53.1  145.   7  
+ 8 73587    14 &lt;NA&gt;         112  110.   169.  35.5
+ 9 73597    50 Non-Hispan…  NaN  104.   180.  NA  
+10 73598    20 Hispanic     112   86.7  165    4.7
+# … with 2,329 more rows, and 4 more variables:
+#   pfoa &lt;dbl&gt;, pfna &lt;dbl&gt;, pfhs &lt;dbl&gt;,
+#   pfde &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section></section>
 <section>
 <section id="dplyr-filtering-joins" class="title-slide slide level1 white-title white-code center" data-background-image="images/bg-no-planet.png" data-background-size="110%">
 <h1><code>dplyr</code> filtering joins</h1>
@@ -831,29 +1186,23 @@
 <div class="column" style="width:45%;">
 <p><strong>Main arguments</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">semi_join</span>(x, </span>
-<span id="cb15-2"><a href="#cb15-2"></a>          y, </span>
-<span id="cb15-3"><a href="#cb15-3"></a>          <span class="at">by =</span> <span class="cn">NULL</span>, </span>
-<span id="cb15-4"><a href="#cb15-4"></a>          <span class="at">copy =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb15-5"><a href="#cb15-5"></a>          ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">semi_join</span>(x, </span>
+<span id="cb36-2"><a href="#cb36-2"></a>          y, </span>
+<span id="cb36-3"><a href="#cb36-3"></a>          <span class="at">by =</span> <span class="cn">NULL</span>,</span>
+<span id="cb36-4"><a href="#cb36-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li><code>x</code> = text</li>
-<li><code>y</code> = text</li>
-<li><code>by</code>= text</li>
-<li><code>copy</code>= text</li>
-<li><code>...</code>= text</li>
+<li><code>x</code> = Data frame 1 (left)</li>
+<li><code>y</code> = Data frame 2 (right)</li>
+<li><code>by</code> = Column names(s) of variables to match rows by (key)</li>
 </ul>
 </div><div class="column" style="width:5%;">
 <p><br></p>
 </div><div class="column" style="width:50%;">
 <p><strong>Description</strong></p>
 <ul>
-<li>Replaces a matched pattern</li>
-<li>Returns input vector (with replacements)</li>
-<li><code>str_replace()</code>: Replace first match</li>
-<li>Returns input vector (with replacements)</li>
-<li>Returns input vector (with replacements)</li>
+<li>Keeps all observations in x that have a match in y</li>
+<li>Useful for filtering <code>x</code> by the presence of a match in <code>y</code></li>
 </ul>
 </div>
 </div>
@@ -868,29 +1217,27 @@
 <div class="column" style="width:45%;">
 <p><strong>Main arguments</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">anti_join</span>(x, </span>
-<span id="cb16-2"><a href="#cb16-2"></a>          y, </span>
-<span id="cb16-3"><a href="#cb16-3"></a>          <span class="at">by =</span> <span class="cn">NULL</span>, </span>
-<span id="cb16-4"><a href="#cb16-4"></a>          <span class="at">copy =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb16-5"><a href="#cb16-5"></a>          ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">anti_join</span>(x, </span>
+<span id="cb37-2"><a href="#cb37-2"></a>          y, </span>
+<span id="cb37-3"><a href="#cb37-3"></a>          <span class="at">by =</span> <span class="cn">NULL</span></span>
+<span id="cb37-4"><a href="#cb37-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li><code>x</code> = text</li>
-<li><code>y</code> = text</li>
-<li><code>by</code>= text</li>
-<li><code>copy</code>= text</li>
-<li><code>...</code>= text</li>
+<li><code>x</code> = Data frame 1 (left)</li>
+<li><code>y</code> = Data frame 2 (right)</li>
+<li><code>by</code> = Column names(s) of variables to match rows by (key)</li>
 </ul>
 </div><div class="column" style="width:5%;">
 <p><br></p>
 </div><div class="column" style="width:50%;">
 <p><strong>Description</strong></p>
 <ul>
-<li>Replaces a matched pattern</li>
-<li>Returns input vector (with replacements)</li>
-<li><code>str_replace()</code>: Replace first match</li>
-<li>Returns input vector (with replacements)</li>
-<li>Returns input vector (with replacements)</li>
+<li>Returns rows from <code>x</code> where there is no match in <code>y</code></li>
+<li>Useful when you want to filter the first table by the absence of a match in the second table
+<ul>
+<li>That is, identify observations in <code>x</code> that don’t appear in <code>y</code><br>
+</li>
+</ul></li>
 </ul>
 </div>
 </div>
@@ -902,66 +1249,63 @@
 <section>
 <section id="dplyr-set-operations" class="title-slide slide level1 white-title white-code center" data-background-image="images/bg-no-planet.png" data-background-size="110%">
 <h1><code>dplyr</code> set operations</h1>
+<!-- ## `dplyr::intersect()` {.smaller} -->
+<!-- :::: {.columns} -->
+<!-- ::: {.column width="45%"} -->
+<!-- **Main arguments** -->
+<!-- ```{r, echo=T, eval=F} -->
+<!-- intersect(x, y, ...) -->
+<!-- ``` -->
+<!-- -   `x` = text -->
+<!-- -   `y` = text -->
+<!-- -   `...`= text -->
+<!-- :::  -->
+<!-- ::: {.column width="5%"} -->
+<!-- <br> -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
+<!-- **Description** -->
 
+<!-- -   Returns only the rows that are in both tables -->
+<!-- ::: -->
+<!-- :::: -->
+<!-- ![](images/intersect.gif){.absolute right="7%" bottom="0%" height="45%"} -->
+<!-- ::: aside -->
+<!-- Gif Source: <https://github.com/gadenbuie/tidyexplain> -->
+<!-- ::: -->
 </section>
-<section id="dplyrintersect" class="slide level2 smaller">
-<h2><code>dplyr::intersect()</code></h2>
-<div class="columns">
-<div class="column" style="width:45%;">
-<p><strong>Main arguments</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">intersect</span>(x, y, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><code>x</code> = text</li>
-<li><code>y</code> = text</li>
-<li><code>...</code>= text</li>
-</ul>
-</div><div class="column" style="width:5%;">
-<p><br></p>
-</div><div class="column" style="width:50%;">
-<p><strong>Description</strong></p>
-<ul>
-<li>Replaces a matched pattern</li>
-<li>Returns input vector (with replacements)</li>
-<li><code>str_replace()</code>: Replace first match</li>
-<li>Returns input vector (with replacements)</li>
-<li>Returns input vector (with replacements)</li>
-</ul>
-</div>
-</div>
-<p><img data-src="images/intersect.gif" class="absolute" style="bottom: 0%; right: 7%; height: 45%; "></p>
-
-<aside><div>
-<p>Gif Source: <a href="https://github.com/gadenbuie/tidyexplain" class="uri">https://github.com/gadenbuie/tidyexplain</a></p>
-</div></aside></section>
 <section id="dplyrunion" class="slide level2 smaller">
 <h2><code>dplyr::union()</code></h2>
 <div class="columns">
 <div class="column" style="width:45%;">
 <p><strong>Main arguments</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">union</span>(x, y, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">union</span>(x, y)</span>
+<span id="cb38-2"><a href="#cb38-2"></a><span class="fu">union_all</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li><code>x</code> = text</li>
-<li><code>y</code> = text</li>
-<li><code>...</code>= text</li>
+<li><code>x</code> = Data frame 1 (left)</li>
+<li><code>y</code> = Data frame 2 (right)</li>
 </ul>
 </div><div class="column" style="width:5%;">
 <p><br></p>
 </div><div class="column" style="width:50%;">
 <p><strong>Description</strong></p>
 <ul>
-<li>Replaces a matched pattern</li>
-<li>Returns input vector (with replacements)</li>
-<li><code>str_replace()</code>: Replace first match</li>
-<li>Returns input vector (with replacements)</li>
-<li>Returns input vector (with replacements)</li>
+<li><code>union()</code>
+<ul>
+<li>Return unique observations in <code>x</code> and <code>y</code></li>
+</ul></li>
+<li><code>union_all()</code>
+<ul>
+<li>Return unique and duplicate observations in <code>x</code> and <code>y</code><br>
+</li>
+</ul></li>
 </ul>
 </div>
 </div>
-<p><img data-src="images/union.gif" class="absolute" style="bottom: 0%; right: 7%; height: 45%; "></p>
+<p><img data-src="images/union.gif" class="absolute" style="left: 7%; bottom: 0%; height: 45%; "></p>
+<p><img data-src="images/union-all.gif" class="absolute" style="bottom: 0%; right: 7%; height: 45%; "></p>
 
 <aside><div>
 <p>Gif Source: <a href="https://github.com/gadenbuie/tidyexplain" class="uri">https://github.com/gadenbuie/tidyexplain</a></p>
@@ -972,23 +1316,21 @@
 <div class="column" style="width:45%;">
 <p><strong>Main arguments</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">setdiff</span>(x, y, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">setdiff</span>(x, y, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li><code>x</code> = text</li>
-<li><code>y</code> = text</li>
-<li><code>...</code>= text</li>
+<li><code>x</code> = Data frame 1 (left)</li>
+<li><code>y</code> = Data frame 2 (right)</li>
 </ul>
 </div><div class="column" style="width:5%;">
 <p><br></p>
 </div><div class="column" style="width:50%;">
 <p><strong>Description</strong></p>
 <ul>
-<li>Replaces a matched pattern</li>
-<li>Returns input vector (with replacements)</li>
-<li><code>str_replace()</code>: Replace first match</li>
-<li>Returns input vector (with replacements)</li>
-<li>Returns input vector (with replacements)</li>
+<li>Returns the rows that are in the first table but not in the second
+<ul>
+<li>That is, return observations in x, but not in y</li>
+</ul></li>
 </ul>
 </div>
 </div>
@@ -996,21 +1338,72 @@
 
 <aside><div>
 <p>Gif Source: <a href="https://github.com/gadenbuie/tidyexplain" class="uri">https://github.com/gadenbuie/tidyexplain</a></p>
-</div></aside></section></section>
-<section>
-<section id="case-study" class="title-slide slide level1 white-title white-code center" data-background-image="images/bg-no-planet.png" data-background-size="110%">
-<h1>Case Study</h1>
-
-</section>
-<section id="case-study-1" class="slide level2">
-<h2>Case study</h2>
-</section>
+</div></aside></section>
 <section id="key-takeaways" class="slide level2 smaller">
 <h2>Key takeaways</h2>
+<ul>
+<li><strong>Joining together two or more datasets is a routine component of data analysis workflows</strong>
+<ul>
+<li>Different types of joins are useful in different situations</li>
+<li>It’s important to be aware of how and when to use each (left, right, inner, etc.)
+<ul>
+<li>All have distinct implications for how the underlying data are manipulated</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
+<li>Like all data manipulation tasks, joining data can get complicated!</li>
+<li><strong>Common challenges include:</strong>
+<ul>
+<li>Inconsistencies in unique identifiers</li>
+<li>Duplicate records and missing values</li>
+<li>Non-unique identifiers (require matching data frames on two or more variables)</li>
+<li>Joining datasets can be complex and requires a good understanding of the data structure</li>
+</ul></li>
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
+<li><strong><code>dplyr</code> includes a number of two-table functions (verbs)</strong>
+<ul>
+<li>Like other <code>dplyr</code> verbs, two-table verbs are:
+<ul>
+<li>Intuitive to use</li>
+<li>Can be incorporated into a sequence of data cleaning operations using the pipe operator</li>
+</ul></li>
+</ul></li>
+</ul>
 </section>
 <section id="resources" class="slide level2 smaller">
 <h2>Resources</h2>
-<p><code>dplyr</code> Vignette: <a href="https://dplyr.tidyverse.org/articles/two-table.html" class="uri">https://dplyr.tidyverse.org/articles/two-table.html</a> R for Data Science: <a href="https://r4ds.had.co.nz/relational-data.html" class="uri">https://r4ds.had.co.nz/relational-data.html</a></p>
+<p><br> <br></p>
+<ul>
+<li><strong><code>dplyr</code> Two-table verbs vignette:</strong> <a href="https://dplyr.tidyverse.org/articles/two-table.html" class="uri">https://dplyr.tidyverse.org/articles/two-table.html</a></li>
+</ul>
+<div class="small-break">
+
+</div>
+<ul>
+<li><strong>R for Data Science - Relational Data:</strong> <a href="https://r4ds.had.co.nz/relational-data.html" class="uri">https://r4ds.had.co.nz/relational-data.html</a></li>
+</ul>
+</section>
+<section id="activity" class="slide level2 smaller">
+<h2>Activity</h2>
+<p><br> <br> <br></p>
+<ul>
+<li><strong>Download R Script file here:</strong> <a href="https://github.com/ID529/lectures/tree/main/day5/lecture3-data-linkage-methods" class="uri">https://github.com/ID529/lectures/tree/main/day5/lecture3-data-linkage-methods</a>
+<ul>
+<li><code>nhanes-activity.R</code></li>
+</ul></li>
+</ul>
+<p><br></p>
+<ul>
+<li><strong>ID 529 dataset details:</strong> <a href="https://github.com/ID529/ID529data" class="uri">https://github.com/ID529/ID529data</a></li>
+</ul>
 
 <img src="images/id529-sticker.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p><a href="https://id529.github.io/" class="uri">https://id529.github.io/</a></p>
