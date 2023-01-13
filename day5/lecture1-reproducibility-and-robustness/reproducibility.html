@@ -323,7 +323,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
+<section id="title-slide" data-background-color="pink" data-background-image="graphics/transition_slides/annie-spratt.jpg" data-background-opacity="100%" class="quarto-title-block center">
   <h1 class="title">Reproducibility and Robustness</h1>
 
 <div class="quarto-title-authors">
@@ -361,7 +361,7 @@
 
 <section id="section" class="title-slide slide level1 center">
 <h1></h1>
-<p>these are important concepts insofar as science is about uncovering the underlying <strong>truth</strong> behind what we observe and not just indiosyncracies of our data or our analytic methods.</p>
+<p>these are important concepts insofar as science is about uncovering the underlying <span class="carrot"><strong>truth</strong></span> behind what we observe and not just idiosyncrasies of our data or our analytic methods.</p>
 </section>
 
 <section id="section-1" class="title-slide slide level1 center">
@@ -394,10 +394,8 @@
 </ul>
 </section>
 
-<section id="section-4" class="title-slide slide level1 center">
-<h1></h1>
-<p>how to deal with your collaborators / supervisors?</p>
-<p>my suggestions:</p>
+<section id="working-with-your-collaborators-supervisors" class="title-slide slide level1 xsmall center">
+<h1>working with your collaborators / supervisors</h1>
 <ul>
 <li>acknowledge how much time it takes for you to do things right</li>
 <li>under-promise (esp.&nbsp;in the short-term) and over-deliver (esp.&nbsp;in the long-term):
@@ -406,9 +404,15 @@
 <li>meanwhile, you work on starting a new R project and building a reproducible data cleaning pipeline</li>
 <li>this goes not just for data cleaning, but also exploratory data analysis, modeling, and manuscript writing.</li>
 </ul></li>
-<li>be explicit about educating your supervisor about the steps that need to get done</li>
+<li>be explicit with your team or supervisor about the steps that need to get done</li>
+</ul>
+</section>
+
+<section id="working-with-your-collaborators-supervisors-1" class="title-slide slide level1 xsmall center">
+<h1>working with your collaborators / supervisors</h1>
+<ul>
 <li>if you can, be candid about making them aware of why things may take a long time</li>
-<li>Try binning a new task:
+<li>try binning a new task:
 <ul>
 <li>I could turn this around in 2-hours.</li>
 <li>I know how to do it, but it’ll take me some time to do it; I can describe what needs to be done.</li>
@@ -418,6 +422,12 @@
 <li>gently let them know that the complexity may be greater than they’re imagining</li>
 </ul></li>
 </ul></li>
+</ul>
+</section>
+
+<section id="working-with-your-collaborators-supervisors-2" class="title-slide slide level1 xsmall center">
+<h1>working with your collaborators / supervisors</h1>
+<ul>
 <li>sometimes the timeline issues are
 <ul>
 <li>coding/programming;</li>
@@ -448,8 +458,8 @@
       }</style></aside>
 </section>
 
-<section id="section-5" class="title-slide slide level1 center">
-<h1></h1>
+<section id="making-reproducibility-robustness" class="title-slide slide level1 center">
+<h1>making reproducibility &amp; robustness</h1>
 <ul>
 <li>you can often ensure reproducibility;
 <ul>
@@ -475,16 +485,22 @@
       }</style></aside>
 </section>
 
-<section id="section-6" class="title-slide slide level1 center">
-<h1></h1>
-<p>what about when your advisors put up a fight?</p>
-<p>sometimes they might say “look just do it this way” and point you towards a pile of code that takes forever for you to even get running and is barely (if at all) reproducible.</p>
+<section id="just-do-it-the-old-way" class="title-slide slide level1 center">
+<h1>“just do it the old way”?</h1>
+<p>sometimes they might say “look, just do it this way” and point you towards a pile of code that takes forever for you to even get running and is barely (if at all) reproducible.</p>
 <p>you should:</p>
 <ul>
 <li>express appreciation for the work that they’re sharing with you</li>
 <li>establish mutually agreed-upon expected behavior</li>
 <li>use version control so you keep a copy of their original work</li>
-<li>try to adapt their code into an R project or package that makes sense to you</li>
+</ul>
+</section>
+
+<section id="section-4" class="title-slide slide level1 center">
+<h1></h1>
+<p>depending on how much agency you have:</p>
+<ul>
+<li>try to adapt their code into an R project, package, or workflow that makes sense to you</li>
 <li>emphasize the payoffs:
 <ul>
 <li>when submitting to a journal, any analysis revisions or supplemental analyses requested will be able to be done while preserving the original code and</li>
@@ -495,14 +511,18 @@
 <section id="some-examples" class="title-slide slide level1 center">
 <h1>some examples</h1>
 <ul>
-<li>the mass of the electron</li>
-<li>the MMR vaccine controversy</li>
-<li>power posing</li>
-<li></li>
+<li>the mass of the electron
+<ul>
+<li><a href="https://hsm.stackexchange.com/questions/264/timeline-of-measurements-of-the-electrons-charge" class="uri">https://hsm.stackexchange.com/questions/264/timeline-of-measurements-of-the-electrons-charge</a></li>
+</ul></li>
+<li>the MMR vaccine controversy
+<ul>
+<li><a href="https://www.bmj.com/content/342/bmj.c7452" class="uri">https://www.bmj.com/content/342/bmj.c7452</a></li>
+</ul></li>
 </ul>
 </section>
 
-<section id="forces-working-against-rr" class="title-slide slide level1 center">
+<section id="forces-working-against-rr" class="title-slide slide level1 xsmall center">
 <h1>forces working against R&amp;R</h1>
 <ul>
 <li>conflicts of interest
@@ -516,34 +536,37 @@
 <li>un-shared data</li>
 <li>contaminated (messed up) data</li>
 </ul>
-<p>https://www.nature.com/articles/d42473-019-00004-y</p>
+<p><a href="https://www.nature.com/articles/d42473-019-00004-y" class="uri">https://www.nature.com/articles/d42473-019-00004-y</a></p>
 </section>
 
-<section id="section-7" class="title-slide slide level1 center">
+<section id="section-5" class="title-slide slide level1 xsmall center">
 <h1></h1>
-<blockquote>
 <p>Science always was and always will be a struggle to produce knowledge for the benefit of all of humanity against the cognitive and moral limitations of individual human beings, including the limitations of scientists themselves.</p>
-</blockquote>
-<blockquote>
 <p>The new “science is in crisis” narrative is not only empirically unsupported, but also quite obviously counterproductive. Instead of inspiring younger generations to do more and better science, it might foster in them cynicism and indifference. Instead of inviting greater respect for and investment in research, it risks discrediting the value of evidence and feeding antiscientific agendas.</p>
-</blockquote>
-<blockquote>
 <p>contemporary science could be more accurately portrayed as facing “new opportunities and challenges” or even a “revolution”</p>
-</blockquote>
-<p>https://www.pnas.org/doi/10.1073/pnas.1708272114</p>
+<p><a href="https://www.pnas.org/doi/10.1073/pnas.1708272114" class="uri">https://www.pnas.org/doi/10.1073/pnas.1708272114</a></p>
 </section>
 
-<section id="section-8" class="title-slide slide level1 center">
+<section id="section-6" class="title-slide slide level1 center">
 <h1></h1>
 <p>individual vs.&nbsp;systemic solutions</p>
-<p>https://frontlinegenomics.com/reproducibility-the-science-communities-ticking-timebomb-can-we-still-trust-published-research/</p>
-<p>FAIR</p>
+<p><a href="https://frontlinegenomics.com/reproducibility-the-science-communities-ticking-timebomb-can-we-still-trust-published-research/">Reproducibility: The science communities’ ticking timebomb. Can we still trust published research?</a></p>
+<p>FAIR: Findable, Accessible, Interoperable, and Reusable <a href="https://en.wikipedia.org/wiki/FAIR_data" class="uri">https://en.wikipedia.org/wiki/FAIR_data</a></p>
 </section>
 
-<section id="section-9" class="title-slide slide level1 center">
+<section id="section-7" class="title-slide slide level1 small center">
 <h1></h1>
-<p>as a final word of wisdom, i think it’s useful to think of what practices we can adopt towards reproducibility and robustness as “preventative medicine” for science itself</p>
-<p>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5989067/</p>
+<div class="columns">
+<div class="column">
+<p><img src="graphics/HoduPink.png" alt="hodu tip"></p>
+</div><div class="column">
+<div style="padding-top: 12.5%">
+
+</div>
+<p>as a final word of wisdom, i think it’s useful to frame the practices we can adopt to advance reproducibility and robustness as “preventative medicine” for science itself</p>
+<p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5989067/" class="uri">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5989067/</a></p>
+</div>
+</div>
 <div class="footer footer-default">
 
 </div>
@@ -725,6 +748,9 @@
         // devices. It is advisable to set this to a lower number than
         // viewDistance in order to save resources.
         mobileViewDistance: 2,
+
+       // Parallax background image
+       parallaxBackgroundImage: 'graphics/transition_slides/annie-spratt.jpg', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
 
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
