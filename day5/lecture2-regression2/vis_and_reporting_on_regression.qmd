@@ -1,8 +1,8 @@
 ---
-title: "Functions"
+title: "Reporting on Regression Models"
 format:
   revealjs:
-    theme: [default, functions.scss]
+    theme: [default, regression.scss]
 slide-number: true
 # title-slide-attributes: 
 #   data-background-image: ""
@@ -14,27 +14,163 @@ execute:
   echo: true
 ---
 
-# morals 
+# morals
+
+text-based tables are more precise, but data visualizations are more
+eye-catching and easier to use to spot patterns.
 
 ## exploratory modeling
 
-```r
-geom_smooth()
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+
+ggplot(penguins,
+            aes(
+              x = bill_length_mm,
+              y = bill_depth_mm,
+              color = species,
+              shape = species
+            )) + 
+  geom_point() + 
+  geom_smooth()
+```
+
+## exploratory modeling
+
+```{r}
+ggplot(penguins,
+            aes(
+              x = bill_length_mm,
+              y = bill_depth_mm,
+              color = species,
+              shape = species
+            )) + 
+  geom_point() + 
+  geom_smooth(method = 'lm')
+```
+
+## exploratory modeling
+
+```{r}
+library(NHANES)
+NHANES |> filter(Age < 80, DaysMentHlthBad > 0) |> 
+  ggplot(aes(x = Age, y = DaysMentHlthBad, color = HHIncome)) + 
+  geom_point(alpha = 0.1) + 
+  geom_smooth(method='lm')
+```
+
+## exploratory modeling
+
+```{r}
+NHANES |> filter(Age < 80, DaysMentHlthBad > 0) |> 
+  ggplot(aes(x = Age, y = DaysMentHlthBad, color = HHIncome)) + 
+  geom_point(alpha = 0.1) + 
+  geom_smooth(formula = y ~ x, method='lm', se = FALSE)
 ```
 
 ## make a model 
 
+```{r}
+NHANES$HHIncome <- relevel(NHANES$HHIncome, "more 99999")
+model <- lm(DaysMentHlthBad ~ Age + HHIncome, data = NHANES)
+```
+
 ## broom::tidy
 
-## gtsummary 
+```{r}
+broom::tidy(model)
+```
 
 ## forest plots
 
-## 
+```{r}
+coefficients_table <- broom::tidy(model, conf.int = TRUE)
+
+coefficients_table |> 
+  ggplot(aes(y = term, x = estimate, xmax = conf.high, xmin = conf.low)) + 
+  geom_pointrange(size = .1) 
+```
+
+## forest plots
+
+```{r}
+coefficients_table |> 
+  ggplot(aes(y = term, x = estimate, xmax = conf.high, xmin = conf.low)) + 
+  geom_vline(xintercept = 0) + 
+  geom_pointrange(size = .1) + 
+  theme_bw() 
+```
+
+## forest plots
+
+```{r}
+coefficients_table |> 
+  ggplot(aes(
+    y = term,
+    x = estimate,
+    xmax = conf.high,
+    xmin = conf.low
+  )) + 
+  geom_vline(xintercept = 0) + 
+  geom_pointrange(size = .1) + 
+  xlab("Additional Days of Poor Mental Health Reported per Month") + 
+  ggtitle("Association of Variables with Additional Poor Mental Health Days Reported") + 
+  theme_bw() 
+```
+
+## forest plots
+
+```{r}
+coefficients_table |> 
+  ggplot(aes(
+    y = term,
+    x = estimate,
+    xmax = conf.high,
+    xmin = conf.low,
+    color = case_when(
+      conf.low > 0 & conf.high > 0 ~ "Significantly Above 0",
+      conf.low < 0 & conf.high < 0 ~ "Significantly Below 0",
+      TRUE ~ "Not Significant"
+    )
+  )) + 
+  geom_vline(xintercept = 0) + 
+  geom_pointrange(size = .1) + 
+  scale_color_manual(
+    values = c('Significantly Above 0' = '#ff7675',
+               'Significantly Below 0' = '#74b9ff',
+               'Not Significant' = 'dimgrey')
+  ) + 
+  ggtitle("Modeling Poor Mental Health Days Reported") + 
+  theme_bw() + 
+  labs(
+    x = "Additional Days of Poor Mental Health Reported per Month",
+    color = 'Significance') + 
+  theme(
+    legend.position = 'bottom'
+  )
+```
+
+## gtsummary 
+
+```{r}
+library(gtsummary)
+tbl_regression(model)
+```
+
+## gtsummary 
+
+```{r}
+library(gtsummary)
+tbl_regression(model) %>% 
+  add_glance_table()
+```
 
 # diagnostics 
 
 ## qq plots
+
+
 
 ## DHARMa
 
