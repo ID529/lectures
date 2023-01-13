@@ -56,7 +56,7 @@ glimpse(pfas)
 
 # PRACTICE ---------------------------------------------------------
 # 1. Review the code used to create the above datasets and add a comment
-# to above each line describing what the function is doing
+# above each line describing what the function is doing
 
 
 # 2. Left join the clinical data to the pfas data. What happend? 
@@ -64,13 +64,12 @@ glimpse(pfas)
 # How many are in the final, joined dataset? 
 
 
-# 3. Right join the clinical data to the pfas data. What happend, now? 
+# 3. Right join the clinical data to the pfas data. What happend now? 
 # Again, how many rows and columns were in the original datasets? 
 # And how many are in the final, joined dataset? 
 
 # 4. Explore one other mutating join (e.g, inner_join, full_join). How 
 # do these two joins differ from left and right joins? 
-
 
 # 4. Implement the following ant_join function. What information does this provide? 
 # How might this be useful? 
