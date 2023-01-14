@@ -9,16 +9,16 @@
 # ############################################################################ #
 
 # PACKAGES ---------------------------------------------------------------------
-# Uncomment and run the lines 15-18  (if you have not already 
+# Uncomment and run lines 15-18  (if you have not already 
 # loaded the ID529 NHANES data or installed the tidyverse)
 
-# install.packages("tidyverse")
-# install.packages("devtools")
-# library(devtools)
-# devtools::install_github("ID529/ID529data")
+install.packages("tidyverse")
+install.packages("devtools")
+library(devtools)
+devtools::install_github("ID529/ID529data")
 
 # Load relevant package libraries
-library(ID529data) # Includes ID 529 and NHANES data
+library(ID529data) # Includes ID 529 NHANES data
 library(tidyverse) # Includes dplyr
 
 # Load ID 529 NHANES data 
@@ -45,7 +45,7 @@ pfas <- nhanes_id529 %>%
   select(id, matches("pf.*")) %>% 
   as_tibble()
 
-# LOOK AT THE DATA ------------------------------------------------------------
+# LOOK AT THE DATA -------------------------------------------------------------
 # Print the tibbles to the console
 clinical 
 pfas
@@ -54,7 +54,7 @@ pfas
 glimpse(clinical)
 glimpse(pfas)
 
-# PRACTICE ---------------------------------------------------------
+# PRACTICE ---------------------------------------------------------------------
 # 1. Review the code used to create the above datasets and add a comment
 # above each line describing what the function is doing
 
@@ -71,8 +71,7 @@ glimpse(pfas)
 # 4. Explore one other mutating join (e.g, inner_join, full_join). How 
 # do these two joins differ from left and right joins? 
 
-# 4. Implement the following ant_join function. What information does this provide? 
+# 5. Implement the following ant_join function. What information does this provide? 
 # How might this be useful? 
 anti_join(pfas, clinical, by = "id")
-
 
