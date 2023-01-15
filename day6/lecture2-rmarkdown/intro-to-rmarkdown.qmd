@@ -1,0 +1,39 @@
+---
+format: 
+  revealjs:
+    theme: [simple, ../../day2/lecture3-reading-in-data/custom.scss]
+    highlight: pygments
+    logo: images/id529-sticker.png
+    slide-number: true
+    footer: "<https://id529.github.io/>"
+revealjs-plugins:
+  - pointer
+  - confetti
+execute: 
+  echo: true
+---
+
+# Introduction to R Markdown {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110% auto"}
+
+::: {.white-15-pt}
+ID 529: Data Management and Analytic Workflows in R
+:::
+
+::: {.white-12-pt}
+Dean Marengi \| Wednesday, January 18<sup>th</sup>, 2023
+:::
+
+
+## R Markdown
+
+## Components of R Markdown
+
+## YAML
+
+## Syntax
+
+## Codechunks
+
+## Output formats
+
+# Demo
