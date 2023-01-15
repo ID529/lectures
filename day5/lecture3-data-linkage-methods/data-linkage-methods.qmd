@@ -24,78 +24,142 @@ Dean Marengi \| Friday, January 13<sup>th</sup>, 2023
 :::
 
 ## Motivation {.smaller}
-<!-- -   **We've now learned a bit about:** -->
-<!--   -   [Data manipulation] using `dplyr`  -->
-<!--   -   Leveraging tidyverse and other packages for working with specific data types -->
-<!--       -   Dates and times, factors -->
-<!--       -   Text data -->
 
 <br>
 
-<!-- -   **Up until now, we've really only considered working with a single dataset** -->
-<!--     -   We are often interested in combining data from multiple different files or sources -->
-<!--     -   Base R, `dplyr`, and other packages have functions for combining datasets -->
-<!--     <!-- -   We can leverage these R packages to: --> -->
-<!--     <!--     -   Write efficient R code to perform most data manipulation tasks --> -->
-<!--     <!--     -   Chain together data manipulation operations in a logical, concise sequence --> -->
+-   **We've now discussed:**
+    -   [Data manipulation]{.blue-bold} using `dplyr`
+    -   [Leveraging `tidyverse` packages]{.blue-bold} to work with specific types of data
+        -   Dates, date/times, and factors
+        -   Text strings
+
+<br>
+
+-   **However, we've only considered data manipulation in the context of individual datasets**
+    -   We are often interested in combining data from multiple different files or sources
+    -   Need tools that help us work with and combine multiple datasets
+  
 
 ## Learning objectives {.smaller}
 
--   **Understand the basic principles of data linkage **
-    <!-- -    -->
-    <!-- - -->
+<br>
+
+-   **Understand the basic principles of data linkage**
+    -   The common methods implemented for joining datasets
+    -   How the methods differ, and why these differences should inform which method you implement
     
-::: {.small-break}
-:::
+<br>
 
--   **Understand utility functions that help `dplyr` functions perform specific tasks. For example:**
-    <!-- -   Performing column- and row-wise operations -->
-    <!-- -   Modifying data based on conditional logic -->
+-  **Learn about different R functions available for data linkage**
+    -   `dplyr` two-table verbs 
 
-::: {.small-break}
-:::
+<br>
 
-<!-- -  **Learn how to implement `dplyr` functions to prepare data for analysis** -->
-<!--     -   Identifying and correcting data quality issues -->
-<!--     -   Restructuring and organizing data -->
-<!--     -   Deriving new variables -->
+-  **Learn how to implement `dplyr` two-table verbs to link datasets**
+    -   Mutating joins
+    -   Filtering joins
+    -   Set operations
 
 # Background {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
 
 ## Why do we need data linkage? {.smaller}
 
+<br>
 
-<!-- ![](images/dplyr-join-venn.png){.absolute height="40%" left="0%" bottom="8%"} -->
+:::: {.columns}
+::: {.column width=55%}
 
-## Data linkage in R {.smaller}
+:::{.small-break}
+:::
 
--   The `merge()` base R function can be used to combine datasets based on a 
-    - `cbind`
-    -  `rbind`
-    
--   `dplyr` has more robust functionality 
+-   It's rare that all the data we need for an analysis are contained within a single file
 
-dplyr does not provide any functions for working with three or more tables. Instead use purrr::reduce() or Reduce(), as described in Advanced R, to iteratively combine the two-table verbs to handle as many tables as you need.
+:::{.small-break}
+:::
 
-## `dplyr` two table verbs 
+-   Often interested in combining data across two or more files or sources
+
+:::{.small-break}
+:::
+
+-   For example, NHANES generates a number of datasets for each survey cycle
+    -   Separate files for demographics, clinical exams, laboratory tests, questionnaires, etc.
+    -   Participant data from a given survey cycle must be linked across multiple datasets with a unique identifier
+    -   [This is how the `ID529data::nhanes_id529` dataset was created!]{.blue-bold}
+
+:::
+
+::: {.column width=45%}
+
+```{r, echo=FALSE, R.options=list(width=50)}
+library(nhanesA)
+library(tidyverse)
+as_tibble(nhanesTables(c("EXAM"), 2018))
+
+```
+
+:::{.code-break}
+:::
+
+```{r, echo=FALSE, R.options=list(width=50)}
+as_tibble(nhanesTables(c("DIET"), 2018))
+```
+
+:::
+::::
+
+## How do we link datasets together in R? {.smaller}
+
+-   **There are many R functions that allow us to link data**
+    -   `base R` includes the `merge()` function
+    -   `dplyr` has many functions (verbs) for performing two-table operations 
+
+<br>
+
+-   **We will focus on `dplyr`**
+    -   `dplyr` functions tend to be more consistent, and intuitive to implement
+    -   Can be combined into chained data manipulation sequences (`%>%`)
+    -   Also offers additional types of joins such as semi-joins and anti-joins
+
+## `dplyr` two table verbs {.smaller}
+
+<br>
+
+**[Three classes]{.blue-bold} of `dplyr` verbs that work with two tables at a time**
+
+-   **Mutating joins**
+    -   **Combine variables** from multiple tables
+    -   Adds new columns to one table with matched rows from another table
+    -   **Two types:**
+        -   **Inner join:** `inner_join()` 
+        -   **Outer joins:** `left_join()`, `right_join()`, `full_join()`
+
+:::{.small-break}
+:::
+
+-   **Filtering joins**
+    -   **Filter rows** from one table if they match a row in a second table
+        -   Unmatched rows are discarded if join condition is not met
+    -   Great tools for identifying row mismatches between tables
+    -   `semi_join()`, `anti_join`
 
 
-**Three families of verbs that work with two tables at a time**
--   Mutating joins, which add new variables to one table from matching rows in another.
-    -   allow you to combine variables from multiple tables
--   Filtering joins, which filter observations from one table based on whether or not they match an observation in the other table.
-    -   Filtering joins match observations in the same way as mutating joins, but affect the observations, not the variables.
-    -   Useful for diagnosing join mismatches
-
--   Set operations, which combine the observations in the data sets as if they were set elements.
-    -   Thesese expect the x and y inputs to have the same variables, and treat the observations like sets:   
-
-All two-table verbs work similarly. The first two arguments are x and y, and provide the tables to combine. The output is always a new table with the same type as x.
+![](images/hex-dplyr.png){.absolute right="0" bottom="1" height="30%"}
 
 ::: aside
-<https://dplyr.tidyverse.org/articles/two-table.html#set-operations>
-<https://r4ds.had.co.nz/relational-data.html>
+<https://dplyr.tidyverse.org/articles/two-table.html> <br>
 :::
+
+## `dplyr` two table verbs (cont.) {.smaller}
+
+:::{.small-break}
+:::
+
+-   [Set operations]{.blue-bold}
+    -   Combine observations from two datasets, but treats observations as set elements
+    -   `intersect()`, `union()`, `setdiff()`
+
+![](images/hex-dplyr.png){.absolute right="0" bottom="1" height="30%"}
 
 ## Example dataset {.smaller}
 
@@ -116,12 +180,12 @@ All two-table verbs work similarly. The first two arguments are x and y, and pro
 -   **For our examples, we will split these data into smaller datasets that each contain different variables,  identifiers, and number of observations.**
     -   **clinical:** `id1`, `age`, `race_eth`, `sbp`, `ht`, `wt`
     -   **pfas:** `id1`, `pfos`, `pfoa`, `pfna`, `pfhs`, `pfde`
-    -   **poverty:** `id2`, `pov_ratio`
-    -   **crosswalk:** `id1`, `id2`
+    <!-- -   **poverty:** `id2`, `pov_ratio` -->
+    <!-- -   **crosswalk:** `id1`, `id2` -->
 :::
 
 ::: {.column width=50%}
-```{r, echo=T}
+```{r, echo=F}
 # Load libraries
 library(tidyverse)
 library(ID529data)
@@ -132,12 +196,13 @@ data(nhanes_id529, package = 'ID529data')
 # Create new ID  variables for examples
 nhanes <- nhanes_id529 %>% 
   arrange(id) %>% 
-  mutate(id1 = as.integer(id),
+  mutate(id1 = id,
          id2 = paste0("NH", seq(1:nrow(.)) + 2 * 10^4)) %>% 
   select(matches("id"), everything()) %>% 
   as_tibble()
 
 ```
+
 
 ```{r, echo=T}
 # Create demog/clincal characteristics table (id1)
@@ -154,25 +219,29 @@ pfas <- nhanes %>%
   rename_with(~ str_to_lower(.)) %>%
   filter(rowSums(is.na(.)) < 5)
 
-# Create poverty index table (id2)
-poverty <- nhanes %>% 
-  rename(pov_ratio = poverty_ratio) %>% 
-  filter(!is.na(pov_ratio)) %>%
-  select(id2, pov_ratio)
-  
-# Create ID crosswalk table (id1 and id2)
-crosswalk <- select(nhanes, id1, id2)
 ```
 
+<!-- # ```{r} -->
+<!-- #  -->
+<!-- # # Create poverty index table (id2) -->
+<!-- # poverty <- nhanes %>%  -->
+<!-- #   rename(pov_ratio = poverty_ratio) %>%  -->
+<!-- #   filter(!is.na(pov_ratio)) %>% -->
+<!-- #   select(id2, pov_ratio) -->
+<!-- #    -->
+<!-- # # Create ID crosswalk table (id1 and id2) -->
+<!-- # crosswalk <- select(nhanes, id1, id2) -->
+<!-- # ``` -->
+
+::: aside
+<https://github.com/ID529/ID529data>
+:::
 
 :::
 ::::
 
 ## Example dataset {.smaller}
 
-:::: {.columns}
-
-::: {.column width=50%}
 ```{r, echo=T}
 # Demographic and clinical characteristics
 clinical
@@ -180,20 +249,166 @@ clinical
 # PFAS data filtered for obs with data
 pfas
 ```
+
+<!-- ```{r, echo=F, eval=F} -->
+<!-- # Poverty data filtered for obs with data -->
+<!-- poverty -->
+
+<!-- # Table with both ID variables -->
+<!-- crosswalk -->
+<!-- ``` -->
+
+
+# `dplyr` mutating joins {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
+
+## `dplyr::left_join()` {.smaller}
+
+:::: {.columns}
+::: {.column width="45%"}
+**Main arguments**
+
+```{r, echo=T, eval=F}
+left_join(
+  x,
+  y,
+  by = NULL,
+  suffix = c(".x", ".y"),
+  keep = FALSE
+)
+```
+
+-   `x` = Data frame 1 (left table)
+-   `y` = Data frame 2 (right table)
+-   `by` = Column names(s) of variables to match rows by (key)
+-   `suffix` = Character string appended to column names that appear in both `x` and `y`
+-   `keep`= If `TRUE`, preserve the join keys from both `x` and `y`
+::: 
+
+::: {.column width="5%"}
+<br>
 :::
 
-::: {.column width=50%}
-```{r, echo=T}
-# Poverty data filtered for obs with data
-poverty
+::: {.column width="50%"}
+**Description**
 
-# Table with both ID variables
-crosswalk
-```
+-   Adds columns from `y` (right table) to `x` (left table) 
+-   All rows from `x` are preserved in the join
+    -   i.e., keeps all rows from `x` regardless of whether there's a match in `y`
+-   Of the joins, used most frequently
+    -   Allow you to add new variables from other tables without dropping observations
+
 :::
 ::::
 
-# `dplyr` mutating joins {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
+![](images/left-join.gif){.absolute right="7%" bottom="0%" height="45%"}
+
+::: aside
+Gif Source: <https://github.com/gadenbuie/tidyexplain>
+:::
+
+## `dplyr::left_join()` example {.smaller}
+:::: {.columns}
+::: {.column width="50%"}
+
+```{r}
+# Print clinical dataset
+clinical
+```
+
+::: {.code-break}
+:::
+
+```{r}
+# Print PFAS dataset
+pfas
+```
+
+:::
+::::
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r, R.options=list(width=50)}
+# Perform a left join
+left_join(x = clinical, y = pfas, by = "id1")
+```
+
+:::
+::::
+
+## `dplyr::right_join()` {.smaller}
+
+:::: {.columns}
+::: {.column width="45%"}
+**Main arguments**
+
+```{r, echo=T, eval=F}
+right_join(
+  x,
+  y,
+  by = NULL,
+  suffix = c(".x", ".y"),
+  keep = FALSE
+)
+
+```
+
+-   `x` = Data frame 1 (left table)
+-   `y` = Data frame 2 (right table)
+-   `by` = Column names(s) of variables to match rows by (key)
+-   `suffix` = Character string appended to column names that appear in both `x` and `y`
+-   `keep`= If `TRUE`, preserve the join keys from both `x` and `y`
+::: 
+
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="50%"}
+**Description**
+
+-   Adds columns from `x` (left table) to `y` (right table) 
+-   All rows from `y` are preserved in the join
+    -   i.e., keeps all rows from `y` regardless of whether there's a match in `x`
+
+:::
+::::
+
+![](images/right-join.gif){.absolute right="7%" bottom="0%" height="45%"}
+
+::: aside
+Gif Source: <https://github.com/gadenbuie/tidyexplain>
+:::
+
+## `dplyr::right_join()` example {.smaller}
+:::: {.columns}
+::: {.column width="50%"}
+
+```{r}
+# Print clincal dataset
+clinical
+```
+
+::: {.code-break}
+:::
+
+```{r}
+# Print PFAS dataset
+pfas
+```
+
+:::
+::::
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r, R.options=list(width=50)}
+right_join(x = clinical, y = pfas, by = "id1")
+```
+
+:::
+::::
+
 
 ## `dplyr::inner_join()` {.smaller}
 
@@ -227,10 +442,9 @@ inner_join(
 ::: {.column width="50%"}
 **Description**
 
--   
 -   Returns rows that match in **both** `x` and `y`
     -   Unmatched rows are dropped
--   
+-   Most restrictive of the mutating joins   
 
 :::
 ::::
@@ -241,138 +455,34 @@ inner_join(
 Gif Source: <https://github.com/gadenbuie/tidyexplain>
 :::
 
-## `dplyr::inner_join()` example 1 {.smaller}
-
-
-
-
-<!-- # ```{r, echo=T} -->
-
-<!-- # print(df_x, n = 5) -->
-
-
-<!-- # glimpse50(df_x) -->
-<!-- # glimpse50(df_y) -->
-<!-- #  -->
-<!-- # # Join the two data frames back together by the ID variable -->
-<!-- # inner_join(df_x, df_y, by = "id") %>%  -->
-<!-- #   glimpse50() -->
-<!-- #| output-location: column -->
-
-<!-- # Split original data into two data frames with  -->
-<!-- # different variables and preserve all -->
-<!-- # observations in the original dataset -->
-<!-- # df_x <- select(nhanes_id529, id, age, mean_BP:height) -->
-<!-- #  -->
-<!-- # df_y <- select(nhanes_id529, id, PFAS_total) -->
-<!-- #  -->
-<!-- # # Join the two data frames back together by the ID variable -->
-<!-- # inner_join(df_x, df_y, by = "id") %>%  -->
-<!-- #   glimpse50() -->
-<!-- ``` -->
-
-
-## `dplyr::left_join()` {.smaller}
-
-
-
+## `dplyr::inner_join()` example {.smaller}
 :::: {.columns}
-::: {.column width="45%"}
-**Main arguments**
+::: {.column width="50%"}
 
-```{r, echo=T, eval=F}
-left_join(
-  x,
-  y,
-  by = NULL,
-  copy = FALSE,
-  suffix = c(".x", ".y"),
-  ...,
-  keep = FALSE
-)
+```{r}
+# Print clinical dataset
+clinical
 ```
 
--   `x` = text
--   `y` = text
--   `by`= text
--   `copy`= text
--   `suffix`= text
--   `...`= text
--   `keep`= text
-::: 
-
-::: {.column width="5%"}
-<br>
+::: {.code-break}
 :::
 
-::: {.column width="50%"}
-**Description**
+```{r}
+# Print PFAS dataset
+pfas
+```
 
--   Replaces a matched pattern
--   Returns input vector (with replacements)
-  -   `str_replace()`: Replace first match
--   Returns input vector (with replacements)
--   Returns input vector (with replacements)
 :::
 ::::
 
-
-![](images/left-join.gif){.absolute right="7%" bottom="0%" height="45%"}
-
-::: aside
-Gif Source: <https://github.com/gadenbuie/tidyexplain>
-:::
-
-
-## `dplyr::right_join()` {.smaller}
-
 :::: {.columns}
-::: {.column width="45%"}
-**Main arguments**
-
-```{r, echo=T, eval=F}
-right_join(
-  x,
-  y,
-  by = NULL,
-  copy = FALSE,
-  suffix = c(".x", ".y"),
-  ...,
-  keep = FALSE
-)
-
-```
-
--   `x` = text
--   `y` = text
--   `by`= text
--   `copy`= text
--   `suffix`= text
--   `...`= text
--   `keep`= text
-::: 
-
-::: {.column width="5%"}
-<br>
-:::
-
 ::: {.column width="50%"}
-**Description**
-
--   Replaces a matched pattern
--   Returns input vector (with replacements)
-  -   `str_replace()`: Replace first match
--   Returns input vector (with replacements)
--   Returns input vector (with replacements)
+```{r, R.options=list(width=50)}
+# Perform an inner join
+inner_join(x = clinical, y = pfas, by = "id1")
+```
 :::
 ::::
-
-![](images/right-join.gif){.absolute right="7%" bottom="0%" height="45%"}
-
-::: aside
-Gif Source: <https://github.com/gadenbuie/tidyexplain>
-:::
-
 
 ## `dplyr::full_join()` {.smaller}
 
@@ -385,20 +495,17 @@ full_join(
   x,
   y,
   by = NULL,
-  copy = FALSE,
   suffix = c(".x", ".y"),
-  ...,
   keep = FALSE
 )
 ```
 
--   `x` = text
--   `y` = text
--   `by`= text
--   `copy`= text
--   `suffix`= text
--   `...`= text
--   `keep`= text
+-   `x` = Data frame `x`
+-   `y` = Data frame `y`
+-   `by`= Column name(s) to join `x` and `y` by
+-   `suffix`= Suffix to append to duplicate vars
+-   `keep`= Keep the join key from both `x` and `y`
+
 ::: 
 
 ::: {.column width="5%"}
@@ -408,11 +515,10 @@ full_join(
 ::: {.column width="50%"}
 **Description**
 
--   Replaces a matched pattern
--   Returns input vector (with replacements)
-  -   `str_replace()`: Replace first match
--   Returns input vector (with replacements)
--   Returns input vector (with replacements)
+-   Returns all rows in x or y
+-   Least restrictive
+    -   No observations are removed
+
 :::
 ::::
 
@@ -421,6 +527,37 @@ full_join(
 ::: aside
 Gif Source: <https://github.com/gadenbuie/tidyexplain>
 :::
+
+
+## `dplyr::full_join()` example {.smaller}
+:::: {.columns}
+::: {.column width="50%"}
+
+```{r}
+# Print clinical datast
+clinical
+```
+
+::: {.code-break}
+:::
+
+```{r}
+# Print PFAS dataset
+pfas
+```
+
+:::
+::::
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r, R.options=list(width=50)}
+# Perform full join
+full_join(x = clinical, y = pfas, by = "id1")
+```
+
+:::
+::::
 
 # `dplyr` filtering joins {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
 
@@ -434,16 +571,13 @@ Gif Source: <https://github.com/gadenbuie/tidyexplain>
 ```{r, echo=T, eval=F}
 semi_join(x, 
           y, 
-          by = NULL, 
-          copy = FALSE, 
-          ...)
+          by = NULL,
+)
 ```
 
--   `x` = text
--   `y` = text
--   `by`= text
--   `copy`= text
--   `...`= text
+-   `x` = Data frame 1 (left)
+-   `y` = Data frame 2 (right)
+-   `by` = Column names(s) of variables to match rows by (key)
 ::: 
 
 ::: {.column width="5%"}
@@ -453,11 +587,8 @@ semi_join(x,
 ::: {.column width="50%"}
 **Description**
 
--   Replaces a matched pattern
--   Returns input vector (with replacements)
-  -   `str_replace()`: Replace first match
--   Returns input vector (with replacements)
--   Returns input vector (with replacements)
+-   Keeps all observations in x that have a match in y
+-   Useful for filtering `x` by the presence of a match in `y`
 :::
 ::::
 
@@ -466,7 +597,6 @@ semi_join(x,
 ::: aside
 Gif Source: <https://github.com/gadenbuie/tidyexplain>
 :::
-
 
 ## `dplyr::anti_join()` {.smaller}
 
@@ -478,16 +608,14 @@ Gif Source: <https://github.com/gadenbuie/tidyexplain>
 ```{r, echo=T, eval=F}
 anti_join(x, 
           y, 
-          by = NULL, 
-          copy = FALSE, 
-          ...)
+          by = NULL
+)
 ```
 
--   `x` = text
--   `y` = text
--   `by`= text
--   `copy`= text
--   `...`= text
+-   `x` = Data frame 1 (left)
+-   `y` = Data frame 2 (right)
+-   `by` = Column names(s) of variables to match rows by (key)
+
 ::: 
 
 ::: {.column width="5%"}
@@ -497,11 +625,9 @@ anti_join(x,
 ::: {.column width="50%"}
 **Description**
 
--   Replaces a matched pattern
--   Returns input vector (with replacements)
-  -   `str_replace()`: Replace first match
--   Returns input vector (with replacements)
--   Returns input vector (with replacements)
+-   Returns rows from `x` where there is no match in `y` 
+-   Useful when you want to filter the first table by the absence of a match in the second table
+    -   That is, identify observations in `x` that don't appear in `y`   
 :::
 ::::
 
@@ -513,42 +639,39 @@ Gif Source: <https://github.com/gadenbuie/tidyexplain>
 
 # `dplyr` set operations {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
 
-## `dplyr::intersect()` {.smaller}
+<!-- ## `dplyr::intersect()` {.smaller} -->
 
-:::: {.columns}
-::: {.column width="45%"}
+<!-- :::: {.columns} -->
+<!-- ::: {.column width="45%"} -->
 
-**Main arguments**
+<!-- **Main arguments** -->
 
-```{r, echo=T, eval=F}
-intersect(x, y, ...)
-```
+<!-- ```{r, echo=T, eval=F} -->
+<!-- intersect(x, y, ...) -->
+<!-- ``` -->
 
--   `x` = text
--   `y` = text
--   `...`= text
-::: 
+<!-- -   `x` = text -->
+<!-- -   `y` = text -->
+<!-- -   `...`= text -->
+<!-- :::  -->
 
-::: {.column width="5%"}
-<br>
-:::
+<!-- ::: {.column width="5%"} -->
+<!-- <br> -->
+<!-- ::: -->
 
-::: {.column width="50%"}
-**Description**
+<!-- ::: {.column width="50%"} -->
+<!-- **Description** -->
 
--   Replaces a matched pattern
--   Returns input vector (with replacements)
-  -   `str_replace()`: Replace first match
--   Returns input vector (with replacements)
--   Returns input vector (with replacements)
-:::
-::::
+<!-- -   Returns only the rows that are in both tables -->
 
-![](images/intersect.gif){.absolute right="7%" bottom="0%" height="45%"}
+<!-- ::: -->
+<!-- :::: -->
 
-::: aside
-Gif Source: <https://github.com/gadenbuie/tidyexplain>
-:::
+<!-- ![](images/intersect.gif){.absolute right="7%" bottom="0%" height="45%"} -->
+
+<!-- ::: aside -->
+<!-- Gif Source: <https://github.com/gadenbuie/tidyexplain> -->
+<!-- ::: -->
 
 
 ## `dplyr::union()` {.smaller}
@@ -559,12 +682,13 @@ Gif Source: <https://github.com/gadenbuie/tidyexplain>
 **Main arguments**
 
 ```{r, echo=T, eval=F}
-union(x, y, ...)
+union(x, y)
+union_all(x, y)
 ```
 
--   `x` = text
--   `y` = text
--   `...`= text
+-   `x` = Data frame 1 (left)
+-   `y` = Data frame 2 (right)
+
 ::: 
 
 ::: {.column width="5%"}
@@ -574,15 +698,16 @@ union(x, y, ...)
 ::: {.column width="50%"}
 **Description**
 
--   Replaces a matched pattern
--   Returns input vector (with replacements)
-  -   `str_replace()`: Replace first match
--   Returns input vector (with replacements)
--   Returns input vector (with replacements)
+-   `union()` 
+    -   Return unique observations in `x` and `y`
+-   `union_all()`
+    -   Return unique and duplicate observations in `x` and `y`   
 :::
 ::::
 
-![](images/union.gif){.absolute right="7%" bottom="0%" height="45%"}
+![](images/union.gif){.absolute left="7%" bottom="0%" height="45%"}
+
+![](images/union-all.gif){.absolute right="7%" bottom="0%" height="45%"}
 
 ::: aside
 Gif Source: <https://github.com/gadenbuie/tidyexplain>
@@ -599,9 +724,8 @@ Gif Source: <https://github.com/gadenbuie/tidyexplain>
 setdiff(x, y, ...)
 ```
 
--   `x` = text
--   `y` = text
--   `...`= text
+-   `x` = Data frame 1 (left)
+-   `y` = Data frame 2 (right)
 ::: 
 
 ::: {.column width="5%"}
@@ -611,11 +735,9 @@ setdiff(x, y, ...)
 ::: {.column width="50%"}
 **Description**
 
--   Replaces a matched pattern
--   Returns input vector (with replacements)
-  -   `str_replace()`: Replace first match
--   Returns input vector (with replacements)
--   Returns input vector (with replacements)
+-   Returns the rows that are in the first table but not in the second
+    -   That is, return observations in x, but not in y
+
 :::
 ::::
 
@@ -625,14 +747,51 @@ setdiff(x, y, ...)
 Gif Source: <https://github.com/gadenbuie/tidyexplain>
 :::
 
-# Case Study {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110%"}
-
-## Case study
 
 ## Key takeaways {.smaller}
-  
+
+-   **Joining together two or more datasets is a routine component of data analysis workflows**
+    -   Different types of joins are useful in different situations
+    -   It's important to be aware of how and when to use each (left, right, inner, etc.)
+        -   All have distinct implications for how the underlying data are manipulated
+
+::: {.small-break}
+:::
+
+-   Like all data manipulation tasks, joining data can get complicated! 
+-   **Common challenges include:**
+    -   Inconsistencies in unique identifiers
+    -   Duplicate records and missing values
+    -   Non-unique identifiers (require matching data frames on two or more variables)
+    -   Joining datasets can be complex and requires a good understanding of the data structure
+    
+::: {.small-break}
+:::
+
+-   **`dplyr` includes a number of two-table functions (verbs)**
+    -   Like other `dplyr` verbs, two-table verbs are: 
+        -   Intuitive to use
+        -   Can be incorporated into a sequence of data cleaning operations using the pipe operator
+
 ## Resources {.smaller}
-`dplyr` Vignette: <https://dplyr.tidyverse.org/articles/two-table.html>
-R for Data Science: <https://r4ds.had.co.nz/relational-data.html>
-  
+
+<br> <br> 
+
+- **`dplyr` Two-table verbs vignette:** <https://dplyr.tidyverse.org/articles/two-table.html>
+
+::: {.small-break}
+:::
+
+-   **R for Data Science - Relational Data:** <https://r4ds.had.co.nz/relational-data.html>
+
+## Activity {.smaller}
+
+<br> <br> <br>
+
+-   **Download R Script file here:** <https://github.com/ID529/lectures/tree/main/day5/lecture3-data-linkage-methods>
+    -   `nhanes-activity.R`
+
+<br>
+
+-   **ID 529 dataset details:** <https://github.com/ID529/ID529data>
   

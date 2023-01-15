@@ -893,7 +893,7 @@ run_tutorial(name = "ex-data-summarise", package = "learnr")
 ::: {.small-break}
 :::
 
--   **`dplyr` function reference**<https://dplyr.tidyverse.org/reference/index.html>
+-   **`dplyr` function reference:** <https://dplyr.tidyverse.org/reference/index.html>
 
 ::: {.small-break}
 :::
