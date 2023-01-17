@@ -4,59 +4,65 @@ format:
   revealjs:
     theme: [default, packages.scss]
 slide-number: true
-# title-slide-attributes: 
-#   data-background-image: ""
-#   data-background-opacity: "60%"
-#   data-background-color: "black"
+title-slide-attributes:
+  data-background-image: "https://images.unsplash.com/photo-1528460033278-a6ba57020470"
+  data-background-opacity: "90%"
+  data-background-color: "white"
 revealjs-plugins:
   - pointer
 execute: 
   echo: true
 ---
 
-# morals 
+# morals {background-image="https://images.unsplash.com/photo-1528460033278-a6ba57020470" background-opacity="90%"}
 
-> “Software and cathedrals are much the same; first we build them, then we pray.” —Anonymous
+"Software and cathedrals are much the same; first we build them, then
+we pray." <br>—Anonymous
 
-> "As a rule, software systems do not work well until they have been used, and have failed repeatedly, in real applications."
-—David Parnas
+"As a rule, software systems do not work well until they have been
+used, and have failed repeatedly, in real applications." <br>—David
+Parnas
 
 # 
 
-Packages are [a] fundamental units of reproducible R code. They include reusable
-R functions, the documentation that describes how to use them, and sample data.
+Packages are \[a\] fundamental units of reproducible R code. They
+include reusable R functions, the documentation that describes how to
+use them, and sample data.
 
---R Packages, Hadley Wickham and Jenny Bryan 
+--R Packages, Hadley Wickham and Jenny Bryan
 
-## why would i prefer a package [to a regular R project?]
+## why would i prefer a package \[to a regular R project?\]
 
-if you have <span class='carrot'>**functionality**</span> that you want to
-share, or a dataset that you want to make not just widely accessible and popular, then a package will reduce the friction in doing
-so.
+if you have [**functionality**]{.carrot} that you want to share, or a
+dataset that you want to make not just widely accessible and popular,
+then a package will reduce the friction in doing so.
 
 ## parts of an R package
 
-  - code in the `R/` folder
-  - a `DESCRIPTION` file that describes the package, its dependencies, its license,
-  its authors, etc.
-  - (possibly) built-in data in the `inst/` folder (short for installed)
-  - documentation formatted through the `roxygen2` system
-  - (optionally, but highly recommended) testing with `testthat` in the `tests/` folder
-  - a `NAMESPACE` file (that is typically generated for you) of which functions and
-    data get exported
-    
-## lucky for you, `devtools` and `usethis` exist 
+-   code in the `R/` folder
+-   a `DESCRIPTION` file that describes the package, its dependencies,
+    its license, its authors, etc.
+-   (possibly) built-in data in the `inst/` folder (short for installed)
+-   documentation formatted through the `roxygen2` system
+-   (optionally, but highly recommended) testing with `testthat` in the
+    `tests/` folder
+-   a `NAMESPACE` file (that is typically generated for you) of which
+    functions and data get exported
+
+## lucky for you, `devtools` and `usethis` exist
 
 ## a typical workflow
 
-first, make sure you're in the directory where you want to create your package. then
-you might run `usethis::create_package(path = "myNewPackage")`. That's going to create a new project for you with the boilerplate for a package:
+first, make sure you're in the directory where you want to create your
+package. then you might run
+`usethis::create_package(path = "myNewPackage")`. That's going to create
+a new project for you with the boilerplate for a package:
 
-<img src="images/basic_package_contents.png" alt="the basic files created by usethis to go in a package: the DESCRIPTION, NAMESPACE, Rproj, and R/ files">
+<img src="images/basic_package_contents.png" alt="the basic files created by usethis to go in a package: the DESCRIPTION, NAMESPACE, Rproj, and R/ files"/>
 
 ## inside DESCRIPTION
 
-```txt
+``` txt
 Package: myNewPackage
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
@@ -76,8 +82,8 @@ Depends:
 
 ## inside R/ {.xxxsmall}
 
-you should put _functions_ and _data documentation_ inside scripts in the 
-`R/` folder.
+you should put *functions* and *data documentation* inside scripts in
+the `R/` folder.
 
 let's start with a function:
 
@@ -136,7 +142,7 @@ devtools::install()
 
 ## use your package
 
-```r
+``` r
 library(myNewPackage)
 calculate_hypotenuse_length(3,4)
 #> [1] 5
@@ -144,14 +150,15 @@ calculate_hypotenuse_length(3,4)
 
 ## check the docs
 
-```r
+``` r
 ?calculate_hypotenuse_length
 ```
-<img src="images/documentation_example.png" alt="output of ?calculate_hypotenuse_length showing the docs written next to the code nicely formatted">
+
+<img src="images/documentation_example.png" alt="output of ?calculate_hypotenuse_length showing the docs written next to the code nicely formatted"/>
 
 ## using data in packages
 
-```r
+``` r
 > pythagorean_triples
 # A tibble: 16 × 3
        a     b     c 
@@ -183,13 +190,13 @@ calculate_hypotenuse_length(3,4)
 
 ## see the data added
 
-<img src="images/new_data_file.png" alt="now there's a new pythagorean_triples.rda file">
+<img src="images/new_data_file.png" alt="now there&apos;s a new pythagorean_triples.rda file"/>
 
 ## document the data
 
 write a new file: `R/pythagorean_triples.R`:
 
-```r
+``` r
 #' The First 16 Pythagorean Triples
 #'
 #' A tibble with three columns ('a', 'b', 'c') where each
@@ -201,7 +208,7 @@ write a new file: `R/pythagorean_triples.R`:
 
 ## document & build again
 
-```r
+``` r
 devtools::document()
 #> ℹ Updating myNewPackage documentation
 #> ℹ Loading myNewPackage
@@ -211,7 +218,7 @@ devtools::install()
 
 ## use your data!
 
-```r
+``` r
 library(myNewPackage)
 head(pythagorean_triples)
 #>   A tibble: 6 × 3
@@ -227,15 +234,15 @@ head(pythagorean_triples)
 
 ## check the docs
 
-```r
+``` r
 ?pythagorean_triples
 ```
 
-<img src="images/data_documentation.png" alt="the documentation that goes with the pythagorean_triples object">
+<img src="images/data_documentation.png" alt="the documentation that goes with the pythagorean_triples object"/>
 
 ## vignettes {.xxxsmall}
 
-```r
+``` r
 usethis::use_vignette(name = "basics", title = "Basic Usage of myNewPackage")
 #> ✔ Adding 'knitr' to Suggests field in DESCRIPTION
 #> ✔ Setting VignetteBuilder field in DESCRIPTION to 'knitr'
@@ -249,102 +256,98 @@ usethis::use_vignette(name = "basics", title = "Basic Usage of myNewPackage")
 
 ## edit the vignette {.xxxsmall}
 
-````
----
-title: "Basic Usage of myNewPackage"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Basic Usage of myNewPackage}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
+    ---
+    title: "Basic Usage of myNewPackage"
+    output: rmarkdown::html_vignette
+    vignette: >
+      %\VignetteIndexEntry{Basic Usage of myNewPackage}
+      %\VignetteEngine{knitr::rmarkdown}
+      %\VignetteEncoding{UTF-8}
+    ---
 
-```{{r, include = FALSE}}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
+    ```{{r, include = FALSE}}
+    knitr::opts_chunk$set(
+      collapse = TRUE,
+      comment = "#>"
+    )
+    ```
 
-```{{r setup}}
-library(myNewPackage)
-```
-````
+    ```{{r setup}}
+    library(myNewPackage)
+    ```
 
 ## update the vignette {.xxxsmall}
 
-````
-```{{r setup}}
-library(myNewPackage)
-library(ggplot2)
-library(tidyr)
-library(dplyr)
-```
+    ```{{r setup}}
+    library(myNewPackage)
+    library(ggplot2)
+    library(tidyr)
+    library(dplyr)
+    ```
 
-I'm happy to introduce to you myNewPackage!  Right now it's a pretty 
-small package but I'm hoping soon it will do more great things, and you'll
-see many of the great things it can do in this vignette. 
+    I'm happy to introduce to you myNewPackage!  Right now it's a pretty 
+    small package but I'm hoping soon it will do more great things, and you'll
+    see many of the great things it can do in this vignette. 
 
-For now, I just want to validate that each of the `pythagorean_triples` 
-are genuine and show that `calculate_hypotenuse_length()` works as expected.
+    For now, I just want to validate that each of the `pythagorean_triples` 
+    are genuine and show that `calculate_hypotenuse_length()` works as expected.
 
-```{{r}}
-for (i in 1:nrow(pythagorean_triples)) {
-  print(calculate_hypotenuse_length(
-    pythagorean_triples[[i,'a']], pythagorean_triples[[i,'b']]
-  ) == pythagorean_triples[[i,'c']])
-}
-```
+    ```{{r}}
+    for (i in 1:nrow(pythagorean_triples)) {
+      print(calculate_hypotenuse_length(
+        pythagorean_triples[[i,'a']], pythagorean_triples[[i,'b']]
+      ) == pythagorean_triples[[i,'c']])
+    }
+    ```
 
-Now for a very fancy figure! 
+    Now for a very fancy figure! 
 
-```{{r, fig.width = 7, fig.height = 8, dpi=300, out.width='100%'}}
-pythagorean_triples |> 
-  mutate(triple_id = 1:nrow(pythagorean_triples)) |> 
-  group_by(triple_id) |> 
-  mutate(
-    x = list(c(0, b, b)),
-    y = list(c(0, 0, c))
-  ) |> 
-  select(-c(a, b, c)) |> 
-  mutate(triple_id = factor(triple_id, levels = 1:16)) |> 
-  tidyr::unnest(cols = c(x,y)) |> 
-  ggplot(aes(x, y, fill = triple_id)) + 
-  facet_wrap(~triple_id, labeller = as_labeller(~ paste0("triple #", .))) + 
-  geom_polygon(alpha=0.5) + 
-  xlab("a") + 
-  ylab("b") + 
-  theme_classic() + 
-  theme(aspect.ratio = 1, legend.position = 'none') + 
-  labs(title = "The Pythagorean Triples with Sides ≤ 100")
-```
-````
+    ```{{r, fig.width = 7, fig.height = 8, dpi=300, out.width='100%'}}
+    pythagorean_triples |> 
+      mutate(triple_id = 1:nrow(pythagorean_triples)) |> 
+      group_by(triple_id) |> 
+      mutate(
+        x = list(c(0, b, b)),
+        y = list(c(0, 0, c))
+      ) |> 
+      select(-c(a, b, c)) |> 
+      mutate(triple_id = factor(triple_id, levels = 1:16)) |> 
+      tidyr::unnest(cols = c(x,y)) |> 
+      ggplot(aes(x, y, fill = triple_id)) + 
+      facet_wrap(~triple_id, labeller = as_labeller(~ paste0("triple #", .))) + 
+      geom_polygon(alpha=0.5) + 
+      xlab("a") + 
+      ylab("b") + 
+      theme_classic() + 
+      theme(aspect.ratio = 1, legend.position = 'none') + 
+      labs(title = "The Pythagorean Triples with Sides ≤ 100")
+    ```
 
 ## render the vignette
 
-just like R Markdown you can render a vignette using Cmd+Shift+K or Ctrl+Shift+K
-or click Knit in your RStudio window. 
+just like R Markdown you can render a vignette using Cmd+Shift+K or
+Ctrl+Shift+K or click Knit in your RStudio window.
 
-<img src="images/vignette1.png" alt="screenshot of the first part of the vignette" width='55%'>
+<img src="images/vignette1.png" alt="screenshot of the first part of the vignette" width="55%"/>
 
-## render the vignette 
+## render the vignette
 
-<img src="images/vignette2.png" alt="screenshot of the second part of the vignette">
+<img src="images/vignette2.png" alt="screenshot of the second part of the vignette"/>
 
 ## install with vignettes
 
-```r
+``` r
 devtools::install(build_vignettes=TRUE)
 
 library(myNewPackage)
 browseVignettes("myNewPackage")
 ```
 
-<img src='images/vignette_browser.png' alt="screenshot of vignette browser showing our new vignette">
+<img src="images/vignette_browser.png" alt="screenshot of vignette browser showing our new vignette"/>
 
 ## adding tests
 
-```r
+``` r
 usethis::use_testthat()
 #> ✔ Setting active project to '/Users/cht180/Documents/2023/january/myNewPackage'
 #> ✔ Adding 'testthat' to Suggests field in DESCRIPTION
@@ -358,7 +361,7 @@ usethis::use_testthat()
 
 add a new file `tests/test_pythagorean_triples.R`
 
-```r
+``` r
 testthat::test_that("pythagorean_triples should validate", {
   expect_true(all(
     calculate_hypotenuse_length(pythagorean_triples$a, pythagorean_triples$b) == pythagorean_triples$c
@@ -368,7 +371,7 @@ testthat::test_that("pythagorean_triples should validate", {
 
 ## run tests
 
-```r
+``` r
 devtools::test()
 #> ℹ Testing myNewPackage
 #> ✔ | F W S  OK | Context
@@ -380,18 +383,18 @@ devtools::test()
 
 ## key takeaways
 
-  - use R Packages when you want: 
-    * to share functions or datasets in R
-    * to use automated documentation
-    * to use automated testing
-  - take your R Packages to the next level with: 
-    * great testing and documentation including vignettes
-    * releasing them on GitHub and/or CRAN 
-    * pair them with a great README.md
-    
+-   use R Packages when you want:
+    -   to share functions or datasets in R
+    -   to use automated documentation
+    -   to use automated testing
+-   take your R Packages to the next level with:
+    -   great testing and documentation including vignettes
+    -   releasing them on GitHub and/or CRAN
+    -   pair them with a great README.md
+
 ## references
 
-the definitive reference is the R Packages book by 
-Hadley Wickham and Jenny Bryan https://r-pkgs.org
+the definitive reference is the R Packages book by Hadley Wickham and
+Jenny Bryan https://r-pkgs.org
 
-<img src="https://r-pkgs.org/images/cover.png">
+<img src="https://r-pkgs.org/images/cover.png"/>

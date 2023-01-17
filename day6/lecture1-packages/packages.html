@@ -387,21 +387,17 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
+<section id="title-slide" data-background-color="white" data-background-image="https://images.unsplash.com/photo-1528460033278-a6ba57020470" data-background-opacity="90%" class="quarto-title-block center">
   <h1 class="title">R Packages</h1>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="morals" class="title-slide slide level1 center">
+<section id="morals" class="title-slide slide level1 center" data-background-image="https://images.unsplash.com/photo-1528460033278-a6ba57020470" data-background-opacity="90%">
 <h1>morals</h1>
-<blockquote>
-<p>“Software and cathedrals are much the same; first we build them, then we pray.” ——Anonymous</p>
-</blockquote>
-<blockquote>
-<p>“As a rule, software systems do not work well until they have been used, and have failed repeatedly, in real applications.” ——David Parnas</p>
-</blockquote>
+<p>“Software and cathedrals are much the same; first we build them, then we pray.” <br>—Anonymous</p>
+<p>“As a rule, software systems do not work well until they have been used, and have failed repeatedly, in real applications.” <br>—David Parnas</p>
 </section>
 
 <section>
@@ -412,7 +408,7 @@
 </section>
 <section id="why-would-i-prefer-a-package-to-a-regular-r-project" class="slide level2">
 <h2>why would i prefer a package [to a regular R project?]</h2>
-<p>if you have <span class="carrot"><strong>functionality</strong></span> that you want to share, or a dataset that you want to make not just widely accessible but genuinely popular, then a package will seriously reduce the friction in doing so.</p>
+<p>if you have <span class="carrot"><strong>functionality</strong></span> that you want to share, or a dataset that you want to make not just widely accessible and popular, then a package will reduce the friction in doing so.</p>
 </section>
 <section id="parts-of-an-r-package" class="slide level2">
 <h2>parts of an R package</h2>
@@ -454,7 +450,7 @@
 <section id="inside-r" class="slide level2 xxxsmall">
 <h2>inside R/</h2>
 <p>you should put <em>functions</em> and <em>data documentation</em> inside scripts in the <code>R/</code> folder.</p>
-<p>let’s start with some functions:</p>
+<p>let’s start with a function:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#' Calculate the Length of the Hypotenuse for a Right Triangle with Base of</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="co">#' Length x and Height of Length y</span></span>
@@ -522,7 +518,7 @@
 <h2>using data in packages</h2>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="sc">&gt;</span> pythagorean_triples</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="co"># A tibble: 16 × 3</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>      V1    V2    V3</span>
+<span id="cb6-3"><a href="#cb6-3"></a>       a     b     c </span>
 <span id="cb6-4"><a href="#cb6-4"></a>   <span class="sc">&lt;</span>int<span class="sc">&gt;</span> <span class="er">&lt;</span>int<span class="sc">&gt;</span> <span class="er">&lt;</span>int<span class="sc">&gt;</span></span>
 <span id="cb6-5"><a href="#cb6-5"></a> <span class="dv">1</span>     <span class="dv">3</span>     <span class="dv">4</span>     <span class="dv">5</span></span>
 <span id="cb6-6"><a href="#cb6-6"></a> <span class="dv">2</span>     <span class="dv">5</span>    <span class="dv">12</span>    <span class="dv">13</span></span>

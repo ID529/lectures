@@ -1,11 +1,51 @@
+---
+title: "Advice for Debugging"
+format:
+  revealjs:
+    theme: [default, debugging.scss]
+slide-number: true
+title-slide-attributes:
+  data-background-image: "https://images.unsplash.com/photo-1528460033278-a6ba57020470"
+  data-background-opacity: "90%"
+  data-background-color: "white"
+revealjs-plugins:
+  - pointer
+execute: 
+  echo: true
 
+---
+
+# morals {background-image="https://images.unsplash.com/photo-1528460033278-a6ba57020470" background-opacity="90%"}
+
+Finding your bug is a process of confirming the many things that you believe are true — until you find one which is not true. <br>
+—Norm Matloff
+
+“Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.” <br>
+—Brian W. Kernighan
+
+## the general outline
+
+  1. Google the error
+  2. Make your error repeatable
+  3. Figure out where the error is
+  4. Fix it and test it.
+
+## some common errors
+
+```r
+list('a', 'b', )
+#> Error in list("a", "b", ) : argument 3 is empty
+
+df$x
+#> Error in df$x : object of type 'closure' is not subsettable
+```
 
 #  likely culprits 
 
-## syntax issues
+## syntax issues {.small}
 
   - parentheses mismatch
-  - missing comma 
+  - missing (or extra) comma 
   - `[[` ... `]]` vs. `[` ... `]`
   - `==` vs. `=`
   - floating point numbers being tricky
@@ -32,24 +72,59 @@
   
 # what if those still don't fix it? 
 
-## traceback 
-
 ## the print / message / warning method
+
+insert print statements to help you verify 1) your 
+understanding of what is happening and 2) that what you expect
+to be happening is happening.
 
 ## simplify simplify simplify 
 
-  - reduce your unexpected behavior to the simplest possible case 
+  - reduce your unexpected behavior to the simplest possible case
 
 ## google your error message if you have no idea what it means
 
+<img src="google.png" alt="example of how googling your error can be helpful">
+
+## traceback 
+
+```r
+f <- function(a) g(a)
+g <- function(b) h(b)
+h <- function(c) i(c)
+i <- function(d) {
+  if (!is.numeric(d)) {
+    stop("`d` must be numeric")
+  }
+  d + 10
+}
+f("a")
+```
+
+<img src="images/traceback.png" alt="screenshot of a traceback">
+
 ## apply the scientific method to bugs
 
-hypothesize, test, repeat -- and keep track 
+hypothesize, test, repeat -- and keep track of how things are going.
+
+it's quite easy to work yourself into a panic over a bug, so make sure to 
+take breaks.
 
 ## use the debugger
 
+<img src="images/set_debugger.png" alt="screenshot of a traceback">
+
+## use the debugger
+
+<img src="images/debugging_script.png" alt="screenshot of a traceback">
+
+## use the debugger
+
+<img src="images/debugger_console.png" alt="screenshot of a traceback">
+
 ## all of that still doesn't work? 
 
+  - restart your R session and start from scratch
   - try re-writing the code 
   - try talking to a friend / colleague
   - try the rubber ducky method
@@ -59,10 +134,7 @@ hypothesize, test, repeat -- and keep track
   
 ## resources
 
-https://www.r-bloggers.com/2019/11/debugging-in-r-how-to-easily-and-efficiently-conquer-errors-in-your-code/ 
-
-https://adv-r.hadley.nz/debugging.html 
-
-https://seananderson.ca/2013/08/23/debugging-r/ 
-
-https://www.stat.cmu.edu/~ryantibs/statcomp-F16/lectures/debugging_tools.html
+  * <https://www.r-bloggers.com/2019/11/debugging-in-r-how-to-easily-and-efficiently-conquer-errors-in-your-code/>
+  * <https://adv-r.hadley.nz/debugging.html>
+  * <https://seananderson.ca/2013/08/23/debugging-r/>
+  * <https://www.stat.cmu.edu/~ryantibs/statcomp-F16/lectures/debugging_tools.html>
