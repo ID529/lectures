@@ -1,19 +1,20 @@
-In this assignment, you're being asked to identify a particular topic that interests you, search the internet, and find a few resources that you think might help you understand the topic further. 
+In this activity, you're being asked to identify a particular topic that interests you, search the internet, and find a few resources that you think might help you understand the topic further. 
 
 You might want to choose a topic that matches well with your final presentation topic, or you can choose to do an altogether different topic. 
 
-Resources that you might find could be chapters from online books, stackoverflow or stackexchange threads, threads from community.rstudio.com, etc., the help pages built into R, or the [CRAN Task Views](https://cran.r-project.org/web/views/).
+Resources that you might find could be chapters from online books, StackOverflow or stackexchange threads, threads from community.rstudio.com, etc., the help pages built into R, or the [CRAN Task Views](https://cran.r-project.org/web/views/).
 
 Some interesting topics that you might want to look into: 
 
   * How can you work with big data in R? 
   * How can you perform bootstrapping [or another particular statistical method] in R? 
   * How can you use R to work on a computing cluster like Harvard's Odyssey?
-  * Pick a data visualization and try to figure out how you can replicate it? 
+  * Pick a data visualization and try to figure out how you can replicate it.
+    * You might look at some examples of figures by Cedric Schrerer or Georgios Karamanis
 
 We're asking you to respond to the following questions: 
 
-  * What vocabulary that appeared in the references you found was new to you? 
+  * What vocabulary or code commands that appeared in the references you found was new to you? 
   * Were there certain keywords or strategies that were helpful in your search? Sometimes it's useful to include "rstats" instead of "r" since "r" can match on a lot of irrelevant material. 
   * Do you have remaining questions? What are they? If so, what do you think would be necessary to include to post your question(s) to StackOverflow? 
   * Do you trust the information you found?  Does it seem up to date? 

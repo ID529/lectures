@@ -381,6 +381,14 @@ devtools::test()
 #> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
 ```
 
+## some packages you might write
+ 
+  - API wrappers 
+  - Putting a custom ggplot2 theme in a package 
+  - Creating a new geometry for ggplot2 
+  - A particularly method or process you want to make more easily automated
+  - Data that you think could be a great resource to share 
+
 ## key takeaways
 
 -   use R Packages when you want:

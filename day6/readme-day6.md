@@ -15,7 +15,6 @@
 ### Homework 5: 
 
   * Use R Markdown to document some exploratory data analyses
-  * Peer Review Homework 4
 
 ### Recommended Materials: 
 
