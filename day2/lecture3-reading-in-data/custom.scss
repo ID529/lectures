@@ -26,6 +26,22 @@ $link-color: #3F569E !default;
   font-size: 23.5px !important;
 }
 
+// For tweaking code size (slightly bigger than .smaller)
+.small {
+  font-size: 28px !important;
+}
+
+// For tweaking code size (pretty large)
+.larger {
+  font-size: 40px !important;
+}
+
+// For tweaking code size (very large)
+.v-large {
+  font-size: 60px !important;
+}
+
+
 // For long titles on section slides
 .xsmall {
   font-size: 22px !important;
@@ -55,6 +71,10 @@ $link-color: #3F569E !default;
 
 .teal {
   color: #2A5760;
+}
+
+.black h1 h2 h3 h4 {
+  color: black !important;
 }
 
 // Custom font size and color for h1 header on title and section-break slides
@@ -188,5 +208,35 @@ $link-color: #3F569E !default;
   padding-top: 0.5rem;
 }
 
+.small-code code {
+  font-size: 26px !important;
+}
+
+.code-window pre.sourceCode code {
+	height: 200px;
+  max-block-size: 500px;
+}
+
+.big-scroll {
+  max-height: 800px;
+  overflow-y: auto;
+  background-color: inherit;
+}
+
+// .sourceCode .xsmall {
+//   font-size: 24px !important;
+// }
 
 
+
+
+div.blue__ pre { 
+  background-color:lightblue !important; 
+}
+
+
+
+div.blue_ pre.r { 
+  div.blue pre { background-color:lightblue !important; }
+  background-color:blue !important;
+ }

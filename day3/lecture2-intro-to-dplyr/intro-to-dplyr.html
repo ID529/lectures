@@ -564,16 +564,16 @@
 <pre><code># A tibble: 15 × 3
       id group              num_gold_stars
    &lt;int&gt; &lt;chr&gt;                       &lt;int&gt;
- 1     2 i &lt;3 dplyr                     97
- 2    10 dplyr rocks                   110
- 3     7 dplyr rocks                    93
- 4    11 i &lt;3 dplyr                    101
- 5     5 i &lt;3 dplyr                     90
- 6    12 clean code or bust             96
- 7    15 clean code or bust            110
- 8     8 i &lt;3 dplyr                     90
- 9     3 clean code or bust            101
-10     9 clean code or bust             98
+ 1     2 i &lt;3 dplyr                    107
+ 2    10 dplyr rocks                   107
+ 3     7 dplyr rocks                    95
+ 4    11 i &lt;3 dplyr                    100
+ 5     5 i &lt;3 dplyr                     91
+ 6    12 clean code or bust            110
+ 7    15 clean code or bust            107
+ 8     8 i &lt;3 dplyr                    106
+ 9     3 clean code or bust             98
+10     9 clean code or bust            102
 # … with 5 more rows</code></pre>
 </div>
 </div>
@@ -597,11 +597,11 @@
 <pre><code># A tibble: 5 × 3
      id group      num_gold_stars
   &lt;int&gt; &lt;chr&gt;               &lt;int&gt;
-1    14 i &lt;3 dplyr            109
-2    11 i &lt;3 dplyr            101
-3     2 i &lt;3 dplyr             97
-4     5 i &lt;3 dplyr             90
-5     8 i &lt;3 dplyr             90</code></pre>
+1     2 i &lt;3 dplyr            107
+2     8 i &lt;3 dplyr            106
+3    11 i &lt;3 dplyr            100
+4    14 i &lt;3 dplyr             98
+5     5 i &lt;3 dplyr             91</code></pre>
 </div>
 </div>
 </div>
@@ -634,7 +634,7 @@
 <p><img data-src="images/dplyr-vs-base.png" class="absolute" style="left: 15%; bottom: 5%; height: 80%; "></p>
 
 <aside><div>
-<p><code>dplyr</code> vs base R vignette:<a href="https://dplyr.tidyverse.org/articles/base.html" class="uri">https://dplyr.tidyverse.org/articles/base.html</a></p>
+<p><code>dplyr</code> vs base R vignette: <a href="https://dplyr.tidyverse.org/articles/base.html" class="uri">https://dplyr.tidyverse.org/articles/base.html</a></p>
 </div></aside></section>
 <section id="example-dataset" class="slide level2 smaller">
 <h2>Example dataset</h2>
@@ -642,7 +642,7 @@
 <div class="column" style="width:50%;">
 <p><strong>Overview</strong></p>
 <ul>
-<li><code>NHANES</code> dataset available on the ID529 GitHub</li>
+<li><code>NHANES</code> dataset available on the ID 529 GitHub</li>
 <li>The dataset includes individual-level:
 <ul>
 <li>Demographic and clinical characteristics</li>
@@ -868,7 +868,8 @@ $ PFDE           &lt;dbl&gt; 0.20, 0.30, 0.10, 0.20, 0.10, NA, 0.20, 1.70, NA, 0
 <span id="cb17-4"><a href="#cb17-4"></a><span class="fu">filter</span>(data, <span class="sc">!</span>(age <span class="sc">&gt;</span> <span class="dv">60</span> <span class="sc">|</span> mean_BP <span class="sc">&gt;</span> <span class="dv">120</span>))</span>
 <span id="cb17-5"><a href="#cb17-5"></a></span>
 <span id="cb17-6"><a href="#cb17-6"></a><span class="co"># This logic achieves the same result</span></span>
-<span id="cb17-7"><a href="#cb17-7"></a><span class="fu">filter</span>(data, age <span class="sc">&lt;=</span> <span class="dv">60</span>, mean_BP <span class="sc">&lt;=</span> <span class="dv">120</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-7"><a href="#cb17-7"></a><span class="co"># Here ',' is equivalent to '&amp;'</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a><span class="fu">filter</span>(data, age <span class="sc">&lt;=</span> <span class="dv">60</span>, mean_BP <span class="sc">&lt;=</span> <span class="dv">120</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="code-break">
@@ -1218,7 +1219,7 @@ $ PFDE           &lt;dbl&gt; 0.20, 0.30, 0.10, 0.20, 0.10, NA, 0.20, 1.70, NA, 0
 <div class="column" style="width:45%;">
 <p><strong>Function(s)</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">summarize</span>(.data, <span class="at">.groups =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">summarize</span>(.data, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Main arguments</strong></p>
 <ul>
@@ -1230,8 +1231,6 @@ $ PFDE           &lt;dbl&gt; 0.20, 0.30, 0.10, 0.20, 0.10, NA, 0.20, 1.70, NA, 0
 <li><span class="blue-bold">Creates a new data frame based on one or more summary functons</span>
 <ul>
 <li>Data frame has &gt;1 rows if the data are grouped</li>
-</ul></li>
-<li><ul>
 <li>Has single row if there are no groups supplied</li>
 </ul></li>
 </ul>
@@ -1273,56 +1272,311 @@ $ PFDE           &lt;dbl&gt; 0.20, 0.30, 0.10, 0.20, 0.10, NA, 0.20, 1.70, NA, 0
 </div>
 <div class="cell" data-r.options="{&quot;width&quot;:150}">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># Print the data frame</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a><span class="fu">head</span>(nhanes_id529, <span class="at">n =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb43-2"><a href="#cb43-2"></a><span class="fu">head</span>(nhanes_id529, <span class="at">n =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      id     race_ethnicity sex_gender age poverty_ratio days_dental_floss PFAS_total PFOS PFOA PFNA PFHS PFDE total_energy
-1  73568 Non-Hispanic White     Female  26          5.00                NA       8.90  2.2 3.00  0.5  3.0  0.2         3145
-2  73571 Non-Hispanic White       Male  76          5.00                 2      18.57 10.2 4.77  1.3  2.0  0.3         1076
-3  73574               &lt;NA&gt;     Female  33          2.10                 7         NA   NA   NA  0.7  0.2  0.1         5621
-4  73576 Non-Hispanic Black       Male  16          1.58                NA      15.47  4.7 2.37  0.6  7.6  0.2         1012
-5  73577           Hispanic       Male  32          0.29                 0       6.17  3.0 1.47  0.4  1.2  0.1         3194
-6  73578           Hispanic       Male  18          0.58                NA         NA   NA   NA   NA   NA   NA          955
-7  73584 Non-Hispanic White       Male  13          3.07                NA      11.17  7.0 2.37  0.8  0.8  0.2          663
-8  73587               &lt;NA&gt;       Male  14          3.33                NA      52.97 35.5 6.17  3.3  6.3  1.7          875
-9  73597 Non-Hispanic Black     Female  50          2.18                 0         NA   NA   NA   NA   NA   NA         1239
-10 73598           Hispanic       Male  20            NA                NA       8.80  4.7 1.80  0.5  1.6  0.2         4865
-11 73599 Non-Hispanic White     Female  13          1.52                NA       9.07  4.5 1.87  1.7  0.8  0.2         1540
-12 73600 Non-Hispanic Black       Male  37          0.63                 0      10.27  6.3 1.67  0.5  1.6  0.2         2857
-13 73604 Non-Hispanic White     Female  69          2.44                 7       8.77  2.5 2.87  1.0  2.1  0.3         1301
-14 73606 Non-Hispanic White       Male  16          3.23                NA         NA   NA   NA   NA   NA   NA         1692
-15 73610 Non-Hispanic White       Male  43          2.03                 3         NA   NA   NA  0.7  3.6  0.2         1783
-   fast_food_energy_no_popcorn_no_seafood restaurant_energy_no_popcorn_no_seafood non_fast_food_or_restaurant_energy_no_popcorn_no_seafood
-1                                       0                                       0                                                     2948
-2                                       0                                       0                                                     1076
-3                                     142                                    2643                                                     2836
-4                                       0                                       0                                                     1012
-5                                     637                                       0                                                     2557
-6                                       0                                       0                                                      955
-7                                       0                                       0                                                      663
-8                                       0                                       0                                                      875
-9                                       0                                       0                                                     1008
-10                                      0                                    1841                                                     2770
-11                                   1246                                       0                                                      294
-12                                      0                                       0                                                     2857
-13                                     20                                       0                                                     1281
-14                                      0                                       0                                                     1692
-15                                      0                                       0                                                     1783
-   popcorn_energy shellfish_energy fish_energy  mean_BP weight height
-1             197                0           0 104.6667   47.1  152.5
-2               0                0           0 126.0000  102.4  172.5
-3               0                0           0 121.3333   56.8  158.0
-4               0                0           0 109.3333   67.3  170.4
-5               0                0           0 119.3333   79.7  166.2
-6               0                0           0 122.6667  109.4  175.2
-7               0                0           0 109.3333   53.1  144.9
-8               0                0           0 112.0000  110.2  168.8
-9               0                0         231      NaN  104.4  180.5
-10              0              254           0 112.0000   86.7  165.0
-11              0                0           0 118.0000   44.9  158.8
-12              0                0           0 149.3333  126.2  185.1
-13              0                0           0 115.3333   59.5  156.9
-14              0                0           0 120.0000   84.2  176.8
-15              0                0           0 131.3333   90.2  176.8</code></pre>
+<pre><code>       id     race_ethnicity sex_gender age poverty_ratio days_dental_floss PFAS_total PFOS PFOA PFNA PFHS PFDE total_energy
+1   73568 Non-Hispanic White     Female  26          5.00                NA       8.90  2.2 3.00  0.5  3.0 0.20         3145
+2   73571 Non-Hispanic White       Male  76          5.00                 2      18.57 10.2 4.77  1.3  2.0 0.30         1076
+3   73574               &lt;NA&gt;     Female  33          2.10                 7         NA   NA   NA  0.7  0.2 0.10         5621
+4   73576 Non-Hispanic Black       Male  16          1.58                NA      15.47  4.7 2.37  0.6  7.6 0.20         1012
+5   73577           Hispanic       Male  32          0.29                 0       6.17  3.0 1.47  0.4  1.2 0.10         3194
+6   73578           Hispanic       Male  18          0.58                NA         NA   NA   NA   NA   NA   NA          955
+7   73584 Non-Hispanic White       Male  13          3.07                NA      11.17  7.0 2.37  0.8  0.8 0.20          663
+8   73587               &lt;NA&gt;       Male  14          3.33                NA      52.97 35.5 6.17  3.3  6.3 1.70          875
+9   73597 Non-Hispanic Black     Female  50          2.18                 0         NA   NA   NA   NA   NA   NA         1239
+10  73598           Hispanic       Male  20            NA                NA       8.80  4.7 1.80  0.5  1.6 0.20         4865
+11  73599 Non-Hispanic White     Female  13          1.52                NA       9.07  4.5 1.87  1.7  0.8 0.20         1540
+12  73600 Non-Hispanic Black       Male  37          0.63                 0      10.27  6.3 1.67  0.5  1.6 0.20         2857
+13  73604 Non-Hispanic White     Female  69          2.44                 7       8.77  2.5 2.87  1.0  2.1 0.30         1301
+14  73606 Non-Hispanic White       Male  16          3.23                NA         NA   NA   NA   NA   NA   NA         1692
+15  73610 Non-Hispanic White       Male  43          2.03                 3         NA   NA   NA  0.7  3.6 0.20         1783
+16  73619           Hispanic     Female  36          0.84                 0       3.97  2.0 0.97  0.3  0.6 0.10         1331
+17  73624 Non-Hispanic White     Female  31          0.47                 0       3.34  1.9 0.67  0.2  0.5 0.07         1723
+18  73628 Non-Hispanic White       Male  80          3.00                 7      22.60 12.4 5.50  1.1  3.3 0.30         1972
+19  73631 Non-Hispanic Black     Female  56          0.71                 0       4.57  2.1 1.17  0.6  0.5 0.20         2117
+20  73633 Non-Hispanic White     Female  43          3.56                 0      21.77  9.0 7.97  2.8  1.4 0.60         1391
+21  73639 Non-Hispanic White       Male  71          1.45                 0      25.27 13.3 6.37  1.5  3.6 0.50         1298
+22  73642 Non-Hispanic White     Female  57          2.27                 0       9.07  5.4 1.97  0.9  0.5 0.30          769
+23  73647           Hispanic     Female  61          3.53                 0       3.64  1.4 1.17  0.2  0.8 0.07          739
+24  73655 Non-Hispanic Black       Male  44          1.79                 4       8.57  5.7 0.97  0.8  1.0 0.10         5012
+25  73663 Non-Hispanic White       Male  25          5.00                NA      12.80  7.1 3.10  0.9  1.5 0.20         1880
+26  73671 Non-Hispanic Black       Male  49          0.86                 0      22.17 15.1 1.97  1.7  2.9 0.50         3220
+27  73677 Non-Hispanic Black     Female  61          5.00                 6      32.40 21.6 5.30  2.0  3.0 0.50         1257
+28  73678 Non-Hispanic White       Male  51          1.02                 7      14.07  8.0 2.37  0.5  3.1 0.10         2863
+29  73684               &lt;NA&gt;       Male  64          5.00                 2      13.17  6.3 3.27  1.1  2.2 0.30         1397
+30  73688 Non-Hispanic White       Male  58          4.45                 7      18.07 12.4 2.07  0.7  2.8 0.10         1636
+31  73693 Non-Hispanic White     Female  78          0.78                 7       6.57  3.6 1.70  0.3  0.9 0.07         1562
+32  73694 Non-Hispanic White     Female  66          4.51                 2       6.87  3.6 0.87  0.4  1.9 0.10         1129
+33  73699 Non-Hispanic White       Male  20            NA                NA      15.20  5.6 4.60  0.5  4.4 0.10           NA
+34  73702 Non-Hispanic White     Female  48          3.81                 0       2.54  0.9 0.97  0.3  0.3 0.07         2125
+35  73703           Hispanic     Female  38            NA                 7       8.27  5.0 0.97  0.5  1.6 0.20         2027
+36  73708           Hispanic       Male  69          5.00                 7       8.64  5.8 1.17  0.6  1.0 0.07         2317
+37  73714 Non-Hispanic White     Female  29          5.00                NA       6.57  1.9 2.77  0.6  1.0 0.30         3880
+38  73715 Non-Hispanic White     Female  38          3.07                 3       8.47  4.2 2.37  0.9  0.7 0.30         1390
+39  73717 Non-Hispanic Black       Male  78          1.89                 2      46.07 33.4 5.77  2.5  3.8 0.60         2294
+40  73718 Non-Hispanic Black       Male  53          1.02                 7      12.87  7.6 1.27  0.8  3.0 0.20         1304
+41  73723 Non-Hispanic White       Male  77          5.00                 0      34.20 22.4 6.40  1.0  4.1 0.30         1084
+42  73724 Non-Hispanic Black       Male  26            NA                NA      20.70 14.8 2.90  0.8  2.1 0.10         1262
+43  73732 Non-Hispanic White       Male  80          3.18                 0       4.07  2.6 0.77  0.3  0.2 0.20         2020
+44  73733           Hispanic     Female  23            NA                NA       5.77  2.9 1.27  0.4  1.1 0.10         1339
+45  73740               &lt;NA&gt;     Female  57          2.52                 7      22.37 15.4 2.67  1.6  1.3 1.40         1878
+46  73747           Hispanic     Female  80          5.00                 0      29.47 20.7 2.47  1.3  4.6 0.40          392
+47  73756 Non-Hispanic White       Male  56            NA                 5       9.40  4.6 3.20  0.5  0.9 0.20         1839
+48  73760 Non-Hispanic White       Male  64          1.27                 0      17.87 12.6 2.67  0.9  1.4 0.30         1926
+49  73766 Non-Hispanic White     Female  75          1.75                 6      11.90  6.4 2.70  0.7  1.9 0.20         1760
+50  73774 Non-Hispanic Black     Female  80            NA                 0      12.27  6.5 1.97  0.8  2.7 0.30         1298
+51  73778           Hispanic       Male  62          2.08                 7      12.54  5.6 2.57  0.6  3.7 0.07         3730
+52  73782 Non-Hispanic White       Male  68          1.08                 4      15.00  6.8 3.30  1.2  3.6 0.10         1524
+53  73787 Non-Hispanic Black       Male  71          3.07                 0      22.37 16.3 3.17  0.8  1.8 0.30          616
+54  73800 Non-Hispanic White     Female  54          1.29                 0      12.44  9.3 1.57  0.6  0.9 0.07          883
+55  73806 Non-Hispanic Black       Male  63          5.00                 3      42.07 32.9 1.57  3.1  3.2 1.30         1141
+56  73809 Non-Hispanic White     Female  52          1.33                 3       2.67  1.2 0.70  0.3  0.4 0.07         1324
+57  73810           Hispanic       Male  48          2.25                 1       8.37  3.2 2.47  0.4  2.2 0.10         3200
+58  73822 Non-Hispanic Black     Female  13          0.03                NA         NA   NA   NA   NA   NA   NA           NA
+59  73826           Hispanic     Female  14          0.54                NA       6.07  2.2 1.37  1.7  0.7 0.10         1788
+60  73833               &lt;NA&gt;     Female  34          5.00                 3         NA   NA   NA   NA   NA   NA         1898
+61  73835           Hispanic       Male  13          5.00                NA       8.10  3.5 2.70  0.7  1.0 0.20         2253
+62  73841           Hispanic       Male  13          0.58                NA       4.47  1.2 1.97  0.7  0.5 0.10         1244
+63  73845 Non-Hispanic White     Female  70          1.65                 7         NA   NA   NA  0.4  3.8 0.07         1420
+64  73846 Non-Hispanic Black     Female  24          1.43                NA       5.57  2.8 1.17  0.7  0.8 0.10         1338
+65  73847 Non-Hispanic White       Male  34          1.13                 0         NA   NA   NA  0.5  1.7 0.20         2100
+66  73849 Non-Hispanic White     Female  16          5.00                NA       7.24  4.1 1.07  0.2  1.8 0.07         2617
+67  73855 Non-Hispanic White     Female  38          0.28                 0       8.17  4.3 1.67  1.0  1.0 0.20         2832
+68  73862 Non-Hispanic White     Female  61          1.28                 0      12.17  4.8 3.47  1.0  2.6 0.30          973
+69  73864 Non-Hispanic White     Female  62          1.21                 4       9.87  6.3 1.87  0.8  0.7 0.20         1287
+70  73866           Hispanic     Female  47          4.67                 3       2.64  0.8 1.17  0.2  0.4 0.07         2067
+71  73872               &lt;NA&gt;     Female  63            NA                 2      19.37 11.7 1.87  1.5  1.0 3.30           NA
+72  73873               &lt;NA&gt;       Male  80          2.26                 0      11.57  7.2 2.47  0.7  1.0 0.20         1934
+73  73875           Hispanic       Male  43          1.65                 7       8.37  6.3 0.87  0.5  0.5 0.20         4688
+74  73879 Non-Hispanic White     Female  58          2.03                 0      11.57  6.1 2.47  0.7  2.2 0.10         2674
+75  73881           Hispanic       Male  38          0.86                 2      14.80  6.7 3.30  0.6  4.0 0.20         2832
+76  73882 Non-Hispanic White     Female  25          0.21                NA      10.70  5.4 2.80  0.9  1.3 0.30         2392
+77  73884           Hispanic       Male  43          3.82                 2      11.47  6.0 1.87  0.9  2.6 0.10         2020
+78  73886           Hispanic     Female  64          5.00                 7      15.07  7.5 4.67  0.8  1.9 0.20         1041
+79  73887 Non-Hispanic White       Male  16          2.20                NA      19.20  8.1 6.80  1.9  1.6 0.80         1830
+80  73888 Non-Hispanic White       Male  56          5.00                 1      17.67 10.4 3.27  0.7  3.2 0.10         1173
+81  73890 Non-Hispanic Black       Male  16          0.30                NA       6.94  2.2 1.37  0.5  2.8 0.07         2353
+82  73892               &lt;NA&gt;       Male  15          5.00                NA       5.17  2.3 1.77  0.6  0.4 0.10         1765
+83  73899 Non-Hispanic Black       Male  57          5.00                 7      22.77 11.4 1.57  0.8  8.8 0.20         5117
+84  73904           Hispanic       Male  17          0.54                NA      11.07  7.2 1.87  0.5  1.3 0.20         1636
+85  73906           Hispanic     Female  34          0.44                 2       2.24  1.3 0.47  0.2  0.2 0.07         2543
+86  73908 Non-Hispanic White       Male  67          3.22                 0      31.07 19.8 4.57  2.2  3.8 0.70         1193
+87  73914               &lt;NA&gt;     Female  52            NA                 3       3.54  1.4 1.07  0.4  0.6 0.07         2676
+88  73915 Non-Hispanic White     Female  14          0.87                NA         NA   NA   NA  0.4  0.6 0.07         1468
+89  73919 Non-Hispanic Black       Male  61          0.00                 7         NA   NA   NA   NA   NA   NA         1936
+90  73920           Hispanic       Male  18          1.83                NA       6.87  3.7 1.37  0.4  1.2 0.20         2324
+91  73925           Hispanic       Male  60          0.83                 0       8.57  4.6 1.57  0.6  1.6 0.20         2161
+92  73926           Hispanic       Male  64          3.33                 7         NA   NA   NA  0.6  1.2 0.20         4163
+93  73930 Non-Hispanic Black     Female  70          5.00                 5      12.57  6.7 3.47  0.8  1.3 0.30         2137
+94  73931           Hispanic     Female  37          0.56                 7       5.37  3.5 0.97  0.4  0.4 0.10         1712
+95  73935           Hispanic       Male  63            NA                 7      11.50  5.2 2.60  0.9  2.6 0.20         1393
+96  73941 Non-Hispanic Black       Male  28          2.30                NA      20.40  7.4 3.60  1.0  8.1 0.30          736
+97  73943           Hispanic       Male  19          1.97                NA      17.67 10.8 3.57  0.8  2.2 0.30           NA
+98  73949           Hispanic       Male  48          0.73                 1         NA   NA   NA  0.8  2.9 0.40         4138
+99  73957               &lt;NA&gt;     Female  26          4.04                NA       9.10  4.7 2.50  0.7  0.3 0.90         1317
+100 73964 Non-Hispanic Black       Male  45          5.00                 7      14.97  9.6 3.07  0.7  1.5 0.10         1427
+    fast_food_energy_no_popcorn_no_seafood restaurant_energy_no_popcorn_no_seafood non_fast_food_or_restaurant_energy_no_popcorn_no_seafood
+1                                        0                                       0                                                     2948
+2                                        0                                       0                                                     1076
+3                                      142                                    2643                                                     2836
+4                                        0                                       0                                                     1012
+5                                      637                                       0                                                     2557
+6                                        0                                       0                                                      955
+7                                        0                                       0                                                      663
+8                                        0                                       0                                                      875
+9                                        0                                       0                                                     1008
+10                                       0                                    1841                                                     2770
+11                                    1246                                       0                                                      294
+12                                       0                                       0                                                     2857
+13                                      20                                       0                                                     1281
+14                                       0                                       0                                                     1692
+15                                       0                                       0                                                     1783
+16                                       0                                       0                                                     1291
+17                                       0                                       0                                                     1723
+18                                       0                                       6                                                     1966
+19                                       0                                       0                                                     2117
+20                                       0                                     482                                                      909
+21                                       0                                       0                                                     1298
+22                                       0                                     200                                                      569
+23                                     470                                       0                                                      269
+24                                    1556                                    1438                                                     2018
+25                                       0                                       0                                                     1880
+26                                       0                                       0                                                     3220
+27                                     602                                       0                                                      655
+28                                       0                                       0                                                     2863
+29                                       0                                     551                                                      846
+30                                       0                                       0                                                     1636
+31                                       0                                       0                                                     1562
+32                                       0                                       0                                                     1129
+33                                      NA                                      NA                                                       NA
+34                                     923                                       0                                                     1202
+35                                       0                                       0                                                     2027
+36                                       0                                       0                                                     2317
+37                                    1718                                    1780                                                      382
+38                                       0                                       0                                                     1390
+39                                       0                                       0                                                     2294
+40                                     589                                       0                                                      715
+41                                       0                                     628                                                      456
+42                                       0                                       0                                                     1262
+43                                       0                                    1726                                                      294
+44                                    1201                                       0                                                      138
+45                                       0                                       0                                                     1771
+46                                       0                                       0                                                      392
+47                                     744                                       0                                                     1095
+48                                       0                                       0                                                     1926
+49                                       0                                     895                                                      865
+50                                       0                                       0                                                     1298
+51                                     134                                       0                                                     3596
+52                                       0                                       0                                                     1524
+53                                       0                                       0                                                      616
+54                                       0                                       0                                                      412
+55                                       0                                     432                                                      488
+56                                     948                                       0                                                      376
+57                                     187                                       0                                                     3013
+58                                      NA                                      NA                                                       NA
+59                                       0                                       0                                                     1408
+60                                       0                                       0                                                     1898
+61                                     739                                       0                                                     1514
+62                                       0                                       0                                                     1244
+63                                     500                                       0                                                      920
+64                                     973                                       0                                                      365
+65                                       0                                       0                                                     2100
+66                                     559                                    1512                                                      376
+67                                    1208                                       0                                                     1624
+68                                       0                                       0                                                      973
+69                                       0                                     826                                                      461
+70                                     703                                     887                                                      477
+71                                      NA                                      NA                                                       NA
+72                                       0                                       0                                                     1686
+73                                       0                                     762                                                     3926
+74                                       0                                       0                                                     2674
+75                                       0                                    1560                                                     1272
+76                                     455                                       0                                                     1937
+77                                       0                                    1072                                                      948
+78                                       0                                     554                                                      487
+79                                       0                                       0                                                     1830
+80                                       0                                     533                                                      640
+81                                    1105                                       0                                                     1248
+82                                       0                                       0                                                     1765
+83                                       0                                    3424                                                     1693
+84                                     874                                       0                                                      762
+85                                     823                                       0                                                     1720
+86                                     595                                       0                                                      303
+87                                     317                                       0                                                     2359
+88                                     440                                       0                                                     1028
+89                                       0                                     572                                                     1364
+90                                     437                                       0                                                     1887
+91                                     182                                       0                                                     1979
+92                                       0                                       0                                                     4163
+93                                       0                                       0                                                     2137
+94                                       0                                       0                                                     1712
+95                                     321                                     722                                                      350
+96                                       0                                       0                                                      736
+97                                      NA                                      NA                                                       NA
+98                                       0                                     348                                                     3432
+99                                       0                                     445                                                      814
+100                                     74                                       0                                                      841
+    popcorn_energy shellfish_energy fish_energy   mean_BP weight height
+1              197                0           0 104.66667   47.1 152.50
+2                0                0           0 126.00000  102.4 172.50
+3                0                0           0 121.33333   56.8 158.00
+4                0                0           0 109.33333   67.3 170.40
+5                0                0           0 119.33333   79.7 166.20
+6                0                0           0 122.66667  109.4 175.20
+7                0                0           0 109.33333   53.1 144.90
+8                0                0           0 112.00000  110.2 168.80
+9                0                0         231       NaN  104.4 180.50
+10               0              254           0 112.00000   86.7 165.00
+11               0                0           0 118.00000   44.9 158.80
+12               0                0           0 149.33333  126.2 185.10
+13               0                0           0 115.33333   59.5 156.90
+14               0                0           0 120.00000   84.2 176.80
+15               0                0           0 131.33333   90.2 176.80
+16               0                0          40 104.00000   81.7 173.10
+17               0                0           0 102.66667   82.9 171.10
+18               0                0           0 108.66667   74.0 176.90
+19               0                0           0 161.33333   98.8 158.90
+20               0                0           0 140.00000   76.8 158.70
+21               0                0           0 123.33333   81.5 164.00
+22               0                0           0 128.00000   95.5 159.00
+23               0                0           0 115.33333   74.2 163.80
+24               0                0           0 133.33333  113.1 190.54
+25               0                0           0 111.33333  124.8 194.60
+26               0                0           0 138.66667   58.2 165.30
+27               0                0           0 106.00000  105.2 169.90
+28               0                0           0 131.33333  100.1 172.30
+29               0                0           0 116.66667   63.9 160.50
+30               0                0           0 122.66667   97.1 170.10
+31               0                0           0 182.00000   78.8 149.60
+32               0                0           0 114.00000   76.0 168.40
+33              NA               NA          NA  98.00000   77.0 184.10
+34               0                0           0 156.66667  123.3 163.30
+35               0                0           0  99.33333   63.7 156.20
+36               0                0           0 114.66667   71.2 165.80
+37               0                0           0 102.00000   71.9 164.90
+38               0                0           0 104.66667   85.2 157.00
+39               0                0           0 166.00000   85.7 162.50
+40               0                0           0 134.00000   99.8 194.00
+41               0                0           0 129.33333  105.1 177.30
+42               0                0           0 116.66667   65.1 184.20
+43               0                0           0 158.00000   64.4 169.20
+44               0                0           0 112.00000   75.8 154.00
+45               0              107           0 115.33333   64.6 154.80
+46               0                0           0 193.33333   78.4 161.40
+47               0                0           0 118.66667   75.0 171.30
+48               0                0           0 124.66667   61.5 169.90
+49               0                0           0 135.33333   88.3 156.60
+50               0                0           0       NaN   58.9 158.70
+51               0                0           0 140.00000  161.8 175.90
+52               0                0           0 112.00000   65.2 167.80
+53               0                0           0  91.33333   97.9 186.20
+54               0                0         471 124.66667  138.5 159.90
+55               0              221           0 131.33333  109.2 184.20
+56               0                0           0 135.33333   68.3 163.40
+57               0                0           0 117.33333   84.9 177.50
+58              NA               NA          NA 105.33333   52.0 168.80
+59               0                0         380  94.00000   47.2 154.70
+60               0                0           0  93.33333   46.9 159.30
+61               0                0           0 117.33333   64.4 165.60
+62               0                0           0 105.33333   63.6 167.60
+63               0                0           0 130.66667   95.3 156.10
+64               0                0           0 110.66667   83.7 155.90
+65               0                0           0 132.00000   96.8 180.90
+66               0                0         170 104.66667   49.3 158.80
+67               0                0           0       NaN  137.1 153.00
+68               0                0           0 151.33333   98.2 149.10
+69               0                0           0 109.33333   78.7 158.00
+70               0                0           0 126.00000  127.3 158.20
+71              NA               NA          NA 118.00000   70.3 158.30
+72             248                0           0 138.00000   68.3 161.70
+73               0                0           0 122.66667   92.3 180.80
+74               0                0           0 146.66667   50.3 161.40
+75               0                0           0 119.33333  110.7 174.20
+76               0                0           0 114.00000   65.7 157.20
+77               0                0           0 116.66667   92.0 173.20
+78               0                0           0 130.66667   82.9 163.00
+79               0                0           0 122.00000   89.9 170.80
+80               0                0           0 137.33333  101.8 175.60
+81               0                0           0 118.66667  132.0 177.00
+82               0                0           0  98.00000   61.6 169.40
+83               0                0           0 125.33333  140.6 182.30
+84               0                0           0 120.66667   59.2 168.50
+85               0                0           0 106.00000   85.9 172.40
+86               0                0         295 108.00000   95.5 178.70
+87               0                0           0 110.66667   63.6 160.30
+88               0                0           0  86.66667   83.3 168.30
+89               0                0           0 151.33333   93.4 173.20
+90               0                0           0 126.00000   60.0 168.70
+91               0                0           0 107.33333   81.5 168.60
+92               0                0           0 139.33333   88.4 169.10
+93               0                0           0 136.66667   92.4 164.00
+94               0                0           0 119.00000   68.9 146.70
+95               0                0           0 130.00000   73.6 174.30
+96               0                0           0 117.33333   75.5 170.10
+97              NA               NA          NA  98.00000   55.4 161.50
+98               0              194         164 130.66667   94.4 171.70
+99               0                4          54 103.33333   59.2 160.60
+100              0                0         512 158.00000   89.2 172.80</code></pre>
 </div>
 </div>
 <div class="small-break">
@@ -1465,14 +1719,14 @@ $ PFDE           &lt;dbl&gt; 0.20, 0.30, 0.10, 0.20, 0.10, NA, 0.20, 1.70, NA, 0
 <div class="cell" data-r.options="{&quot;width&quot;:50}">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb51-2"><a href="#cb51-2"></a>  <span class="fu">mutate</span>(<span class="at">htn_cat =</span> <span class="fu">factor</span>(</span>
-<span id="cb51-3"><a href="#cb51-3"></a>      <span class="fu">case_when</span>(</span>
-<span id="cb51-4"><a href="#cb51-4"></a>        mean_sbp <span class="sc">&lt;</span> <span class="dv">120</span> <span class="sc">~</span> <span class="st">"normal"</span>,</span>
-<span id="cb51-5"><a href="#cb51-5"></a>        mean_sbp <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">120</span><span class="sc">:</span><span class="dv">129</span>) <span class="sc">~</span> <span class="st">"elevated"</span>,</span>
-<span id="cb51-6"><a href="#cb51-6"></a>        mean_sbp <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">130</span><span class="sc">:</span><span class="dv">139</span>) <span class="sc">~</span> <span class="st">"stage1"</span>,</span>
-<span id="cb51-7"><a href="#cb51-7"></a>        mean_sbp <span class="sc">&gt;=</span> <span class="dv">140</span> <span class="sc">~</span> <span class="st">"stage2"</span>,</span>
-<span id="cb51-8"><a href="#cb51-8"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
-<span id="cb51-9"><a href="#cb51-9"></a>        )</span>
-<span id="cb51-10"><a href="#cb51-10"></a>      ))</span>
+<span id="cb51-3"><a href="#cb51-3"></a>    <span class="fu">case_when</span>(</span>
+<span id="cb51-4"><a href="#cb51-4"></a>      mean_sbp <span class="sc">&lt;</span> <span class="dv">120</span> <span class="sc">~</span> <span class="st">"normal"</span>,</span>
+<span id="cb51-5"><a href="#cb51-5"></a>      mean_sbp <span class="sc">&gt;=</span> <span class="dv">120</span> <span class="sc">&amp;</span> mean_sbp <span class="sc">&lt;</span> <span class="dv">130</span> <span class="sc">~</span> <span class="st">"elevated"</span>,</span>
+<span id="cb51-6"><a href="#cb51-6"></a>      mean_sbp <span class="sc">&gt;=</span> <span class="dv">130</span> <span class="sc">&amp;</span> mean_sbp <span class="sc">&lt;</span> <span class="dv">140</span> <span class="sc">~</span> <span class="st">"stage1"</span>,</span>
+<span id="cb51-7"><a href="#cb51-7"></a>      mean_sbp <span class="sc">&gt;=</span> <span class="dv">140</span> <span class="sc">~</span> <span class="st">"stage2"</span>,</span>
+<span id="cb51-8"><a href="#cb51-8"></a>      <span class="fu">is.na</span>(mean_sbp) <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb51-9"><a href="#cb51-9"></a>    )</span>
+<span id="cb51-10"><a href="#cb51-10"></a>  ))</span>
 <span id="cb51-11"><a href="#cb51-11"></a></span>
 <span id="cb51-12"><a href="#cb51-12"></a><span class="co"># Print</span></span>
 <span id="cb51-13"><a href="#cb51-13"></a><span class="fu">glimpse</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1491,7 +1745,7 @@ $ pfna       &lt;dbl&gt; 0.5, 1.3, 0.7, 0.6, 0.4, NA, …
 $ pfhs       &lt;dbl&gt; 3.0, 2.0, 0.2, 7.6, 1.2, NA, …
 $ pfde       &lt;dbl&gt; 0.2, 0.3, 0.1, 0.2, 0.1, NA, …
 $ pfas_total &lt;dbl&gt; 8.90, 18.57, NA, 15.47, 6.17,…
-$ htn_cat    &lt;fct&gt; normal, elevated, NA, normal,…</code></pre>
+$ htn_cat    &lt;fct&gt; normal, elevated, elevated, n…</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -1571,7 +1825,7 @@ $ htn_cat    &lt;fct&gt; normal, elevated, NA, normal,…</code></pre>
 
 </div>
 <ul>
-<li><strong><code>dplyr</code> function reference</strong><a href="https://dplyr.tidyverse.org/reference/index.html" class="uri">https://dplyr.tidyverse.org/reference/index.html</a></li>
+<li><strong><code>dplyr</code> function reference:</strong> <a href="https://dplyr.tidyverse.org/reference/index.html" class="uri">https://dplyr.tidyverse.org/reference/index.html</a></li>
 </ul>
 <div class="small-break">
 
@@ -1607,13 +1861,13 @@ $ htn_cat    &lt;fct&gt; normal, elevated, NA, normal,…</code></pre>
 
 </div>
 <ul>
-<li><strong>Row-wise operations vignette:</strong><a href="https://dplyr.tidyverse.org/articles/rowwise.html" class="uri">https://dplyr.tidyverse.org/articles/rowwise.html</a></li>
+<li><strong>Row-wise operations vignette:</strong> <a href="https://dplyr.tidyverse.org/articles/rowwise.html" class="uri">https://dplyr.tidyverse.org/articles/rowwise.html</a></li>
 </ul>
 <div class="small-break">
 
 </div>
 <ul>
-<li><strong>Window functions vignette:</strong><a href="https://dplyr.tidyverse.org/articles/window-functions.html" class="uri">https://dplyr.tidyverse.org/articles/window-functions.html</a></li>
+<li><strong>Window functions vignette:</strong> <a href="https://dplyr.tidyverse.org/articles/window-functions.html" class="uri">https://dplyr.tidyverse.org/articles/window-functions.html</a></li>
 </ul>
 
 <img src="images/id529-sticker.png" class="slide-logo r-stretch"><div class="footer footer-default">

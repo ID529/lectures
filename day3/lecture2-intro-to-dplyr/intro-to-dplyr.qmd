@@ -226,7 +226,7 @@ print(new_data)
 ![](images/dplyr-vs-base.png){.absolute bottom="5%" left="15%" height=80%}
 
 ::: aside 
-`dplyr` vs base R vignette:<https://dplyr.tidyverse.org/articles/base.html>
+`dplyr` vs base R vignette: <https://dplyr.tidyverse.org/articles/base.html>
 :::
 
 ## Example dataset {.smaller}
@@ -236,7 +236,7 @@ print(new_data)
 
 **Overview**
 
--   `NHANES` dataset available on the ID529 GitHub
+-   `NHANES` dataset available on the ID 529 GitHub
 -   The dataset includes individual-level:
     -   Demographic and clinical characteristics
     -   Socioeconomic parameters 
@@ -415,6 +415,7 @@ filter(data,
 filter(data, !(age > 60 | mean_BP > 120))
 
 # This logic achieves the same result
+# Here ',' is equivalent to '&'
 filter(data, age <= 60, mean_BP <= 120)
 ```
 :::
@@ -680,7 +681,7 @@ data %>%
 **Function(s)**
 
 ```{r, echo=T, eval=F}
-summarize(.data, .groups = NULL)
+summarize(.data, ...)
 ```
 
 **Main arguments**
@@ -692,7 +693,7 @@ summarize(.data, .groups = NULL)
 
 -   [Creates a new data frame based on one or more summary functons]{.blue-bold}
     -   Data frame has >1 rows if the data are grouped
--   -   Has single row if there are no groups supplied 
+    -   Has single row if there are no groups supplied 
 :::   
   
 ::: {.column width="1%"}
@@ -728,7 +729,7 @@ paste0(names(nhanes_id529), collapse = " | ")
 
 ```{r, R.options=list(width=150)}
 # Print the data frame
-head(nhanes_id529, n = 15)
+head(nhanes_id529, n = 100)
 ```
 
 ::: {.small-break}
@@ -811,14 +812,14 @@ data
 ```{r, echo=T, R.options=list(width=50)}
 data <- data %>%
   mutate(htn_cat = factor(
-      case_when(
-        mean_sbp < 120 ~ "normal",
-        mean_sbp %in% c(120:129) ~ "elevated",
-        mean_sbp %in% c(130:139) ~ "stage1",
-        mean_sbp >= 140 ~ "stage2",
-        TRUE ~ NA_character_
-        )
-      ))
+    case_when(
+      mean_sbp < 120 ~ "normal",
+      mean_sbp >= 120 & mean_sbp < 130 ~ "elevated",
+      mean_sbp >= 130 & mean_sbp < 140 ~ "stage1",
+      mean_sbp >= 140 ~ "stage2",
+      is.na(mean_sbp) ~ NA_character_
+    )
+  ))
 
 # Print
 glimpse(data)
@@ -830,7 +831,6 @@ glimpse(data)
 
 -   Some methods implemented in this example will be discussed more next week
 ```{r, echo=T, R.options=list(width=50)}
-
 data %>%
   # Change to a long data format (more on this soon!)
   pivot_longer(matches("pf.*"), 
@@ -922,9 +922,9 @@ run_tutorial(name = "ex-data-summarise", package = "learnr")
 ::: {.small-break}
 :::
 
--   **Row-wise operations vignette:**<https://dplyr.tidyverse.org/articles/rowwise.html>
+-   **Row-wise operations vignette:** <https://dplyr.tidyverse.org/articles/rowwise.html>
 
 ::: {.small-break}
 :::
 
--   **Window functions vignette:**<https://dplyr.tidyverse.org/articles/window-functions.html>
+-   **Window functions vignette:** <https://dplyr.tidyverse.org/articles/window-functions.html>
