@@ -2,9 +2,11 @@
 
 # morals
 
-> “In every project you have at least one other collaborator; future-you. You don’t want future-you to curse past-you” ——Hadley Wickham
+> “In every project you have at least one other collaborator; future-you. You
+don’t want future-you to curse past-you” ——Hadley Wickham
 
-> “Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.” ——Anonymous
+> “Always code as if the person who ends up maintaining your code may be violent
+and knows where you live.” ——Anonymous
 
 # general advice
 
@@ -30,69 +32,80 @@ You aren't gonna need it
 
 # understandability 
 
-## be consistent
+ * be consistent
+   * use camelCase or snake_case or PascalCase or kebab-case
+ * use explanatory variables
+ 
+would you rather read:
 
-## use explanatory variables
+```r
+if (x %% 3 == 0) {
+  more_code_to_run
+}
+```
 
-## make boundary conditions explicit 
+or 
+```r
+x_is_a_multiple_of_3 <- x %% 3 == 0 
 
+if (x_is_a_multiple_of_3) {
+  more_code_to_run
+}
+```
+     
+ * make boundary conditions explicit 
+ 
+if a function you write doesn't support 
+ 
 # rules for naming
 
-## choose descriptive and unambiguous names 
-
-## use pronounceable names 
-
-## use searchable names
-
-## replace magic numbers with named variables
+  * choose descriptive and unambiguous names 
+  * use pronounceable names 
+  * use searchable names
+  * replace magic numbers with named variables
 
 # functions 
 
-## functions should be small 
-
-## functions should do one thing (well)
-
-## use descriptive names 
-
-## prefer fewer arguments 
-
-## have no side effects 
+  * functions should be small 
+  * functions should do one thing (well)
+  * use descriptive names 
+  * prefer fewer arguments 
+  * have no side effects 
 
 # comments 
 
-## try to make your code self-explanatory 
-
-## don't be redundant 
-
-## don't add obvious noise 
-
-## don't comment out code, just remove it 
-
-## use comments to explain intent 
-
-## use comments to clarify the code 
-
-## use to warn about consequences 
+  * try to make your code self-explanatory 
+  * don't be redundant 
+  * don't add obvious noise 
+  * don't comment out code, just remove it 
+  * use comments to explain intent 
+  * use comments to clarify the code 
+  * use to warn about consequences 
 
 # structuring source code
 
 ## newspaper structure
 
-> We would like a source file to be like a newspaper article. The name should be simple but explanatory. The name, by itself, should be sufficient to tell us whether we are in the right module or not. The topmost parts of the source file should provide the high-level concepts and algorithms. Detail should increase as we move downward, until at the end we find the lowest level functions and details in the source file.
+> We would like a source file to be like a newspaper article. The name should be
+simple but explanatory. The name, by itself, should be sufficient to tell us
+whether we are in the right module or not. The topmost parts of the source file
+should provide the high-level concepts and algorithms. Detail should increase as
+we move downward, until at the end we find the lowest level functions and
+details in the source file.
 
 --https://mosquitolwz.medium.com/clean-code-quotes-5-formatting-b7bdd4a828d6 
 
 ## vertical proximity 
 
-Lines of code that are more related to each other should appear close to each other. 
+Lines of code that are more related to each other should appear close to each
+other.
 
 ## don't go over 120 characters wide
 
 # some workflows
 
-## readme driven development
-
-## test driven development
+  * readme driven development
+  * test driven development
 
 # resources 
 

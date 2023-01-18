@@ -1,0 +1,59 @@
+---
+title: "Reporting on Missing Data"
+format:
+  revealjs:
+    theme: [default, missing-data.scss]
+slide-number: true
+title-slide-attributes:
+  data-background-image: "graphics/transition_slides/venti-views.jpg"
+  data-background-opacity: "30%"
+  data-background-color: "black"
+revealjs-plugins:
+  - pointer
+execute: 
+  echo: true
+---
+
+## morals {background-image="graphics/transition_slides/venti-views.jpg" background-opacity="30%" background-color="black" .small}
+
+"The things we consider important are often undervalued by other disciplines … One of the most important concepts in Statistics is that of missing data. For most people it’s easy to ignore because much of it is not very visible." <br>
+— Cyntha Struthers and Don McLeish <br><br>
+
+"We can’t just learn what we want to know, but what we should know." <br>— Biden <br><br>
+
+"There are no routine statistical questions; only questionable statistical routines."<br>
+— D.R. Cox <br><br>
+
+## reasons you might have missing data {background-color="#BBD8FF"}
+
+  * the machine was broken
+  * the participant didn't want to give an answer
+  * the participant was late to their interview 
+  * lost/corrupted data files
+  * outlier data coded to missing
+  * suppressed/confidential/censored data
+  
+\* not meant to be exhaustive
+
+## how to think about missing data {background-color="#ffeaa7"}
+
+  * is the missingness random, not conditional on anything? like a coin-toss?
+  <span class='carrot'>(**MCAR**: missing completely at random)</span>
+  * is the missingness random, conditional on variables you've observed?
+  <span class='carrot'>(**MAR**: missing at random)</span>
+  * is the missingness determined or conditional on variables you **haven't**
+  observed? <span class='carrot'>(**MNAR**: missing not at random)</span>
+
+## best practices {background-color="#FFD4CB"}
+
+:::{.columns}
+:::{.column}
+<img src="graphics/HoduRed.png" alt="Hodu in red light">
+:::
+:::{.column}
+  1. report on the missingness! 
+  2. look for trends in the missingness, and report on those trends.
+  3. (if you perform imputation) make sure your imputation model matches your
+  regression model.
+:::
+:::
