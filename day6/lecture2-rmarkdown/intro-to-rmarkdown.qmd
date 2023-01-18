@@ -1,0 +1,761 @@
+---
+format: 
+  revealjs:
+    theme: [simple, ../../day2/lecture3-reading-in-data/custom.scss]
+    highlight: pygments
+    logo: images/id529-sticker.png
+    slide-number: true
+    footer: "<https://id529.github.io/>"
+revealjs-plugins:
+  - pointer
+  - confetti
+execute: 
+  echo: true
+---
+
+# Introduction to R Markdown {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110% auto"}
+
+::: {.white-15-pt}
+ID 529: Data Management and Analytic Workflows in R
+:::
+
+::: {.white-12-pt}
+Dean Marengi \| Tuesday, January 17<sup>th</sup>, 2023
+:::
+
+## Learning objectives {.smaller}
+
+<br>
+
+-   **Understand the advantages of R Markdown as tool for reproducible research**
+
+::: {.small-break}
+:::
+
+-   **Learn about the basic components that make up R Markdown documents**
+    -   YAML headers
+    -   Plain text
+    -   Code chunks
+
+::: {.small-break}
+:::
+
+-   **Learn how to use R Markdown to generate reproducible reports**
+    -   [Integrating]{.blue-bold} different elements of a typical report including descriptive text, analysis results and visualizations, inline quantitative statements
+    -   [Organizing]{.blue-bold} R Markdown files for research collaboration
+    -   [Exporting]{.blue-bold} reports to different output formats (e.g., `.html`, `.docx`, `.pdf` and more)
+
+## R Markdown Example Available on GitHub {.smaller}
+
+<br>
+
+-   **Simple Example:** <https://github.com/dmarengi/sample-rmd>
+    -   Includes the `.Rmd` file we will discuss during the lecture
+    -   Create a copy of the repository on your local computer
+        -   Clone the repository to your local device     
+        -   Alternatively, Click **<> Code** > **Download Zip**
+
+<br>
+
+-   **Jarvis' Example:** <https://github.com/jarvischen01/id529-regression-models>
+    -   Working with regression models
+    -   Integration of `gtsummary`, `sjPlot`, `stargazer`, and `ggstatsplot` in R Markdown
+
+# Background {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110% auto"}
+
+## First, a little about Markdown {.smaller}
+
+::: {.small-break}
+:::
+
+-   [Markdown]{.blue-bold} is a markup language used to format plain text documents (it's not unique to `R`)
+    -   Uses a simple, human-readable syntax to apply formatting 
+    -   Contrasts with other common tools used for text formatting (e.g., Microsoft Word documents)
+        -   Formatting appears simple, but is complicated 'under the hood'
+    -   Widely used, and allows for easy conversion to different file types (e.g., PDFs, html files, etc.) 
+
+<br>
+
+-   [Markdown]{.blue-bold} can be used to generate:
+    -   Reports (as we'll discuss)
+    -   Books
+    -   Slides
+    -   Websites
+    -   And more!
+
+::: {.absolute .popup bottom="7%" right="0%" width="40%"}
+**Note:** [Markdown is the syntax you use to edit README files on GitHub!]{.blue-bold}
+:::
+
+::: aside 
+ Markdown image source: <https://github.com/dcurtis/markdown-mark/>
+:::
+
+![](images/logo-markdown.png){.absolute right="10%" bottom="25%" height="25%"}
+
+## 
+
+<br>
+
+````
+# Markdown: a love story
+
+There's a beauty in the *simplicity* of formatting text with `Markdown`! It's capable of giving so much, ***while asking for so little***. Not like those text formatting tools from "**Big Word Processor,**" with all of their fancy bells and whistles.
+    
+## What's great about Markdown, you ask?
+
+- It's easy to read and write
+- It's platform-agnostic
+    - No specific software required
+    - Highly compatiable with a range of tools
+- Overall, less fuss!
+
+````
+<br> <br>
+
+[Rendered output on the next slide!]{.blue-bold}
+
+## {.small}
+
+<br>
+
+### Markdown: A love story
+
+There's a beauty in the *simplicity* of formatting text with **Markdown**! It's capable of giving so much, ***while asking for so little***. Not like those text formatting tools from "**Big Word Processor**", with all of their fancy bells and whistles.
+
+<br>
+
+#### What's great about Markdown, you ask?
+
+-   It's easy to read and write
+-   It's platform-agnostic
+    -   **No specific software** required
+    -   **Highly compatible** with a range of tools
+-   Overall, less fuss!
+
+## So, what is R Markdown? {.smaller}
+
+::: {.small-break}
+:::
+
+:::: {.columns}
+::: {.column width=50%}
+
+-   [R Markdown]{.blue-bold} is an extension of Markdown
+-   Integrates with the R Studio IDE
+-   Allows R users to combine into one document:
+    -   Markdown formatted text
+    -   R code chunks
+    -   Analysis results and visualizations
+    -   Mathematical expressions
+-   "knit" documents to different output formats (HTML files, PDFs, Word Documents, etc.)
+
+::: {.small-break}
+:::
+
+
+[Great tool for promoting transparency and reproducible research, as it allows researchers to easily consolidate their code, results, and interpretations into a single document!]{.blue-bold}
+
+<!-- Authoring framework for data science. Can connect to data and run code -->
+<!-- -   Consolidate code, results, and interpretations into a one document -->
+<!-- -   Researchers can consolidate code, results, and interpretations into a readable document  -->
+<!-- -   Equips others with the tools needed to reproduce their work -->
+
+:::
+::::
+
+![](images/horst-rmarkdown.png){.absolute right="0" bottom="35%" height="50%"}
+![](images/hex-rmarkdown.png){.absolute right="0" bottom="0%" height="30%"}
+
+![](images/hex-knitr.png){.absolute right="18%" bottom="0%" height="30%"}
+
+::: aside
+Allison Horst: <https://allisonhorst.com/r-packages-functions>
+:::
+
+::: {.notes}
+There are a lot of words and little details to keep track of when talking about R Markdown, and it can be challenging to keep everything straight. So I felt it might be helpful to first make some clarifications. R Markdown is built on top of Markdown, which isn't unique to R! It's a 'markup language' that is widely used to apply formatting to plain text files
+:::
+
+# R Markdown Components {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110% auto"}
+
+## The Components of R Markdown Documents {.smaller}
+
+::: {.small-break}
+:::
+
+:::: {.columns}
+::: {.column width=50%}
+-   **R Markdown files (`.Rmd`) are plain text files designed to contain three types of content:**
+    -   Plain text for narrative
+    -   Code chunks
+    -   Metadata to inform how the file is rendered and exported (YAML Header)
+  
+::: {.small-break}
+:::
+  
+-   [Code chunks]{.blue-bold}
+    -   Delimited by [``````{r}``` and ```]{.blue-bold}
+
+-   [YAML header]{.blue-bold}
+    -   Section included at the top of the `.Rmd` file
+    -   Metadata delimited by `---` and `---`
+
+-   [Plain text]{.blue-bold}
+    -   Written throughout the document
+    -   Markdown used to apply text formatting
+:::
+::::
+
+![](images/rmd-screenshot.png){.absolute right="0" bottom="0%" height="85%"}
+
+## YAML Header {.smaller}
+
+<br>
+
+:::{.v-large}
+````
+---
+title:  "Reproducible Research"
+author: "A prudent researcher"
+date:   "2023-01-17"
+output: html_document
+---
+````
+:::
+
+:::{.small-break}
+:::
+
+-   [The YAML header is used to customize the R Markdown document]{.blue-bold}
+-   Takes key-value pairs to specify document options and settings
+    -   E.g., title, author, date, output format, document class or other parameters
+    -   For HTML files, a CSS style sheet may also be referenced in the YAML Header
+    -   YAML header information is used to configure behavior of the 'R Markdown engine' to convert documents into a final output format
+
+
+
+## YAML Header: Some output formats {.smaller}
+
+:::{.v-large}
+````
+---
+title:  "Reproducible Research"
+author: "A prudent researcher"
+date:   "2023-01-17"
+output: 
+  pdf_document: default
+  html_document: default
+  word_document: default
+---
+````
+:::
+
+-   [Output formats for the .Rmd file can be specified in the YAML header]{.blue-bold} 
+-   In the above example, we can knit our Rmd file into any of the specified formats (`pdf`, `html`, or `docx`)
+-   Note that the [indentation is meaningful]{.blue-bold} for YAML headers! 
+    -   Indentation creates a hierarchy and structure for YAML header information
+    -   Incorrect indentation will cause the YAML parser to fail when rendering the `.Rmd` file
+
+## Markdown syntax: Headings {.smaller}
+
+<br> <br> <br> 
+
+:::: {.columns}
+::: {.column width=50%}
+
+[Markdown text]{.blue-bold}
+
+:::{.larger}
+
+````
+# Level 1 header
+
+## Level 2 header
+
+### Level 3 header
+
+#### Level 4 header
+````
+:::
+:::
+
+::: {.column width=50%}
+
+[Rendered text]{.blue-bold}
+
+<!-- # Level 1 header -->
+<!-- ## Level 2 header -->
+<!-- ### Level 3 header -->
+<!-- #### Level 4 header -->
+
+:::
+::::
+
+![](images/rmd-headers.png){.absolute right="13%" bottom="36%" height="30%"}
+
+## Markdown syntax: Basic text formatting {.smaller}
+
+<br> <br> <br>
+
+:::: {.columns}
+::: {.column width=50%}
+
+[Markdown text]{.blue-bold}
+
+:::{.larger}
+
+````
+*italics* or _italics_
+
+
+**bold** or __bold__        
+
+
+***bold and italic*** or 
+___bold and italic___    
+
+~~strikethrough~~
+
+superscripts^2^
+
+````
+:::
+:::
+
+::: {.column width=50%}
+[Rendered text]{.blue-bold}
+
+*italics* or _italics_ <br><br>
+
+**bold** or __bold__ <br><br>
+
+***bold and italic*** or <br> ___bold and italic___ <br><br>
+
+~~strikethrough~~
+
+superscripts^2^
+
+:::
+::::
+
+## Markdown syntax: Lists {.smaller}
+
+<br>
+
+:::: {.columns}
+::: {.column width=50%}
+[Markdown text]{.blue-bold}
+
+::: {.larger}
+````
+- item 1
+- item 2
+- item 3
+  - item 3.1
+  - item 3.2
+    - item 3.2.1
+
+
+
+1. item 1
+2. item 2
+3. item 3
+  - item 3.1
+  - item 3.2
+    - item 3.2.1
+
+````
+:::
+:::
+
+::: {.column width=50%}
+[Rendered text]{.blue-bold}
+
+- item 1
+- item 2
+- item 3
+  - item 3.1
+  - item 3.2
+    - item 3.2.1
+
+:::{.small-break}
+:::
+
+1. item 1
+2. item 2
+3. item 3
+    - item 3.1
+    - item 3.2
+      - item 3.2.1
+:::
+::::
+
+## Markdown syntax: Lists (alternative){.smaller}
+
+<br>
+
+:::: {.columns}
+::: {.column width=50%}
+[Markdown text]{.blue-bold}
+
+::: {.larger}
+````
+* item 1
+* item 2
+* item 3
+  + item 3.1
+  + item 3.2
+    + item 3.2.1
+
+
+
+1. item 1
+2. item 2
+3. item 3
+  + item 3.1
+  + item 3.2
+    + item 3.2.1
+
+````
+:::
+:::
+
+::: {.column width=50%}
+[Rendered text]{.blue-bold}
+
+* item 1
+* item 2
+* item 3
+  + item 3.1
+  + item 3.2
+    + item 3.2.1
+
+:::{.small-break}
+:::
+
+1. item 1
+2. item 2
+3. item 3
+    + item 3.1
+    + item 3.2
+      + item 3.2.1
+:::
+::::
+
+## Markdown syntax: Blockquotes {.smaller}
+<br> <br>
+
+:::: {.columns}
+::: {.column width=50%}
+[Markdown text]{.blue-bold}
+
+
+::: {.larger}
+````
+> "Block quotes are neat."
+> 
+> -- Hodu
+````
+:::
+
+:::
+
+::: {.column width=50%}
+[Rendered text]{.blue-bold}
+
+> "Block quotes are neat."
+> 
+> -- Hodu
+
+:::
+::::
+
+## Markdown syntax: Hyperlinks {.smaller}
+<br> <br>
+
+
+[Markdown text]{.blue-bold}
+
+:::{.larger}
+````
+https://id529.github.io
+
+[ID 529 Website (current window)](https://id529.github.io)
+
+[ID 529 Course Website (new window)](https://id529.github.io){target="_blank"}
+````
+:::
+
+<br>
+
+[Rendered text]{.blue-bold}
+
+<https://id529.github.io> <br>
+
+[ID 529 Course Website (same window)](https://id529.github.io)<br>
+
+[ID 529 Course Website (new window)](https://id529.github.io){target="_blank"} <br>
+
+
+## Markdown syntax: Embedding Images {.smaller}
+
+<br> 
+
+[Images from file storage]{.blue-bold}
+
+::: {.larger}
+````
+![](images/hex-rmarkdown.png)
+````
+:::
+
+<br> 
+
+[Images from web sources]{.blue-bold}
+
+::: {.larger}
+````
+![](https://i0.wp.com/johnmackintosh.net/assets/img/blog/20220921-padme.jpeg)
+````
+:::
+
+
+![](https://i0.wp.com/johnmackintosh.net/assets/img/blog/20220921-padme.jpeg?w=578&ssl=1){.absolute height="50%" right=40% bottom="0%"}
+
+
+![](images/hex-rmarkdown.png){.absolute height="25%" right="45%" top="10%"}
+
+## Code chunks {.smaller}
+
+<br>
+
+:::: {.columns}
+::: {.column width="50%"}
+-   Code chunks can be inserted throughout the R Markdown document
+-   To insert a code chunk click the green code chunk button in the top right corner of .Rmd document
+    -   Alternatively, use a keyboard shortcut!
+    -   **Mac:** [command + option + i]{.blue}
+    -   **PC:** [control + alt + i]{.blue}
+-   All code chunks are run, in the order they appear, when the file is rendered
+:::
+    
+::: {.column width="50%"}
+````
+```{{r}}
+# This is a code chunk! 
+print("Add code here, just like you would in an R script")
+```
+````
+:::{.code-break}
+:::
+
+````
+```{{r}}
+print("Code chunks are run in order when the file renders")
+```
+````
+:::{.code-break}
+:::
+
+````
+```{{r}}
+print("So, be sure to organize your code accordingly!")
+```
+````
+:::
+::::
+    
+## Code chunks: Chunk options {.smaller}
+
+<br>
+
+:::: {.columns}
+::: {.column width="60%"}
+
+-   Output from each code chunk can be [customized]{.blue-bold}
+-   Set using [`knitr` chunk options]{.blue-bold}
+    -   Included between the curly braces `{r ...}`
+
+:::{.small-break}
+:::
+
+-   **A few commonly used options include:**
+    -   `include = FALSE`: Exclude chunk code/output
+    -   `echo = FALSE`: Show code output, but not the code
+    -   `warning = FALSE`: Don't include warning messages
+    -   `fig.height = ...`: Set output figure height (in.) 
+    -   `fig.width = ...`: Set output figure width (in.) 
+
+:::{.small-break}
+:::
+
+[See the resources linked below for more; there are a lot!]{.blue-bold}
+:::
+
+::: {.column width="40%"}
+````
+```{{r, echo = TRUE, warning = FALSE}}
+# Show the code and output in rendered file
+```
+````
+
+:::{.code-break}
+:::
+
+````
+```{{r, fig.height = 3, fig.width = 5}}
+# Set the output figure height and width
+ggplot(data, aes(x = var1, y = var2)) +
+  geom_point()
+```
+````
+:::
+::::
+
+::: aside
+[Comprehensive list of chunk options](https://yihui.org/knitr/options/) <br>
+[Knitr Chunk Options Reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.49252896.746852327.1673881938-1383057973.1651956305)
+:::
+
+## Code chunks: Global options {.smaller}
+
+<br>
+
+:::: {.columns}
+::: {.column width="60%"}
+
+-   Instead of setting `chunk options` for each code chunk, you can alternatively set [global chunk options]{.blue-bold}
+    -   That is, you can apply a configuration or option across all code chunks in the `Rmd` document   
+    -   Global settings can be overridden by setting options on individual code chunks
+
+:::
+
+::: {.column width="40%"}
+
+````
+```{{r, knitr::opts_chunk$set(echo=FALSE)}}
+# This knitr option sets echo=FALSE as a global option
+# All code chunks will therefore omit code from the rendred output file
+```
+````
+:::
+
+::::
+
+::: aside
+[Comprehensive list of chunk options](https://yihui.org/knitr/options/) <br>
+[Knitr Chunk Options Reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.49252896.746852327.1673881938-1383057973.1651956305)
+:::
+
+## A note on LaTeX {.smaller}
+
+<br> <br>
+
+[Note: If you want to create pdf reports, you will need to install a `LaTeX` distribution. For R, it's recommended that the TinyTex distribution be used. To do this, you can install the `tinytex` R package. Check out the resources linked below for more details.]{.blue-bold}
+
+<br>
+
+:::{.larger}
+```{r, eval=F}
+install.packages("tinytex")
+tinytex::install_tinytex()
+
+# to uninstall TinyTeX, run tinytex::uninstall_tinytex() 
+```
+:::
+
+::: aside
+<https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html> <br>
+<https://yihui.org/tinytex/>
+:::
+
+## Embedding Mathenatical Expressions {.smaller}
+
+:::: {.columns}
+::: {.column width="60%"}
+
+-   Within R Markdown files, you can also incorporate mathematical expressions
+-   Uses `LaTeX` syntax
+    -   Expressions wrapped in [single]{.blue-bold} dollar signs `$..$` are displayed "in-line" 
+    -   Expressions wrapped in [double]{.blue-bold} dollar signs `$$..$$` render as stand-alone equations
+-   The syntax can be confusing at first, but will make sense the more you use it!
+
+:::{.small}
+````
+$$
+\begin{equation}
+\hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1 X_i + \hat{\epsilon}_i
+\end{equation}
+$$
+````
+
+````
+This is some text with an in-line expressions like $\hat{Y}_i$ and $\hat{\beta}_1 X_i$. Pretty cool, right?
+````
+:::
+:::
+
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+::: {.column width="40%"}
+$$
+\begin{equation}
+\hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1 X_i + \hat{\epsilon}_i
+\end{equation}
+$$
+This is some text with an in-line expressions like $\hat{Y}_i$ and $\hat{\beta}_1 X_i$. Pretty cool, right?
+
+
+::: 
+::::
+
+::: aside
+TinyTex information: <https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html> <br>
+Installation details: <https://yihui.org/tinytex/>
+:::
+
+# Let's look at an Rmd file in R Studio! {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110% auto"}
+
+## Resources {.smaller}
+
+::: {.small-break}
+:::
+
+[Introductory Information]{.blue-bold}
+
+-   **Overview and linked resources:** <https://pkgs.rstudio.com/rmarkdown/articles/rmarkdown.html> 
+-   **Interactive Tutorial:** <https://rmarkdown.rstudio.com/lesson-1.html>
+-   **HTML Rmd themes:** <https://www.datadreaming.org/post/r-markdown-theme-gallery/>
+
+::: {.small-break}
+:::
+
+[Resources to quickly reference]{.blue-bold}
+
+-   **Cheat Sheet:** <https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf> 
+-   **Syntax Guide:** <https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.253280527.746852327.1673881938-1383057973.1651956305>
+
+::: {.small-break}
+:::
+
+[More comprehensive resources]{.blue-bold}
+
+-   **R Markdown Definitive Guide:** <https://bookdown.org/yihui/rmarkdown/>
+-   **R Markdown Cookbook:** <https://bookdown.org/yihui/rmarkdown-cookbook/>
+
+---
+
+<!-- Introduction to R Markdown and the R Markdown syntax -->
+
+<!-- Importance of reproducibility in data analysis and the benefits of using R Markdown for reproducible reports -->
+
+<!-- Overview of the R Markdown document structure and formatting options -->
+
+<!-- Steps for creating an R Markdown document and integrating tables, visualizations, and inline-quantitative statements -->
+
+<!-- Tips for organizing and managing your R Markdown files and collaborating with others -->
+
+<!-- Case study: A worked example of using R Markdown to produce a reproducible report -->
+
+<!-- Conclusion and next steps for improving your R Markdown skills. -->

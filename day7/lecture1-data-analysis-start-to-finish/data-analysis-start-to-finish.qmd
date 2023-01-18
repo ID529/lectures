@@ -1,0 +1,49 @@
+---
+format: 
+  revealjs:
+    theme: [simple, ../../day2/lecture3-reading-in-data/custom.scss]
+    highlight: pygments
+    logo: images/id529-sticker.png
+    slide-number: true
+    footer: "<https://id529.github.io/>"
+revealjs-plugins:
+  - pointer
+  - confetti
+execute: 
+  echo: true
+---
+
+# Data Analysis From Start to Finish {.white-title .white-code background-image="images/bg-no-planet.png" background-size="110% auto"}
+
+::: {.white-15-pt}
+ID 529: Data Management and Analytic Workflows in R
+:::
+
+::: {.white-12-pt}
+Dean Marengi \| Thursday, January 19<sup>th</sup>, 2023
+:::
+
+## Overview
+
+-   Acknowledge core concepts that this project incorporated
+  -   Project based workflows
+  -   Writing functions
+  -   Data manipulation using dplyr
+    -   also combining datasets
+  -   Text processing using stringr
+  -   Working with factors, dates, and times using lubridate
+  -   Functional programming for efficient file imports and modeling
+  -   Data visualizations using ggplot
+  -   Data dictionaries and documentation
+  -   R Markdown for reporting
+  -   Others? check 
+
+## Background {.smaller}
+
+-   context/rationale for the study
+
+## Tasks to complete: Part 1 {.smaller}
+
+## Tasks to complete: Part 2 {.smaller}
+
+## High-level pseudocode {.smaller}
