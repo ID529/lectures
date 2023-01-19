@@ -7,7 +7,7 @@
 # with ggplot2. We'll use ggplot2 to make some inferences about the patterns in
 # the data by strata and by gender.
 # 
-# finally, we'll show some examples with the 
+# finally, we'll show some examples with the sleepstudy dataset from lme4
 
 # dependencies ------------------------------------------------------------
 
@@ -236,7 +236,7 @@ ggplot(df_tidy, aes(x = year, y = rate, group = interaction(strata, gender), fil
   ) + 
   scale_fill_manual(values = c("#ff9f43", "#0abde3")) +
   ggtitle("Comparing Rates Across Strata and Gender", "2005-2020") + 
-  labs(fill = "Quartile Range") + 
+  labs(fill = "Quantile Range") + 
   guides(fill = guide_none()) + 
   theme_bw() + 
   theme(legend.position = 'bottom')
@@ -274,14 +274,19 @@ broom.mixed::tidy(reaction_times_model)
 
 # one quick set of stratified models --------------------------------------
 
-reaction_time_table <- 
+
+model_df <- 
   sleepstudy %>% 
   nest_by(Subject) %>% 
   mutate(model = list(lm(Reaction ~ Days, data = data %>% filter(Days >= 2)))) %>% 
   mutate(model_coefs = list(broom::tidy(model))) %>% 
   rowwise() %>%
   mutate(day_coef = model_coefs %>% filter(term == 'Days') %>% pull(estimate)) %>% 
-  select(Subject, day_coef) %>% 
+  select(Subject, day_coef) 
+
+
+reaction_time_table <- 
+  model_df %>% 
   gt() %>% 
   tab_header("Increase in Reaction Time associated with Sleep Deprivation",
              subtitle = "Results by Study Participant") %>% 
@@ -300,3 +305,4 @@ reaction_time_table <-
   )
 
 gtsave(reaction_time_table, here(analysis_dir, "tab1.html"))
+gtsave(reaction_time_table, here(analysis_dir, "tab1.tex"))

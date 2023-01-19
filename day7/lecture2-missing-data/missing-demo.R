@@ -1,6 +1,5 @@
 # Visualizing Missingness Patterns
 
-
 # dependencies ------------------------------------------------------------
 
 library(palmerpenguins)
@@ -8,6 +7,8 @@ library(VIM)
 library(tidyverse)
 library(gtsummary)
 library(plotly)
+library(htmlwidgets)
+library(here)
 
 
 # missingness in tables ---------------------------------------------------
@@ -33,12 +34,45 @@ penguins %>%
   as.data.frame() %>% 
   tibble::rownames_to_column(var = "variable") %>% 
   rename("prop_missing" = "V1") %>% 
-  ggplot(aes(x = variable, y = prop_missing)) + 
-  geom_col()
-
+  ggplot(aes(x = prop_missing, y = variable)) + 
+  geom_col() + 
+  scale_x_continuous(labels = scales::percent_format())
 
 
 # visualize missingness patterns ------------------------------------------
+
+penguins %>% 
+  mutate(
+    sex = forcats::fct_explicit_na(sex)
+  ) %>% 
+  ggplot(aes(x = bill_length_mm,
+                     y = bill_depth_mm,
+                     shape = sex,
+             color = interaction(species, sex),
+             size = ifelse(sex == '(Missing)', 'large', 'small'),
+             alpha = ifelse(sex == '(Missing)', 'dark', 'light'))) + 
+  geom_point() + 
+  scale_size_manual(
+    values = c('large' = 2, 'small' = 1.5)
+  ) + 
+  scale_alpha_manual(values = c(dark = 1, light = .7)) + 
+  scale_shape_manual(values = c(15,16,1)) + 
+  guides(
+    alpha = guide_none(),
+    size = guide_none()
+  ) + 
+  theme_bw()
+  
+
+penguins %>% 
+  mutate(
+    sex = forcats::fct_explicit_na(penguins$sex)
+  ) %>% 
+  ggplot(aes(x = bill_length_mm,
+                     y = bill_depth_mm,
+                     shape = sex)) + 
+  geom_point()
+
 
 penguins %>% 
   mutate(
@@ -65,4 +99,6 @@ penguins %>%
   ) + 
   theme_bw()
 
-ggplotly()
+interactive_plot <- ggplotly()
+
+saveWidget(interactive_plot, file = here("day7/lecture2-missing-data/", "interactive_figure.html"))

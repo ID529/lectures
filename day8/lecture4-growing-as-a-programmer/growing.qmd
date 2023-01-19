@@ -1,0 +1,108 @@
+---
+title: "Growing as a Programmer"
+format:
+  revealjs:
+    theme: [default, growing.scss]
+slide-number: true
+title-slide-attributes:
+  data-background-image: "graphics/transition_slides/yen-vu.jpg"
+  data-background-opacity: "60%"
+  data-background-color: "black"
+revealjs-plugins:
+  - pointer
+execute: 
+  echo: true
+---
+
+## morals {background-image='graphics/transition_slides/yen-vu.jpg' background-opacity='40%' background-color='black'}
+
+:::{.fragment}
+"Whatever makes you uncomfortable is the best opportunity for growth."
+:::
+
+:::{.fragment}
+"We don't stop playing because we grow old; we grow old because we stop playing"
+:::
+
+## some advice 
+
+it might feel like there's *so* much to learn, but focus on committing to
+learning what you need to accomplish your goals.
+
+<img src="graphics/memes/focus-meme.jpg" alt="Yoda: focus, you must">
+
+## do side projects 
+
+whether it's "fancying your figures" or trying out features you've never tried
+before, side-projects can be fulfilling and are often sources of inspiration for
+new ideas that translate to your main projects.
+
+<img src='graphics/memes/side-projects.webp' alt="there can be a temptation to have too 
+many side projects, or too many unfinished side-projects">
+
+## read other people's code 
+
+reading other's code will give you the chance to see new ideas in action and
+consider the pros/cons of their programming style compared to yours.
+
+<img src="graphics/memes/read-others-code.png" alt="xkcd comic describing a situation where someone's
+code looks like a mess">
+
+<a href="https://google.github.io/styleguide/Rguide.html">Google's R Style Guide.</a> 
+<a href="https://jef.works/R-style-guide/">JEFworks R Style Guide.</a>
+
+## learn new techniques, and the syntax will come {.small}
+
+  * projects
+  * functional programming
+  * readme driven development
+  * test driven development
+  * packages
+  * object oriented programming
+  * artful data visualization
+
+<a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/">
+The Evolution of a ggplot (Ep. 1) by Cédric Scherer</a> 
+
+## get code review
+
+<img src="graphics/memes/wtfs_per_min.png" alt="good code tends to have fewer (but not no) wtfs per minute">
+
+  * R for Data Science Slack: <https://www.rfordatasci.com/>
+  * <https://codereview.stackexchange.com/>
+
+## follow R programmers on social media 
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Goodnight columns, goodnight rows,<br>Goodnight kind strangers on Stack Overflow,<br>Goodnight factors, goodnight strings,<br>Goodnight overfitted things,<br>Goodnight humans, goodnight bots,<br>Goodnight inconclusive plots.<br>Goodnight R 😴<a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a></p>&mdash; Olga Boїchak🇺🇦 (@olgarithmic) <a href="https://twitter.com/olgarithmic/status/1057093358374604800?ref_src=twsrc%5Etfw">October 30, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+## 
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">The only way to write good code is to write tons of shitty code first. Feeling shame about bad code stops you from getting to good code</p>&mdash; Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/589068687669243905?ref_src=twsrc%5Etfw">April 17, 2015</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+## 
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Twitter is a fantastic resource for learning new tips and tricks with <a href="https://twitter.com/hashtag/R?src=hash&amp;ref_src=twsrc%5Etfw">#R</a>, especially when it comes to <a href="https://twitter.com/hashtag/dataviz?src=hash&amp;ref_src=twsrc%5Etfw">#dataviz</a>! I love how supportive the <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> community is. 🤓 <a href="https://t.co/9qMwbXkvEQ">https://t.co/9qMwbXkvEQ</a></p>&mdash; Julian Gan (@JCLGan) <a href="https://twitter.com/JCLGan/status/1229486581620367361?ref_src=twsrc%5Etfw">February 17, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+## 
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Instant ramen reviews by <a href="https://twitter.com/theramenrater?ref_src=twsrc%5Etfw">@theramenrater</a> for <a href="https://twitter.com/hashtag/TidyTuesday?src=hash&amp;ref_src=twsrc%5Etfw">#TidyTuesday</a>. Good luck reading the text, but couldn&#39;t help it, it was too much fun making this plot!<br><br>code: <a href="https://t.co/jWEPqEefT7">https://t.co/jWEPqEefT7</a> <a href="https://t.co/Rmb8Hslci6">pic.twitter.com/Rmb8Hslci6</a></p>&mdash; Georgios Karamanis (@geokaramanis) <a href="https://twitter.com/geokaramanis/status/1136326761933955072?ref_src=twsrc%5Etfw">June 5, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+## some accounts I follow
+
+  - Hadley Wickham
+  - Jenny Bryan
+  - Julia Silge
+  - Sharon Machlis 
+  - Frank Harrell
+  - Yani Bellini Saibene 
+  - Kyle Walker
+  - Andrew Heiss
+  - Georgios Karamanis
+  - Cédric Scherer
+  - RUG at HDSI
+  
+## tidytuesday 
+
+<img src="https://github.com/rfordatascience/tidytuesday/raw/master/static/tt_logo.png" alt="a weekly data project in R from the R4DS online community">
+
+<img src="tidytuesday.png">

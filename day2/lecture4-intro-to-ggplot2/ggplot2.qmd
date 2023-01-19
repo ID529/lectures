@@ -5,9 +5,9 @@ format:
     theme: [default, ggplot2.scss]
 slide-number: true
 title-slide-attributes:
-  data-background-image: "graphics/transition_slides/conny-schneider.jpg"
-  data-background-opacity: "60%"
-  data-background-color: "black"
+  data-background-image: "graphics/transition_slides/yen-vu.jpg"
+  data-background-opacity: "40%"
+  data-background-color: "white"
 revealjs-plugins:
   - pointer
 execute: 
