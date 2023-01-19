@@ -37,3 +37,32 @@ sapply(list(u, v, x, y, z), length)
 
 # purrr provides an updated syntax to perform functional programming 
 
+purrr::map(list(u, v, x, y, z), ~length(.))
+
+purrr::map_dbl(list(u, v, x, y, z), ~length(.))
+
+purrr::map_df(list(u = u, v = v, x = x, y = y, z = z), ~length(.))
+
+# working with multiple arguments
+
+power <- function(x, y) {
+  x ^ y
+}
+
+purrr::map(c(1,2,3,4,5), power, 2)
+
+purrr::map(c(1,2,3,4,5), power, 3)
+
+
+
+# some examples you might use ---------------------------------------------
+
+penguins %>% purrr::map_chr(class)
+
+penguins %>% purrr::map_dbl(~ sum(is.na(.)))
+
+
+# functional programming with dplyr ---------------------------------------
+
+penguins %>% 
+  mutate(across(where(is.numeric), round))
