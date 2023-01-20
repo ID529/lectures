@@ -1,11 +1,40 @@
-title: Course Recap
+---
+title: "ID529 Course Recap"
+format:
+  revealjs:
+    theme: [default, recap.scss]
+    background-image: "graphics/transition_slides/annie-spratt.jpg"
+    background-opacity: "60%"
+    background-color: "pink"
+slide-number: true
+title-slide-attributes:
+  data-background-image: "graphics/transition_slides/annie-spratt.jpg"
+  data-background-color: "white"
+revealjs-plugins:
+  - pointer
+execute: 
+  echo: true
+---
 
-> "I will let the data speak for itself when it cleans itself."
-——Allison Reichel
+## moral
 
+:::{.fragment}
+"I will let the data speak for itself when it cleans itself." <br>
+—Allison Reichel
+:::
 
-# some principles 
+<br><br>
 
+:::{.fragment}
+You should be incredibly proud of yourselves not just for getting to the
+finish line of ID529, but for all the work, the trial and error, the questions
+and the fantastic attitudes you've shared with all of us. <br>
+—Christian, Hodu Dad
+:::
+
+# key principles of ID529 
+
+:::{.incremental}
   - understand your data, goals, and conceptual frameworks
   - organize your work 
   - make your work more pleasant for yourself
@@ -14,17 +43,29 @@ title: Course Recap
   - reduce tedium and manual processes
   - make collaboration easier
   - make communication easier
+:::
 
-<!-- from jenny bryan's talk: 
-new tools and workflows for data analysis --> 
+## tidy workflows
+
+<img src="images/tidyverse_workflow.jpg" alt="the workflow in tidyverse">
+
+## data analysis work can't be just modeling
+
+<img src="images/modeling.jpg" alt="remember, we can't just focus on modeling">
+
+## practice
+
+<img src="images/jarvis_practice.jpg" alt="every aspect of our analysis workflows will benefit from practice">
 
 ## use R projects and packages to stay organized
 
   - have a roadmap of what you're aiming to accomplish
   - have a changelog or timeline or anthology of
   decisions made on your project
+  
+<img src="images/rstudio-project-1.png" alt="screenshot of new project creator">
 
-## use git to avoid
+## use git to avoid {.xsmall}
 
   - going on archaeological digs on old email threads
   - uncertainty about which version of the code is the most
@@ -32,45 +73,53 @@ new tools and workflows for data analysis -->
   - uncertainty on what's the most recent data 
   - uncertainty on if issues have been solved
   - zip files of file salad 
+  
+<img src="images/phd_comics.gif" alt="use git to avoid v_final">
 
-## make your work more pleasant
+## make your work more pleasant {.xsmall}
 
 using modern tooling in R and on GitHub 
-
-[insert marie kondo slide]
 
   - you can have joyful code instead of dreadful code
   - you can feel confident about your code instead of leery and uncertain
   - your projects can be colorful and expressive, not bland and
   joyless
+  
+<img src="images/marie-kondo.webp" alt="this one brings joy, marie kondo">
 
 ## making your work navigable for others
 
-  - sharing your work through markdown files on GitHub is great, but you can also 
-    - blog about your work 
-    - tweet / post about it on social media
-    - and make interactive web pages to play with the data / findings
-    
+sharing your work through markdown files on GitHub is great, but you can also 
+
+  - blog about your work 
+  - tweet / post about it on social media
+  - and make interactive web pages to play with the data / findings
+
+
 ## get help from the community 
 
-  - you can connect with the RStats community to learn more happy-making practices
+  connect with the RStats community to learn more happy-making practices
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">My 10 Tips for Getting Help in R: <a href="https://t.co/OxK1iilbsr">https://t.co/OxK1iilbsr</a><br>TL;DR:<br>📖Read the docs<br>🔍Google the error<br>🧠Search smarter not harder<br>🔥Burn it all down<br>🔁Make a reprex<br>🐦Ask Twitter w/ <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a><br>☎️Phone a friend<br>😴Sleep on it<br>💬Ask your q on an online community<br>🙋File an issue on GitHub</p>&mdash; Dr. Sam Tyner-Monroe (@sctyner) <a href="https://twitter.com/sctyner/status/1206986161434058752?ref_src=twsrc%5Etfw">December 17, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
   
 ## reduce tedium and manual processes
 
-  - sometimes tedium is unfortunately; however
+  - sometimes tedium is necessary; however:
   - often solutions already exist to do what you're trying to do! 
   - or you can be clever about restructuring what you need to do 
   to leverage tooling that already exists
 
-## make collaboration easier
+## make collaboration easier {.xsmall}
 
   - use git & github 
   - use clean & considerate code 
   - make your work **easily** reproducible
+  
+<img src="images/people_i_follow.png" alt="a screenshot of people I follow" width='450px'>
+<img src="images/id529_members.png" alt="a screenshot of people I follow" width='450px'>
 
-## make communciation easier
+
+## make communciation easier {.xsmall}
 
   - no one has every said "it's a shame we have all this great documentation"
   - reproducible examples will make getting help on your challenges `Inf`% easier
@@ -78,12 +127,13 @@ using modern tooling in R and on GitHub
   transparent and engaging for your colleagues and collaborators.
   - a fantastic ggplot can do more than speak 1000 words: it can tell a good
   story with a coherent narrative and resultantly capture and intrigue viewers.
-  
+
+<img src="images/rmarkdown.png" alt="examples of rmarkdown documents" width='450px'>
+<img src="images/rmarkdown2.png" alt="example of rmarkdown document with figure" width='450px'>
+
 # resources 
  
- 
-   - Good Enough Practices in Scientific Computing 
-   https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510 
-   - https://kbroman.org/Talk_DataCleaning/data_cleaning_notes.pdf
-   - https://speakerdeck.com/jennybc/new-tools-and-workflows-for-data-analysis
+   - [Good Enough Practices in Scientific Computing, Wilson et al.](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510)
+   - [Data Cleaning Principles, Karl Broman](https://kbroman.org/Talk_DataCleaning/data_cleaning_notes.pdf)
+   - [New Tools and Workflows for Data Analysis, Jenny Bryan](https://speakerdeck.com/jennybc/new-tools-and-workflows-for-data-analysis)
  

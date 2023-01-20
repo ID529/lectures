@@ -1,6 +1,5 @@
 # dplyr Demo & Recap 
 
-
 # dependencies ------------------------------------------------------------
 
 library(tidyverse)
@@ -70,13 +69,16 @@ select(penguins, species:flipper_length_mm) # remember we read 1:10 as "one thro
 penguins %>% 
   select(species:flipper_length_mm)
 
+penguins_with_dropped_columns <- 
+  penguins %>% select(-c(island, bill_length_mm))
+
 # filter ------------------------------------------------------------------
 
 penguins %>% filter(year == 2007) # get just the penguins observed in 2007
 
-penguins %>% filter(year == 2007 & sex == 'M')
+penguins %>% filter(year == 2007 & sex == 'male')
 
-penguins %>% filter(year == 2007, sex == 'M')
+penguins %>% filter(year == 2007, sex == 'male')
 
 penguins %>% filter(row_number() %in% 1:10) 
 # another way to do this is with slice or slice_head
@@ -95,8 +97,8 @@ penguins %>% arrange(year) # sort by year of observation
 
 # put all the 2007 penguins together, then 2008, then 2009, but within 
 # each year's penguins observed, sort them by flipper_length_mm
-penguins %>% arrange(year, flipper_length_mm) 
-
+penguins_sorted <- 
+  penguins %>% arrange(year, flipper_length_mm)
 
 # rename ------------------------------------------------------------------
 
@@ -128,7 +130,8 @@ penguins %>% mutate(body_mass_lbs = 0.00220462 * body_mass_g)
 
 grams_to_pounds_conversion_ratio <- 0.00220462
 
-penguins %>% mutate(body_mass_lbs = body_mass_g * grams_to_pounds_conversion_ratio)
+penguins %>% mutate(body_mass_lbs = body_mass_g * grams_to_pounds_conversion_ratio) %>% 
+  View()
 
 
 # summarize ---------------------------------------------------------------
@@ -199,8 +202,10 @@ flipper_length_stats <-
   group_by(species, sex) %>% 
   summarize(
     mean_flipper_length_mm = mean(flipper_length_mm, na.rm = TRUE),
-    ci_high_flipper_length_mm = quantile(flipper_length_mm, .975, na.rm = TRUE),
-    ci_low_flipper_length_mm = quantile(flipper_length_mm, .025, na.rm = TRUE)
+    `q97.5_flipper_length_mm` = quantile(flipper_length_mm, .975, na.rm = TRUE),
+    `q2.5_flipper_length_mm` = quantile(flipper_length_mm, .025, na.rm = TRUE),
+    iq_low_flipper_length_mm = quantile(flipper_length_mm, .25, na.rm = TRUE),
+    iq_high_flipper_length_mm = quantile(flipper_length_mm, .75, na.rm = TRUE),
   ) %>% 
   filter(! is.na(sex))
 
@@ -209,13 +214,13 @@ flipper_plt <-
   flipper_length_stats,
   aes(y = species,
       x = mean_flipper_length_mm,
-      xmin = ci_low_flipper_length_mm,
-      xmax = ci_high_flipper_length_mm,
+      xmin = `q2.5_flipper_length_mm`,
+      xmax = `q97.5_flipper_length_mm`,
       shape = sex,
       color = sex)) + 
   geom_pointrange(position = position_dodge(width=.25)) + 
   scale_color_manual(values = c("#ff9f43", "#0abde3")) + 
-  xlab("Flipper Length (mean and 95% CI) [mm]") + 
+  xlab("Flipper Length (mean and 95% Percentile Range) [mm]") + 
   ylab("Species") + 
   theme_bw() + 
   ggtitle("Flipper Length by Species and Sex")

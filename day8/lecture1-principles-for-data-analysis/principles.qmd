@@ -132,6 +132,7 @@ from Jenny Bryan's talk on spreadsheets <https://speakerdeck.com/jennybc/spreads
 ## explore {.small}
 
   10. make lots of plots 
+  
 :::{.incremental}
   11. look at missing value patterns 
   12. with massive data, make more plots not fewer 
