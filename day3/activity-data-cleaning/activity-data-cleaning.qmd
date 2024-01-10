@@ -1,0 +1,496 @@
+---
+format: 
+  revealjs:
+    theme: [simple, custom.scss]
+    logo: images/id529-sticker.png
+    echo: true
+    slide-number: true
+    revealjs-plugins:
+      - confetti
+      - pointer
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r}
+#| label: load-packages
+#| include: false
+
+library(pacman)
+p_load(tidyverse)
+p_load(scales)
+
+```
+
+# Data cleaning with messy data {.smaller}
+
+ID 529: Data Management and Analytic Workflows in R
+
+Jarvis Chen
+
+<br>
+
+<hr>
+
+<br>
+
+Wednesday, January 10, 2024
+
+
+## Follow along {.smaller}
+
+<br>
+<br>
+<center>
+https://bit.ly/messyDataR
+<br>
+<br>
+
+- Options: 
+    - Download the `messy_data.csv` file and the `id529-day3-messyData.R` script
+    - Or clone the repository and follow along
+    
+## Learning objectives {.smaller}
+
+<br> 
+
+:::incremental
+
+- In this activity, we'll look at how to accomplish some common data cleaning tasks using tools from `dplyr` and the `tidyverse`
+
+- Gain familiarity with the following
+
+    -   `janitor::clean_names()` for tidying variable names
+    
+    -   `case_when()` for recoding variables in `mutate()` 
+
+    -   `across()` for mutating multiple columns
+    
+    -   Dealing with duplicates, missingness, and other data messiness
+    
+    -   `cut()`, `quantile()`, and `dplyr::ntile()` for creating categorical variables from continuous variables
+    
+    -   `group_by()` and `summarize()` for creating grouped summaries
+
+:::
+
+# Messy Data
+
+
+## Read our messy data {.smaller}
+
+For this activity, we created a fake messy dataset with many of the data cleaning tasks that we typically need to accomplish. The data is available on our website as `messy_data.csv`. 
+
+::: {.column width="25%"}
+![](images/weird_barbie.png){fig-align="center" height="20%"
+fig-alt="Weird Barbie Our Patron Saint of Messy Data"}
+:::
+
+::: {.column width="5%"}
+<br>
+:::
+
+::: {.column width="70%"}
+<br>
+<div style='font-size: 24px;'>
+```{r}
+# Read the messy data
+messy_data <- read_csv("messy_data.csv")
+
+# Have a look
+View(messy_data)
+```
+</div>
+:::
+
+
+## What do we see?{.smaller}
+
+<br>
+
+<div style='font-size: 24px;'>
+```{r}
+glimpse(messy_data)
+```
+</div>
+<br>
+
+::: incremental
+-   The column names have spaces and a mix of capital and lower case letters.
+
+-   When column names have spaces, we will need to refer to them in quotes, e.g. `'ID Number'` -- this is very inconvenient!
+
+:::
+
+
+## First, let's fix the variable names {.smaller}
+
+- In general, we would like for there not to be spaces in column names
+
+- It is a matter of style, but generally I like to keep things in lower case letters
+
+- The `janitor::clean_names()` function can correct the column names for us!
+
+```{r}
+names(messy_data)
+```
+
+<br>
+
+```{r}
+df <- messy_data |>
+  janitor::clean_names()
+
+names(df)
+```
+
+
+## Check how many duplicates there are {.smaller}
+
+<br>
+Next, we can check how many duplicates there are. The `id_number` variable identifies subjects, and here we see that some `id_number`'s appear up to 5 times!
+
+```{r}
+table(df$id_number)
+```
+
+<br>
+Is there a pattern to the duplicated records?
+
+```{r}
+df <- df |> arrange(id_number)
+View(df)
+```
+<br>
+
+- In this particular case, it looks like the duplicated records are missing many of the variables.
+
+
+## What's up with the missing codes? {.smaller}
+
+```{r}
+table(df$self_identified_gender)
+table(df$hispanic_ethnicity)
+table(df$highest_education_completed)
+
+summary(df$age_at_exam)
+summary(df$hours_of_sleep_per_night)
+summary(df$household_income_before_taxes)
+```
+
+## What's up with the missing codes? {.smaller}
+
+-   There appear to be various kinds of missingness coded (e.g. "unknown", `-99`, `-77`, and `-999`), but if we want `R` to handle them as missing data, we should recode them to `NA`
+
+- We *could* recode each of these variables one at a time using `mutate()`
+
+<br>
+
+```{r}
+# for example
+df |>
+  mutate(hispanic_ethnicity = ifelse(hispanic_ethnicity == "unknown",
+                                     NA_character_,
+                                     hispanic_ethnicity)) |>
+  select(hispanic_ethnicity) |>
+  unique()
+```
+<br>
+
+- This could get a bit tedious if we have a lot of variables to recode!
+
+
+## Let's recode the missing values {.smaller}
+
+- We can use `mutate(across())` to recode these variables more efficiently
+
+- `across()` allows us to apply the same function or a set of functions to multiple columns of a dataframe at once
+
+    - this simplifies the code and improves readability
+    
+- The basic syntax is
+
+```{.r .no-exec}
+mutate(data, across(columns, functions))
+```
+  - `columns` specifies the columns of the dataframe to apply the function to. This can be a selection of columns like `c(col1, col2)`  
+
+  - Or we can specify columns using a helper like `everything()`, `starts_with()`, `ends_with()`, `contains()`
+
+## Let's recode the missing values {.smaller}
+
+```{r}
+df <- df |>
+  mutate(across(c(hispanic_ethnicity, self_identified_gender, highest_education_completed),
+                ~ ifelse(.x == "unknown", NA_character_, .x)),
+         across(c(age_at_exam, hours_of_sleep_per_night, household_income_before_taxes),
+                ~ ifelse(.x < 0, NA_real_, .x)))
+
+head(df)
+```
+
+## Now we can deal with the duplicates! {.smaller}
+
+We can count up how many missing variables there are for each of the multiple records and use this information to help us select the duplicated record with the most complete data (discarding the other incomplete records).
+
+<br>
+
+```{r}
+# count the number of missing columns
+df$missing_count = rowSums(is.na(df), na.rm = FALSE)
+
+# create a new dataframe with unique id's
+unique_df <- df |>
+  # group by id_number
+  group_by(id_number) |>
+  # sort each id_number's observations by the number of missing columns (from fewest to most)
+  arrange(missing_count) |>
+  # take the first row for each id_number, which is the row with the fewest missing variables
+  slice(1) |>
+  # drop the missing_count variable
+  select(-missing_count) |>
+  # it's always a good idea to ungroup() after using a group_by
+  ungroup()
+
+View(unique_df)
+```
+
+
+## Collapsing categories {.smaller}
+
+- For some variables, we often need to collapse categories to ensure enough subjects for analysis.
+
+```{r}
+table(unique_df$race_self_identified, unique_df$hispanic_ethnicity)
+
+table(unique_df$self_identified_gender)
+
+table(unique_df$highest_education_completed)
+```
+
+
+## Collapsing categories {.smaller}
+
+- The `dplyr::case_when()` function is a versatile tool for recoding variables. When used with `dplyr::mutate`, it allows you to transform a variable's values based on a set of conditions, making it especially useful in data manipulation and cleaning. 
+
+- The basic syntax is:
+
+```{.r .no-exec}
+df <- df |>
+  mutate(new_var = case_when(
+      condition1 ~ value1, 
+      condition2 ~ value2, 
+      ...,
+      TRUE ~ default_value))
+```
+
+## Collapsing racial/ethnic groups {.smaller}
+
+- Here, we create a collapsed racial/ethnic variable called `raceth` that combines information from `race_self_identified` and `hispanic_ethnicity`
+
+- We'll combine subjects who are Non-Hispanic American Indian or Alaskan Native, Non-Hispanic Asian or Pacific Islander, and Non-Hispanic Two or more races into a category we'll call "underrepresented racial/ethnic group"
+
+```{r}
+unique_df <- unique_df |>
+  mutate(raceth = factor(
+    case_when(
+      race_self_identified == "White" &
+        hispanic_ethnicity == "Non-Hispanic" ~ "Non-Hispanic White",
+      race_self_identified == "Black" &
+        hispanic_ethnicity == "Non-Hispanic" ~ "Non-Hispanic Black",
+      hispanic_ethnicity == "Hispanic" ~ "Hispanic",
+      is.na(race_self_identified) |
+        is.na(hispanic_ethnicity) ~ NA_character_,
+      TRUE ~ "underrepresented racial/ethnic group"
+    ),
+    levels = c(
+      "Non-Hispanic White",
+      "Non-Hispanic Black",
+      "Hispanic",
+      "underrepresented racial/ethnic group"
+    )
+  ))
+
+```             
+             
+             
+## Collapsing racial/ethnic groups {.smaller}
+
+<br>
+```{r}
+table(unique_df$raceth)
+```
+
+## Collapsing gender and education {.smaller}
+
+- We can similarly recode gender and education into collapsed categories
+
+```{r}
+unique_df <- unique_df |>
+  mutate(
+    gender_collapsed = ifelse(
+      self_identified_gender %in% c(
+        "transgender female",
+        "transgender male",
+        "non-binary or genderqueer"
+      ),
+      "trans/non-binary",
+      self_identified_gender
+    ),
+    education_collapsed = case_when(
+      highest_education_completed %in% c("8th Grade", "9-11th Grade") ~ "less than hs",
+      highest_education_completed %in% c("High School", "Some College") ~ "hs grad",
+      highest_education_completed == "College Grad" ~ "college grad"
+    )
+  )
+```
+
+  - Note the use of `ifelse(test, yes, no)` where `test` is a logical vector (condition to be tested), `yes` is a value to return if `test` is `TRUE`, and `no` is a value to return if `test` is `FALSE`
+
+
+## Collapsing gender and education {.smaller}
+
+```{r}
+table(unique_df$gender_collapsed)
+
+table(unique_df$education_collapsed)
+```
+
+
+## Categorizing continuous variables {.smaller}
+<br>
+
+- Now suppose that we want to create a dichotomous variable for `insufficient_sleep` based on `hours_of_sleep_per_night` (<7 hours per night is insufficient sleep)
+
+<br>
+
+```{r}
+unique_df <- unique_df |>
+  mutate(insufficient_sleep = hours_of_sleep_per_night < 7)
+
+table(unique_df$insufficient_sleep)
+```
+
+
+## Categorizing continuous variables {.smaller}
+<br>
+
+- We can use the `cut()` function to create categories from a continuous variable (here, `household_income_before_taxes`) by supplying a list of cutpoints (`breaks`)
+
+- `dplyr` has a function `ntile()` that creates approximately equal sized groups (e.g. quintiles)
+<br>
+
+```{r}
+unique_df <- unique_df |>
+  mutate(income_cat = cut(household_income_before_taxes, 
+                          breaks = c(0, 25000, 50000, 75000, 100000, 1000000),
+                          right = FALSE, include.lowest=TRUE, na.rm=T),
+         income_quint = ntile(household_income_before_taxes, 5))
+```
+
+## Categories using cut() {.smaller}
+
+```{r}
+ggplot(unique_df, 
+       aes(x=income_cat, y=household_income_before_taxes)) + 
+  geom_boxplot() +
+  scale_y_continuous(labels=label_comma())
+```
+
+## Categories using ntile() {.smaller}
+
+```{r}
+ggplot(unique_df, 
+       aes(x=factor(income_quint), y=household_income_before_taxes)) + 
+  geom_boxplot()
+```
+
+- Note that `ntile()` has recoded `household_income_before_taxes` into categories directly, but we don't know what the cutpoints are
+
+## Using group_by() and summarize() {.smaller}
+
+- We can use `group_by()` and `summarize()` to get information about the range of values in each category of `income_quint`
+
+```{r}
+unique_df |>
+  group_by(income_quint) |>
+  summarise(mininc = min(household_income_before_taxes, na.rm=T),
+            maxinc = max(household_income_before_taxes, na.rm=T))
+```
+
+
+## group_by() and summarize() {.smaller}
+
+- `group_by()`
+
+  - `group_by()` is used to split a data frame into groups based on one or more variables. This function doesn't change the data itself but changes its metadata, setting up for grouped operations like summarizing or mutating each group separately.
+  
+- `summarize()`
+
+  - `summarize()` -- or `summarise()` -- is used to collapse each group created by `group_by()` into a single-row summary based on specified summary functions.
+  
+  - While `group_by()` doesn't change the data, `summarize()` does
+  
+## group_by() and summarize() {.smaller}
+  
+- Some commonly used functions in `summarize()` are:
+  
+    - `mean()`: Calculates the mean (average) of a numeric column.
+    - `sum()`: Computes the sum of a numeric column.
+    - `min()` and `max()`: Find the minimum or maximum value of a column.
+    - `n()`: Counts the number of observations in a group.
+    - `n_distinct()`: Counts the number of unique values in a column.
+    - `median()`: Finds the median of a numeric column.
+    - `sd()`: Computes the standard deviation of a numeric column.
+
+## Example: calculating proportions {.smaller}
+
+- Suppose we want to calculate the proportion of subjects in each gender and racial/ethnic group who have sufficient and insufficient sleep
+
+<br>
+
+```{r}
+proportions_by_gender_raceth <- unique_df |>
+  group_by(gender_collapsed, raceth, insufficient_sleep) |>
+  summarize(count_insufficient_sleep = n(), .groups='drop') |>
+  group_by(gender_collapsed, raceth) |>
+  mutate(proportion_insufficient_sleep = 
+           count_insufficient_sleep/sum(count_insufficient_sleep, na.rm=T)) |>
+  ungroup()
+
+View(proportions_by_gender_raceth)
+```
+
+<br>
+
+- Note the use of `.groups='drop'` in the `summarize` statement. This says to remove the grouping after summarizing (equivalent to `ungroup()`)
+
+## Example: calculating mean, median, and sd {.smaller}
+
+With `summarize`, we can use `across` to create multiple summary columns
+<br>
+
+```{r}
+summarize_continuous_variables <- unique_df |>
+  summarize(across(
+    c(
+      age_at_exam,
+      hours_of_sleep_per_night,
+      household_income_before_taxes
+    ),
+    list(
+      mean = ~ mean(.x, , na.rm = TRUE),
+      median = ~ median(.x, na.rm = TRUE),
+      sd = ~ sd(.x, na.rm = TRUE)
+    )
+  ))
+
+View(summarize_continuous_variables)
+```
+
+- Note that
+  - we supplied a list of functions for `summarize` to apply to each column specified
+  - `summarize` automatically created names for the new columns in the summary dataframe
+  - `.x` is explicitly used as a placeholder to refer to an element being acted upon (here, each of the columns specified in the call to `across`)
+  
